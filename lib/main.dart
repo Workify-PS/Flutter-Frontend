@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,
       getPages: [
-        GetPage(name: "/", page: () => true ? HomePage() : AuthPage()),  //check for already signed in
+        GetPage(name: "/", page: () => false ? HomePage() : AuthPage()),  //check for already signed in
         GetPage(name: "/auth", page: () => AuthPage()),
       ],
     );

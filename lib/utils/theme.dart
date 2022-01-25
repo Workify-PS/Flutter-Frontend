@@ -9,7 +9,7 @@ class MyTheme {
       background: Colors.grey.shade50,
       surface: Colors.white,
     ),
-    textTheme: GoogleFonts.workSansTextTheme()
+    textTheme: GoogleFonts.latoTextTheme()
         .apply(bodyColor: Colors.black, displayColor: Colors.black),
   ).copyWith(
       cardTheme: CardTheme(

@@ -21,13 +21,17 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+   
     return GetMaterialApp(
       initialRoute: "/",
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,
       getPages: [
-        GetPage(name: "/", page: () => true ? HomePage() : AuthPage()),  //check for already signed in
+        GetPage(
+            name: "/",
+            page: () =>
+                false ? HomePage() : AuthPage()), //check for already signed in
         GetPage(name: "/auth", page: () => AuthPage()),
       ],
     );

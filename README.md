@@ -4,5 +4,5 @@ A new Flutter project.
 
 ## Getting Started
 `
-    Ajay here. Go for it
+    Ajay here. Go for
 `

@@ -102,8 +102,8 @@ class _AuthPageState extends State<AuthPage> {
                                           const EdgeInsets.only(bottom: 10.0),
                                       child: TextFormField(
                                         controller: _emailController,
-                                        validator: (email) =>
-                                            GetUtils.isEmail(email!)
+                                        validator: (userID) =>
+                                            userID!.isNotEmpty
                                                 ? null
                                                 : "Check your email",
                                         keyboardType:

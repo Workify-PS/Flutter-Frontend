@@ -9,7 +9,7 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  var _passwordIsVisible = false.obs;
+  final _passwordIsVisible = false.obs;
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -199,6 +199,7 @@ class _AuthPageState extends State<AuthPage> {
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
+
                                           //fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -206,7 +207,7 @@ class _AuthPageState extends State<AuthPage> {
                                   ),
                                   Padding(
                                     padding:
-                                        const EdgeInsets.symmetric(vertical: 4),
+                                        const EdgeInsets.symmetric(vertical: 8),
                                     child: Text(
                                       'or',
                                       style: TextStyle(
@@ -219,10 +220,16 @@ class _AuthPageState extends State<AuthPage> {
                                       onPressed: () {},
                                       style: ElevatedButton.styleFrom(
                                           primary: Colors.grey.shade50,
-                                          onPrimary: Colors.black),
+                                          onPrimary: Colors.black,
+                                          elevation: 8,
+                                          shadowColor: Colors.grey.shade800,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          )),
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 12),
+                                            vertical: 8.0),
                                         child: Wrap(
                                           crossAxisAlignment:
                                               WrapCrossAlignment.center,

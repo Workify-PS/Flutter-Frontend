@@ -3,8 +3,8 @@ import 'package:workify/utils/sizes.dart';
 
 var screenWidth, screenHeight;
 
-class BasicDetails extends StatelessWidget {
-  const BasicDetails({Key? key}) : super(key: key);
+class EducationDetails extends StatelessWidget {
+  const EducationDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,8 @@ class BasicDetails extends StatelessWidget {
 
     return Container(
       width: screenWidth * 0.8,
-      height: screenWidth * 0.5,
-      color: Colors.red,
+      height: screenWidth * 0.4,
+      color: Colors.white,
     );
   }
 }

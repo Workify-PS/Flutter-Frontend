@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
-import 'package:workify/screens/AuthPage.dart';
-import 'package:workify/screens/HomePage.dart';
-import 'package:workify/screens/profilesection/ProfilePage.dart';
+import 'package:workify/screens/auth_page.dart';
+import 'package:workify/screens/home_page.dart';
+import 'package:workify/screens/profilesection/profile_page.dart';
 
 import 'package:workify/utils/theme.dart';
 
@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/auth",
+      initialRoute: "/profile",
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,

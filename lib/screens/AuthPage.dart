@@ -1,5 +1,4 @@
 import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workify/utils/sizes.dart';
@@ -18,7 +17,7 @@ class _AuthPageState extends State<AuthPage> {
 
     return Container(
       decoration: const BoxDecoration(
-          gradient: LinearGradient(
+        gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [Color(0xff2082ff), Colors.teal],

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workify/screens/ChangePass.dart';
+import 'package:workify/screens/ForgotPass.dart';
 import 'package:workify/utils/sizes.dart';
 
 class AuthPage extends StatefulWidget {
@@ -160,7 +160,13 @@ class _AuthPageState extends State<AuthPage> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         InkWell(
-                                          onTap: () {},
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        ForgotPass()));
+                                          },
                                           child: Padding(
                                             padding: const EdgeInsets.only(
                                                 right: 8.0, top: 4),

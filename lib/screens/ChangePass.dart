@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:workify/utils/sizes.dart';
 
 class ChangePass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    DeviceSize device = DeviceSize();
+    device.size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           title: Padding(

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:workify/screens/ChangePass.dart';
 import 'package:workify/utils/sizes.dart';
 
 class AuthPage extends StatefulWidget {
@@ -105,7 +106,7 @@ class _AuthPageState extends State<AuthPage> {
                                         validator: (userID) =>
                                             userID!.isNotEmpty
                                                 ? null
-                                                : "Check your email",
+                                                : "Check your User ID",
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         decoration: InputDecoration(

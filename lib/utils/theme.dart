@@ -12,6 +12,10 @@ class MyTheme {
     textTheme: GoogleFonts.latoTextTheme()
         .apply(bodyColor: Colors.black, displayColor: Colors.black),
   ).copyWith(
+    // iconTheme: IconThemeData(
+    //   color: Colors.white,
+    //   size: 24
+    // ),
       scaffoldBackgroundColor: Colors.grey.shade300,
       cardTheme: CardTheme(
         margin: EdgeInsets.all(8.0),

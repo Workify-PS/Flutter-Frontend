@@ -25,13 +25,9 @@ class _HomePageState extends State<HomePage> {
         children: [
           AnimatedContainer(
             duration: Duration(milliseconds: 100),
-            curve: isCollapsed.value
-                ? Curves.linear
-                : Curves.linear,
+            curve: isCollapsed.value ? Curves.linear : Curves.linear,
             height: double.infinity,
-            width: isCollapsed.value
-                ? DeviceSize().size.width / 21
-                : DeviceSize().size.width / 7,
+            width: isCollapsed.value ? 64 : 200,
             child: MouseRegion(
               onEnter: (event) => isCollapsed.value = false,
               onExit: (event) => isCollapsed.value = true,
@@ -83,20 +79,31 @@ class _HomePageState extends State<HomePage> {
 
   buildTiles() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: List.generate(
           titles.length,
           (index) => Container(
-            height: 50,
-            width: 50,
-            child: ListTile(
-                  onTap: () {},
-                  leading: Icon(
-                    icons[index],
-                    size: 24,
-                  ),
-                  title: isCollapsed.value ? Container() : Text(titles[index]),
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: ListTile(
+                  contentPadding: const EdgeInsets.all(12),
+                  dense: true,
+                  leading: isCollapsed.value
+                      ? null
+                      : Icon(
+                          icons[index],
+                          size: 24,
+                        ),
+                  title: isCollapsed.value
+                      ? Icon(
+                          icons[index],
+                          size: 24,
+                        )
+                      : Text(titles[index]),
+                  onTap: () {
+                    //Get.toNamed(titles[index]);
+                  },
                 ),
-          )),
+              )),
     );
   }
 }

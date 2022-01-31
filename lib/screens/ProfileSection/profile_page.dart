@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:workify/utils/sizes.dart';
 
-import 'employee_details.dart';
+import 'self_details.dart';
 import 'basic_details.dart';
 import 'position_details.dart';
 import 'contact_details.dart';
@@ -21,11 +21,10 @@ class ProfilePage extends StatefulWidget {
   }
 }
 
-var screenWidth, screenHeight;
+double screenWidth=0, screenHeight=0;
 
 class ProfilePageState extends State<ProfilePage> {
   Map<String, Widget> profileWidgets = {
-    'Person': Person(),
     'Basic_Details': BasicDetails(),
     'Bank_Details': BankDetails(),
     'Contact_Details': ContactDetails(),
@@ -34,9 +33,10 @@ class ProfilePageState extends State<ProfilePage> {
     'Employment_Details': EmploymentDetails(),
     'Id_Details': IdDetails(),
     'Position_Details': PositionDetails(),
+    'Self_Details' : Person(),
   };
 
-  String profileWidgetString = 'Person';
+  String profileWidgetString = 'Basic_Details';
 
   void setProfileWidget(String profileDetails) {
     setState(() {
@@ -44,6 +44,7 @@ class ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
@@ -59,7 +60,7 @@ class ProfilePageState extends State<ProfilePage> {
             gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              colors: [Colors.indigo, Colors.teal],
+              colors: [Colors.teal, Colors.grey],
             ),
           ),
         ),
@@ -68,86 +69,101 @@ class ProfilePageState extends State<ProfilePage> {
         child: Container(
           width: device.size.width / 1.1,
           height: device.size.height / 1.1,
-          color: Colors.teal,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end:Alignment.bottomLeft,
+              colors: [Colors.transparent,Colors.teal],
+            ),
+            borderRadius: BorderRadius.circular(30),
+          ),
           child: Flex(
             direction: portrait == true ? Axis.horizontal : Axis.vertical,
             children: [
               Expanded(
                 flex: portrait == true ? 2 : 1,
-                child: Container(
-                  child: Flex(
-                    direction:
-                        portrait == true ? Axis.vertical : Axis.horizontal,
+                child: Flex(
+                    direction: portrait == true ? Axis.vertical : Axis.horizontal,
                     children: [
                       Expanded(
-                        flex: 1,
+                        flex : 1,
+                        child: MeButton(
+                          profileDetails: "Self_Details",
+                          profileWidgetHandler: setProfileWidget,
+                        ),
+                      ),
+                      Expanded(
+                        flex: portrait == true ? 1 : 2,
                         child: BasicDetailsButton(
                           profileDetails: "Basic_Details",
-                          ProfileWidgetHandler: setProfileWidget,
+                          profileWidgetHandler: setProfileWidget,
                         ),
                       ),
                       Expanded(
-                        flex: 1,
+                        flex: portrait == true ? 1 : 2,
                         child: PositionDetailsButton(
                           profileDetails: "Position_Details",
-                          ProfileWidgetHandler: setProfileWidget,
+                          profileWidgetHandler: setProfileWidget,
                         ),
                       ),
                       Expanded(
-                        flex: 1,
+                        flex: portrait == true ? 1 : 2,
                         // child: ContactDetailsButton(),
                         child: ContactDetailsButton(
                           profileDetails: "Contact_Details",
-                          ProfileWidgetHandler: setProfileWidget,
+                          profileWidgetHandler: setProfileWidget,
                         ),
                       ),
                       Expanded(
-                        flex: 1,
+                        flex: portrait == true ? 1 : 2,
                         // child: DependentDetailsButton(),
                         child: DependentDetailsButton(
                           profileDetails: "Dependent_Details",
-                          ProfileWidgetHandler: setProfileWidget,
+                          profileWidgetHandler: setProfileWidget,
                         ),
                       ),
                       Expanded(
-                        flex: 1,
+                        flex: portrait == true ? 1 : 2,
                         // child: EmploymentDetailsButton(),
                         child: EmploymentDetailsButton(
                           profileDetails: "Employment_Details",
-                          ProfileWidgetHandler: setProfileWidget,
+                          profileWidgetHandler: setProfileWidget,
                         ),
                       ),
                       Expanded(
-                        flex: 1,
+                        flex: portrait == true ? 1 : 2,
                         // child: EducationDetailsButton(),
                         child: EducationDetailsButton(
                           profileDetails: "Education_Details",
-                          ProfileWidgetHandler: setProfileWidget,
+                          profileWidgetHandler: setProfileWidget,
                         ),
                       ),
                       Expanded(
-                        flex: 1,
+                        flex: portrait == true ? 1 : 2,
                         child: BankDetailsButton(
                           profileDetails: "Bank_Details",
-                          ProfileWidgetHandler: setProfileWidget,
+                          profileWidgetHandler: setProfileWidget,
                         ),
                       ),
                       Expanded(
-                        flex: 1,
+                        flex: portrait == true ? 1 : 2,
                         // child: IdDetailsButton(),
                         child: IdDetailsButton(
                           profileDetails: "Id_Details",
-                          ProfileWidgetHandler: setProfileWidget,
+                          profileWidgetHandler: setProfileWidget,
                         ),
                       ),
                     ],
                   ),
-                ),
               ),
               Expanded(
-                flex: 9,
-                child: profileWidgets[profileWidgetString]!,
-                // child: Text("testing"),
+                flex: 10,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child :profileWidgets[profileWidgetString]!,
+                  ),
+                ),
               ),
             ],
           ),
@@ -157,20 +173,49 @@ class ProfilePageState extends State<ProfilePage> {
   }
 }
 
+class MeButton extends StatelessWidget {
+  final String profileDetails;
+  final void Function(String) profileWidgetHandler;
+
+  const MeButton(
+      {Key? key,
+      required this.profileDetails,
+      required this.profileWidgetHandler})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+                profileWidgetHandler(profileDetails);
+        },
+      child: Center(
+        child: Text(
+          'Me',
+          style: TextStyle(
+            fontSize: screenWidth * 0.015,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class BasicDetailsButton extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) ProfileWidgetHandler;
+  final void Function(String) profileWidgetHandler;
 
   const BasicDetailsButton(
       {Key? key,
       required this.profileDetails,
-      required this.ProfileWidgetHandler})
+      required this.profileWidgetHandler})
       : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-                ProfileWidgetHandler(profileDetails);
+                profileWidgetHandler(profileDetails);
         },
       child: Center(
         child: Text(
@@ -186,18 +231,19 @@ class BasicDetailsButton extends StatelessWidget {
 
 class PositionDetailsButton extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) ProfileWidgetHandler;
+  final void Function(String) profileWidgetHandler;
 
   const PositionDetailsButton(
       {Key? key,
       required this.profileDetails,
-      required this.ProfileWidgetHandler})
+      required this.profileWidgetHandler})
       : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-                ProfileWidgetHandler(profileDetails);
+                profileWidgetHandler(profileDetails);
         },
       child: Center(
         child: Text(
@@ -215,18 +261,19 @@ class PositionDetailsButton extends StatelessWidget {
 
 class ContactDetailsButton extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) ProfileWidgetHandler;
+  final void Function(String) profileWidgetHandler;
 
   const ContactDetailsButton(
       {Key? key,
       required this.profileDetails,
-      required this.ProfileWidgetHandler})
+      required this.profileWidgetHandler})
       : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-                ProfileWidgetHandler(profileDetails);
+                profileWidgetHandler(profileDetails);
         },
       child: Center(
         child: Text(
@@ -244,18 +291,19 @@ class ContactDetailsButton extends StatelessWidget {
 
 class DependentDetailsButton extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) ProfileWidgetHandler;
+  final void Function(String) profileWidgetHandler;
 
   const DependentDetailsButton(
       {Key? key,
       required this.profileDetails,
-      required this.ProfileWidgetHandler})
+      required this.profileWidgetHandler})
       : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-                ProfileWidgetHandler(profileDetails);
+                profileWidgetHandler(profileDetails);
         },
       child: Center(
         child: Text(
@@ -272,18 +320,19 @@ class DependentDetailsButton extends StatelessWidget {
 
 class EmploymentDetailsButton extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) ProfileWidgetHandler;
+  final void Function(String) profileWidgetHandler;
 
   const EmploymentDetailsButton(
       {Key? key,
       required this.profileDetails,
-      required this.ProfileWidgetHandler})
+      required this.profileWidgetHandler})
       : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-                ProfileWidgetHandler(profileDetails);
+                profileWidgetHandler(profileDetails);
         },
       child: Center(
         child: Text(
@@ -300,18 +349,19 @@ class EmploymentDetailsButton extends StatelessWidget {
 
 class EducationDetailsButton extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) ProfileWidgetHandler;
+  final void Function(String) profileWidgetHandler;
 
   const EducationDetailsButton(
       {Key? key,
       required this.profileDetails,
-      required this.ProfileWidgetHandler})
+      required this.profileWidgetHandler})
       : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-                ProfileWidgetHandler(profileDetails);
+                profileWidgetHandler(profileDetails);
         },
       child: Center(
         child: Text(
@@ -329,18 +379,19 @@ class EducationDetailsButton extends StatelessWidget {
 
 class BankDetailsButton  extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) ProfileWidgetHandler;
+  final void Function(String) profileWidgetHandler;
 
   const BankDetailsButton (
       {Key? key,
       required this.profileDetails,
-      required this.ProfileWidgetHandler})
+      required this.profileWidgetHandler})
       : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-                ProfileWidgetHandler(profileDetails);
+                profileWidgetHandler(profileDetails);
         },
       child: Center(
         child: Text(
@@ -357,18 +408,19 @@ class BankDetailsButton  extends StatelessWidget {
 
 class IdDetailsButton  extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) ProfileWidgetHandler;
+  final void Function(String) profileWidgetHandler;
 
   const IdDetailsButton (
       {Key? key,
       required this.profileDetails,
-      required this.ProfileWidgetHandler})
+      required this.profileWidgetHandler})
       : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-                ProfileWidgetHandler(profileDetails);
+                profileWidgetHandler(profileDetails);
         },
       child: Center(
         child: Text(

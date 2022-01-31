@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
         }
       }),
       body: Center(
-        child: Container(
+        child: SizedBox(
             height: 100,
             width: 200,
             child: Card(

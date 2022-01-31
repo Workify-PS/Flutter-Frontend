@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class DeviceSize {
   static final DeviceSize _singleton = DeviceSize._internal();
 
@@ -16,4 +14,8 @@ class DeviceSize {
   double get heightMultiplier => size.height / masterHeight;
 
   double get widthMultiplier => size.width / masterWidth;
+}
+
+class WidgetSizes {
+  static double get bannerHeight => DeviceSize().size.height * 0.15;
 }

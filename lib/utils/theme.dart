@@ -4,21 +4,22 @@ import 'package:google_fonts/google_fonts.dart';
 class MyTheme {
   static ThemeData lightTheme = ThemeData.from(
     colorScheme: ColorScheme.light(
-      primary: Color(0xff2082ff),
-      secondary: Color(0xff2082ff),
+      primary: Color(0xff0464fc),
+      secondary: Color(0xff0464fc),
       background: Colors.grey.shade50,
       surface: Colors.white,
     ),
     textTheme: GoogleFonts.latoTextTheme()
         .apply(bodyColor: Colors.black, displayColor: Colors.black),
   ).copyWith(
+      scaffoldBackgroundColor: Colors.grey.shade300,
       cardTheme: CardTheme(
-    margin: EdgeInsets.all(8.0),
-    elevation: 1.0,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16.0),
-    ),
-  ));
+        margin: EdgeInsets.all(8.0),
+        elevation: 1.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+      ));
 
   static ThemeData darkTheme = ThemeData.from(
     colorScheme: ColorScheme.light(

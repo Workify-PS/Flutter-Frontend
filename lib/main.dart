@@ -3,7 +3,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
 import 'package:workify/screens/auth_page.dart';
 import 'package:workify/screens/home_page.dart';
-import 'package:workify/screens/profilesection/profile_page.dart';
+import 'package:workify/screens/profilesection/profilePage.dart';
 
 import 'package:workify/utils/theme.dart';
 

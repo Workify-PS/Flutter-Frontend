@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:workify/screens/AuthPage.dart';
 
 class ForgotPass extends StatelessWidget {
   const ForgotPass({Key? key}) : super(key: key);
@@ -67,7 +68,7 @@ class ForgotPass extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 20),
-                    Container(
+                    SizedBox(
                         width: 250,
                         child: TextField(
                           decoration: InputDecoration(
@@ -76,39 +77,49 @@ class ForgotPass extends StatelessWidget {
                                 Icons.email_outlined,
                               )),
                         )),
-                    Padding(
-                        padding: EdgeInsets.fromLTRB(20, 20, 40, 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              'Back to login Page',
-                              style: GoogleFonts.lato(
-                                textStyle: const TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            )
-                          ],
-                        )),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AuthPage()));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 30.0, top: 4),
+                            child: Text(
+                              'Back To Login Page!',
+                              textAlign: TextAlign.right,
+                              style:
+                                  TextStyle(color: Colors.blue, fontSize: 12),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      width: 200,
-                      padding: const EdgeInsets.all(12),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Theme.of(context).primaryColor),
-                      child: Text(
-                        'Request Reset Link',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.symmetric(horizontal: 100),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Theme.of(context).primaryColor),
+                        child: Text(
+                          'Request Reset Link',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
 
-                          //fontWeight: FontWeight.w600,
+                            //fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),

@@ -34,75 +34,73 @@ class _BodyState extends State<Body> {
     return Row(
       children: [
         Expanded(
-            child: Container(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  alignment: Alignment.topLeft,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 0.5,
+            child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                alignment: Alignment.topLeft,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 0.5,
+                    ),
+                    Text(
+                      'Change Password:',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Choose a unique Password to protect your Account',
+                      style: TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.normal),
+                    ),
+                    SizedBox(height: 20),
+                    SizedBox(
+                      height: 40,
+                      width: 238,
+                      child: TextField(
+                        decoration: InputDecoration(
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            labelText: 'Current Password',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10))),
                       ),
-                      Text(
-                        'Change Password:',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 5.8),
+                    SizedBox(
+                      height: 40,
+                      width: 238,
+                      child: TextField(
+                        decoration: InputDecoration(
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            labelText: 'New Password  ',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10))),
                       ),
-                      Text(
-                        'Choose a unique Password to protect your Account',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.normal),
+                    ),
+                    SizedBox(height: 5.8),
+                    SizedBox(
+                      height: 40,
+                      width: 238,
+                      child: TextField(
+                        decoration: InputDecoration(
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            labelText: 'Confirm Password  ',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10))),
                       ),
-                      SizedBox(height: 20),
-                      Container(
-                        height: 40,
-                        width: 238,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              fillColor: Colors.grey.shade100,
-                              filled: true,
-                              labelText: 'Current Password',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                        ),
-                      ),
-                      SizedBox(height: 5.8),
-                      Container(
-                        height: 40,
-                        width: 238,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              fillColor: Colors.grey.shade100,
-                              filled: true,
-                              labelText: 'New Password  ',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                        ),
-                      ),
-                      SizedBox(height: 5.8),
-                      Container(
-                        height: 40,
-                        width: 238,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              fillColor: Colors.grey.shade100,
-                              filled: true,
-                              labelText: 'Confirm Password  ',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         )),
         Expanded(
           child: Column(

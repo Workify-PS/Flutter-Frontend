@@ -12,13 +12,15 @@ class Person extends StatelessWidget {
     final double screenWidth = device.size.width;
     final double screenHeight = device.size.height;
     return Padding(
-      padding: const EdgeInsets.all(32.0),
+      padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: screenWidth,
+        width: screenWidth ,
+        height: screenHeight,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.amber,
+          // color: Colors.black,
         ),
+        
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,37 +36,38 @@ class Person extends StatelessWidget {
                 child: Ink.image(
                   image: AssetImage('images/avatar.png'),
                   fit: BoxFit.contain,
-                  width: screenWidth * 0.3,
-                  height: screenHeight * 0.3,
+                  width: screenWidth * 0.15,
+                  height: screenHeight * 0.15,
                 ),
               ),
             ),
-            Text(
-              'Name',
-              style: TextStyle(
-                fontSize: screenWidth * 0.017,
-              ),
-            ),
-            Text(
-              'Email Id',
-              style: TextStyle(
-                fontSize: screenWidth * 0.013,
-              ),
-            ),
-            Text(
-              'Mobile No',
-              style: TextStyle(
-                fontSize: screenWidth * 0.013,
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Name',
+                  style: TextStyle(
+                    fontSize: screenWidth * 0.017,
+                  ),
+                ),
+                Text(
+                  'Email Id',
+                  style: TextStyle(
+                    fontSize: screenWidth * 0.013,
+                  ),
+                ),
+                Text(
+                  'Mobile No',
+                  style: TextStyle(
+                    fontSize: screenWidth * 0.013,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
       ),
     );
-
-    // return Container(
-    //   color: Colors.blue,
-    // child:
-    // );
   }
 }

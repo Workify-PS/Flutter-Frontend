@@ -1,6 +1,12 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:workify/screens/ProfileSection/position_details.dart';
 import 'package:workify/utils/sizes.dart';
 
+import './self_details.dart';
+
+double widthScaleFactor = 0;
 
 class BasicDetails extends StatelessWidget {
   const BasicDetails({Key? key}) : super(key: key);
@@ -11,288 +17,255 @@ class BasicDetails extends StatelessWidget {
     device.size = MediaQuery.of(context).size;
     final double screenWidth = device.size.width;
     // final double screenHeight = device.size.height;
+    bool portrait = screenWidth < 1000;
+    widthScaleFactor = 0.03;
 
     return Padding(
-      padding: const EdgeInsets.all(32.0),
-      child: Container(
-        width: screenWidth,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.amber,
+      padding: const EdgeInsets.all(8),
+      child: DefaultTextStyle(
+        style: TextStyle(
+          fontSize: screenWidth * 0.01,
+          fontWeight: FontWeight.bold,
         ),
-        child: Padding(
-          padding: const EdgeInsets.only(top:20,bottom:20,left:150,right: 150),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.transparent,
-              ),
-              child: Column(
-                children: [
-                  Expanded(
-                    flex:1,
-                    child: Row(
-                      mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children:[
-                        Text(
-                          'Name',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.017,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                        // Text(
-                        //   ':',
-                        //   style: TextStyle(
-                        //     fontSize: screenWidth * 0.013,
-                        //   ),
-                        //   textAlign: TextAlign.center,  
-                        // ),
-                        Text(
-                          'Ajay Kumar Gond',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.013,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                      ], 
-                    ),
-                  ),
-                  Expanded(
-                    flex:1,
-                    child: Row(
-                      mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                      children:[
-                        Text(
-                          'Father Name',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.017,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                        Text(
-                          'Something Baba',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.013,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                      ], 
-                    ),
-                  ),
-                  Expanded(
-                    flex:1,
-                    child: Row(
-                      mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children:[
-                        Text(
-                          'Date of Birth',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.017,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                        Text(
-                          'Something Baba',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.013,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                      ], 
-                    ),
-                  ),
-                  Expanded(
-                    flex:1,
-                    child: Row(
-                      mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children:[
-                        Text(
-                          'Country of Birth',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.017,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                        Text(
-                          'Something Baba',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.013,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                      ], 
-                    ),
-                  ),
-                  Expanded(
-                    flex:1,
-                    child: Row(
-                      mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children:[
-                        Text(
-                          'Gender',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.017,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                        Text(
-                          'Something Baba',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.013,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                      ], 
-                    ),
-                  ),
-                  Expanded(
-                    flex:1,
-                    child: Row(
-                      mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children:[
-                        Text(
-                          'Blood Group',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.017,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                        Text(
-                          'Something Baba',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.013,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                      ], 
-                    ),
-                  ),
-                  Expanded(
-                    flex:1,
-                    child: Row(
-                      mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children:[
-                        Text(
-                          'Marital Status',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.017,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                        Text(
-                          'Something Baba',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.013,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                      ], 
-                    ),
-                  ),
-                  Expanded(
-                    flex:1,
-                    child: Row(
-                      mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children:[
-                        Text(
-                          'Email ID',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.017,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                        Text(
-                          'Something Baba',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.013,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                      ], 
-                    ),
-                  ),
-                  Expanded(
-                    flex:1,
-                    child: Row(
-                      mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children:[
-                        Text(
-                          'Mobile Number',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.017,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                        Text(
-                          'Something Baba',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.013,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                      ], 
-                    ),
-                  ),
-                  Expanded(
-                    flex:1,
-                    child: Row(
-                      mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children:[
-                        Text(
-                          'Nationality',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.017,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                        Text(
-                          'Something Baba',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.013,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                      ], 
-                    ),
-                  ),
-                  Expanded(
-                    flex:1,
-                    child: Row(
-                      mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children:[
-                        Text(
-                          'Disability',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.017,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                        Text(
-                          'Something Baba',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.013,
-                          ),
-                          textAlign: TextAlign.center,  
-                        ),
-                      ], 
-                    ),
-                  ),
-                ],     
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.transparent,
           ),
-            ),
+          child: Flex(
+            direction: portrait == true ? Axis.vertical : Axis.horizontal,
+            children: [
+              Expanded(
+                flex: 5,
+                child: Person(),
+              ),
+              Expanded(
+                flex: 10,
+                // child: Container(
+                  // color: Colors.blue,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      FatherNameBgroup(),
+                      DobCob(),
+                      GenderMarital(),
+                      EthnicHealth(),
+                    ],
+                  ),
+                // ),
+              ),
+            ],
+            // text widthScaleFactor subtext 0.013
+          ),
         ),
       ),
+    );
+  }
+}
+
+
+class FatherNameBgroup extends StatelessWidget{
+  const FatherNameBgroup({Key ? key}): super(key:key);
+  @override 
+  Widget build(BuildContext context){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Father Name'),
+            Text(
+              'Happy Forever',
+              style: TextStyle(
+                fontSize: screenWidth * widthScaleFactor,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Blood Group'),
+            Text(
+              'Happy Forever',
+              style: TextStyle(
+                fontSize: screenWidth * 0.001,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+                    
+  }
+}
+
+// class Names extends StatelessWidget {
+//   const Names({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//       crossAxisAlignment: CrossAxisAlignment.center,
+//       children: [
+//         // Column(
+//         //   // mainAxisAlignment: MainAxisAlignment.spaceAround,
+//         //   crossAxisAlignment: CrossAxisAlignment.start,
+//         //   children: [
+//         //     Text('Name'),
+//         //     Text(
+//         //       'Happy Forever',
+//         //       style: TextStyle(
+//         //         fontSize: screenWidth * widthScaleFactor,
+//         //         fontWeight: FontWeight.normal,
+//         //       ),
+//         //     ),
+//         //   ],
+//         // ),
+//         Column(
+//           // mainAxisAlignment: MainAxisAlignment.spaceAround,
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text('Father Name'),
+//             Text(
+//               'Happy Forever',
+//               style: TextStyle(
+//                 fontSize: screenWidth * widthScaleFactor,
+//                 fontWeight: FontWeight.normal,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+class DobCob extends StatelessWidget {
+  const DobCob({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Date of Birth'),
+            Text(
+              'Happy Forever',
+              style: TextStyle(
+                fontSize: screenWidth * widthScaleFactor,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Country of Birth'),
+            Text(
+              'Happy Forever',
+              style: TextStyle(
+                fontSize: screenWidth * widthScaleFactor,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class GenderMarital extends StatelessWidget {
+  const GenderMarital({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Gender'),
+            Text(
+              'Happy Forever',
+              style: TextStyle(
+                fontSize: screenWidth * widthScaleFactor,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Marital Status'),
+            Text(
+              'Happy Forever',
+              style: TextStyle(
+                fontSize: screenWidth * widthScaleFactor,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class EthnicHealth extends StatelessWidget {
+  const EthnicHealth({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Nationality'),
+            Text(
+              'Happy Forever',
+              style: TextStyle(
+                fontSize: screenWidth * widthScaleFactor,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+        Column(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Is Disabled ?'),
+            Text(
+              'Happy Forever',
+              style: TextStyle(
+                fontSize: screenWidth * widthScaleFactor,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

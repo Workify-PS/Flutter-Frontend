@@ -35,7 +35,7 @@ class ProfilePageState extends State<ProfilePage> {
     // 'Self_Details': Person(),
   };
 
-  String profileWidgetString = 'Position_Details';
+  String profileWidgetString = 'Employment_Details';
   // String updateString = 'View';
 
   void setProfileWidget(String profileDetails) {

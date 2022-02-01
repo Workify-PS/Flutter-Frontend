@@ -33,204 +33,109 @@ class PositionDetails extends StatelessWidget {
     screenHeight = device.size.height;
     portrait = screenWidth < 1000;
     // print('\n\n\n' + portrait.toString() + '\n\n');
-
-    return Container(
-      color: Colors.transparent,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 8,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Flex(
-                direction: Axis.horizontal,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Flex(
-                    direction: portrait == true ? Axis.vertical : Axis.horizontal,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: DoJ(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: EmployeeCode(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: OfficialEmail(),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Grade(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Designation(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: SkipManager(),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: FunctionalManager(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: L1Manager(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: FunctionHead(),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Flex(
-                    direction: portrait == true ? Axis.vertical : Axis.horizontal,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: HRManager(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: PracticeHead(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: EmploymentType(),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: EmploymentStatus(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: NoticePeriod(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: ConfirmationDueDate(),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: ConfirmationStatus(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8),
-                            child: WorkCenter(),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+    // Condition to get Portrait or LandScape View
+    return portrait == false
+        ? Column(
+            children: [
+              Expanded(
+                flex: 7,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Employeecode,poscode,designation,grade,
+                        EmployeeCode(),
+                        PositionCode(),
+                        Designation(),
+                        Grade(),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // empCate,empstat,emptyp,dept
+                        EmploymentCategory(),
+                        EmploymentStatus(),
+                        EmploymentType(),
+                        Department(),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // workLoc,l1,l2,hr
+                        WorkLocation(),
+                        L1ManagerId(),
+                        L2ManagerId(),
+                        HRManagerId(),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // orgId,isAct,ofmail,doj,
+                        OrgId(),
+                        IsActive(),
+                        OfficialEmail(),
+                        DoJ(),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        JobRole(),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Work Information',
-                    style: TextStyle(
-                      // fontSize: screenWidth * 0.02,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                  Text(
-                    'Org Unit',
-                    style: TextStyle(
-                      // fontSize: screenWidth * 0.02,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    'PeopleStrong SaaS>PG1>Tech Dev>WFM>Development>WFM'
-                  ),
-                  Text(
-                    'Worksite',
-                    style: TextStyle(
-                      // fontSize: screenWidth * 0.02,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    'India>North Region>Haryana>Gurgaon>Gurgaon Infocity',
-                  ),
-                ],
+              Expanded(
+                flex: 3,
+                child: Container(
+                  width: screenWidth,
+                  height: screenHeight,
+                  color: Colors.amber,
+                ),
               ),
-            ),
-          ),
-        ],
-      ),
-    );
+            ],
+          )
+        : PositionDetailsPortraitView();
   }
 }
 
-class DoJ extends StatelessWidget {
-  const DoJ({Key? key}) : super(key: key);
+class PositionDetailsPortraitView extends StatelessWidget {
+  const PositionDetailsPortraitView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(
-          'Date of Joining',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'Happy Forever',
-        ),
+        EmployeeCode(),
+        PositionCode(),
+        Designation(),
+        Grade(),
+        EmploymentCategory(),
+        EmploymentStatus(),
+        EmploymentType(),
+        Department(),
+        WorkLocation(),
+        L1ManagerId(),
+        L2ManagerId(),
+        HRManagerId(),
+        OrgId(),
+        IsActive(),
+        OfficialEmail(),
+        DoJ(),
+        JobRole(),
       ],
+      // To Build footer in Portrait View;
     );
   }
 }
@@ -239,7 +144,9 @@ class EmployeeCode extends StatelessWidget {
   const EmployeeCode({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -254,34 +161,17 @@ class EmployeeCode extends StatelessWidget {
   }
 }
 
-class OfficialEmail extends StatelessWidget {
-  const OfficialEmail({Key? key}) : super(key: key);
+class PositionCode extends StatelessWidget {
+  const PositionCode({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Official Email',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'Happy Forever',
-        ),
-      ],
-    );
-  }
-}
-
-class Grade extends StatelessWidget {
-  const Grade({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Grade',
+          'Position Code',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         Text(
@@ -296,7 +186,9 @@ class Designation extends StatelessWidget {
   const Designation({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -311,15 +203,17 @@ class Designation extends StatelessWidget {
   }
 }
 
-class SkipManager extends StatelessWidget {
-  const SkipManager({Key? key}) : super(key: key);
+class Grade extends StatelessWidget {
+  const Grade({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Skip Manager',
+          'Grade',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         Text(
@@ -330,110 +224,17 @@ class SkipManager extends StatelessWidget {
   }
 }
 
-class FunctionalManager extends StatelessWidget {
-  const FunctionalManager({Key? key}) : super(key: key);
+class EmploymentCategory extends StatelessWidget {
+  const EmploymentCategory({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Functional Manager',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'Happy Forever',
-        ),
-      ],
-    );
-  }
-}
-
-class L1Manager extends StatelessWidget {
-  const L1Manager({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'L1 Manager',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'Happy Forever',
-        ),
-      ],
-    );
-  }
-}
-
-class FunctionHead extends StatelessWidget {
-  const FunctionHead({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Function Head',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'Happy Forever',
-        ),
-      ],
-    );
-  }
-}
-
-class HRManager extends StatelessWidget {
-  const HRManager({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'HR Manager',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'Happy Forever',
-        ),
-      ],
-    );
-  }
-}
-
-class PracticeHead extends StatelessWidget {
-  const PracticeHead({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Practice Head',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        Text(
-          'Happy Forever',
-        ),
-      ],
-    );
-  }
-}
-
-class EmploymentType extends StatelessWidget {
-  const EmploymentType({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Employment Type',
+          'Employment Category',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         Text(
@@ -448,7 +249,9 @@ class EmploymentStatus extends StatelessWidget {
   const EmploymentStatus({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -463,15 +266,17 @@ class EmploymentStatus extends StatelessWidget {
   }
 }
 
-class NoticePeriod extends StatelessWidget {
-  const NoticePeriod({Key? key}) : super(key: key);
+class EmploymentType extends StatelessWidget {
+  const EmploymentType({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Notice Period (Days)',
+          'Employment Type',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         Text(
@@ -482,15 +287,17 @@ class NoticePeriod extends StatelessWidget {
   }
 }
 
-class ConfirmationDueDate extends StatelessWidget {
-  const ConfirmationDueDate({Key? key}) : super(key: key);
+class Department extends StatelessWidget {
+  const Department({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Confirmation Due Date',
+          'Department',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         Text(
@@ -501,15 +308,17 @@ class ConfirmationDueDate extends StatelessWidget {
   }
 }
 
-class ConfirmationStatus extends StatelessWidget {
-  const ConfirmationStatus({Key? key}) : super(key: key);
+class WorkLocation extends StatelessWidget {
+  const WorkLocation({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Confirmation Status',
+          'Work Location',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         Text(
@@ -520,15 +329,164 @@ class ConfirmationStatus extends StatelessWidget {
   }
 }
 
-class WorkCenter extends StatelessWidget {
-  const WorkCenter({Key? key}) : super(key: key);
+class L1ManagerId extends StatelessWidget {
+  const L1ManagerId({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Work Center',
+          'L1Manager ID',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(
+          'Happy Forever',
+        ),
+      ],
+    );
+  }
+}
+
+class L2ManagerId extends StatelessWidget {
+  const L2ManagerId({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'L2Manager ID',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(
+          'Happy Forever',
+        ),
+      ],
+    );
+  }
+}
+
+class HRManagerId extends StatelessWidget {
+  const HRManagerId({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'HRManager ID',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(
+          'Happy Forever',
+        ),
+      ],
+    );
+  }
+}
+
+class OrgId extends StatelessWidget {
+  const OrgId({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Organization ID',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(
+          'Happy Forever',
+        ),
+      ],
+    );
+  }
+}
+
+class IsActive extends StatelessWidget {
+  const IsActive({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Is Active',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(
+          'Happy Forever',
+        ),
+      ],
+    );
+  }
+}
+
+class OfficialEmail extends StatelessWidget {
+  const OfficialEmail({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Official Email',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(
+          'Happy Forever',
+        ),
+      ],
+    );
+  }
+}
+
+class DoJ extends StatelessWidget {
+  const DoJ({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Date of Joining',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(
+          'Happy Forever',
+        ),
+      ],
+    );
+  }
+}
+
+class JobRole extends StatelessWidget {
+  const JobRole({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Job Role',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         Text(

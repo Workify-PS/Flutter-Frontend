@@ -17,102 +17,174 @@ class ContactDetails extends StatelessWidget {
     screenHeight = device.size.height;
     portrait = screenWidth < 1000;
     // print('\n\n\n' + portrait.toString() + '\n\n');
+    return portrait == false
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 7,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Residence',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      // direction: portrait == true ? Axis.vertical : Axis.horizontal,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ResidenceAddress(),
+                        ResidenceCity(),
+                        ResidenceState(),
+                        ResidencePhone(),
+                      ],
+                    ),
+                    Text(
+                      'Permanent',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      // direction: portrait == true ? Axis.vertical : Axis.horizontal,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        PermanentAddress(),
+                        PermanentCity(),
+                        PermanentState(),
+                        PermanentPhone(),
+                      ],
+                    ),
+                    Text(
+                      'Correspondence',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      // direction: portrait == true ? Axis.vertical : Axis.horizontal,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CorrespondenceAddress(),
+                        CorrespondenceCity(),
+                        CorrespondenceState(),
+                        CorrespondencePhone(),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Emergency Contact',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      // direction: portrait == true ? Axis.vertical : Axis.horizontal,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        EmergencyContactName(),
+                        EmergencyContactRelationship(),
+                        EmergencyContactMobile(),
+                        EmergencyContactPhone(),
+                        EmergencyContactEmail(),
+                        EmergencyContactAddress(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ModifyHistoryButton(),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )
+        : ContactDetailsPortraitView();
+  }
+}
+
+class ContactDetailsPortraitView extends StatelessWidget {
+  const ContactDetailsPortraitView({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Expanded(
-          flex: 7,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Residence',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+        Column(
+          children: [
+            Text(
+              'Residence ',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
               ),
-              Flex(
-                direction: portrait == true ? Axis.vertical : Axis.horizontal,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ResidenceAddress(),
-                  ResidenceCity(),
-                  ResidenceState(),
-                  ResidencePhone(),
-                ],
-              ),
-              Text(
-                'Permanent',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Flex(
-                direction: portrait == true ? Axis.vertical : Axis.horizontal,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  PermanentAddress(),
-                  PermanentCity(),
-                  PermanentState(),
-                  PermanentPhone(),
-                ],
-              ),
-              Text(
-                'Correspondence',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Flex(
-                direction: portrait == true ? Axis.vertical : Axis.horizontal,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CorrespondenceAddress(),
-                  CorrespondenceCity(),
-                  CorrespondenceState(),
-                  CorrespondencePhone(),
-                ],
-              ),
-            ],
-          ),
+            ),
+            ResidenceAddress(),
+            ResidenceCity(),
+            ResidenceState(),
+            ResidencePhone(),
+          ],
         ),
-        Expanded(
-          flex: 3,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Emergency Contact',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+        Column(
+          children: [
+            Text(
+              'Permanent',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
               ),
-              Flex(
-                direction: portrait == true ? Axis.vertical : Axis.horizontal,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  EmergencyContactName(),
-                  EmergencyContactRelationship(),
-                  EmergencyContactMobile(),
-                  EmergencyContactPhone(),
-                  EmergencyContactEmail(),
-                  EmergencyContactAddress(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ModifyHistoryButton(),
-                    ],
-                  ),
-                ],
+            ),
+            PermanentAddress(),
+            PermanentCity(),
+            PermanentState(),
+            PermanentPhone(),
+          ],
+        ),
+        Column(
+          children: [
+            Text(
+              'Correspondence',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
               ),
-            ],
-          ),
+            ),
+            CorrespondenceAddress(),
+            CorrespondenceCity(),
+            CorrespondenceState(),
+            CorrespondencePhone(),
+          ],
+        ),
+        Column(
+          children: [
+            Text(
+              'Emergency',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            EmergencyContactName(),
+            EmergencyContactRelationship(),
+            EmergencyContactMobile(),
+            EmergencyContactPhone(),
+            EmergencyContactEmail(),
+            EmergencyContactAddress(),
+          ],
         ),
       ],
     );
@@ -126,7 +198,7 @@ class ResidenceAddress extends StatelessWidget {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Address',
@@ -134,14 +206,19 @@ class ResidenceAddress extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
-
 
 class ResidenceCity extends StatelessWidget {
   const ResidenceCity({Key? key}) : super(key: key);
@@ -150,7 +227,7 @@ class ResidenceCity extends StatelessWidget {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'City',
@@ -158,9 +235,15 @@ class ResidenceCity extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !',
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
@@ -173,7 +256,7 @@ class ResidenceState extends StatelessWidget {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'State',
@@ -181,22 +264,28 @@ class ResidenceState extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
 
 class ResidencePhone extends StatelessWidget {
-  const ResidencePhone ({Key? key}) : super(key: key);
+  const ResidencePhone({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Phone',
@@ -204,15 +293,19 @@ class ResidencePhone extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
-
-
 
 class PermanentAddress extends StatelessWidget {
   const PermanentAddress({Key? key}) : super(key: key);
@@ -221,7 +314,7 @@ class PermanentAddress extends StatelessWidget {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Address',
@@ -229,14 +322,19 @@ class PermanentAddress extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
-
 
 class PermanentCity extends StatelessWidget {
   const PermanentCity({Key? key}) : super(key: key);
@@ -245,7 +343,7 @@ class PermanentCity extends StatelessWidget {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'City',
@@ -253,9 +351,15 @@ class PermanentCity extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
@@ -268,7 +372,7 @@ class PermanentState extends StatelessWidget {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'State',
@@ -276,22 +380,28 @@ class PermanentState extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
 
 class PermanentPhone extends StatelessWidget {
-  const PermanentPhone ({Key? key}) : super(key: key);
+  const PermanentPhone({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Phone',
@@ -299,15 +409,19 @@ class PermanentPhone extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
-
-
 
 class CorrespondenceAddress extends StatelessWidget {
   const CorrespondenceAddress({Key? key}) : super(key: key);
@@ -316,7 +430,7 @@ class CorrespondenceAddress extends StatelessWidget {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Address',
@@ -324,14 +438,19 @@ class CorrespondenceAddress extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
-
 
 class CorrespondenceCity extends StatelessWidget {
   const CorrespondenceCity({Key? key}) : super(key: key);
@@ -340,7 +459,7 @@ class CorrespondenceCity extends StatelessWidget {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'City',
@@ -348,9 +467,15 @@ class CorrespondenceCity extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
@@ -363,7 +488,7 @@ class CorrespondenceState extends StatelessWidget {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'State',
@@ -371,22 +496,28 @@ class CorrespondenceState extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
 
 class CorrespondencePhone extends StatelessWidget {
-  const CorrespondencePhone ({Key? key}) : super(key: key);
+  const CorrespondencePhone({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Phone',
@@ -394,23 +525,28 @@ class CorrespondencePhone extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
 
-
 class EmergencyContactName extends StatelessWidget {
-  const EmergencyContactName  ({Key? key}) : super(key: key);
+  const EmergencyContactName({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Name',
@@ -418,22 +554,28 @@ class EmergencyContactName extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
 
 class EmergencyContactRelationship extends StatelessWidget {
-  const EmergencyContactRelationship ({Key? key}) : super(key: key);
+  const EmergencyContactRelationship({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Relationship',
@@ -441,23 +583,28 @@ class EmergencyContactRelationship extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
 
-
 class EmergencyContactMobile extends StatelessWidget {
-  const EmergencyContactMobile ({Key? key}) : super(key: key);
+  const EmergencyContactMobile({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Mobile Number',
@@ -465,23 +612,28 @@ class EmergencyContactMobile extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
 
-
 class EmergencyContactPhone extends StatelessWidget {
-  const EmergencyContactPhone ({Key? key}) : super(key: key);
+  const EmergencyContactPhone({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Home Number',
@@ -489,14 +641,19 @@ class EmergencyContactPhone extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
-
 
 class EmergencyContactEmail extends StatelessWidget {
   const EmergencyContactEmail({Key? key}) : super(key: key);
@@ -505,7 +662,7 @@ class EmergencyContactEmail extends StatelessWidget {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Email ID',
@@ -513,14 +670,19 @@ class EmergencyContactEmail extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
-
 
 class EmergencyContactAddress extends StatelessWidget {
   const EmergencyContactAddress({Key? key}) : super(key: key);
@@ -529,7 +691,7 @@ class EmergencyContactAddress extends StatelessWidget {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'Address',
@@ -537,12 +699,16 @@ class EmergencyContactAddress extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          'Happy Forever !'
-        )
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
       ],
     );
   }
 }
-
-

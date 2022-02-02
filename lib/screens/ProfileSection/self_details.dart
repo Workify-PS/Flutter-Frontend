@@ -48,19 +48,22 @@ class Person extends StatelessWidget {
                 Text(
                   'Name',
                   style: TextStyle(
-                    fontSize: screenWidth * 0.017,
+                    // fontSize: screenWidth * 0.017,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   'Email Id',
                   style: TextStyle(
-                    fontSize: screenWidth * 0.013,
+                    // fontSize: screenWidth * 0.02,
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
                 Text(
                   'Mobile No',
                   style: TextStyle(
-                    fontSize: screenWidth * 0.013,
+                    // fontSize: screenWidth * 0.02,
+                    fontWeight: FontWeight.normal,
                   ),
                 ),
               ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:workify/utils/sizes.dart';
+import './modify_history_buttons.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -101,6 +103,12 @@ class ContactDetails extends StatelessWidget {
                   EmergencyContactPhone(),
                   EmergencyContactEmail(),
                   EmergencyContactAddress(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ModifyHistoryButton(),
+                    ],
+                  ),
                 ],
               ),
             ],

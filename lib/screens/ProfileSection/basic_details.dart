@@ -1,12 +1,11 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
-import 'package:workify/screens/ProfileSection/position_details.dart';
 import 'package:workify/utils/sizes.dart';
 
 import './self_details.dart';
+import './modify_history_buttons.dart';
 
-double widthScaleFactor = 0;
 
 class BasicDetails extends StatelessWidget {
   const BasicDetails({Key? key}) : super(key: key);
@@ -18,13 +17,12 @@ class BasicDetails extends StatelessWidget {
     final double screenWidth = device.size.width;
     // final double screenHeight = device.size.height;
     bool portrait = screenWidth < 1000;
-    widthScaleFactor = 0.03;
 
     return Padding(
       padding: const EdgeInsets.all(8),
       child: DefaultTextStyle(
         style: TextStyle(
-          fontSize: screenWidth * 0.01,
+          // fontSize: screenWidth * 0.01,
           fontWeight: FontWeight.bold,
         ),
         child: Container(
@@ -40,7 +38,7 @@ class BasicDetails extends StatelessWidget {
                 child: Person(),
               ),
               Expanded(
-                flex: 10,
+                flex: 9,
                 // child: Container(
                   // color: Colors.blue,
                   child: Column(
@@ -50,12 +48,17 @@ class BasicDetails extends StatelessWidget {
                       DobCob(),
                       GenderMarital(),
                       EthnicHealth(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ModifyHistoryButton(),
+                        ],
+                      ),
                     ],
                   ),
                 // ),
               ),
             ],
-            // text widthScaleFactor subtext 0.013
           ),
         ),
       ),
@@ -80,7 +83,7 @@ class FatherNameBgroup extends StatelessWidget{
             Text(
               'Happy Forever',
               style: TextStyle(
-                fontSize: screenWidth * widthScaleFactor,
+                // fontSize: screenWidth * widthScaleFactor,
                 fontWeight: FontWeight.normal,
               ),
             ),
@@ -93,7 +96,7 @@ class FatherNameBgroup extends StatelessWidget{
             Text(
               'Happy Forever',
               style: TextStyle(
-                fontSize: screenWidth * 0.001,
+                // fontSize: screenWidth * 0.001,
                 fontWeight: FontWeight.normal,
               ),
             ),
@@ -163,7 +166,7 @@ class DobCob extends StatelessWidget {
             Text(
               'Happy Forever',
               style: TextStyle(
-                fontSize: screenWidth * widthScaleFactor,
+                // fontSize: screenWidth * widthScaleFactor,
                 fontWeight: FontWeight.normal,
               ),
             ),
@@ -177,7 +180,7 @@ class DobCob extends StatelessWidget {
             Text(
               'Happy Forever',
               style: TextStyle(
-                fontSize: screenWidth * widthScaleFactor,
+                // fontSize: screenWidth * widthScaleFactor,
                 fontWeight: FontWeight.normal,
               ),
             ),
@@ -204,7 +207,7 @@ class GenderMarital extends StatelessWidget {
             Text(
               'Happy Forever',
               style: TextStyle(
-                fontSize: screenWidth * widthScaleFactor,
+                // fontSize: screenWidth * widthScaleFactor,
                 fontWeight: FontWeight.normal,
               ),
             ),
@@ -218,7 +221,7 @@ class GenderMarital extends StatelessWidget {
             Text(
               'Happy Forever',
               style: TextStyle(
-                fontSize: screenWidth * widthScaleFactor,
+                // fontSize: screenWidth * widthScaleFactor,
                 fontWeight: FontWeight.normal,
               ),
             ),
@@ -245,7 +248,7 @@ class EthnicHealth extends StatelessWidget {
             Text(
               'Happy Forever',
               style: TextStyle(
-                fontSize: screenWidth * widthScaleFactor,
+                // fontSize: screenWidth * widthScaleFactor,
                 fontWeight: FontWeight.normal,
               ),
             ),
@@ -259,7 +262,7 @@ class EthnicHealth extends StatelessWidget {
             Text(
               'Happy Forever',
               style: TextStyle(
-                fontSize: screenWidth * widthScaleFactor,
+                // fontSize: screenWidth * widthScaleFactor,
                 fontWeight: FontWeight.normal,
               ),
             ),

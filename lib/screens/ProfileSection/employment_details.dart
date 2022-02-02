@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:workify/utils/sizes.dart';
+import './modify_history_buttons.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -81,6 +83,16 @@ class EmploymentDetails extends StatelessWidget {
                         Experience(),
                       ],
                     ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: screenHeight * 0.16,
+                        ),
+                        HistoryButton(),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -119,6 +131,12 @@ class EmploymentDetailsPortraitView extends StatelessWidget {
         EmploymentType(),
         PfAccount(),
         Experience(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            HistoryButton(),
+          ],
+        ),
       ],
       // To Build footer in Portrait View;
     );
@@ -377,61 +395,3 @@ class Experience extends StatelessWidget {
   }
 }
 
-
-//Buttons
-
-class ModifyButton extends StatelessWidget {
-  const ModifyButton(
-      {Key? key,
-      required this.updateDetailsString,
-      required this.updateWidgetHandler})
-      : super(key: key);
-
-  final String updateDetailsString;
-  final void Function(String) updateWidgetHandler;
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        updateWidgetHandler(updateDetailsString);
-      },
-      child: Center(
-        child: Text(
-          'Modify',
-          style: TextStyle(
-            fontSize: screenWidth * 0.01,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class HistoryButton extends StatelessWidget {
-  const HistoryButton(
-      {Key? key,
-      required this.updateDetailsString,
-      required this.updateWidgetHandler})
-      : super(key: key);
-
-  final String updateDetailsString;
-  final void Function(String) updateWidgetHandler;
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        updateWidgetHandler(updateDetailsString);
-      },
-      child: Center(
-        child: Text(
-          'History',
-          style: TextStyle(
-            fontSize: screenWidth * 0.01,
-          ),
-        ),
-      ),
-    );
-  }
-}

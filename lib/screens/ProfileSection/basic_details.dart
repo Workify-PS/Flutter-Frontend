@@ -33,11 +33,11 @@ class BasicDetails extends StatelessWidget {
                 // direction: portrait == true ? Axis.vertical : Axis.horizontal,
                 children: [
                   Expanded(
-                    flex: 5,
+                    flex: 3,
                     child: Person(),
                   ),
                   Expanded(
-                    flex: 8,
+                    flex: 7,
                     // child: Container(
                     // color: Colors.blue,
                     child: Column(
@@ -107,7 +107,7 @@ class BasicDetailsPortraitView extends StatelessWidget {
           child: Person(),
         ),
         Expanded(
-          flex: 4,
+          flex: 6,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

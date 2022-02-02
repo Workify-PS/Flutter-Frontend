@@ -136,6 +136,12 @@ class ContactDetailsPortraitView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            SizedBox(
+              height: screenHeight * 0.01,
+              // child: Container(
+              //   color: Colors.red,
+              // ),
+            ),
             ResidenceAddress(),
             ResidenceCity(),
             ResidenceState(),
@@ -149,6 +155,12 @@ class ContactDetailsPortraitView extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
+            ),
+            SizedBox(
+              height: screenHeight * 0.01,
+              // child: Container(
+              //   color: Colors.red,
+              // ),
             ),
             PermanentAddress(),
             PermanentCity(),
@@ -164,6 +176,12 @@ class ContactDetailsPortraitView extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+            SizedBox(
+              height: screenHeight * 0.01,
+              // child: Container(
+              //   color: Colors.red,
+              // ),
+            ),
             CorrespondenceAddress(),
             CorrespondenceCity(),
             CorrespondenceState(),
@@ -177,6 +195,12 @@ class ContactDetailsPortraitView extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
+            ),
+            SizedBox(
+              height: screenHeight * 0.01,
+              // child: Container(
+              //   color: Colors.red,
+              // ),
             ),
             EmergencyContactName(),
             EmergencyContactRelationship(),

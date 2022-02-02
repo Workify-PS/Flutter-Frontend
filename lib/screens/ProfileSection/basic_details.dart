@@ -6,6 +6,8 @@ import 'package:workify/utils/sizes.dart';
 import './self_details.dart';
 import './modify_history_buttons.dart';
 
+double screenWidth = 0, screenHeight = 0;
+bool portrait = false;
 
 class BasicDetails extends StatelessWidget {
   const BasicDetails({Key? key}) : super(key: key);
@@ -14,259 +16,419 @@ class BasicDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
-    final double screenWidth = device.size.width;
-    // final double screenHeight = device.size.height;
-    bool portrait = screenWidth < 1000;
+    screenWidth = device.size.width;
+    screenHeight = device.size.height;
+    
+    portrait = screenWidth < 1000;
 
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: DefaultTextStyle(
-        style: TextStyle(
-          // fontSize: screenWidth * 0.01,
-          fontWeight: FontWeight.bold,
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.transparent,
-          ),
-          child: Flex(
-            direction: portrait == true ? Axis.vertical : Axis.horizontal,
-            children: [
-              Expanded(
-                flex: 5,
-                child: Person(),
+    return portrait == false
+        ? Padding(
+            padding: const EdgeInsets.all(8),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.transparent,
               ),
-              Expanded(
-                flex: 9,
-                // child: Container(
-                  // color: Colors.blue,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      FatherNameBgroup(),
-                      DobCob(),
-                      GenderMarital(),
-                      EthnicHealth(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ModifyHistoryButton(),
-                        ],
-                      ),
-                    ],
+              child: Row(
+                // direction: portrait == true ? Axis.vertical : Axis.horizontal,
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: Person(),
                   ),
-                // ),
+                  Expanded(
+                    flex: 8,
+                    // child: Container(
+                    // color: Colors.blue,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Email(),
+                            MobileNumber(),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            FatherName(),
+                            BloodGroup(),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            DoB(),
+                            CoB(),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Gender(),
+                            Marital(),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Ethnic(),
+                            Health(),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ModifyHistoryButton(),
+                          ],
+                        ),
+                      ],
+                    ),
+                    // ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        : BasicDetailsPortraitView();
+  }
+}
+
+class BasicDetailsPortraitView extends StatelessWidget {
+  const BasicDetailsPortraitView({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          flex: 4,
+          child: Person(),
+        ),
+        Expanded(
+          flex: 4,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Email(),
+              MobileNumber(),
+              FatherName(),
+              BloodGroup(),
+              DoB(),
+              CoB(),
+              Gender(),
+              Marital(),
+              Ethnic(),
+              Health(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ModifyHistoryButton(),
+                ],
               ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-
-class FatherNameBgroup extends StatelessWidget{
-  const FatherNameBgroup({Key ? key}): super(key:key);
-  @override 
-  Widget build(BuildContext context){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Father Name'),
-            Text(
-              'Happy Forever',
-              style: TextStyle(
-                // fontSize: screenWidth * widthScaleFactor,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Blood Group'),
-            Text(
-              'Happy Forever',
-              style: TextStyle(
-                // fontSize: screenWidth * 0.001,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ],
-        ),
       ],
     );
-                    
   }
 }
 
-// class Names extends StatelessWidget {
-//   const Names({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//       crossAxisAlignment: CrossAxisAlignment.center,
-//       children: [
-//         // Column(
-//         //   // mainAxisAlignment: MainAxisAlignment.spaceAround,
-//         //   crossAxisAlignment: CrossAxisAlignment.start,
-//         //   children: [
-//         //     Text('Name'),
-//         //     Text(
-//         //       'Happy Forever',
-//         //       style: TextStyle(
-//         //         fontSize: screenWidth * widthScaleFactor,
-//         //         fontWeight: FontWeight.normal,
-//         //       ),
-//         //     ),
-//         //   ],
-//         // ),
-//         Column(
-//           // mainAxisAlignment: MainAxisAlignment.spaceAround,
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text('Father Name'),
-//             Text(
-//               'Happy Forever',
-//               style: TextStyle(
-//                 fontSize: screenWidth * widthScaleFactor,
-//                 fontWeight: FontWeight.normal,
-//               ),
-//             ),
-//           ],
-//         ),
-//       ],
-//     );
-//   }
-// }
-
-class DobCob extends StatelessWidget {
-  const DobCob({Key? key}) : super(key: key);
+class Email extends StatelessWidget {
+  const Email({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Date of Birth'),
-            Text(
-              'Happy Forever',
-              style: TextStyle(
-                // fontSize: screenWidth * widthScaleFactor,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ],
+        Text(
+          'Email ID',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Country of Birth'),
-            Text(
-              'Happy Forever',
-              style: TextStyle(
-                // fontSize: screenWidth * widthScaleFactor,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ],
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
   }
 }
 
-class GenderMarital extends StatelessWidget {
-  const GenderMarital({Key? key}) : super(key: key);
+class MobileNumber extends StatelessWidget {
+  const MobileNumber({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Gender'),
-            Text(
-              'Happy Forever',
-              style: TextStyle(
-                // fontSize: screenWidth * widthScaleFactor,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ],
+        Text(
+          'Mobile Number',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Marital Status'),
-            Text(
-              'Happy Forever',
-              style: TextStyle(
-                // fontSize: screenWidth * widthScaleFactor,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ],
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
   }
 }
 
-class EthnicHealth extends StatelessWidget {
-  const EthnicHealth({Key? key}) : super(key: key);
+class BloodGroup extends StatelessWidget {
+  const BloodGroup({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Nationality'),
-            Text(
-              'Happy Forever',
-              style: TextStyle(
-                // fontSize: screenWidth * widthScaleFactor,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ],
+        Text(
+          'Blood Group',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Is Disabled ?'),
-            Text(
-              'Happy Forever',
-              style: TextStyle(
-                // fontSize: screenWidth * widthScaleFactor,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ],
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class FatherName extends StatelessWidget {
+  const FatherName({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Father Name',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class DoB extends StatelessWidget {
+  const DoB({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Date of Birth',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class CoB extends StatelessWidget {
+  const CoB({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Country of Birth',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Gender extends StatelessWidget {
+  const Gender({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Gender',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Marital extends StatelessWidget {
+  const Marital({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Marital',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Ethnic extends StatelessWidget {
+  const Ethnic({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Natinoality',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class Health extends StatelessWidget {
+  const Health({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: portrait == true ? Axis.horizontal : Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Health',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );

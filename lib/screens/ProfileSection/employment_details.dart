@@ -149,15 +149,21 @@ class CompanyName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Company Name',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
@@ -170,15 +176,21 @@ class EmployeeCode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Employee Code',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
@@ -191,15 +203,21 @@ class Designation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Designation',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
@@ -212,15 +230,21 @@ class StartDate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Start Date',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
@@ -233,15 +257,21 @@ class EndDate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'End Date',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
@@ -254,15 +284,21 @@ class ProjectName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Project Name',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
@@ -275,15 +311,21 @@ class Role extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Role',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
@@ -296,15 +338,21 @@ class WorkLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Work Location',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
@@ -317,15 +365,21 @@ class SalaryPerAnnum extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Salary Per Annum',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
@@ -338,15 +392,21 @@ class EmploymentType extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Employment Type',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
@@ -359,15 +419,21 @@ class PfAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flex(
       direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'PF Account',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );
@@ -387,8 +453,14 @@ class Experience extends StatelessWidget {
           'Total Experience including current organization',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        Text(
-          'Happy Forever',
+        SizedBox(
+          // color: Colors.red,
+          width: screenHeight * 0.2,
+          height: screenHeight * 0.025,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+          ),
         ),
       ],
     );

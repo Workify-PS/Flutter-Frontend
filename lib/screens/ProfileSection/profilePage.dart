@@ -97,7 +97,6 @@ class ProfilePageState extends State<ProfilePage> {
                       flex: portrait == true ? 1 : 2,
                       child: BasicDetailsButton(
                         profileDetails: "Basic_Details",
-                        buttonPressed: true,
                         profileWidgetHandler: setProfileWidget,
                       ),
                     ),
@@ -105,7 +104,6 @@ class ProfilePageState extends State<ProfilePage> {
                       flex: portrait == true ? 1 : 2,
                       child: PositionDetailsButton(
                         profileDetails: "Position_Details",
-                        buttonPressed: true,
                         profileWidgetHandler: setProfileWidget,
                       ),
                     ),
@@ -114,7 +112,6 @@ class ProfilePageState extends State<ProfilePage> {
                       // child: ContactDetailsButton(),
                       child: ContactDetailsButton(
                         profileDetails: "Contact_Details",
-                        buttonPressed: true,
                         profileWidgetHandler: setProfileWidget,
                       ),
                     ),
@@ -191,13 +188,11 @@ class ProfilePageState extends State<ProfilePage> {
 class BasicDetailsButton extends StatelessWidget {
   final String profileDetails;
   final void Function(String) profileWidgetHandler;
-  final bool buttonPressed;
 
   const BasicDetailsButton({
     Key? key,
     required this.profileDetails,
     required this.profileWidgetHandler,
-    required this.buttonPressed,
   }) : super(key: key);
 
   @override
@@ -236,13 +231,11 @@ class BasicDetailsButton extends StatelessWidget {
 class PositionDetailsButton extends StatelessWidget {
   final String profileDetails;
   final void Function(String) profileWidgetHandler;
-  final bool buttonPressed;
 
   const PositionDetailsButton({
     Key? key,
     required this.profileDetails,
     required this.profileWidgetHandler,
-    required this.buttonPressed,
   }) : super(key: key);
 
   @override
@@ -282,13 +275,11 @@ class PositionDetailsButton extends StatelessWidget {
 class ContactDetailsButton extends StatelessWidget {
   final String profileDetails;
   final void Function(String) profileWidgetHandler;
-  final bool buttonPressed;
 
   const ContactDetailsButton({
     Key? key,
     required this.profileDetails,
     required this.profileWidgetHandler,
-    required this.buttonPressed,
   }) : super(key: key);
 
   @override

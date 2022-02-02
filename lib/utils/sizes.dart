@@ -16,6 +16,4 @@ class DeviceSize {
   double get widthMultiplier => size.width / masterWidth;
 }
 
-class WidgetSizes {
-  static double get bannerHeight => DeviceSize().size.height * 0.15;
-}
+

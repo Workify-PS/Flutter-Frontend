@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:workify/components/DashBoardCard.dart';
+import 'package:workify/components/SideMenu.dart';
+
+import 'package:workify/screens/DashBoard.dart';
+import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';
 
@@ -11,8 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   RxBool isCollapsed = true.obs;
-  final titles = ["DashBoard", "Attendance", "Profile", "Settings"];
-  final icons = [Icons.dashboard, Icons.list_alt, Icons.person, Icons.settings];
+  
 
   @override
   Widget build(BuildContext context) {
@@ -20,55 +24,67 @@ class _HomePageState extends State<HomePage> {
     device.size = MediaQuery.of(context).size;
 
     return Scaffold(
-        body: Obx(
-      () => Row(
+      backgroundColor: kBgDarkColor,
+      body: Row(
         children: [
-          AnimatedContainer(
-            duration: Duration(milliseconds: 100),
-            curve: isCollapsed.value ? Curves.linear : Curves.linear,
-            height: double.infinity,
-            width: isCollapsed.value ? 64 : 200,
-            child: MouseRegion(
-              onEnter: (event) => isCollapsed.value = false,
-              onExit: (event) => isCollapsed.value = true,
-              child: Material(
-                elevation: 100,
-                color: Theme.of(context).primaryColor,
-                borderOnForeground: true,
-                type: MaterialType.card,
-                shadowColor: Colors.black,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(6),
-                        bottomRight: Radius.circular(6))),
-                child: ListView(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(vertical: 24),
-                      color: Colors.white12,
-                      child: buildHeader(),
-                    ),
-                    Divider(
-                      color: Colors.white38,
-                      thickness: 2,
-                    ),
-                    buildTiles()
-                  ],
-                ),
-              ),
-            ),
+          Expanded(
+            child: SideMenu(),
+            flex: 1,
           ),
-          Container(
-            margin: const EdgeInsets.only(left: 4),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(6),
-                    bottomLeft: Radius.circular(6))),
+          Expanded(
+            child: DashBoard(),
+            flex: 7,
           ),
         ],
       ),
-    ));
+
+      // Row(
+      //   children: [
+      //     Obx(() => AnimatedContainer(
+      //           duration: Duration(milliseconds: 200),
+      //           curve: isCollapsed.value ? Curves.linear : Curves.linear,
+      //           height: double.infinity,
+      //           width: isCollapsed.value ? 76 : 224,
+      //           child: MouseRegion(
+      //             onEnter: (event) => isCollapsed.value = false,
+      //             onExit: (event) => isCollapsed.value = true,
+      //             child: Material(
+      //               elevation: 100,
+      //               color: Theme.of(context).primaryColor,
+      //               borderOnForeground: true,
+      //               type: MaterialType.card,
+      //               shadowColor: Colors.black,
+      //               shape: RoundedRectangleBorder(
+      //                   borderRadius: BorderRadius.only(
+      //                       topRight: Radius.circular(6),
+      //                       bottomRight: Radius.circular(6))),
+      //               child: ListView(
+      //                 children: [
+      //                   Container(
+      //                     padding: EdgeInsets.symmetric(vertical: 24),
+      //                     height: bannerHeight,
+      //                     decoration: BoxDecoration(
+      //                         border: Border.fromBorderSide(
+      //                             BorderSide(color: Colors.black12))),
+      //                     child: buildHeader(),
+      //                   ),
+      //                   // Divider(
+      //                   //   color: kBgDarkColor,
+      //                   //   thickness: 1,
+      //                   // ),
+      //                   buildTiles()
+      //                 ],
+      //               ),
+      //             ),
+      //           ),
+      //         )),
+      //     const SizedBox(
+      //       width: 6,
+      //     ),
+      //     DashBoard(),
+      //   ],
+      // ),
+    );
   }
 
   buildHeader() {
@@ -77,33 +93,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  buildTiles() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: List.generate(
-          titles.length,
-          (index) => Container(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(12),
-                  dense: true,
-                  leading: isCollapsed.value
-                      ? null
-                      : Icon(
-                          icons[index],
-                          size: 24,
-                        ),
-                  title: isCollapsed.value
-                      ? Icon(
-                          icons[index],
-                          size: 24,
-                        )
-                      : Text(titles[index]),
-                  onTap: () {
-                    //Get.toNamed(titles[index]);
-                  },
-                ),
-              )),
-    );
-  }
+  // buildTiles() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.center,
+  //     children: List.generate(
+  //         titles.length,
+  //         (index) => DrawerItem(
+  //             isCollapsed: isCollapsed.value,
+  //             icon: icons[index],
+  //             title: titles[index])),
+  //   );
+  // }
 }

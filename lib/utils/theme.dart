@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:workify/utils/constants.dart';
 
 class MyTheme {
   static ThemeData lightTheme = ThemeData.from(
           colorScheme: ColorScheme.light(
-            primary: Color(0xFFF5F6FC),
+            primary: kBgLightColor,
             secondary: Color(0xFFF5F6FC),
+
             background: Colors.grey.shade50,
             surface: Colors.white,
           ),
@@ -13,7 +15,8 @@ class MyTheme {
           //.apply(bodyColor: Colors.black, displayColor: Colors.black),
           )
       .copyWith(
-          scaffoldBackgroundColor: Colors.grey.shade500,
+        
+          scaffoldBackgroundColor: kBgLightColor,
           cardTheme: CardTheme(
             margin: EdgeInsets.all(8.0),
             elevation: 1.0,

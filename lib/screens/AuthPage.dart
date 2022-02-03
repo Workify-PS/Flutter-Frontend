@@ -108,7 +108,7 @@ class _AuthPageState extends State<AuthPage> {
                                         validator: (userID) =>
                                             userID!.isNotEmpty
                                                 ? null
-                                                : "Check your email",
+                                                : "Check your User ID",
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         decoration: InputDecoration(
@@ -162,7 +162,9 @@ class _AuthPageState extends State<AuthPage> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         InkWell(
-                                          onTap: () {},
+                                          onTap: () {
+                                            Get.toNamed('/forgot');
+                                          },
                                           child: Padding(
                                             padding: const EdgeInsets.only(
                                                 right: 8.0, top: 4),

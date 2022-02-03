@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
 import 'package:workify/screens/AuthPage.dart';
+import 'package:workify/screens/ChangePass.dart';
+import 'package:workify/screens/ForgotPass.dart';
 import 'package:workify/screens/HomePage.dart';
 import 'package:workify/utils/theme.dart';
 
@@ -32,6 +34,11 @@ class _MyAppState extends State<MyApp> {
             page: () =>
                 false ? HomePage() : AuthPage()), //check for already signed in
         GetPage(name: "/auth", page: () => AuthPage()),
+        GetPage(
+          name: "/forgot",
+          page: () => ForgotPass(),
+        ),
+        GetPage(name: "/change", page: () => ChangePass()),
       ],
     );
   }

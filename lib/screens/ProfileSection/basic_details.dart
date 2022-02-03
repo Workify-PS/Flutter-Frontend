@@ -41,52 +41,60 @@ class BasicDetails extends StatelessWidget {
                     // child: Container(
                     // color: Colors.blue,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Email(),
-                            MobileNumber(),
-                          ],
+                        Expanded(
+                          flex: 5,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Email(),
+                                  MobileNumber(),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  FatherName(),
+                                  BloodGroup(),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  DoB(),
+                                  CoB(),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Gender(),
+                                  Marital(),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Ethnic(),
+                                  Health(),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ModifyHistoryButton(),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            FatherName(),
-                            BloodGroup(),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            DoB(),
-                            CoB(),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Gender(),
-                            Marital(),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Ethnic(),
-                            Health(),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ModifyHistoryButton(),
-                          ],
-                        ),
+                        // Landscape Footer
                       ],
                     ),
-                    // ),
                   ),
                 ],
               ),
@@ -434,3 +442,69 @@ class Health extends StatelessWidget {
     );
   }
 }
+
+
+
+// ... Landscape Footer
+// Expanded(
+  //   flex: 2,
+  //   child: Column(
+  //     // mainAxisAlignment: MainAxisAlignment.center,
+  //     crossAxisAlignment: CrossAxisAlignment.stretch,
+  //     children:[
+  //       Text(
+  //         'History',
+  //         style: TextStyle(
+  //           fontWeight: FontWeight.bold,
+  //         ),
+  //       ),
+  //       Padding(
+  //         padding: const EdgeInsets.all(32.0),
+  //         child: SingleChildScrollView(
+  //           scrollDirection: Axis.vertical,
+  //           child: Table(
+  //             border: TableBorder.all(),
+  //             children: [
+  //               TableRow(
+  //                 children: [
+  //                   Text(
+  //                     'Heading 1',
+  //                     style: TextStyle(
+  //                       fontWeight:FontWeight.bold,
+  //                     ),
+  //                   ),
+  //                   Text(
+  //                     'Heading 2',
+  //                     style: TextStyle(
+  //                       fontWeight:FontWeight.bold,
+  //                     ),
+  //                   ),
+  //                   Text(
+  //                     'Heading 3',
+  //                     style: TextStyle(
+  //                       fontWeight:FontWeight.bold,
+  //                     ),
+  //                   ),
+  //                   Text(
+  //                     'Heading 4',
+  //                     style: TextStyle(
+  //                       fontWeight:FontWeight.bold,
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //               TableRow(
+  //                 children: [
+  //                   Text('Cell 1'),
+  //                   Text('Cell 2'),
+  //                   Text('Cell 3'),
+  //                   Text('Cell 4'),
+  //                 ],
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   ),
+  // ),

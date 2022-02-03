@@ -100,14 +100,7 @@ class PositionDetails extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  width: screenWidth,
-                  height: screenHeight,
-                  color: Colors.amber,
-                ),
-              ),
+              // Landscape Footer
             ],
           )
         : PositionDetailsPortraitView();
@@ -146,7 +139,7 @@ class PositionDetailsPortraitView extends StatelessWidget {
           ],
         ),
       ],
-      // To Build footer in Portrait View;
+      // Portrait Footer
     );
   }
 }
@@ -609,3 +602,40 @@ class JobRole extends StatelessWidget {
     );
   }
 }
+
+
+// ... Landscape Footer
+
+//  Expanded(
+  //   flex: 3,
+  //   child: Padding(
+  //     padding: const EdgeInsets.all(32.0),
+  //     child: Table(
+  //       border: TableBorder.all(),
+  //       children: [
+  //         TableRow(
+  //           children: [
+  //             Text(
+  //               'Heading 1',
+  //               style: TextStyle(
+  //                 fontWeight:FontWeight.bold,
+  //               ),
+  //             ),
+  //             Text(
+  //               'Heading 2',
+  //               style: TextStyle(
+  //                 fontWeight:FontWeight.bold,
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //         TableRow(
+  //           children: [
+  //             Text('Cell 1'),
+  //             Text('Cell 2'),
+  //           ],
+  //         ),
+  //       ],
+  //     ),
+  //   ),
+// ),

@@ -96,14 +96,7 @@ class EmploymentDetails extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  width: screenWidth,
-                  height: screenHeight,
-                  color: Colors.amber,
-                ),
-              ),
+              // Landscape Footer
             ],
           )
         : EmploymentDetailsPortraitView();
@@ -130,7 +123,12 @@ class EmploymentDetailsPortraitView extends StatelessWidget {
         SalaryPerAnnum(),
         EmploymentType(),
         PfAccount(),
-        Experience(),
+        Row(
+          mainAxisAlignment:MainAxisAlignment.start,
+          children: [
+            Experience(),
+          ],
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -138,7 +136,7 @@ class EmploymentDetailsPortraitView extends StatelessWidget {
           ],
         ),
       ],
-      // To Build footer in Portrait View;
+      // Portrait Footer
     );
   }
 }
@@ -467,3 +465,39 @@ class Experience extends StatelessWidget {
   }
 }
 
+
+// ... Landscape Footer
+
+// Expanded(
+//   flex: 3,
+//   child: Padding(
+//     padding: const EdgeInsets.all(32.0),
+//     child: Table(
+//       border: TableBorder.all(),
+//       children: [
+//         TableRow(
+//           children: [
+//             Text(
+//               'Heading 1',
+//               style: TextStyle(
+//                 fontWeight:FontWeight.bold,
+//               ),
+//             ),
+//             Text(
+//               'Heading 2',
+//               style: TextStyle(
+//                 fontWeight:FontWeight.bold,
+//               ),
+//             ),
+//           ],
+//         ),
+//         TableRow(
+//           children: [
+//             Text('Cell 1'),
+//             Text('Cell 2'),
+//           ],
+//         ),
+//       ],
+//     ),
+//   ),
+// ),

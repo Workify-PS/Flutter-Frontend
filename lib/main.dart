@@ -3,6 +3,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
 import 'package:workify/screens/AuthPage.dart';
 import 'package:workify/screens/ChangePass.dart';
+
 import 'package:workify/screens/ForgotPass.dart';
 import 'package:workify/screens/HomePage.dart';
 import 'package:workify/screens/profilesection/profilePage.dart';

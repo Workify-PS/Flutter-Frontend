@@ -56,6 +56,7 @@ class _AuthPageState extends State<AuthPage> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)),
                           child: ListView(
+                            controller: ScrollController(),
                             shrinkWrap: true,
                             padding: const EdgeInsets.symmetric(vertical: 32),
                             //crossAxisAlignment: CrossAxisAlignment.center,

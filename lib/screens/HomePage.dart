@@ -16,24 +16,33 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   RxBool isCollapsed = true.obs;
-  
 
   @override
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
-
+    final GlobalKey<ScaffoldState> _scaffoldkey =
+        new GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: _scaffoldkey,
       backgroundColor: kBgDarkColor,
+      endDrawer: Drawer(),
       body: Row(
         children: [
           Expanded(
             child: SideMenu(),
+            flex: 38,
+          ),
+          Expanded(
+            child: Container(
+              height: double.infinity,
+              color: Colors.black12,
+            ),
             flex: 1,
           ),
           Expanded(
-            child: DashBoard(),
-            flex: 7,
+            child: DashBoard(parentScaffoldkey: _scaffoldkey),
+            flex: 200,
           ),
         ],
       ),

@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:workify/components/DashBoardCard.dart';
 import 'package:workify/components/SideMenu.dart';
-import 'package:workify/models/Email.dart';
+import 'package:workify/components/TopBar.dart';
+
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/sizes.dart';
 
 class DashBoard extends StatefulWidget {
+  final GlobalKey<ScaffoldState> parentScaffoldkey;
   const DashBoard({
     Key? key,
+    required this.parentScaffoldkey,
   }) : super(key: key);
 
   @override
@@ -16,33 +20,33 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
+  DeviceSize device = DeviceSize();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: 250),
-        child: SideMenu(),
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(bannerHeight),
+          child: TopBar(
+            parentScaffoldkey: widget.parentScaffoldkey,
+          )),
       body: Container(
-        //padding: EdgeInsets.only(top: bannerHeight),
         color: kBgDarkColor,
         child: Column(
           children: [
-            SizedBox(
-              height: bannerHeight,
-              child: Container(
-                color: Colors.black12,
-              ),
-            ),
+            //SizedBox(height: bannerHeight, child: TopBar()),
             Expanded(
               child: GridView.builder(
+                controller: ScrollController(),
                 //shrinkWrap: true,
+                physics: ScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 2,
-                  crossAxisSpacing: kDefaultPadding,
-                  mainAxisSpacing: kDefaultPadding,
+                  crossAxisCount: 3,
+                  childAspectRatio: 1.2,
+                  crossAxisSpacing: kDefaultPadding * 2,
+                  mainAxisSpacing: kDefaultPadding * 2,
                 ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                 itemCount: 4,
                 itemBuilder: (context, index) => DashBoardCard(),
               ),

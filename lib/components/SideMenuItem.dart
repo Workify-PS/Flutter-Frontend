@@ -40,50 +40,44 @@ class _SideMenuItemState extends State<SideMenuItem> {
             isHover = value;
           });
         },
-        child: Expanded(
-          child: Container(
-            padding: EdgeInsets.only(bottom: kDefaultPadding * 1.5, right: 5),
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Color(0xFFDFE2EF)),
+        child: Container(
+          padding: EdgeInsets.only(bottom: kDefaultPadding * 1.5, right: 5),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: Color(0xFFDFE2EF)),
+            ),
+          ),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: kDefaultPadding / 2,
+                  ),
+                  Icon(widget.icon,
+                      color:
+                          (isHover || isExpaned) ? kPrimaryColor : kTextColor),
+                  SizedBox(
+                    width: kDefaultPadding * 0.75,
+                  ),
+                  Text(
+                    widget.title,
+                    style: Theme.of(context).textTheme.button!.copyWith(
+                          color:
+                              (isHover || isExpaned) ? kTextColor : kGrayColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                  ),
+                  Spacer(),
+                  if (isHover && !isExpaned)
+                    SvgPicture.asset("assets/icons/Angle right.svg", width: 16),
+                  if (isExpaned)
+                    SvgPicture.asset("assets/icons/Angle down.svg", width: 16),
+                ],
               ),
-            ),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: kDefaultPadding / 2,
-                    ),
-                    Icon(widget.icon,
-                        color: (isHover || isExpaned)
-                            ? kPrimaryColor
-                            : kTextColor),
-                    SizedBox(
-                      width: kDefaultPadding * 0.75,
-                    ),
-                    Text(
-                      widget.title,
-                      style: Theme.of(context).textTheme.button!.copyWith(
-                            color: (isHover || isExpaned)
-                                ? kTextColor
-                                : kGrayColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                    Spacer(),
-                    if (isHover && !isExpaned)
-                      SvgPicture.asset("assets/icons/Angle right.svg",
-                          width: 16),
-                    if (isExpaned)
-                      SvgPicture.asset("assets/icons/Angle down.svg",
-                          width: 16),
-                  ],
-                ),
-                if (isExpaned) SubTilesList()
-              ],
-            ),
+              if (isExpaned) SubTilesList()
+            ],
           ),
         ),
       ),

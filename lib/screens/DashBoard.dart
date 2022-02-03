@@ -4,6 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:workify/components/DashBoardCard.dart';
 import 'package:workify/components/SideMenu.dart';
 import 'package:workify/components/TopBar.dart';
+import 'package:workify/components/attendancecard.dart';
+import 'package:workify/components/button.dart';
 
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
@@ -35,20 +37,14 @@ class _DashBoardState extends State<DashBoard> {
           children: [
             //SizedBox(height: bannerHeight, child: TopBar()),
             Expanded(
-              child: GridView.builder(
+              child: GridView.count(
                 controller: ScrollController(),
+                crossAxisCount: 3,
                 //shrinkWrap: true,
                 physics: ScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 1.2,
-                  crossAxisSpacing: kDefaultPadding * 2,
-                  mainAxisSpacing: kDefaultPadding * 2,
-                ),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                itemCount: 4,
-                itemBuilder: (context, index) => DashBoardCard(),
+                children: [attendancecard()],
               ),
             ),
           ],

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:workify/screens/AuthPage.dart';
 import 'package:workify/screens/HomePage.dart';
 import 'package:workify/utils/sizes.dart';
-
 import 'package:workify/utils/theme.dart';
 
 Future<void> main() async {
@@ -29,9 +28,7 @@ class _MyAppState extends State<MyApp> {
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,
-      onReady: (){
-        
-      },
+      onReady: () {},
       getPages: [
         // GetPage(
         //     name: "/",
@@ -45,7 +42,6 @@ class _MyAppState extends State<MyApp> {
             page: () => HomePage()), //check for already signed in
         GetPage(name: "/auth", page: () => AuthPage()),
       ],
-     
     );
   }
 }

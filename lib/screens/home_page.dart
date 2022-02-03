@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/utils/theme.dart';
 
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
         }
       }),
       body: Center(
-        child: Container(
+        child: SizedBox(
             height: 100,
             width: 200,
             child: Card(

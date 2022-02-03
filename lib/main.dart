@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
-import 'package:workify/screens/AuthPage.dart';
-import 'package:workify/screens/HomePage.dart';
+import 'package:workify/screens/auth_page.dart';
+import 'package:workify/screens/home_page.dart';
+import 'package:workify/screens/profilesection/profilePage.dart';
 
 import 'package:workify/utils/theme.dart';
 
@@ -21,18 +22,25 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-   
     return GetMaterialApp(
-      initialRoute: "/",
+      debugShowCheckedModeBanner: false,
+      initialRoute: "/profile",
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,
       getPages: [
         GetPage(
-            name: "/",
-            page: () =>
-                false ? HomePage() : AuthPage()), //check for already signed in
-        GetPage(name: "/auth", page: () => AuthPage()),
+            name: "/home",
+            page: () => HomePage()
+                // false ? HomePage() : AuthPage() //check for already signed in
+        ), 
+        GetPage(
+          name: "/auth", page: () => AuthPage(),
+        ),
+        GetPage(
+          name: '/profile',
+          page: () => ProfilePage(),
+        ),
       ],
     );
   }

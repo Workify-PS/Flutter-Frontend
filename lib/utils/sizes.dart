@@ -14,6 +14,5 @@ class DeviceSize {
   static double masterWidth = 1161.3450927734375;
   late Size size;
   double get heightMultiplier => size.height / masterHeight;
-
   double get widthMultiplier => size.width / masterWidth;
 }

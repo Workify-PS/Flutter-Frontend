@@ -4,12 +4,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:workify/utils/sizes.dart';
 
 class AuthPage extends StatefulWidget {
+  const AuthPage({Key? key}) : super(key: key);
+
   @override
   State<AuthPage> createState() => _AuthPageState();
 }
 
 class _AuthPageState extends State<AuthPage> {
-  final _passwordIsVisible = false.obs;
+  final  _passwordIsVisible = false.obs;
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
   final _formKey = GlobalKey<FormState>();

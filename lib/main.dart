@@ -3,7 +3,8 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
 import 'package:workify/screens/AuthPage.dart';
 import 'package:workify/screens/HomePage.dart';
-import 'package:workify/utils/sizes.dart';
+import 'package:workify/screens/profilesection/profilePage.dart';
+
 import 'package:workify/utils/theme.dart';
 
 Future<void> main() async {
@@ -19,28 +20,27 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool isSignedIn = true;
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: "/home",
       debugShowCheckedModeBanner: false,
+      initialRoute: "/home",
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,
-      onReady: () {},
       getPages: [
-        // GetPage(
-        //     name: "/",
-        //     page: () {
-        //       isSignedIn ? {Get.toNamed("/home")} : {Get.toNamed("/auth")};
-        //       return Material(
-        //           child: Center(child: CircularProgressIndicator()));
-        //     }),
         GetPage(
             name: "/home",
-            page: () => HomePage()), //check for already signed in
-        GetPage(name: "/auth", page: () => AuthPage()),
+            page: () => HomePage()
+                // false ? HomePage() : AuthPage() //check for already signed in
+        ), 
+        GetPage(
+          name: "/auth", page: () => AuthPage(),
+        ),
+        GetPage(
+          name: '/profile',
+          page: () => ProfilePage(),
+        ),
       ],
     );
   }

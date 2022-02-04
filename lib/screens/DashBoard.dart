@@ -1,11 +1,11 @@
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:workify/components/DashBoardCard.dart';
-import 'package:workify/components/SideMenu.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:workify/components/DashBoardCard.dart';
+// import 'package:workify/components/SideMenu.dart';
 import 'package:workify/components/TopBar.dart';
 import 'package:workify/components/attendancecard.dart';
-import 'package:workify/components/button.dart';
+// import 'package:workify/components/button.dart';
 
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
@@ -44,7 +44,7 @@ class _DashBoardState extends State<DashBoard> {
                 physics: ScrollPhysics(),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                children: [attendancecard()],
+                children: [AttendanceCard()],
               ),
             ),
           ],

@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workify/screens/AuthPage.dart';
+// import 'package:workify/screens/AuthPage.dart';
 
 class ForgotPass extends StatelessWidget {
   const ForgotPass({Key? key}) : super(key: key);

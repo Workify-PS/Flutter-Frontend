@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:workify/components/button.dart';
 
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 
-class attendancecard extends StatelessWidget {
-  const attendancecard({
+class AttendanceCard extends StatelessWidget {
+  const AttendanceCard({
     Key? key,
   }) : super(key: key);
 
@@ -51,11 +51,11 @@ class attendancecard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                button(buttontext: 'OFFICE'),
+                Button(buttontext: 'OFFICE'),
                 SizedBox(
                   width: 50,
                 ),
-                button(buttontext: 'REMOTE LOCATION'),
+                Button(buttontext: 'REMOTE LOCATION'),
               ],
             ),
             SizedBox(
@@ -91,7 +91,7 @@ class attendancecard extends StatelessWidget {
             SizedBox(
               height: 19,
             ),
-            button(buttontext: 'ATTENDANCE STATUS'),
+            Button(buttontext: 'ATTENDANCE STATUS'),
           ],
         ),
       ).makeRounded(

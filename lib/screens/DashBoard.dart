@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workify/components/birthday_card.dart';
 import 'package:workify/components/dashboard_card.dart';
+import 'package:workify/components/profile_completion_card.dart';
 import 'package:workify/components/top_bar.dart';
 import 'package:workify/components/attendance_card.dart';
 import 'package:workify/utils/constants.dart';
@@ -36,13 +37,18 @@ class _DashBoardState extends State<DashBoard> {
               child: GridView.count(
                 controller: ScrollController(),
                 crossAxisCount: 3,
+
+                crossAxisSpacing: kDefaultPadding * 2,
+                mainAxisSpacing: kDefaultPadding * 2,
+
                 //shrinkWrap: true,
                 physics: ScrollPhysics(),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                 children: [
-                  Attendancecard(),
-                  Birthdaycard(),
+                  ProfileCompletionCard(),
+                  AttendanceCard(),
+                  BirthdayCard(),
                 ],
               ),
             ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:workify/utils/sizes.dart';
 
 class ChangePass extends StatelessWidget {
+  const ChangePass({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();
@@ -22,6 +23,7 @@ class ChangePass extends StatelessWidget {
 }
 
 class Body extends StatefulWidget {
+  const Body({Key? key}) : super(key: key);
   @override
   _BodyState createState() => _BodyState();
 }

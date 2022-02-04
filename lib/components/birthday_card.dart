@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 
-class Birthdaycard extends StatefulWidget {
-  const Birthdaycard({
+class BirthdayCard extends StatefulWidget {
+  const BirthdayCard({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<Birthdaycard> createState() => _BirthdaycardState();
+  State<BirthdayCard> createState() => _BirthdayCardState();
 }
 
-class _BirthdaycardState extends State<Birthdaycard> {
+class _BirthdayCardState extends State<BirthdayCard> {
   String now = DateFormat("dd-MM-yyyy").format(DateTime.now());
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,7 @@ class _BirthdaycardState extends State<Birthdaycard> {
               TextSpan(text: now, style: TextStyle(fontSize: 20)),
             ])),
             SizedBox(
-              height: 250,
+              height: 50,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

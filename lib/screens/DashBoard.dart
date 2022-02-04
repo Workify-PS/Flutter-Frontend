@@ -37,7 +37,7 @@ class _DashBoardState extends State<DashBoard> {
               child: GridView.count(
                 controller: ScrollController(),
                 crossAxisCount: 3,
-
+                childAspectRatio: 1.1,
                 crossAxisSpacing: kDefaultPadding * 2,
                 mainAxisSpacing: kDefaultPadding * 2,
 

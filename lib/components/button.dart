@@ -7,6 +7,7 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MediaQuery.of(context).size.width * 0.25;
     return InkWell(
       onTap: () {},
       child: ElevatedButton(
@@ -15,19 +16,14 @@ class Button extends StatelessWidget {
             primary: Colors.grey.shade50,
             onPrimary: Colors.black,
             elevation: 8,
-            shadowColor: Colors.grey.shade800,
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+            shadowColor: Colors.grey.shade400,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(6.0),
             )),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6.0),
-          child: Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: [
-              SizedBox(width: 12),
-              Text(buttontext),
-            ],
-          ),
+        child: Text(
+          buttontext,
+          textAlign: TextAlign.center,
         ),
       ),
     );

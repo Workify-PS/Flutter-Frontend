@@ -1,7 +1,6 @@
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:workify/components/SideMenuItem.dart';
-
+import 'package:workify/components/side_menu_item.dart';
 import 'package:workify/utils/constants.dart';
 
 class SideMenu extends StatelessWidget {

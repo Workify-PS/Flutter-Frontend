@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:workify/components/button.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 
-class DashBoardCard extends StatelessWidget {
-  const DashBoardCard({
+class BirthdayCard extends StatefulWidget {
+  const BirthdayCard({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<BirthdayCard> createState() => _BirthdayCardState();
+}
+
+class _BirthdayCardState extends State<BirthdayCard> {
+  String now = DateFormat("dd-MM-yyyy").format(DateTime.now());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -37,33 +45,32 @@ class DashBoardCard extends StatelessWidget {
                 ),
                 Expanded(
                     child: Text.rich(TextSpan(
-                        text: "My Profile",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: kTextColor,
-                        ),
-                        children: [
-                      TextSpan(
-                          text: '    <email@address>',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    color: kTextColor,
-                                  ))
-                    ]))),
+                  text: "Wish",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500,
+                    color: kTextColor,
+                  ),
+                ))),
               ],
             ),
+            SizedBox(height: 28),
+            RichText(
+                text: TextSpan(children: [
+              WidgetSpan(child: Icon(Icons.calendar_today_rounded, size: 20)),
+              TextSpan(text: now, style: TextStyle(fontSize: 20)),
+            ])),
             SizedBox(
-              height: kDefaultPadding / 2,
+              height: 50,
             ),
-            Text(
-              "<CONTENT>",
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.caption!.copyWith(
-                    height: 1.5,
-                  ),
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Button(buttontext: 'Birthdays'),
+                Button(buttontext: 'Anniversaries'),
+                Button(buttontext: 'New Joiners'),
+              ],
+            )
           ],
         ),
       ).makeRounded(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'package:workify/components/button.dart';
-
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 

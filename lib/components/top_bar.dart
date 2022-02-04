@@ -17,11 +17,11 @@ class TopBar extends StatefulWidget {
 
 class _TopBarState extends State<TopBar> {
   String greeting() {
-      var hour = DateTime.now().hour;
-      if (hour < 12) return 'Good Morning Buddy';
-      if (hour < 17) return 'Good Afternoon Buddy';
-      return 'Good Evening Buddy';
-    }
+    var hour = DateTime.now().hour;
+    if (hour < 12) return 'Good Morning, Buddy';
+    if (hour < 17) return 'Good Afternoon Buddy';
+    return 'Good Evening Buddy';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,8 +82,8 @@ class _TopBarState extends State<TopBar> {
             ),
             SizedBox(width: kDefaultPadding),
             CircleAvatar(
-              backgroundColor: kPrimaryColor,
-              child: Text("S"),
+              backgroundColor: kBadgeColor,
+              child: Text("P"),
             ),
           ],
         ),

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'package:workify/components/SideMenu.dart';
-
+import 'package:workify/components/side_menu.dart';
 import 'package:workify/screens/DashBoard.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,8 +19,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
-    final GlobalKey<ScaffoldState> _scaffoldkey =
-         GlobalKey<ScaffoldState>();
+    final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
     return Scaffold(
       key: _scaffoldkey,
       backgroundColor: kBgDarkColor,

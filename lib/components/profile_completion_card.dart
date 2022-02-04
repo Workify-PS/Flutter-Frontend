@@ -12,7 +12,7 @@ bool portrait = false;
 
 class ProfileCompletionCard extends StatelessWidget {
   ProfileCompletionCard({Key? key}) : super(key: key);
-  double percent = 0.98;
+  double percent = 0.12;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +21,7 @@ class ProfileCompletionCard extends StatelessWidget {
     screenWidth = device.size.width;
     screenHeight = device.size.height;
     portrait = screenWidth < 1000;
-    String greeting() {
-      var hour = DateTime.now().hour;
-      if (hour < 12) return 'Good Morning';
-      if (hour < 17) return 'Good Afternoon';
-      return 'Good Evening';
-    }
+    
 
     return portrait == false
         ? Padding(
@@ -37,7 +32,7 @@ class ProfileCompletionCard extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(kDefaultPadding),
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
@@ -48,22 +43,24 @@ class ProfileCompletionCard extends StatelessWidget {
                     percent: percent,
                     animation: true,
                     reverse: true,
+                    center: Avatar(),
                     header: Text(
-                      greeting(),
+                      'Profile',
                       style: TextStyle(
-                        fontSize: screenWidth * 0.02,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w500,
+                        color: kTextColor,
                       ),
                     ),
-                    center: Avatar(),
                     progressColor: ((percent * 100)>=0 && (percent * 100) <= 30) ? Colors.red :
                                    ((percent * 100)>30 && (percent * 100) <= 70) ? Colors.yellow :
                                    Colors.green ,
                     backgroundColor: Colors.grey,
                   ),
                   Text(
-                    (percent * 100).toString() + ' % Complete',
+                    (percent * 100) . toString() + ' % Complete',
                     style: TextStyle(
-                      fontSize: screenWidth * 0.02,
+                      fontSize: 20,
                     ),
                   ),
                   TextButton(
@@ -72,8 +69,10 @@ class ProfileCompletionCard extends StatelessWidget {
                     },
                     child: Text(
                       'Complete Now',
+                      
                       style: TextStyle(
-                        fontSize: screenWidth * 0.021,
+                        fontSize: 24,
+                        color: Colors.grey,
                       ),
                     ),
                   )

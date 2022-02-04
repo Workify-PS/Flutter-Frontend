@@ -83,12 +83,12 @@ class BasicDetails extends StatelessWidget {
                                   Health(),
                                 ],
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ModifyHistoryButton(),
-                                ],
-                              ),
+                              // Row(
+                              //   mainAxisAlignment: MainAxisAlignment.center,
+                              //   children: [
+                              //     ModifyHistoryButton(),
+                              //   ],
+                              // ),
                             ],
                           ),
                         ),
@@ -129,12 +129,12 @@ class BasicDetailsPortraitView extends StatelessWidget {
               Marital(),
               Ethnic(),
               Health(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ModifyHistoryButton(),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: [
+              //     ModifyHistoryButton(),
+              //   ],
+              // ),
             ],
           ),
         ),

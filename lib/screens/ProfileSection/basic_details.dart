@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:workify/utils/sizes.dart';
 
 import './self_details.dart';
-import './modify_history_buttons.dart';
+// import './modify_history_buttons.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -116,26 +116,31 @@ class BasicDetailsPortraitView extends StatelessWidget {
         ),
         Expanded(
           flex: 6,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Email(),
-              MobileNumber(),
-              FatherName(),
-              BloodGroup(),
-              DoB(),
-              CoB(),
-              Gender(),
-              Marital(),
-              Ethnic(),
-              Health(),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: [
-              //     ModifyHistoryButton(),
-              //   ],
-              // ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Email(),
+                MobileNumber(),
+                FatherName(),
+                BloodGroup(),
+                DoB(),
+                CoB(),
+                Gender(),
+                Marital(),
+                Ethnic(),
+                Health(),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: [
+                //     ModifyHistoryButton(),
+                //   ],
+                // ),
+              ],
+            ),
           ),
         ),
       ],

@@ -138,33 +138,39 @@ class PositionDetailsPortraitView extends StatelessWidget {
       children: [
         Expanded(
           flex: 8,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              EmployeeCode(),
-              PositionCode(),
-              Designation(),
-              Grade(),
-              EmploymentCategory(),
-              EmploymentStatus(),
-              EmploymentType(),
-              Department(),
-              WorkLocation(),
-              L1ManagerId(),
-              L2ManagerId(),
-              HRManagerId(),
-              OrgId(),
-              IsActive(),
-              OfficialEmail(),
-              DoJ(),
-              JobRole(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ModifyButton(),
-                ],
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 5,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                EmployeeCode(),
+                PositionCode(),
+                Designation(),
+                Grade(),
+                EmploymentCategory(),
+                EmploymentStatus(),
+                EmploymentType(),
+                Department(),
+                WorkLocation(),
+                L1ManagerId(),
+                L2ManagerId(),
+                HRManagerId(),
+                OrgId(),
+                IsActive(),
+                OfficialEmail(),
+                DoJ(),
+                JobRole(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ModifyButton(),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
         Expanded(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:workify/utils/sizes.dart';
-import './modify_history_buttons.dart';
+// import './modify_history_buttons.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -130,60 +130,66 @@ class EmploymentDetailsPortraitView extends StatelessWidget {
   const EmploymentDetailsPortraitView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: screenWidth,
       height: screenHeight,
-      child: Column(
-        children: [
-          Expanded(
-            flex: 6,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CompanyName(),
-                EmployeeCode(),
-                Designation(),
-                StartDate(),
-                EndDate(),
-                ProjectName(),
-                Role(),
-                WorkLocation(),
-                SalaryPerAnnum(),
-                EmploymentType(),
-                PfAccount(),
-                Row(
-                  mainAxisAlignment:MainAxisAlignment.start,
-                  children: [
-                    Experience(),
-                  ],
-                ),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical:5,
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 6,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CompanyName(),
+                  EmployeeCode(),
+                  Designation(),
+                  StartDate(),
+                  EndDate(),
+                  ProjectName(),
+                  Role(),
+                  WorkLocation(),
+                  SalaryPerAnnum(),
+                  EmploymentType(),
+                  PfAccount(),
+                  Row(
+                    mainAxisAlignment:MainAxisAlignment.start,
+                    children: [
+                      Experience(),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            flex: 4,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Text(
-                      'History',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+            Expanded(
+              flex: 4,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        'History',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                            height: 10,
-                    ),
-                    EmploymentHistory(),
-                  ],
+                      SizedBox(
+                              height: 10,
+                      ),
+                      EmploymentHistory(),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
     // return Column(

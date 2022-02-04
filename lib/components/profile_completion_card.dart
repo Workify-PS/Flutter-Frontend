@@ -12,7 +12,7 @@ bool portrait = false;
 
 class ProfileCompletionCard extends StatelessWidget {
   ProfileCompletionCard({Key? key}) : super(key: key);
-  double percent = 0.8;
+  double percent = 0.98;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class ProfileCompletionCard extends StatelessWidget {
     screenWidth = device.size.width;
     screenHeight = device.size.height;
     portrait = screenWidth < 1000;
-    String Greeting() {
+    String greeting() {
       var hour = DateTime.now().hour;
       if (hour < 12) return 'Good Morning';
       if (hour < 17) return 'Good Afternoon';
@@ -46,15 +46,19 @@ class ProfileCompletionCard extends StatelessWidget {
                     radius: 150,
                     lineWidth: 10,
                     percent: percent,
+                    animation: true,
+                    reverse: true,
                     header: Text(
-                      Greeting(),
+                      greeting(),
                       style: TextStyle(
                         fontSize: screenWidth * 0.02,
                       ),
                     ),
                     center: Avatar(),
+                    progressColor: ((percent * 100)>=0 && (percent * 100) <= 30) ? Colors.red :
+                                   ((percent * 100)>30 && (percent * 100) <= 70) ? Colors.yellow :
+                                   Colors.green ,
                     backgroundColor: Colors.grey,
-                    progressColor: Colors.red,
                   ),
                   Text(
                     (percent * 100).toString() + ' % Complete',

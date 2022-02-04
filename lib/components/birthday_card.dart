@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:workify/components/button.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 
-class Birthdaycard extends StatelessWidget {
+class Birthdaycard extends StatefulWidget {
   const Birthdaycard({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<Birthdaycard> createState() => _BirthdaycardState();
+}
+
+class _BirthdaycardState extends State<Birthdaycard> {
+  String now = DateFormat("dd-MM-yyyy").format(DateTime.now());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -45,7 +53,22 @@ class Birthdaycard extends StatelessWidget {
               ],
             ),
             SizedBox(height: 28),
-            GetDate(),
+            RichText(
+                text: TextSpan(children: [
+              WidgetSpan(child: Icon(Icons.calendar_today_rounded, size: 20)),
+              TextSpan(text: now, style: TextStyle(fontSize: 20)),
+            ])),
+            SizedBox(
+              height: 250,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Button(buttontext: 'Birthdays'),
+                Button(buttontext: 'Anniversaries'),
+                Button(buttontext: 'New Joiners'),
+              ],
+            )
           ],
         ),
       ).makeRounded(
@@ -56,34 +79,5 @@ class Birthdaycard extends StatelessWidget {
         bottomShadowColor: Color(0xFF234395).withOpacity(0.15),
       ),
     );
-  }
-}
-
-class GetDate extends StatefulWidget {
-  const GetDate({Key? key}) : super(key: key);
-
-  State<GetDate> createState() => _GetDateState();
-}
-
-class _GetDateState extends State<GetDate> {
-  String finalDate = '';
-  getCurrentDate() {
-    var date = DateTime.now().toString();
-    var dateParse = DateTime.parse(date);
-    var formattedDate = "${dateParse.day}-${dateParse.month}-${dateParse.year}";
-    setState(() {
-      finalDate = formattedDate.toString();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Text(
-          "date=$finalDate",
-          style: TextStyle(fontSize: 20),
-          textAlign: TextAlign.center,
-        ));
   }
 }

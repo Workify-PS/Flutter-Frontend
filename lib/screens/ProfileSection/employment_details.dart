@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:workify/utils/sizes.dart';
-import './modify_history_buttons.dart';
+// import './modify_history_buttons.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -83,20 +83,43 @@ class EmploymentDetails extends StatelessWidget {
                         Experience(),
                       ],
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: screenHeight * 0.16,
-                        ),
-                        HistoryButton(),
-                      ],
-                    ),
+                    // Column(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     SizedBox(
+                    //       height: screenHeight * 0.16,
+                    //     ),
+                    //     HistoryButton(),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),
               // Landscape Footer
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: [
+                        Text(
+                          'History',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        EmploymentHistory(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           )
         : EmploymentDetailsPortraitView();
@@ -107,37 +130,93 @@ class EmploymentDetailsPortraitView extends StatelessWidget {
   const EmploymentDetailsPortraitView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      // compName,EmpCode,Designation,StartDate,EndDate,ProjectName,Role,WorkLoc,
-      // salary,EmpType,PfAcc,Exp
-      children: [
-        CompanyName(),
-        EmployeeCode(),
-        Designation(),
-        StartDate(),
-        EndDate(),
-        ProjectName(),
-        Role(),
-        WorkLocation(),
-        SalaryPerAnnum(),
-        EmploymentType(),
-        PfAccount(),
-        Row(
-          mainAxisAlignment:MainAxisAlignment.start,
+    return SizedBox(
+      width: screenWidth,
+      height: screenHeight,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical:5,
+        ),
+        child: Column(
           children: [
-            Experience(),
+            Expanded(
+              flex: 6,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CompanyName(),
+                  EmployeeCode(),
+                  Designation(),
+                  StartDate(),
+                  EndDate(),
+                  ProjectName(),
+                  Role(),
+                  WorkLocation(),
+                  SalaryPerAnnum(),
+                  EmploymentType(),
+                  PfAccount(),
+                  Row(
+                    mainAxisAlignment:MainAxisAlignment.start,
+                    children: [
+                      Experience(),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 4,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        'History',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                              height: 10,
+                      ),
+                      EmploymentHistory(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            HistoryButton(),
-          ],
-        ),
-      ],
-      // Portrait Footer
+      ),
     );
+    // return Column(
+    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //   // compName,EmpCode,Designation,StartDate,EndDate,ProjectName,Role,WorkLoc,
+    //   // salary,EmpType,PfAcc,Exp
+    //   children: [
+        // CompanyName(),
+        // EmployeeCode(),
+        // Designation(),
+        // StartDate(),
+        // EndDate(),
+        // ProjectName(),
+        // Role(),
+        // WorkLocation(),
+        // SalaryPerAnnum(),
+        // EmploymentType(),
+        // PfAccount(),
+        // Row(
+        //   mainAxisAlignment:MainAxisAlignment.start,
+        //   children: [
+        //     Experience(),
+        //   ],
+        // ),
+    //   ],
+    //   // Portrait Footer
+    // );
   }
 }
 
@@ -160,7 +239,8 @@ class CompanyName extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -187,7 +267,8 @@ class EmployeeCode extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -214,7 +295,8 @@ class Designation extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -241,7 +323,8 @@ class StartDate extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -268,7 +351,8 @@ class EndDate extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -295,7 +379,8 @@ class ProjectName extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -322,7 +407,8 @@ class Role extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -349,7 +435,8 @@ class WorkLocation extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -376,7 +463,8 @@ class SalaryPerAnnum extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -403,7 +491,8 @@ class EmploymentType extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -430,7 +519,8 @@ class PfAccount extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -457,7 +547,8 @@ class Experience extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
           ),
         ),
       ],
@@ -465,39 +556,152 @@ class Experience extends StatelessWidget {
   }
 }
 
+class EmploymentHistory extends StatelessWidget {
+  const EmploymentHistory({Key? key}) : super(key: key);
 
-// ... Landscape Footer
+  @override
+  Widget build(BuildContext context) {
+    return Table(
+      border: TableBorder.all(),
+      children: [
+        TableRow(
+          children: [
+            Text(
+              'Heading 1',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Heading 2',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+      ],
+    );
+  }
+}
 
-// Expanded(
-//   flex: 3,
-//   child: Padding(
-//     padding: const EdgeInsets.all(32.0),
-//     child: Table(
-//       border: TableBorder.all(),
-//       children: [
-//         TableRow(
-//           children: [
-//             Text(
-//               'Heading 1',
-//               style: TextStyle(
-//                 fontWeight:FontWeight.bold,
-//               ),
-//             ),
-//             Text(
-//               'Heading 2',
-//               style: TextStyle(
-//                 fontWeight:FontWeight.bold,
-//               ),
-//             ),
-//           ],
-//         ),
-//         TableRow(
-//           children: [
-//             Text('Cell 1'),
-//             Text('Cell 2'),
-//           ],
-//         ),
-//       ],
-//     ),
-//   ),
-// ),

@@ -19,6 +19,8 @@ class _SubTilesListState extends State<SubTilesList> {
 }
 
 class SubTile extends StatelessWidget {
+   SubTile({Key? key}) : super(key: key);
+
   RxBool isSelected = false.obs;
   @override
   Widget build(BuildContext context) {

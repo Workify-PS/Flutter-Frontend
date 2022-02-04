@@ -1,10 +1,11 @@
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:workify/components/SideMenuItem.dart';
 
 import 'package:workify/utils/constants.dart';
 
 class SideMenu extends StatelessWidget {
+  SideMenu({Key? key}) : super(key: key);
   final titles = ["DashBoard", "Attendance", "Profile", "Settings"];
   final icons = [
     Icons.space_dashboard_outlined,

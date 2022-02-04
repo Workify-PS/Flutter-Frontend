@@ -94,13 +94,36 @@ class PositionDetails extends StatelessWidget {
                         SizedBox(
                           height: screenHeight * 0.16,
                         ),
-                        ModifyHistoryButton(),
+                        ModifyButton(),
                       ],
                     ),
                   ],
                 ),
               ),
               // Landscape Footer
+              Expanded(
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: [
+                        Text(
+                          'History',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        PositionHistory(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           )
         : PositionDetailsPortraitView();
@@ -112,34 +135,68 @@ class PositionDetailsPortraitView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      // crossAxisAlignment:CrossAxisAlignment.start,
       children: [
-        EmployeeCode(),
-        PositionCode(),
-        Designation(),
-        Grade(),
-        EmploymentCategory(),
-        EmploymentStatus(),
-        EmploymentType(),
-        Department(),
-        WorkLocation(),
-        L1ManagerId(),
-        L2ManagerId(),
-        HRManagerId(),
-        OrgId(),
-        IsActive(),
-        OfficialEmail(),
-        DoJ(),
-        JobRole(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ModifyHistoryButton(),
-          ],
+        Expanded(
+          flex: 8,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8,
+              vertical: 5,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                EmployeeCode(),
+                PositionCode(),
+                Designation(),
+                Grade(),
+                EmploymentCategory(),
+                EmploymentStatus(),
+                EmploymentType(),
+                Department(),
+                WorkLocation(),
+                L1ManagerId(),
+                L2ManagerId(),
+                HRManagerId(),
+                OrgId(),
+                IsActive(),
+                OfficialEmail(),
+                DoJ(),
+                JobRole(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ModifyButton(),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 2,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text(
+                    'History',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                          height: 10,
+                  ),
+                  PositionHistory(),
+                ],
+              ),
+            ),
+          ),
         ),
       ],
-      // Portrait Footer
     );
   }
 }
@@ -604,38 +661,151 @@ class JobRole extends StatelessWidget {
 }
 
 
-// ... Landscape Footer
+class PositionHistory extends StatelessWidget {
+  const PositionHistory({Key? key}) : super(key: key);
 
-//  Expanded(
-  //   flex: 3,
-  //   child: Padding(
-  //     padding: const EdgeInsets.all(32.0),
-  //     child: Table(
-  //       border: TableBorder.all(),
-  //       children: [
-  //         TableRow(
-  //           children: [
-  //             Text(
-  //               'Heading 1',
-  //               style: TextStyle(
-  //                 fontWeight:FontWeight.bold,
-  //               ),
-  //             ),
-  //             Text(
-  //               'Heading 2',
-  //               style: TextStyle(
-  //                 fontWeight:FontWeight.bold,
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //         TableRow(
-  //           children: [
-  //             Text('Cell 1'),
-  //             Text('Cell 2'),
-  //           ],
-  //         ),
-  //       ],
-  //     ),
-  //   ),
-// ),
+  @override
+  Widget build(BuildContext context) {
+    return Table(
+      border: TableBorder.all(),
+      children: [
+        TableRow(
+          children: [
+            Text(
+              'Heading 1',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              'Heading 2',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+        TableRow(
+          children: [
+            Text('Cell 1'),
+            Text('Cell 2'),
+          ],
+        ),
+      ],
+    );
+  }
+}

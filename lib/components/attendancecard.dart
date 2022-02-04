@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:workify/components/button.dart';
 
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 
-class attendancecard extends StatelessWidget {
-  const attendancecard({
+class AttendanceCard extends StatelessWidget {
+  const AttendanceCard({
     Key? key,
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class attendancecard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(kDefaultPadding),
         decoration: BoxDecoration(
-          color: kBgDarkColor,
+          color:  Colors.transparent,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Column(
@@ -40,26 +40,26 @@ class attendancecard extends StatelessWidget {
                     child: Text.rich(TextSpan(
                   text: "Attendance",
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 24,
                     fontWeight: FontWeight.w500,
                     color: kTextColor,
                   ),
                 ))),
               ],
             ),
-            SizedBox(height: 28),
+            SizedBox(height: 14),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                button(buttontext: 'OFFICE'),
+                Button(buttontext: 'OFFICE'),
                 SizedBox(
-                  width: 50,
+                  width: 30,
                 ),
-                button(buttontext: 'REMOTE LOCATION'),
+                Button(buttontext: 'REMOTE LOCATION'),
               ],
             ),
             SizedBox(
-              height: 28,
+              height: 14,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -69,7 +69,7 @@ class attendancecard extends StatelessWidget {
                   child: Icon(
                     Icons.arrow_circle_down_rounded,
                     color: Colors.blue,
-                    size: 140,
+                    size: 70,
                   ),
                 ),
                 InkWell(
@@ -77,7 +77,7 @@ class attendancecard extends StatelessWidget {
                   child: Icon(
                     Icons.arrow_circle_up_rounded,
                     color: Colors.blue,
-                    size: 140,
+                    size: 70,
                   ),
                 )
               ],
@@ -91,7 +91,7 @@ class attendancecard extends StatelessWidget {
             SizedBox(
               height: 19,
             ),
-            button(buttontext: 'ATTENDANCE STATUS'),
+            Button(buttontext: 'ATTENDANCE STATUS'),
           ],
         ),
       ).makeRounded(

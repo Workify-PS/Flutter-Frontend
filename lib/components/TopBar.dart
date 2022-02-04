@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:workify/utils/constants.dart';
 
 class TopBar extends StatefulWidget {
@@ -16,6 +16,13 @@ class TopBar extends StatefulWidget {
 }
 
 class _TopBarState extends State<TopBar> {
+  String greeting() {
+      var hour = DateTime.now().hour;
+      if (hour < 12) return 'Good Morning Buddy';
+      if (hour < 17) return 'Good Afternoon Buddy';
+      return 'Good Evening Buddy';
+    }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -29,7 +36,7 @@ class _TopBarState extends State<TopBar> {
             AnimatedTextKit(
               animatedTexts: [
                 TypewriterAnimatedText(
-                  "Good morning, Samarth",
+                  greeting(),
                   textStyle: CupertinoThemeData()
                       .textTheme
                       .navLargeTitleTextStyle

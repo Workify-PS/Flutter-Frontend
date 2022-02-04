@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:workify/utils/sizes.dart';
 
 import './self_details.dart';
+import 'package:workify/utils/constants.dart';
 // import './modify_history_buttons.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -22,85 +23,85 @@ class BasicDetails extends StatelessWidget {
     portrait = screenWidth < 1000;
 
     return portrait == false
-        ? Padding(
-            padding: const EdgeInsets.all(8),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.transparent,
-              ),
-              child: Row(
-                // direction: portrait == true ? Axis.vertical : Axis.horizontal,
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: Person(),
-                  ),
-                  Expanded(
-                    flex: 7,
-                    // child: Container(
-                    // color: Colors.blue,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 5,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Email(),
-                                  MobileNumber(),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  FatherName(),
-                                  BloodGroup(),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  DoB(),
-                                  CoB(),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Gender(),
-                                  Marital(),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Ethnic(),
-                                  Health(),
-                                ],
-                              ),
-                              // Row(
-                              //   mainAxisAlignment: MainAxisAlignment.center,
-                              //   children: [
-                              //     ModifyHistoryButton(),
-                              //   ],
-                              // ),
-                            ],
-                          ),
-                        ),
-                        // Landscape Footer
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+      ? Padding(
+          padding: const EdgeInsets.all(8),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.transparent,
             ),
-          )
-        : BasicDetailsPortraitView();
+            child: Row(
+              // direction: portrait == true ? Axis.vertical : Axis.horizontal,
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Person(),
+                ),
+                Expanded(
+                  flex: 7,
+                  // child: Container(
+                  // color: Colors.blue,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Email(),
+                                MobileNumber(),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                FatherName(),
+                                BloodGroup(),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                DoB(),
+                                CoB(),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Gender(),
+                                Marital(),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Ethnic(),
+                                Health(),
+                              ],
+                            ),
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.center,
+                            //   children: [
+                            //     ModifyHistoryButton(),
+                            //   ],
+                            // ),
+                          ],
+                        ),
+                      ),
+                      // Landscape Footer
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        )
+      : BasicDetailsPortraitView();
   }
 }
 
@@ -161,6 +162,7 @@ class Email extends StatelessWidget {
           'Email ID',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color:kSecondaryColor,
           ),
         ),
         SizedBox(
@@ -170,7 +172,11 @@ class Email extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(
-                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+                style: TextStyle(
+                  color: kSecondaryColor,
+                ),
+            ),
           ),
         ),
       ],
@@ -191,6 +197,7 @@ class MobileNumber extends StatelessWidget {
           'Mobile Number',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color:kSecondaryColor,
           ),
         ),
         SizedBox(
@@ -200,7 +207,11 @@ class MobileNumber extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(
-                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+                style: TextStyle(
+                  color: kSecondaryColor,
+                ),
+            ),
           ),
         ),
       ],
@@ -221,16 +232,21 @@ class BloodGroup extends StatelessWidget {
           'Blood Group',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
           ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(
-                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+                style: TextStyle(
+                  color: kSecondaryColor,
+                ),
+            ),
           ),
         ),
       ],
@@ -251,6 +267,7 @@ class FatherName extends StatelessWidget {
           'Father Name',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
           ),
         ),
         SizedBox(
@@ -260,7 +277,11 @@ class FatherName extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(
-                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+                style: TextStyle(
+                  color: kSecondaryColor,
+                ),
+            ),
           ),
         ),
       ],
@@ -281,6 +302,7 @@ class DoB extends StatelessWidget {
           'Date of Birth',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
           ),
         ),
         SizedBox(
@@ -290,7 +312,11 @@ class DoB extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(
-                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+                style: TextStyle(
+                  color: kSecondaryColor,
+                ),
+            ),
           ),
         ),
       ],
@@ -311,6 +337,7 @@ class CoB extends StatelessWidget {
           'Country of Birth',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
           ),
         ),
         SizedBox(
@@ -320,7 +347,11 @@ class CoB extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(
-                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+                style: TextStyle(
+                  color: kSecondaryColor,
+                ),
+            ),
           ),
         ),
       ],
@@ -341,6 +372,7 @@ class Gender extends StatelessWidget {
           'Gender',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
           ),
         ),
         SizedBox(
@@ -350,7 +382,11 @@ class Gender extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(
-                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+                style: TextStyle(
+                  color: kSecondaryColor,
+                ),
+            ),
           ),
         ),
       ],
@@ -371,6 +407,7 @@ class Marital extends StatelessWidget {
           'Marital',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
           ),
         ),
         SizedBox(
@@ -380,7 +417,11 @@ class Marital extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(
-                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+                style: TextStyle(
+                  color: kSecondaryColor,
+                ),
+            ),
           ),
         ),
       ],
@@ -401,6 +442,7 @@ class Ethnic extends StatelessWidget {
           'Natinoality',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
           ),
         ),
         SizedBox(
@@ -410,7 +452,11 @@ class Ethnic extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(
-                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+                style: TextStyle(
+                  color: kSecondaryColor,
+                ),
+            ),
           ),
         ),
       ],
@@ -431,6 +477,7 @@ class Health extends StatelessWidget {
           'Health',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
           ),
         ),
         SizedBox(
@@ -440,7 +487,11 @@ class Health extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(
-                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+                'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+                style: TextStyle(
+                  color: kSecondaryColor,
+                ),
+            ),
           ),
         ),
       ],
@@ -449,67 +500,3 @@ class Health extends StatelessWidget {
 }
 
 
-
-// ... Landscape Footer
-// Expanded(
-  //   flex: 2,
-  //   child: Column(
-  //     // mainAxisAlignment: MainAxisAlignment.center,
-  //     crossAxisAlignment: CrossAxisAlignment.stretch,
-  //     children:[
-  //       Text(
-  //         'History',
-  //         style: TextStyle(
-  //           fontWeight: FontWeight.bold,
-  //         ),
-  //       ),
-  //       Padding(
-  //         padding: const EdgeInsets.all(32.0),
-  //         child: SingleChildScrollView(
-  //           scrollDirection: Axis.vertical,
-  //           child: Table(
-  //             border: TableBorder.all(),
-  //             children: [
-  //               TableRow(
-  //                 children: [
-  //                   Text(
-  //                     'Heading 1',
-  //                     style: TextStyle(
-  //                       fontWeight:FontWeight.bold,
-  //                     ),
-  //                   ),
-  //                   Text(
-  //                     'Heading 2',
-  //                     style: TextStyle(
-  //                       fontWeight:FontWeight.bold,
-  //                     ),
-  //                   ),
-  //                   Text(
-  //                     'Heading 3',
-  //                     style: TextStyle(
-  //                       fontWeight:FontWeight.bold,
-  //                     ),
-  //                   ),
-  //                   Text(
-  //                     'Heading 4',
-  //                     style: TextStyle(
-  //                       fontWeight:FontWeight.bold,
-  //                     ),
-  //                   ),
-  //                 ],
-  //               ),
-  //               TableRow(
-  //                 children: [
-  //                   Text('Cell 1'),
-  //                   Text('Cell 2'),
-  //                   Text('Cell 3'),
-  //                   Text('Cell 4'),
-  //                 ],
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       ),
-  //     ],
-  //   ),
-  // ),

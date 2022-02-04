@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
 import 'basic_details.dart';
@@ -60,14 +61,21 @@ class ProfilePageState extends State<ProfilePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('ProfilePage'),
+        title: Text(
+          'Profile Page',
+          style: TextStyle(
+            color: kSecondaryColor,
+            fontWeight:FontWeight.bold,
+          ),
+        ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.teal, Colors.grey],
-            ),
+            // gradient: LinearGradient(
+            //   begin: Alignment.topRight,
+            //   end: Alignment.bottomLeft,
+            //   colors: [kPrimaryColor,Colors.teal],
+            // ),
+            color: kPrimaryColor,
           ),
         ),
       ),
@@ -76,11 +84,12 @@ class ProfilePageState extends State<ProfilePage> {
           width: device.size.width / 1.1,
           height: device.size.height / 1.1,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [Colors.transparent, Colors.teal],
-            ),
+            // gradient: LinearGradient(
+            //   begin: Alignment.topRight,
+            //   end: Alignment.bottomLeft,
+            //   colors: [Colors.transparent, Colors.teal],
+            // ),
+            color: kPrimaryColor,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Flex(
@@ -170,11 +179,12 @@ class ProfilePageState extends State<ProfilePage> {
                     width: screenWidth,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomLeft,
-                        end: Alignment.topRight,
-                        colors: [Colors.transparent, Colors.teal],
-                      ),
+                      // gradient: LinearGradient(
+                      //   begin: Alignment.bottomLeft,
+                      //   end: Alignment.topRight,
+                      //   colors: [Colors.transparent, Colors.teal],
+                      // ),
+                      color: kPrimaryColor,
                     ),
                     // Rendering All widgets here 
                     child: profileWidgets[profileWidgetString]!,
@@ -216,7 +226,7 @@ class BasicDetailsButton extends StatelessWidget {
         basicButtonPressed = true;
       },
       style: ElevatedButton.styleFrom(
-        primary: basicButtonPressed == true ? Colors.indigo : Colors.teal,
+        primary: basicButtonPressed == true ? kPrimaryColor:kSecondaryColor,
       ),
       child: Center(
         child: Text(
@@ -224,6 +234,7 @@ class BasicDetailsButton extends StatelessWidget {
           style: TextStyle(
             fontSize: screenWidth * 0.015,
             // fontWeight: FontWeight.bold,
+            color: basicButtonPressed == true ? kSecondaryColor:kTextColor,
           ),
         ),
       ),
@@ -258,13 +269,14 @@ class PositionDetailsButton extends StatelessWidget {
         positionButtonPressed = true;
       },
       style: ElevatedButton.styleFrom(
-        primary: positionButtonPressed == true ? Colors.indigo : Colors.teal,
+        primary: positionButtonPressed == true ? kPrimaryColor:kSecondaryColor,
       ),
       child: Center(
         child: Text(
           'Position Details',
           style: TextStyle(
             fontSize: screenWidth * 0.015,
+            color: positionButtonPressed == true ? kSecondaryColor:kTextColor,
             // fontWeight: FontWeight.bold,
           ),
         ),
@@ -388,13 +400,14 @@ class EmploymentDetailsButton extends StatelessWidget {
         employmentButtonPressed = true;
       },
       style: ElevatedButton.styleFrom(
-        primary: employmentButtonPressed == true ? Colors.indigo : Colors.teal,
+        primary: employmentButtonPressed == true ? kPrimaryColor:kSecondaryColor,
       ),
       child: Center(
         child: Text(
           'Employment Details',
           style: TextStyle(
             fontSize: screenWidth * 0.015,
+            color: employmentButtonPressed == true ? kSecondaryColor:kTextColor,
             // fontWeight: FontWeight.bold,
           ),
         ),
@@ -430,13 +443,14 @@ class EducationDetailsButton extends StatelessWidget {
         educationButtonPressed = true;
       },
       style: ElevatedButton.styleFrom(
-        primary: educationButtonPressed == true ? Colors.indigo : Colors.teal,
+        primary: educationButtonPressed == true ? kPrimaryColor:kSecondaryColor,
       ),
       child: Center(
         child: Text(
           'Education Details',
           style: TextStyle(
             fontSize: screenWidth * 0.015,
+            color: educationButtonPressed == true ? kSecondaryColor:kTextColor,
             // fontWeight: FontWeight.bold,
           ),
         ),

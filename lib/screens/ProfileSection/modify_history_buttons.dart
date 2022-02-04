@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/screens/ProfileSection/profile_history.dart';
+import 'package:workify/utils/constants.dart';
 
 import './change_profile_page.dart';
 
@@ -29,10 +30,15 @@ class ModifyButton extends StatelessWidget {
       child: Center(
         child: Text(
           'Modify',
-          // style: TextStyle(
-          //   fontSize: screenWidth * 0.01,
-          // ),
+          style: TextStyle(
+            // fontSize: screenWidth * 0.01,
+            // color: kSecondaryColor,
+          ),
         ),
+      ),
+      style: ElevatedButton.styleFrom(
+        onPrimary: kPrimaryColor,
+        onSurface: kSecondaryColor,
       ),
     );
   }

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 
-class DashBoardCard extends StatelessWidget {
-  const DashBoardCard({
+class Birthdaycard extends StatelessWidget {
+  const Birthdaycard({
     Key? key,
   }) : super(key: key);
 
@@ -37,33 +35,17 @@ class DashBoardCard extends StatelessWidget {
                 ),
                 Expanded(
                     child: Text.rich(TextSpan(
-                        text: "My Profile",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: kTextColor,
-                        ),
-                        children: [
-                      TextSpan(
-                          text: '    <email@address>',
-                          style:
-                              Theme.of(context).textTheme.bodyText2!.copyWith(
-                                    color: kTextColor,
-                                  ))
-                    ]))),
+                  text: "Wish",
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w500,
+                    color: kTextColor,
+                  ),
+                ))),
               ],
             ),
-            SizedBox(
-              height: kDefaultPadding / 2,
-            ),
-            Text(
-              "<CONTENT>",
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.caption!.copyWith(
-                    height: 1.5,
-                  ),
-            ),
+            SizedBox(height: 28),
+            GetDate(),
           ],
         ),
       ).makeRounded(
@@ -74,5 +56,34 @@ class DashBoardCard extends StatelessWidget {
         bottomShadowColor: Color(0xFF234395).withOpacity(0.15),
       ),
     );
+  }
+}
+
+class GetDate extends StatefulWidget {
+  const GetDate({Key? key}) : super(key: key);
+
+  State<GetDate> createState() => _GetDateState();
+}
+
+class _GetDateState extends State<GetDate> {
+  String finalDate = '';
+  getCurrentDate() {
+    var date = DateTime.now().toString();
+    var dateParse = DateTime.parse(date);
+    var formattedDate = "${dateParse.day}-${dateParse.month}-${dateParse.year}";
+    setState(() {
+      finalDate = formattedDate.toString();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Text(
+          "date=$finalDate",
+          style: TextStyle(fontSize: 20),
+          textAlign: TextAlign.center,
+        ));
   }
 }

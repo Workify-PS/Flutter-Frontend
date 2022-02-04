@@ -1,7 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:workify/utils/constants.dart';
 
 class TopBar extends StatefulWidget {
@@ -29,7 +28,7 @@ class _TopBarState extends State<TopBar> {
             AnimatedTextKit(
               animatedTexts: [
                 TypewriterAnimatedText(
-                  "Good morning, Samarth",
+                  "Good morning, Prateek",
                   textStyle: CupertinoThemeData()
                       .textTheme
                       .navLargeTitleTextStyle
@@ -75,8 +74,8 @@ class _TopBarState extends State<TopBar> {
             ),
             SizedBox(width: kDefaultPadding),
             CircleAvatar(
-              backgroundColor: kPrimaryColor,
-              child: Text("S"),
+              backgroundColor: kBadgeColor,
+              child: Text("P"),
             ),
           ],
         ),

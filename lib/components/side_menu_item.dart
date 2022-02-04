@@ -1,7 +1,6 @@
-//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:workify/components/SubTiles.dart';
+import 'package:workify/components/sub_tiles.dart';
 import 'package:workify/utils/constants.dart';
 
 class SideMenuItem extends StatefulWidget {

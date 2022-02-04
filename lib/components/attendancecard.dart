@@ -20,7 +20,7 @@ class AttendanceCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(kDefaultPadding),
         decoration: BoxDecoration(
-          color: kBgDarkColor,
+          color: Colors.kBgDarkColor,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Column(

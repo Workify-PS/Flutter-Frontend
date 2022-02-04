@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // import 'package:workify/components/SideMenu.dart';
 import 'package:workify/components/TopBar.dart';
 import 'package:workify/components/attendancecard.dart';
+import 'package:workify/components/profile_completion_card.dart';
 // import 'package:workify/components/button.dart';
 
 import 'package:workify/utils/constants.dart';
@@ -44,7 +45,10 @@ class _DashBoardState extends State<DashBoard> {
                 physics: ScrollPhysics(),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                children: [AttendanceCard()],
+                children: [
+                  AttendanceCard(),
+                  ProfileCompletionCard(),
+                ],
               ),
             ),
           ],

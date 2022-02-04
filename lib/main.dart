@@ -8,6 +8,8 @@ import 'package:workify/screens/HomePage.dart';
 import 'package:workify/screens/profilesection/profilePage.dart';
 import 'package:workify/utils/theme.dart';
 
+// import 'package:workify/components/profile_completion_card.dart';
+
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
   runApp(MyApp());
@@ -35,13 +37,11 @@ class _MyAppState extends State<MyApp> {
         //     page: () =>
         //         false ? HomePage() : AuthPage()), //check for already signed in
         GetPage(name: "/auth", page: () => AuthPage()),
-        
-        GetPage(
-            name: "/home",
-            page: () => HomePage()
-                // false ? HomePage() : AuthPage() //check for already signed in
-        ), 
-       
+
+        GetPage(name: "/home", page: () => HomePage()
+            // false ? HomePage() : AuthPage() //check for already signed in
+            ),
+
         GetPage(
           name: '/profile',
           page: () => ProfilePage(),
@@ -51,6 +51,10 @@ class _MyAppState extends State<MyApp> {
           page: () => ForgotPass(),
         ),
         GetPage(name: "/change", page: () => ChangePass()),
+        // GetPage(
+        //   name: '/card',
+        //   page: () => ProfileCompletionCard(),
+        // ),
       ],
     );
   }

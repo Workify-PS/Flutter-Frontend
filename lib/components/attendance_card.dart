@@ -11,57 +11,39 @@ class AttendanceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: kDefaultPadding,
-        vertical: kDefaultPadding / 2,
-      ),
-      child: Container(
-        padding: EdgeInsets.all(kDefaultPadding),
-        decoration: BoxDecoration(
-          color:  Colors.transparent,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Column(
+    return Column(
+      children: [
+        Row(
           children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: 32,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                  ),
-                ),
-                SizedBox(
-                  width: kDefaultPadding / 2,
-                ),
-                Expanded(
-                    child: Text.rich(TextSpan(
-                  text: "Attendance",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                    color: kTextColor,
-                  ),
-                ))),
-              ],
-            ),
-            SizedBox(height: 14),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Button(buttontext: 'OFFICE'),
-                SizedBox(
-                  width: 30,
-                ),
-                Button(buttontext: 'REMOTE LOCATION'),
-              ],
+            SizedBox(
+              width: 32,
+              child: CircleAvatar(
+                backgroundColor: Colors.transparent,
+              ),
             ),
             SizedBox(
-              height: 14,
+              width: kDefaultPadding / 2,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ],
+        ),
+        SizedBox(height: 14),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //   children: [
+        //     Button(buttontext: 'OFFICE',),
+        //     SizedBox(
+        //       width: 30,
+        //     ),
+        //     Button(buttontext: 'REMOTE LOCATION'),
+        //   ],
+        // ),
+        SizedBox(
+          height: 14,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
               children: [
                 InkWell(
                   onTap: () {},
@@ -69,8 +51,17 @@ class AttendanceCard extends StatelessWidget {
                     Icons.arrow_circle_down_rounded,
                     color: Colors.blue,
                     size: 70,
+                    
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Punch IN Time'),
+                ),
+              ],
+            ),
+            Column(
+              children: [
                 InkWell(
                   onTap: () {},
                   child: Icon(
@@ -78,28 +69,28 @@ class AttendanceCard extends StatelessWidget {
                     color: Colors.blue,
                     size: 70,
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Punch OUT Time'),
                 )
               ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [Text('Punch IN Time'), Text('Punch OUT Time')]),
-            SizedBox(
-              height: 19,
-            ),
-            Button(buttontext: 'ATTENDANCE STATUS'),
+            )
           ],
         ),
-      ).makeRounded(
-        blurRadius: 15,
-        borderRadius: 15,
-        offset: Offset(5, 5),
-        topShadowColor: Colors.white60,
-        bottomShadowColor: Color(0xFF234395).withOpacity(0.15),
-      ),
+        SizedBox(
+          height: kDefaultPadding,
+        ),
+       
+        SizedBox(
+          height: 19,
+        ),
+        Spacer(),
+        Button(buttontext: 'ATTENDANCE STATUS'),
+        SizedBox(
+          height: kDefaultPadding,
+        ),
+      ],
     );
   }
 }

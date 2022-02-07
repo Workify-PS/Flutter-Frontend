@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workify/components/birthday_card.dart';
+import 'package:workify/components/wish_card.dart';
 import 'package:workify/components/dashboard_card.dart';
 import 'package:workify/components/profile_completion_card.dart';
 import 'package:workify/components/top_bar.dart';
@@ -20,6 +20,12 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   DeviceSize device = DeviceSize();
+  final cards = [
+    ProfileCompletionCard(),
+    AttendanceCard(),
+    WishCard(),
+  ];
+  final titles = ["Profile", "Attendance", "Wish"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,30 +35,27 @@ class _DashBoardState extends State<DashBoard> {
             parentScaffoldkey: widget.parentScaffoldkey,
           )),
       body: Container(
-        color: kBgDarkColor,
-        child: Column(
-          children: [
-            //SizedBox(height: bannerHeight, child: TopBar()),
-            Expanded(
-              child: GridView.count(
-                controller: ScrollController(),
-                crossAxisCount: 3,
-                childAspectRatio: 1.1,
-                crossAxisSpacing: kDefaultPadding * 2,
-                mainAxisSpacing: kDefaultPadding * 2,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        child: GridView.builder(
+          itemCount: cards.length,
 
-                //shrinkWrap: true,
-                physics: ScrollPhysics(),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                children: [
-                  ProfileCompletionCard(),
-                  AttendanceCard(),
-                  BirthdayCard(),
-                ],
+          controller: ScrollController(),
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 500,
+              crossAxisSpacing: kDefaultPadding*2,
+              mainAxisSpacing: kDefaultPadding*2,
+              childAspectRatio: 1.1
+              //mainAxisExtent: 400,
               ),
-            ),
-          ],
+
+          itemBuilder: (context, index) =>
+              DashBoardCard(child: cards[index], title: titles[index]),
+          //shrinkWrap: true,
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
         ),
       ),
     );

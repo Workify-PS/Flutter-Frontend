@@ -22,25 +22,20 @@ class _HomePageState extends State<HomePage> {
     final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
     return Scaffold(
       key: _scaffoldkey,
-      backgroundColor: kBgDarkColor,
+      //backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
       endDrawer: Drawer(),
       body: Row(
         children: [
-          Expanded(
+          Container(
             child: SideMenu(),
-            flex: 38,
+            width: 236,
           ),
-          Expanded(
-            child: Container(
-              height: double.infinity,
-              color: Colors.black12,
-            ),
-            flex: 1,
+          Container(
+            width: 5,
+            height: double.infinity,
+            color: Colors.black12,
           ),
-          Expanded(
-            child: DashBoard(parentScaffoldkey: _scaffoldkey),
-            flex: 200,
-          ),
+          Expanded(child: DashBoard(parentScaffoldkey: _scaffoldkey)),
         ],
       ),
 
@@ -75,7 +70,7 @@ class _HomePageState extends State<HomePage> {
       //                     child: buildHeader(),
       //                   ),
       //                   // Divider(
-      //                   //   color: kBgDarkColor,
+      //                   //   color: kScaffoldColor,
       //                   //   thickness: 1,
       //                   // ),
       //                   buildTiles()

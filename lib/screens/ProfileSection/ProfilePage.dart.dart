@@ -1,12 +1,20 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+<<<<<<< HEAD:lib/screens/ProfileSection/profilePage.dart
 // import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';
 
 import 'ProfileSectionControllers/profile_widgets.dart';
+=======
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/sizes.dart';
+import 'package:workify/utils/extensions.dart';
+import 'package:workify/utils/theme.dart';
+>>>>>>> ea02943d38476f71ad56e2a64f056ea298882690:lib/screens/ProfileSection/ProfilePage.dart.dart
 import 'basic_details.dart';
 import 'position_details.dart';
 import 'education_details.dart';
@@ -43,6 +51,7 @@ class ProfilePage extends StatelessWidget {
     // bool portrait = screenWidth < 1000;
 
     return Scaffold(
+<<<<<<< HEAD:lib/screens/ProfileSection/profilePage.dart
       appBar: AppBar(
         title: Text(
           'Profile Page',
@@ -141,14 +150,134 @@ class ProfilePage extends StatelessWidget {
                     // Rendering All widgets here
                     child: Obx(() => profileWidgets[
                         controller.widgetString.value.toString()]!),
+=======
+        appBar: AppBar(
+          title: Text('ProfilePage'),
+        ),
+        body: Center(
+            child: Neumorphic(
+              style: NeumorphicStyle(
+                color: kScaffoldColor,
+                shadowLightColor: kBottomShadowColor,
+                shape: NeumorphicShape.flat,
+                boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(16))
+              ),
+
+          child: Container(
+            alignment: Alignment.center,
+            width: device.size.width / 1.25,
+            height: device.size.height / 1.25,
+            decoration: BoxDecoration(
+              // gradient: LinearGradient(
+              //   begin: Alignment.topRight,
+              //   end: Alignment.bottomLeft,
+              //   colors: [Colors.transparent, Colors.teal],
+              // ),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Flex(
+              //Outer shell design
+              // direction: portrait == true ? Axis.horizontal : Axis.vertical,
+              direction: Axis.vertical,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Flex(
+                    // details buttons design
+                    // direction: portrait == true ? Axis.vertical : Axis.horizontal,
+                    direction: Axis.horizontal,
+                    children: [
+                      Expanded(
+                        // flex: portrait == true ? 1 : 2,
+                        flex: 1,
+                        child: BasicDetailsButton(
+                          profileDetails: "Basic_Details",
+                          profileWidgetHandler: setProfileWidget,
+                        ),
+                      ),
+                      Expanded(
+                        // flex: portrait == true ? 1 : 2,
+                        flex: 1,
+                        child: PositionDetailsButton(
+                          profileDetails: "Position_Details",
+                          profileWidgetHandler: setProfileWidget,
+                        ),
+                      ),
+                      // Expanded(
+                      //   flex: portrait == true ? 1 : 2,
+                      //   // child: ContactDetailsButton(),
+                      //   child: ContactDetailsButton(
+                      //     profileDetails: "Contact_Details",
+                      //     profileWidgetHandler: setProfileWidget,
+                      //   ),
+                      // ),
+                      // Expanded(
+                      //   flex: portrait == true ? 1 : 2,
+                      //   // child: DependentDetailsButton(),
+                      //   child: DependentDetailsButton(
+                      //     profileDetails: "Dependent_Details",
+                      //     profileWidgetHandler: setProfileWidget,
+                      //   ),
+                      // ),
+                      Expanded(
+                        // flex: portrait == true ? 1 : 2,
+
+                        flex: 1,
+                        child: EmploymentDetailsButton(
+                          profileDetails: "Employment_Details",
+                          profileWidgetHandler: setProfileWidget,
+                        ),
+                      ),
+                      Expanded(
+                        // flex: portrait == true ? 1 : 2,
+                        flex: 1,
+                        child: EducationDetailsButton(
+                          profileDetails: "Education_Details",
+                          profileWidgetHandler: setProfileWidget,
+                        ),
+                      ),
+                      // Expanded(
+                      //   flex: portrait == true ? 1 : 2,
+                      //   child: BankDetailsButton(
+                      //     profileDetails: "Bank_Details",
+                      //     profileWidgetHandler: setProfileWidget,
+                      //   ),
+                      // ),
+                      // Expanded(
+                      //   flex: portrait == true ? 1 : 2,
+                      //   // child: IdDetailsButton(),
+                      //   child: IdDetailsButton(
+                      //     profileDetails: "Id_Details",
+                      //     profileWidgetHandler: setProfileWidget,
+                      //   ),
+                      // ),
+                    ],
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+                Expanded(
+                  flex: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Container(
+                      width: screenWidth,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        // gradient: LinearGradient(
+                        //   begin: Alignment.bottomLeft,
+                        //   end: Alignment.topRight,
+                        //   colors: [Colors.transparent, Colors.teal],
+                        // ),
+                      ),
+                      // Rendering All widgets here
+                      child: profileWidgets[profileWidgetString]!,
+                    ),
+>>>>>>> ea02943d38476f71ad56e2a64f056ea298882690:lib/screens/ProfileSection/ProfilePage.dart.dart
+                  ),
+                ),
+              ],
+            ),
+          )
+        )));
   }
 }
 
@@ -239,9 +368,41 @@ class EmploymentDetailsButton extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD:lib/screens/ProfileSection/profilePage.dart
     return Buttons(
       profileDetails: profileDetails,
       buttonIndex: 2,
+=======
+    return ElevatedButton(
+      
+      onPressed: () {
+        profileWidgetHandler(profileDetails);
+
+        // bankButtonPressed = false;
+        // contactButtonPressed = false;
+        // dependentButtonPressed = false;
+        educationButtonPressed = false;
+        // idButtonPressed = false;
+        basicButtonPressed = false;
+        positionButtonPressed = false;
+
+        employmentButtonPressed = true;
+      },
+      style: ElevatedButton.styleFrom(
+        
+        primary: employmentButtonPressed == true
+            ? kScaffoldDarkColor
+            : kScaffoldColor,
+      ),
+      child: Center(
+        child: Text(
+          'Employment Details',
+          style: TextStyle(fontSize: screenWidth * 0.012, color: employmentButtonPressed == true? kTextDarkColor:kTextColor
+              // fontWeight: FontWeight.bold,
+              ),
+        ),
+      ),
+>>>>>>> ea02943d38476f71ad56e2a64f056ea298882690:lib/screens/ProfileSection/ProfilePage.dart.dart
     );
   }
 }

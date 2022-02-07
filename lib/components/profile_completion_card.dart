@@ -21,69 +21,52 @@ class ProfileCompletionCard extends StatelessWidget {
     screenWidth = device.size.width;
     screenHeight = device.size.height;
     portrait = screenWidth < 1000;
-    
 
     return portrait == false
-        ? Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: kDefaultPadding,
-              vertical: kDefaultPadding / 2,
-            ),
-            child: Container(
-              padding: EdgeInsets.all(kDefaultPadding),
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(15),
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CircularPercentIndicator(
+                radius: 150,
+                lineWidth: 10,
+                percent: percent,
+                animation: true,
+                reverse: true,
+                center: Avatar(),
+                // header: Text(
+                //   'Profile',
+                //   style: TextStyle(
+                //     fontSize: 24,
+                //     fontWeight: FontWeight.w500,
+                //     //color: kTextColor,
+                //   ),
+                // ),
+                progressColor: ((percent * 100) >= 0 && (percent * 100) <= 30)
+                    ? Colors.red
+                    : ((percent * 100) > 30 && (percent * 100) <= 70)
+                        ? Colors.yellow
+                        : Colors.green,
+                backgroundColor: Colors.grey,
               ),
-              child: Column(
-                children: [
-                  CircularPercentIndicator(
-                    radius: 150,
-                    lineWidth: 10,
-                    percent: percent,
-                    animation: true,
-                    reverse: true,
-                    center: Avatar(),
-                    header: Text(
-                      'Profile',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                        color: kTextColor,
-                      ),
-                    ),
-                    progressColor: ((percent * 100)>=0 && (percent * 100) <= 30) ? Colors.red :
-                                   ((percent * 100)>30 && (percent * 100) <= 70) ? Colors.yellow :
-                                   Colors.green ,
-                    backgroundColor: Colors.grey,
-                  ),
-                  Text(
-                    (percent * 100) . toString() + ' % Complete',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Get.to(ChangeProfilePage());
-                    },
-                    child: Text(
-                      'Complete Now',
-                      
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  )
-                ],
+              Text(
+                (percent * 100).toString() + ' % Complete',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
               ),
-            ).makeRounded(
-                blurRadius: 15,
-                borderRadius: 15,
-                offset: Offset(5, 5),
-                topShadowColor: Colors.white60,
-                bottomShadowColor: Color(0xFF234395).withOpacity(0.15)),
+              InkWell(
+                onTap: () {
+                  Get.to(ChangeProfilePage());
+                },
+                child: Text(
+                  'Complete Now',
+                  style: TextStyle(
+                    fontSize: 24,
+                    //color: Colors.grey,
+                  ),
+                ),
+              )
+            ],
           )
         : Text('Portrait');
   }

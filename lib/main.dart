@@ -6,7 +6,7 @@ import 'package:workify/screens/ChangePass.dart';
 
 import 'package:workify/screens/ForgotPass.dart';
 import 'package:workify/screens/HomePage.dart';
-import 'package:workify/screens/ProfileSection/ProfilePage.dart.dart';
+import 'package:workify/screens/ProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SettingsPage.dart';
 
 import 'package:workify/utils/theme.dart';

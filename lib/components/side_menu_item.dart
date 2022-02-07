@@ -31,6 +31,9 @@ class _SideMenuItemState extends State<SideMenuItem> {
     Color accentColor = MyTheme().isDark(context) ? kDividerColor : kGrayColor;
     Color dividerColor =
         !(MyTheme().isDark(context)) ? kDividerColor : kDividerDarkColor;
+
+    Color hoverColor =
+        MyTheme().isDark(context) ? Colors.lightBlue :  kPrimaryColor;
     return Padding(
       padding:
           const EdgeInsets.only(top: kDefaultPadding, bottom: kDefaultPadding),
@@ -61,7 +64,7 @@ class _SideMenuItemState extends State<SideMenuItem> {
                     width: kDefaultPadding / 2,
                   ),
                   Icon(widget.icon,
-                      color: (isHover || isExpaned) ? kPrimaryColor : null),
+                      color: (isHover || isExpaned) ? hoverColor : null),
                   SizedBox(
                     width: kDefaultPadding * 0.75,
                   ),

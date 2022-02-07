@@ -30,7 +30,7 @@ class AttendanceCard extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Button(buttontext: 'OFFICE'),
+            Button(buttontext: 'OFFICE',),
             SizedBox(
               width: 30,
             ),

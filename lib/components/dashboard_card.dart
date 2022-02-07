@@ -35,16 +35,11 @@ class _DashBoardCardState extends State<DashBoardCard> {
                   Expanded(child: widget.child)
                 ],
               ))
-          .makeRounded(
+          .makeRounded(MyTheme().isDark(context),
               blurRadius: 15,
               borderRadius: 15,
               offset: Offset(5, 5),
-              topShadowColor: MyTheme().isDark(context)
-                  ? kTopShadowColor.withOpacity(0.4)
-                  : null,
-              bottomShadowColor: MyTheme().isDark(context)
-                  ? kBottomShadowColor.withOpacity(0.6)
-                  : null),
+              ),
     );
   }
 }

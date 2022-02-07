@@ -13,6 +13,16 @@ class MyTheme {
     ),
     textTheme: GoogleFonts.latoTextTheme().apply(bodyColor: kTextColor),
   ).copyWith(
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            primary: kScaffoldColor,
+            //elevation: 5,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            onPrimary: kTextColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(6.0),
+            )),
+      ),
       appBarTheme: AppBarTheme(foregroundColor: kTextColor),
       primaryTextTheme: TextTheme(
         headline1:
@@ -44,6 +54,18 @@ class MyTheme {
           textTheme:
               GoogleFonts.latoTextTheme().apply(bodyColor: kTextDarkColor))
       .copyWith(
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                primary: kScaffoldDarkColor,
+                onPrimary: kTextDarkColor,
+                elevation: 6,
+                shadowColor: kTopShadowColorDark,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6.0),
+                )),
+          ),
           appBarTheme: AppBarTheme(foregroundColor: kMenuColor),
           primaryTextTheme: TextTheme(
             headline1:

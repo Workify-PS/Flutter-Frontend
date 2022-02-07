@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:workify/components/birthday_card.dart';
+import 'package:workify/components/wish_card.dart';
 import 'package:workify/components/dashboard_card.dart';
 import 'package:workify/components/profile_completion_card.dart';
 import 'package:workify/components/top_bar.dart';

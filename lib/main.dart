@@ -6,8 +6,9 @@ import 'package:workify/screens/ChangePass.dart';
 
 import 'package:workify/screens/ForgotPass.dart';
 import 'package:workify/screens/HomePage.dart';
+import 'package:workify/screens/ProfileSection/ProfilePage.dart.dart';
 import 'package:workify/screens/SettingsPage.dart';
-import 'package:workify/screens/profilesection/profilePage.dart';
+
 import 'package:workify/utils/theme.dart';
 
 // import 'package:workify/components/profile_completion_card.dart';
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/home",
+      initialRoute: "/profile",
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,

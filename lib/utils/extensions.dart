@@ -5,7 +5,7 @@ import 'package:workify/utils/theme.dart';
 extension MakeRounded on Widget {
   makeRounded(bool isDark,{
     
-    double borderRadius = 10.0,
+    double borderRadius = 15.0,
     Offset offset = const Offset(5, 5),
     double blurRadius = 15,
     Color topShadowColor = kTopShadowColor,

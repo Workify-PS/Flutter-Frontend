@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+
 
 import 'package:flutter/material.dart';
 // import 'package:get/get_state_manager/get_state_manager.dart';
@@ -20,6 +20,7 @@ double screenWidth = 0, screenHeight = 0;
 
 final controller = Get.put(ProfileWidget());
 
+// ignore: must_be_immutable
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
 

@@ -1,55 +1,38 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+// import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
+import 'package:get/get.dart';
 
+import 'ProfileSectionControllers/profile_widgets.dart';
 import 'basic_details.dart';
 import 'position_details.dart';
-// import 'contact_details.dart';
-// import 'dependent_details.dart';
 import 'education_details.dart';
 import 'employment_details.dart';
 // import 'id_details.dart';
 // import 'bank_details.dart';
-
-bool basicButtonPressed = true;
-// bool bankButtonPressed = false;
-// bool contactButtonPressed = false;
-// bool dependentButtonPressed = false;
-bool educationButtonPressed = false;
-bool employmentButtonPressed = false;
-// bool idButtonPressed = false;
-bool positionButtonPressed = false;
+// import 'contact_details.dart';
+// import 'dependent_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+final controller = Get.put(ProfileWidget());
 
-  @override
-  State<StatefulWidget> createState() {
-    return ProfilePageState();
-  }
-}
+class ProfilePage extends StatelessWidget {
+  ProfilePage({Key? key}) : super(key: key);
 
-class ProfilePageState extends State<ProfilePage> {
   Map<String, Widget> profileWidgets = {
-    'Basic_Details': BasicDetails(),
+    'Basic Details': BasicDetails(),
+    'Education Details': EducationDetails(),
+    'Employment Details': EmploymentDetails(),
+    'Position Details': PositionDetails(),
     // 'Bank_Details': BankDetails(),
     // 'Contact_Details': ContactDetails(),
     // 'Dependent_Details': DependentDetails(),
-    'Education_Details': EducationDetails(),
-    'Employment_Details': EmploymentDetails(),
     // 'Id_Details': IdDetails(),
-    'Position_Details': PositionDetails(),
   };
-
-  String profileWidgetString = 'Basic_Details';
-
-  void setProfileWidget(String profileDetails) {
-    setState(() {
-      profileWidgetString = profileDetails;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +48,7 @@ class ProfilePageState extends State<ProfilePage> {
           'Profile Page',
           style: TextStyle(
             color: kSecondaryColor,
-            fontWeight:FontWeight.bold,
+            fontWeight: FontWeight.bold,
           ),
         ),
         flexibleSpace: Container(
@@ -108,66 +91,35 @@ class ProfilePageState extends State<ProfilePage> {
                       // flex: portrait == true ? 1 : 2,
                       flex: 1,
                       child: BasicDetailsButton(
-                        profileDetails: "Basic_Details",
-                        profileWidgetHandler: setProfileWidget,
+                        profileDetails: "Basic Details",
+                        // profileWidgetHandler: setProfileWidget,
                       ),
                     ),
                     Expanded(
                       // flex: portrait == true ? 1 : 2,
                       flex: 1,
                       child: PositionDetailsButton(
-                        profileDetails: "Position_Details",
-                        profileWidgetHandler: setProfileWidget,
+                        profileDetails: "Position Details",
+                        // profileWidgetHandler: setProfileWidget,
                       ),
                     ),
-                    // Expanded(
-                    //   flex: portrait == true ? 1 : 2,
-                    //   // child: ContactDetailsButton(),
-                    //   child: ContactDetailsButton(
-                    //     profileDetails: "Contact_Details",
-                    //     profileWidgetHandler: setProfileWidget,
-                    //   ),
-                    // ),
-                    // Expanded(
-                    //   flex: portrait == true ? 1 : 2,
-                    //   // child: DependentDetailsButton(),
-                    //   child: DependentDetailsButton(
-                    //     profileDetails: "Dependent_Details",
-                    //     profileWidgetHandler: setProfileWidget,
-                    //   ),
-                    // ),
                     Expanded(
                       // flex: portrait == true ? 1 : 2,
 
                       flex: 1,
                       child: EmploymentDetailsButton(
-                        profileDetails: "Employment_Details",
-                        profileWidgetHandler: setProfileWidget,
+                        profileDetails: "Employment Details",
+                        // profileWidgetHandler: setProfileWidget,
                       ),
                     ),
                     Expanded(
                       // flex: portrait == true ? 1 : 2,
                       flex: 1,
                       child: EducationDetailsButton(
-                        profileDetails: "Education_Details",
-                        profileWidgetHandler: setProfileWidget,
+                        profileDetails: "Education Details",
+                        // profileWidgetHandler: setProfileWidget,
                       ),
                     ),
-                    // Expanded(
-                    //   flex: portrait == true ? 1 : 2,
-                    //   child: BankDetailsButton(
-                    //     profileDetails: "Bank_Details",
-                    //     profileWidgetHandler: setProfileWidget,
-                    //   ),
-                    // ),
-                    // Expanded(
-                    //   flex: portrait == true ? 1 : 2,
-                    //   // child: IdDetailsButton(),
-                    //   child: IdDetailsButton(
-                    //     profileDetails: "Id_Details",
-                    //     profileWidgetHandler: setProfileWidget,
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
@@ -186,8 +138,9 @@ class ProfilePageState extends State<ProfilePage> {
                       // ),
                       color: kPrimaryColor,
                     ),
-                    // Rendering All widgets here 
-                    child: profileWidgets[profileWidgetString]!,
+                    // Rendering All widgets here
+                    child: Obx(() => profileWidgets[
+                        controller.widgetString.value.toString()]!),
                   ),
                 ),
               ),
@@ -199,352 +152,115 @@ class ProfilePageState extends State<ProfilePage> {
   }
 }
 
+class Buttons extends StatelessWidget {
+  // method with parameters in stateful widget
+  // final void Function(String) profileWidgetHandler;
+
+  final String profileDetails;
+  final int buttonIndex;
+  const Buttons(
+      {Key? key, required this.profileDetails, required this.buttonIndex})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var button = buttonIndex == 0
+        ? controller.basicButton
+        : buttonIndex == 1
+            ? controller.positionButton
+            : buttonIndex == 2
+                ? controller.employmentButton
+                : controller.educationButton;
+
+    return Obx(() => ElevatedButton(
+          onPressed: () {
+            // step to call such a method
+            // profileWidgetHandler(profileDetails);
+
+            controller.resetButtons();
+            controller.updateWidgetString(profileDetails);
+            controller.setButton(str: profileDetails);
+          },
+          style: ElevatedButton.styleFrom(
+            primary: button.value == true ? kPrimaryColor : kSecondaryColor,
+          ),
+          child: Center(
+            child: Text(
+              profileDetails,
+              style: TextStyle(
+                fontSize: screenWidth * 0.015,
+                // fontWeight: FontWeight.bold,
+                color: button.value == true ? kSecondaryColor : kPrimaryColor,
+              ),
+            ),
+          ),
+        ));
+  }
+}
+
 class BasicDetailsButton extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) profileWidgetHandler;
 
   const BasicDetailsButton({
     Key? key,
     required this.profileDetails,
-    required this.profileWidgetHandler,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        profileWidgetHandler(profileDetails);
-
-        // bankButtonPressed = false;
-        // contactButtonPressed = false;
-        // dependentButtonPressed = false;
-        educationButtonPressed = false;
-        employmentButtonPressed = false;
-        // idButtonPressed = false;
-        positionButtonPressed = false;
-
-        basicButtonPressed = true;
-      },
-      style: ElevatedButton.styleFrom(
-        primary: basicButtonPressed == true ? kPrimaryColor:kSecondaryColor,
-      ),
-      child: Center(
-        child: Text(
-          'Basic Details',
-          style: TextStyle(
-            fontSize: screenWidth * 0.015,
-            // fontWeight: FontWeight.bold,
-            color: basicButtonPressed == true ? kSecondaryColor:kTextColor,
-          ),
-        ),
-      ),
+    return Buttons(
+      profileDetails: profileDetails,
+      buttonIndex: 0,
     );
   }
 }
 
 class PositionDetailsButton extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) profileWidgetHandler;
 
   const PositionDetailsButton({
     Key? key,
     required this.profileDetails,
-    required this.profileWidgetHandler,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        profileWidgetHandler(profileDetails);
-
-        // bankButtonPressed = false;
-        // contactButtonPressed = false;
-        // dependentButtonPressed = false;
-        educationButtonPressed = false;
-        employmentButtonPressed = false;
-        // idButtonPressed = false;
-        basicButtonPressed = false;
-
-        positionButtonPressed = true;
-      },
-      style: ElevatedButton.styleFrom(
-        primary: positionButtonPressed == true ? kPrimaryColor:kSecondaryColor,
-      ),
-      child: Center(
-        child: Text(
-          'Position Details',
-          style: TextStyle(
-            fontSize: screenWidth * 0.015,
-            color: positionButtonPressed == true ? kSecondaryColor:kTextColor,
-            // fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+    return Buttons(
+      profileDetails: profileDetails,
+      buttonIndex: 1,
     );
   }
 }
 
-// class ContactDetailsButton extends StatelessWidget {
-//   final String profileDetails;
-//   final void Function(String) profileWidgetHandler;
-
-//   const ContactDetailsButton({
-//     Key? key,
-//     required this.profileDetails,
-//     required this.profileWidgetHandler,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ElevatedButton(
-//       onPressed: () {
-//         profileWidgetHandler(profileDetails);
-
-//         bankButtonPressed = false;
-//         dependentButtonPressed = false;
-//         educationButtonPressed = false;
-//         employmentButtonPressed = false;
-//         idButtonPressed = false;
-//         basicButtonPressed = false;
-//         positionButtonPressed = false;
-
-//         contactButtonPressed = true;
-//       },
-//       style: ElevatedButton.styleFrom(
-//         primary: contactButtonPressed == true
-//             ? Colors.indigo
-//             : Colors.teal,
-//       ),
-//       child: Center(
-//         child: Text(
-//           'Contact Details',
-//           style: TextStyle(
-//             fontSize: screenWidth * 0.015,
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class DependentDetailsButton extends StatelessWidget {
-//   final String profileDetails;
-//   final void Function(String) profileWidgetHandler;
-
-//   const DependentDetailsButton(
-//       {Key? key,
-//       required this.profileDetails,
-//       required this.profileWidgetHandler})
-//       : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ElevatedButton(
-//       onPressed: () {
-//         profileWidgetHandler(profileDetails);
-
-//         bankButtonPressed = false;
-//         contactButtonPressed = false;
-//         educationButtonPressed = false;
-//         employmentButtonPressed = false;
-//         idButtonPressed = false;
-//         basicButtonPressed = false;
-//         positionButtonPressed = false;
-
-//         dependentButtonPressed = true;
-//       },
-//       style: ElevatedButton.styleFrom(
-//         primary: dependentButtonPressed == true
-//             ? Colors.indigo
-//             : Colors.teal,
-//       ),
-//       child: Center(
-//         child: Text(
-//           'Dependent Details',
-//           style: TextStyle(
-//             fontSize: screenWidth * 0.015,
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 class EmploymentDetailsButton extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) profileWidgetHandler;
 
-  const EmploymentDetailsButton(
-      {Key? key,
-      required this.profileDetails,
-      required this.profileWidgetHandler})
-      : super(key: key);
-
+  const EmploymentDetailsButton({
+    Key? key,
+    required this.profileDetails,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        profileWidgetHandler(profileDetails);
-
-        // bankButtonPressed = false;
-        // contactButtonPressed = false;
-        // dependentButtonPressed = false;
-        educationButtonPressed = false;
-        // idButtonPressed = false;
-        basicButtonPressed = false;
-        positionButtonPressed = false;
-
-        employmentButtonPressed = true;
-      },
-      style: ElevatedButton.styleFrom(
-        primary: employmentButtonPressed == true ? kPrimaryColor:kSecondaryColor,
-      ),
-      child: Center(
-        child: Text(
-          'Employment Details',
-          style: TextStyle(
-            fontSize: screenWidth * 0.015,
-            color: employmentButtonPressed == true ? kSecondaryColor:kTextColor,
-            // fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+    return Buttons(
+      profileDetails: profileDetails,
+      buttonIndex: 2,
     );
   }
 }
 
 class EducationDetailsButton extends StatelessWidget {
   final String profileDetails;
-  final void Function(String) profileWidgetHandler;
 
-  const EducationDetailsButton(
-      {Key? key,
-      required this.profileDetails,
-      required this.profileWidgetHandler})
-      : super(key: key);
-
+  const EducationDetailsButton({
+    Key? key,
+    required this.profileDetails,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        profileWidgetHandler(profileDetails);
-
-        // bankButtonPressed = false;
-        // contactButtonPressed = false;
-        // dependentButtonPressed = false;
-        // idButtonPressed = false;
-        basicButtonPressed = false;
-        positionButtonPressed = false;
-        employmentButtonPressed = false;
-
-        educationButtonPressed = true;
-      },
-      style: ElevatedButton.styleFrom(
-        primary: educationButtonPressed == true ? kPrimaryColor:kSecondaryColor,
-      ),
-      child: Center(
-        child: Text(
-          'Education Details',
-          style: TextStyle(
-            fontSize: screenWidth * 0.015,
-            color: educationButtonPressed == true ? kSecondaryColor:kTextColor,
-            // fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+    return Buttons(
+      profileDetails: profileDetails,
+      buttonIndex: 3,
     );
   }
 }
 
-// class BankDetailsButton extends StatelessWidget {
-//   final String profileDetails;
-//   final void Function(String) profileWidgetHandler;
 
-//   const BankDetailsButton(
-//       {Key? key,
-//       required this.profileDetails,
-//       required this.profileWidgetHandler})
-//       : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return ElevatedButton(
-//       onPressed: () {
-//         profileWidgetHandler(profileDetails);
-
-//         contactButtonPressed = false;
-//         dependentButtonPressed = false;
-//         idButtonPressed = false;
-//         basicButtonPressed = false;
-//         positionButtonPressed = false;
-//         employmentButtonPressed = false;
-//         educationButtonPressed = false;
-
-//         bankButtonPressed = true;
-//       },
-//       style: ElevatedButton.styleFrom(
-//         primary:
-//           bankButtonPressed == true
-//           ? Colors.indigo
-//           : Colors.teal,
-//       ),
-//       child: Center(
-//         child: Text(
-//           'Bank Details',
-//           style: TextStyle(
-//             fontSize: screenWidth * 0.015,
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class IdDetailsButton extends StatelessWidget {
-//   final String profileDetails;
-//   final void Function(String) profileWidgetHandler;
-
-//   const IdDetailsButton(
-//       {Key? key,
-//       required this.profileDetails,
-//       required this.profileWidgetHandler})
-//       : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ElevatedButton(
-//       onPressed: () {
-//         profileWidgetHandler(profileDetails);
-
-//         contactButtonPressed = false;
-//         dependentButtonPressed = false;
-//         basicButtonPressed = false;
-//         positionButtonPressed = false;
-//         employmentButtonPressed = false;
-//         educationButtonPressed = false;
-//         bankButtonPressed = false;
-
-//         idButtonPressed = true;
-//       },
-//       style: ElevatedButton.styleFrom(
-//         primary:
-//             idButtonPressed == true
-//             ? Colors.indigo
-//             : Colors.teal,
-//       ),
-//       child: Center(
-//         child: Text(
-//           'ID Details',
-//           style: TextStyle(
-//             fontSize: screenWidth * 0.015,
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

@@ -20,6 +20,12 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   DeviceSize device = DeviceSize();
+  final cards = [
+    ProfileCompletionCard(),
+    AttendanceCard(),
+    WishCard(),
+  ];
+  final titles = ["Profile", "Attendance", "Wish"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,27 +35,26 @@ class _DashBoardState extends State<DashBoard> {
             parentScaffoldkey: widget.parentScaffoldkey,
           )),
       body: Container(
-        color: kBgDarkColor,
+        color: Theme.of(context).scaffoldBackgroundColor,
         child: Column(
           children: [
             //SizedBox(height: bannerHeight, child: TopBar()),
             Expanded(
-              child: GridView.count(
+              child: GridView.builder(
+                itemCount: cards.length,
                 controller: ScrollController(),
-                crossAxisCount: 3,
-                childAspectRatio: 1.1,
-                crossAxisSpacing: kDefaultPadding * 2,
-                mainAxisSpacing: kDefaultPadding * 2,
-
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 1.1,
+                  crossAxisSpacing: device.size.width * 0.02,
+                  mainAxisSpacing: device.size.height * 0.02,
+                ),
+                itemBuilder: (context, index) =>
+                    DashBoardCard(child: cards[index], title: titles[index]),
                 //shrinkWrap: true,
                 physics: ScrollPhysics(),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                children: [
-                  ProfileCompletionCard(),
-                  AttendanceCard(),
-                  BirthdayCard(),
-                ],
               ),
             ),
           ],

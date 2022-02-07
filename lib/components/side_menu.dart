@@ -5,9 +5,9 @@ import 'package:workify/utils/constants.dart';
 
 class SideMenu extends StatelessWidget {
   SideMenu({Key? key}) : super(key: key);
-  final titles = ["DashBoard", "Attendance", "Profile", "Settings"];
+  final titles = ["Home", "Attendance", "Profile", "Settings"];
   final icons = [
-    Icons.space_dashboard_outlined,
+    Icons.home_outlined,
     Icons.list_alt_outlined,
     Icons.person_outline_outlined,
     Icons.settings_outlined
@@ -17,7 +17,7 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
-      color: kBgLightColor,
+      color: Theme.of(context).primaryColor,
       child: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -25,12 +25,12 @@ class SideMenu extends StatelessWidget {
               Container(
                 height: bannerHeight,
                 width: double.infinity,
-                color: Colors.blueGrey,
+                color: Theme.of(context).primaryColor,
                 padding: const EdgeInsets.all(16),
                 child: Image.asset(
                   "assets/images/banner.png",
                   fit: BoxFit.contain,
-                  color: kBgLightColor,
+                  color: Theme.of(context).accentColor,
                 ),
                 // child: FlutterLogo(
                 //   size: 64,

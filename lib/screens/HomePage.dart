@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
     return Scaffold(
       key: _scaffoldkey,
-      backgroundColor: kBgDarkColor,
+      //backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
       endDrawer: Drawer(),
       body: Row(
         children: [
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
       //                     child: buildHeader(),
       //                   ),
       //                   // Divider(
-      //                   //   color: kBgDarkColor,
+      //                   //   color: kScaffoldColor,
       //                   //   thickness: 1,
       //                   // ),
       //                   buildTiles()

@@ -36,28 +36,25 @@ class _DashBoardState extends State<DashBoard> {
           )),
       body: Container(
         color: Theme.of(context).scaffoldBackgroundColor,
-        child: Column(
-          children: [
-            //SizedBox(height: bannerHeight, child: TopBar()),
-            Expanded(
-              child: GridView.builder(
-                itemCount: cards.length,
-                controller: ScrollController(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 1.1,
-                  crossAxisSpacing: device.size.width * 0.02,
-                  mainAxisSpacing: device.size.height * 0.02,
-                ),
-                itemBuilder: (context, index) =>
-                    DashBoardCard(child: cards[index], title: titles[index]),
-                //shrinkWrap: true,
-                physics: ScrollPhysics(),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+        child: GridView.builder(
+          itemCount: cards.length,
+
+          controller: ScrollController(),
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 500,
+              crossAxisSpacing: kDefaultPadding,
+              mainAxisSpacing: kDefaultPadding,
+              childAspectRatio: 1.1
+              //mainAxisExtent: 400,
               ),
-            ),
-          ],
+
+          itemBuilder: (context, index) =>
+              DashBoardCard(child: cards[index], title: titles[index]),
+          //shrinkWrap: true,
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
         ),
       ),
     );

@@ -40,10 +40,10 @@ class _DashBoardCardState extends State<DashBoardCard> {
               borderRadius: 15,
               offset: Offset(5, 5),
               topShadowColor: MyTheme().isDark(context)
-                  ? Color(0xff262C37).withOpacity(0.4)
+                  ? kTopShadowColor.withOpacity(0.4)
                   : null,
               bottomShadowColor: MyTheme().isDark(context)
-                  ? Color(0xff485063).withOpacity(0.6)
+                  ? kBottomShadowColor.withOpacity(0.6)
                   : null),
     );
   }

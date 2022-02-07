@@ -26,21 +26,16 @@ class _HomePageState extends State<HomePage> {
       endDrawer: Drawer(),
       body: Row(
         children: [
-          Expanded(
+          Container(
             child: SideMenu(),
-            flex: 38,
+            width: 236,
           ),
-          Expanded(
-            child: Container(
-              height: double.infinity,
-              color: Colors.black12,
-            ),
-            flex: 1,
+          Container(
+            width: 5,
+            height: double.infinity,
+            color: Colors.black12,
           ),
-          Expanded(
-            child: DashBoard(parentScaffoldkey: _scaffoldkey),
-            flex: 200,
-          ),
+          Expanded(child: DashBoard(parentScaffoldkey: _scaffoldkey)),
         ],
       ),
 

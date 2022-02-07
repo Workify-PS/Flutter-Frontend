@@ -27,6 +27,7 @@ class _TopBarState extends State<TopBar> {
 
   @override
   Widget build(BuildContext context) {
+    double iconSize = 24;
     return Material(
       color: Theme.of(context).primaryColor,
       borderOnForeground: true,
@@ -51,37 +52,43 @@ class _TopBarState extends State<TopBar> {
                 : Text(greeting(),
                     style: Theme.of(context).primaryTextTheme.headline1),
             Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(20),
-                splashColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () {
-                  widget.parentScaffoldkey.currentState!.openEndDrawer();
-                },
+            InkWell(
+              borderRadius: BorderRadius.circular(100),
+              splashColor: Colors.transparent,
+              hoverColor: MyTheme().isDark(context)
+                  ? kBottomShadowColor
+                  : Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                widget.parentScaffoldkey.currentState!.openEndDrawer();
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(12),
                 child: Icon(
                   Icons.notifications_outlined,
+                  size: iconSize,
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(20),
-                splashColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () {
-                  final themeTobeChanged = MyTheme().isDark(context)
-                      ? ThemeMode.light
-                      : ThemeMode.dark;
-                  Get.changeThemeMode(themeTobeChanged);
-                },
+            InkWell(
+              borderRadius: BorderRadius.circular(100),
+              radius: 100,
+              splashColor: Colors.transparent,
+              hoverColor: MyTheme().isDark(context)
+                  ? kBottomShadowColor
+                  : Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                final themeTobeChanged = MyTheme().isDark(context)
+                    ? ThemeMode.light
+                    : ThemeMode.dark;
+                Get.changeThemeMode(themeTobeChanged);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(12),
                 child: Icon(
                   Icons.switch_camera_outlined,
-                  //color: Colors.black,
+                  size: iconSize,
                 ),
               ),
             ),

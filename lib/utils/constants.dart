@@ -15,4 +15,6 @@ const kTextDarkColor = Color(0xFFDFE2EF);
 const kDefaultPadding = 16.0;
 const kDividerColor = Color(0xFFDFE2EF);
 const kDividerDarkColor = Colors.white24;
+const kBottomShadowColor = Color(0xff485063);
+const kTopShadowColor = Color(0xff262C37);
 double get bannerHeight => DeviceSize().size.height * 0.12;

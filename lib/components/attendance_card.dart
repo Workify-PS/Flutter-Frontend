@@ -24,15 +24,6 @@ class AttendanceCard extends StatelessWidget {
             SizedBox(
               width: kDefaultPadding / 2,
             ),
-            // Expanded(
-            //     child: Text.rich(TextSpan(
-            //   text: "Attendance",
-            //   style: TextStyle(
-            //     fontSize: 24,
-            //     fontWeight: FontWeight.w500,
-            //     color: kTextColor,
-            //   ),
-            // ))),
           ],
         ),
         SizedBox(height: 14),

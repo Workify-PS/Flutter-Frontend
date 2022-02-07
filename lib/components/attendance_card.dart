@@ -27,50 +27,69 @@ class AttendanceCard extends StatelessWidget {
           ],
         ),
         SizedBox(height: 14),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Button(buttontext: 'OFFICE',),
-            SizedBox(
-              width: 30,
-            ),
-            Button(buttontext: 'REMOTE LOCATION'),
-          ],
-        ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //   children: [
+        //     Button(buttontext: 'OFFICE',),
+        //     SizedBox(
+        //       width: 30,
+        //     ),
+        //     Button(buttontext: 'REMOTE LOCATION'),
+        //   ],
+        // ),
         SizedBox(
           height: 14,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            InkWell(
-              onTap: () {},
-              child: Icon(
-                Icons.arrow_circle_down_rounded,
-                color: Colors.blue,
-                size: 70,
-              ),
+            Column(
+              children: [
+                InkWell(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.arrow_circle_down_rounded,
+                    color: Colors.blue,
+                    size: 70,
+                    
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Punch IN Time'),
+                ),
+              ],
             ),
-            InkWell(
-              onTap: () {},
-              child: Icon(
-                Icons.arrow_circle_up_rounded,
-                color: Colors.blue,
-                size: 70,
-              ),
+            Column(
+              children: [
+                InkWell(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.arrow_circle_up_rounded,
+                    color: Colors.blue,
+                    size: 70,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Punch OUT Time'),
+                )
+              ],
             )
           ],
         ),
         SizedBox(
-          height: 10,
+          height: kDefaultPadding,
         ),
-        Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [Text('Punch IN Time'), Text('Punch OUT Time')]),
+       
         SizedBox(
           height: 19,
         ),
+        Spacer(),
         Button(buttontext: 'ATTENDANCE STATUS'),
+        SizedBox(
+          height: kDefaultPadding,
+        ),
       ],
     );
   }

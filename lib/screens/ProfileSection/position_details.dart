@@ -807,7 +807,9 @@ class PositionHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Table(
-      border: TableBorder.all(),
+      border: TableBorder.all(
+        color: kSecondaryColor,
+      ),
       children: [
         TableRow(
           children: [

@@ -56,7 +56,7 @@ class _TopBarState extends State<TopBar> {
               borderRadius: BorderRadius.circular(100),
               splashColor: Colors.transparent,
               hoverColor: MyTheme().isDark(context)
-                  ? kBottomShadowColor
+                  ? Colors.white30
                   : Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () {

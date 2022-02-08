@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:workify/utils/sizes.dart';
+import 'package:workify/utils/constants.dart';
+
 import './modify_history_buttons.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -113,6 +115,7 @@ class PositionDetails extends StatelessWidget {
                           'History',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
+                            color: kSecondaryColor,
                           ),
                         ),
                         SizedBox(
@@ -185,6 +188,7 @@ class PositionDetailsPortraitView extends StatelessWidget {
                     'History',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      color:kSecondaryColor,
                     ),
                   ),
                   SizedBox(
@@ -212,7 +216,10 @@ class EmployeeCode extends StatelessWidget {
       children: [
         Text(
           'Employee Code',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
        SizedBox(
           // color: Colors.red,
@@ -220,7 +227,12 @@ class EmployeeCode extends StatelessWidget {
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -239,15 +251,23 @@ class PositionCode extends StatelessWidget {
       children: [
         Text(
           'Position Code',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -266,15 +286,23 @@ class Designation extends StatelessWidget {
       children: [
         Text(
           'Designation',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -293,15 +321,23 @@ class Grade extends StatelessWidget {
       children: [
         Text(
           'Grade',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -320,15 +356,23 @@ class EmploymentCategory extends StatelessWidget {
       children: [
         Text(
           'Employment Category',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -347,15 +391,23 @@ class EmploymentStatus extends StatelessWidget {
       children: [
         Text(
           'Employment Status',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -374,15 +426,23 @@ class EmploymentType extends StatelessWidget {
       children: [
         Text(
           'Employment Type',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -401,15 +461,23 @@ class Department extends StatelessWidget {
       children: [
         Text(
           'Department',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -428,15 +496,23 @@ class WorkLocation extends StatelessWidget {
       children: [
         Text(
           'Work Location',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -454,16 +530,24 @@ class L1ManagerId extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'L1Manager ID',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          'L1 Manager ID',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -481,16 +565,24 @@ class L2ManagerId extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'L2Manager ID',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          'L2 Manager ID',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -508,16 +600,24 @@ class HRManagerId extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'HRManager ID',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          'HR Manager ID',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -536,15 +636,23 @@ class OrgId extends StatelessWidget {
       children: [
         Text(
           'Organization ID',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -562,16 +670,24 @@ class IsActive extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Is Active',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          'Is Active ?',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -590,15 +706,23 @@ class OfficialEmail extends StatelessWidget {
       children: [
         Text(
           'Official Email',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -617,15 +741,23 @@ class DoJ extends StatelessWidget {
       children: [
         Text(
           'Date of Joining',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -644,15 +776,23 @@ class JobRole extends StatelessWidget {
       children: [
         Text(
           'Job Role',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
         ),
-        SizedBox(
+       SizedBox(
           // color: Colors.red,
           width: screenHeight * 0.2,
           height: screenHeight * 0.025,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Text('Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever'),
+            child: Text(
+              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ),
         ),
       ],
@@ -667,7 +807,9 @@ class PositionHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Table(
-      border: TableBorder.all(),
+      border: TableBorder.all(
+        color: kSecondaryColor,
+      ),
       children: [
         TableRow(
           children: [
@@ -675,134 +817,176 @@ class PositionHistory extends StatelessWidget {
               'Heading 1',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
+                color: kSecondaryColor,
               ),
             ),
             Text(
               'Heading 2',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
+                color: kSecondaryColor,
               ),
             ),
           ],
         ),
         TableRow(
           children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
+            Text(
+              'Cell 1',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),  
+            ),
+            Text(
+              'Cell 2',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ],
         ),
         TableRow(
           children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
+            Text(
+              'Cell 1',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),  
+            ),
+            Text(
+              'Cell 2',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ],
         ),
         TableRow(
           children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
+            Text(
+              'Cell 1',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),  
+            ),
+            Text(
+              'Cell 2',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ],
         ),
         TableRow(
           children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
+            Text(
+              'Cell 1',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),  
+            ),
+            Text(
+              'Cell 2',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ],
         ),
         TableRow(
           children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
+            Text(
+              'Cell 1',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),  
+            ),
+            Text(
+              'Cell 2',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ],
         ),
         TableRow(
           children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
+            Text(
+              'Cell 1',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),  
+            ),
+            Text(
+              'Cell 2',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ],
         ),
         TableRow(
           children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
+            Text(
+              'Cell 1',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),  
+            ),
+            Text(
+              'Cell 2',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ],
         ),
         TableRow(
           children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
+            Text(
+              'Cell 1',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),  
+            ),
+            Text(
+              'Cell 2',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ],
         ),
         TableRow(
           children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
+            Text(
+              'Cell 1',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),  
+            ),
+            Text(
+              'Cell 2',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ],
         ),
         TableRow(
           children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text('Cell 1'),
-            Text('Cell 2'),
+            Text(
+              'Cell 1',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),  
+            ),
+            Text(
+              'Cell 2',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            ),
           ],
         ),
       ],

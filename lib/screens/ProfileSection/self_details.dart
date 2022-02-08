@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:workify/utils/sizes.dart';
+import 'package:workify/utils/constants.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -71,6 +73,7 @@ class Name extends StatelessWidget {
       style: TextStyle(
         // fontSize: screenWidth * 0.017,
         fontWeight: FontWeight.bold,
+        color: kSecondaryColor,
       ),
     );
   }

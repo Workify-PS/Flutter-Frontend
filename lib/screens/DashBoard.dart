@@ -24,8 +24,9 @@ class _DashBoardState extends State<DashBoard> {
     ProfileCompletionCard(),
     AttendanceCard(),
     WishCard(),
+    Container()
   ];
-  final titles = ["Profile", "Attendance", "Wish"];
+  final titles = ["Profile", "Attendance", "Wish","Holidays"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
 class AuthPage extends StatefulWidget {
@@ -11,7 +12,9 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  final  _passwordIsVisible = false.obs;
+  FocusNode myFocusNode = FocusNode();
+  FocusNode myFocusNode2 = FocusNode();
+  final _passwordIsVisible = false.obs;
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -19,7 +22,6 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
-
     return Form(
       key: _formKey,
       child: Container(
@@ -104,6 +106,8 @@ class _AuthPageState extends State<AuthPage> {
                                       margin:
                                           const EdgeInsets.only(bottom: 10.0),
                                       child: TextFormField(
+                                        focusNode: myFocusNode,
+                                        cursorColor: kBottomShadowColor,
                                         controller: _emailController,
                                         validator: (userID) =>
                                             userID!.isNotEmpty
@@ -113,6 +117,13 @@ class _AuthPageState extends State<AuthPage> {
                                             TextInputType.emailAddress,
                                         decoration: InputDecoration(
                                           labelText: 'User ID',
+                                          labelStyle: TextStyle(
+                                              color: myFocusNode.hasFocus
+                                                  ? Colors.blue
+                                                  : Colors.black),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.black87)),
                                           border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
@@ -126,6 +137,8 @@ class _AuthPageState extends State<AuthPage> {
                                       padding: const EdgeInsets.only(top: 4.0),
                                       child: Obx(() {
                                         return TextFormField(
+                                          focusNode: myFocusNode2,
+                                          cursorColor: kBottomShadowColor,
                                           controller: _passController,
                                           validator: (pass) => pass!.isNotEmpty
                                               ? null
@@ -133,6 +146,9 @@ class _AuthPageState extends State<AuthPage> {
                                           obscureText:
                                               !_passwordIsVisible.value,
                                           decoration: InputDecoration(
+                                            focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black87)),
                                             suffixIcon: IconButton(
                                                 onPressed: () {
                                                   _passwordIsVisible.value =
@@ -147,6 +163,10 @@ class _AuthPageState extends State<AuthPage> {
                                                   color: Colors.black,
                                                 )),
                                             labelText: 'Password',
+                                            labelStyle: TextStyle(
+                                                color: myFocusNode2.hasFocus
+                                                    ? Colors.blue
+                                                    : Colors.black),
                                             border: OutlineInputBorder(
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
@@ -186,27 +206,29 @@ class _AuthPageState extends State<AuthPage> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  InkWell(
-                                    onTap: loginAction,
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 12),
-                                      alignment: Alignment.center,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 120),
-                                      decoration: BoxDecoration(
+                                  ElevatedButton(
+                                    onPressed: loginAction,
+                                    style: ElevatedButton.styleFrom(
+                                        primary: kPrimaryColor,
+                                        onPrimary: Colors.white,
+                                        elevation: 8,
+                                        shadowColor: Colors.grey.shade800,
+                                        shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(8),
-                                          color:
-                                              Theme.of(context).primaryColor),
-                                      child: Text(
-                                        'Login',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-
-                                          //fontWeight: FontWeight.w600,
-                                        ),
+                                              BorderRadius.circular(8.0),
+                                        )),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 58),
+                                      child: Wrap(
+                                        crossAxisAlignment:
+                                            WrapCrossAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Login ',
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),

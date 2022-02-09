@@ -39,7 +39,10 @@ class _MyAppState extends State<MyApp> {
         //     name: "/",
         //     page: () =>
         //         false ? HomePage() : AuthPage()), //check for already signed in
-        GetPage(name: "/auth", page: () => AuthPage()),
+        GetPage(
+          name: "/auth",
+          page: () => AuthPage(),
+        ),
 
         GetPage(name: "/home", page: () => HomePage()
             // false ? HomePage() : AuthPage() //check for already signed in

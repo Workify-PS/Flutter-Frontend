@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workify/components/side_menu.dart';
 import 'package:workify/screens/DashBoard.dart';
-import 'package:workify/utils/constants.dart';
+// import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       endDrawer: Drawer(),
       body: Row(
         children: [
-          Container(
+          SizedBox(
             child: SideMenu(),
             width: 236,
           ),

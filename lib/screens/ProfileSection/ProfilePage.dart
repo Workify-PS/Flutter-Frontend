@@ -177,7 +177,6 @@ class Buttons extends StatelessWidget {
           onPressed: () {
             // step to call such a method
             // profileWidgetHandler(profileDetails);
-
             controller.resetButtons();
             controller.updateWidgetString(profileDetails);
             controller.setButton(str: profileDetails);

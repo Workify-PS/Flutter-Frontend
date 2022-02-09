@@ -2,6 +2,7 @@ class User {
   String? username;
   String? password;
   bool? isActive;
+  String? employee_id;
   String? officialMail;
   String? mobile;
   String? dob;
@@ -78,7 +79,7 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['username'] = username;
     data['password'] = password;
     data['isActive'] = isActive;

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:workify/utils/constants.dart';
+// import 'package:workify/utils/theme.dart';
 
 extension MakeRounded on Widget {
-  makeRounded({
-    double borderRadius = 10.0,
+  makeRounded(bool isDark,{
+    
+    double borderRadius = 15.0,
     Offset offset = const Offset(5, 5),
-    double blurRadius = 10,
-    Color topShadowColor = Colors.white60,
-    Color bottomShadowColor = const Color(0x26234395),
+    double blurRadius = 15,
+    Color topShadowColor = kTopShadowColor,
+    Color bottomShadowColor = kBottomShadowColor,
+
   }) {
     return Container(
       decoration: BoxDecoration(
@@ -15,12 +19,12 @@ extension MakeRounded on Widget {
             BoxShadow(
               offset: offset,
               blurRadius: blurRadius,
-              color: bottomShadowColor,
+              color: isDark?kBottomShadowColorDark.withOpacity(0.6):bottomShadowColor,
             ),
             BoxShadow(
               offset: Offset(-offset.dx, -offset.dx),
               blurRadius: blurRadius,
-              color: topShadowColor,
+              color:   isDark?kTopShadowColorDark.withOpacity(0.4):topShadowColor,
             ),
           ]),
       child: this,

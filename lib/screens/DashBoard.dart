@@ -1,13 +1,9 @@
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:workify/components/DashBoardCard.dart';
-// import 'package:workify/components/SideMenu.dart';
-import 'package:workify/components/TopBar.dart';
-import 'package:workify/components/attendancecard.dart';
+import 'package:workify/components/wish_card.dart';
+import 'package:workify/components/dashboard_card.dart';
 import 'package:workify/components/profile_completion_card.dart';
-// import 'package:workify/components/button.dart';
-
+import 'package:workify/components/top_bar.dart';
+import 'package:workify/components/attendance_card.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -24,6 +20,12 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   DeviceSize device = DeviceSize();
+  final cards = [
+    ProfileCompletionCard(),
+    AttendanceCard(),
+    WishCard(),
+  ];
+  final titles = ["Profile", "Attendance", "Wish"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,29 +35,26 @@ class _DashBoardState extends State<DashBoard> {
             parentScaffoldkey: widget.parentScaffoldkey,
           )),
       body: Container(
-        color: kBgDarkColor,
-        child: Column(
-          children: [
-            //SizedBox(height: bannerHeight, child: TopBar()),
-            Expanded(
-              child: GridView.count(
-                controller: ScrollController(),
-                crossAxisCount: 3,
-                
-                  crossAxisSpacing: kDefaultPadding * 2,
-                  mainAxisSpacing: kDefaultPadding * 2,
-
-                //shrinkWrap: true,
-                physics: ScrollPhysics(),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                children: [
-                  AttendanceCard(),
-                  ProfileCompletionCard(),
-                ],
+        color: Theme.of(context).scaffoldBackgroundColor,
+        padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        child: GridView.builder(
+          itemCount: cards.length,
+          controller: ScrollController(),
+          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 500,
+              crossAxisSpacing: kDefaultPadding*2,
+              mainAxisSpacing: kDefaultPadding*2,
+              childAspectRatio: 1,
+              //mainAxisExtent: 400,
               ),
-            ),
-          ],
+
+          itemBuilder: (context, index) =>
+              DashBoardCard(child: cards[index], title: titles[index]),
+          //shrinkWrap: true,
+          physics: ScrollPhysics(),
+          shrinkWrap: true,
+
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
         ),
       ),
     );

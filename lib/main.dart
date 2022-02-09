@@ -6,7 +6,9 @@ import 'package:workify/screens/ChangePass.dart';
 
 import 'package:workify/screens/ForgotPass.dart';
 import 'package:workify/screens/HomePage.dart';
-import 'package:workify/screens/profilesection/profilePage.dart';
+import 'package:workify/screens/ProfileSection/ProfilePage.dart';
+import 'package:workify/screens/SettingsPage.dart';
+
 import 'package:workify/utils/theme.dart';
 
 // import 'package:workify/components/profile_completion_card.dart';
@@ -52,10 +54,10 @@ class _MyAppState extends State<MyApp> {
           page: () => ForgotPass(),
         ),
         GetPage(name: "/change", page: () => ChangePass()),
-        // GetPage(
-        //   name: '/card',
-        //   page: () => ProfileCompletionCard(),
-        // ),
+        GetPage(
+          name: '/settings',
+          page: () => SettingsPage(),
+        ),
       ],
     );
   }

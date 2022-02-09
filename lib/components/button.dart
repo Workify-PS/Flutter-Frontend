@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:workify/utils/extensions.dart';
+import 'package:workify/utils/theme.dart';
 
 class Button extends StatelessWidget {
   final String buttontext;
@@ -7,29 +9,15 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-            primary: Colors.grey.shade50,
-            onPrimary: Colors.black,
-            elevation: 8,
-            shadowColor: Colors.grey.shade800,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(6.0),
-            )),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 6.0),
-          child: Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: [
-              SizedBox(width: 12),
-              Text(buttontext),
-            ],
-          ),
-        ),
+    MediaQuery.of(context).size.width * 0.25;
+    return 
+    ElevatedButton(
+      onPressed: () {},
+      
+      child: Text(
+        buttontext,
+        textAlign: TextAlign.center,
       ),
-    );
+    ).makeRounded(MyTheme().isDark(context));
   }
 }

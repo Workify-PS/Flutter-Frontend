@@ -3,14 +3,15 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
 
-import 'package:workify/utils/constants.dart';
+// import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
-import 'package:workify/utils/extensions.dart';
+// import 'package:workify/utils/extensions.dart';
 import 'package:workify/screens/ProfileSection/change_profile_page.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
+// ignore: must_be_immutable
 class ProfileCompletionCard extends StatelessWidget {
   ProfileCompletionCard({Key? key}) : super(key: key);
   double percent = 0.12;

@@ -1,5 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:google_fonts/google_fonts.dart';
@@ -74,7 +74,7 @@ class _TopBarState extends State<TopBar> {
               borderRadius: BorderRadius.circular(100),
               radius: 100,
               splashColor: Colors.transparent,
-              hoverColor:  Colors.transparent,
+              hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () {
                 final themeTobeChanged = MyTheme().isDark(context)

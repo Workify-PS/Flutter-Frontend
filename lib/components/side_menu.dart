@@ -33,7 +33,7 @@ class SideMenu extends StatelessWidget {
                 child: Image.asset(
                   "assets/images/banner.png",
                   fit: BoxFit.contain,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
                 // child: FlutterLogo(
                 //   size: 64,

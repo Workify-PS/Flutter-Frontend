@@ -86,7 +86,7 @@ class AttendanceCard extends StatelessWidget {
           height: 19,
         ),
         Spacer(),
-        Button(buttontext: 'ATTENDANCE STATUS'),
+        Button(buttonTextWidget : Text('ATTENDANCE STATUS')),
         SizedBox(
           height: kDefaultPadding,
         ),

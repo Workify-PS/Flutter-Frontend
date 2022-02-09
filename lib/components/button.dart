@@ -2,22 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/theme.dart';
 
-class Button extends StatelessWidget {
-  final String buttontext;
+// Changed buttonTextString to buttonTextWidget for customized text styling
 
-  const Button({Key? key, required this.buttontext}) : super(key: key);
+class Button extends StatelessWidget {
+  final Widget buttonTextWidget;
+  const Button({
+    Key? key, 
+    required this.buttonTextWidget
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     MediaQuery.of(context).size.width * 0.25;
-    return 
-    ElevatedButton(
+    return ElevatedButton(
       onPressed: () {},
-      
-      child: Text(
-        buttontext,
-        textAlign: TextAlign.center,
-      ),
+      child: buttonTextWidget,
     ).makeRounded(MyTheme().isDark(context));
   }
 }

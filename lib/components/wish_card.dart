@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-// import 'package:workify/components/button.dart';
+import 'package:workify/components/button.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:workify/utils/constants.dart';
@@ -58,42 +58,38 @@ class _WishCardState extends State<WishCard> {
         Expanded(
           flex: 1,
           child:Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
-                onPressed: (){}, 
-                child: Text(
+              Button(
+                buttonTextWidget: Text(
                   'Birthdays',
-                  style: TextStyle(
+                   style: TextStyle(
                     fontSize: 11.5,
                     fontWeight: FontWeight.bold,
-                    color:kTextColor,
-                  ),    
+                    // color:kTextColor,
+                  ), 
                 ),
               ),
-              ElevatedButton(
-                onPressed: (){}, 
-                child: Text(
+              Button(
+                buttonTextWidget: Text(
                   'Anniversaries',
-                  style: TextStyle(
+                   style: TextStyle(
                     fontSize: 11.5,
                     fontWeight: FontWeight.bold,
-                    color:kTextColor,
-                  ),    
+                    // color:kTextColor,
+                  ), 
                 ),
               ),
-              ElevatedButton(
-                onPressed: (){}, 
-                child: Text(
+              Button(
+                buttonTextWidget: Text(
                   'New Joiners',
-                  style: TextStyle(
+                   style: TextStyle(
                     fontSize: 11.5,
                     fontWeight: FontWeight.bold,
-                    color:kTextColor,
-                  ),    
+                    // color:kTextColor,
+                  ), 
                 ),
               ),
-              
             ],
           ),
         ),

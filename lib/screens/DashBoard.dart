@@ -20,12 +20,15 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   DeviceSize device = DeviceSize();
+  DateTime dt = DateTime.now();
   final cards = [
     ProfileCompletionCard(),
     AttendanceCard(),
     WishCard(),
+    //HolidaysCard()
+    Container()
   ];
-  final titles = ["Profile", "Attendance", "Wish"];
+  final titles = ["Profile", "Attendance", "Wish", "Holidays"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

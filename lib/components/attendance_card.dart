@@ -1,16 +1,61 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/route_manager.dart';
+import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/models/dailyattendance.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
+import 'package:workify/utils/theme.dart';
 
-class AttendanceCard extends StatelessWidget {
-  const AttendanceCard({
-    Key? key,
-  }) : super(key: key);
+class AttendanceCard extends StatefulWidget {
+  const AttendanceCard({Key? key}) : super(key: key);
+  @override
+  State<AttendanceCard> createState() => _AttendanceCardState();
+}
+
+class _AttendanceCardState extends State<AttendanceCard> {
+  // bool _ispressed = false;
+  // void _callback() {
+  //   setState(() {
+  //     _ispressed = true;
+  //   });
+  // }
+  bool _isdiabled = true;
+  final daily = DailyAttendance().obs;
+
+  void newintime() {
+    daily.update((daily) {
+      daily!.inTime = DateTime.now().hour.toString() +
+          ":" +
+          DateTime.now().minute.toString();
+    });
+  }
+
+  void newouttime() {
+    daily.update((daily) {
+      daily!.outTime.last = DateTime.now().hour.toString() +
+          ":" +
+          DateTime.now().minute.toString();
+    });
+  }
 
   @override
+  void initState() {
+    _isdiabled = false;
+  }
+
+  void _dis() {
+    setState(() {
+      _isdiabled = true;
+      newintime();
+    });
+  }
+
   Widget build(BuildContext context) {
+    Color accentColor =
+        MyTheme().isDark(context) ? kDividerColor : Colors.black87;
     return Column(
       children: [
         Row(
@@ -26,7 +71,7 @@ class AttendanceCard extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 14),
+        // SizedBox(height: 14),
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.spaceAround,
         //   children: [
@@ -37,51 +82,71 @@ class AttendanceCard extends StatelessWidget {
         //     Button(buttontext: 'REMOTE LOCATION'),
         //   ],
         // ),
-        SizedBox(
-          height: 14,
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Column(
               children: [
-                InkWell(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.arrow_circle_down_rounded,
-                    color: Colors.blue,
-                    size: 70,
-                    
+                ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(90.0)),
+                    ),
+                    // foregroundColor: getColor(Colors.black, Colors.grey),
+                    // backgroundColor: getColor(kSecondaryColor, Colors.red),
+                  ),
+                  onPressed: _isdiabled ? null : _dis,
+                  // _ispressed == false ? _callback : null,
+                  child: SvgPicture.asset(
+                    "assets/icons/punch_in.svg",
+                    height: 70,
+                    color: accentColor,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Punch IN Time'),
                 ),
+                Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Obx(
+                      () => Text(daily.value.inTime),
+                    )),
               ],
             ),
             Column(
               children: [
-                InkWell(
-                  onTap: () {},
-                  child: Icon(
-                    Icons.arrow_circle_up_rounded,
-                    color: Colors.blue,
-                    size: 70,
+                ElevatedButton(
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(90.0)))),
+                  onPressed: () {
+                    newouttime();
+                  },
+                  child: SvgPicture.asset(
+                    "assets/icons/punch_out.svg",
+                    height: 70,
+                    color: accentColor,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Punch OUT Time'),
-                )
+                ),
+                Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Obx(
+                      () => Text(daily.value.outTime.last),
+                    )),
               ],
-            )
+            ),
           ],
         ),
         SizedBox(
           height: kDefaultPadding,
         ),
-       
         SizedBox(
           height: 19,
         ),

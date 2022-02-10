@@ -39,12 +39,11 @@ class _DashBoardState extends State<DashBoard> {
         padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
         child: GridView.builder(
           itemCount: cards.length,
-
           controller: ScrollController(),
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 500,
-              crossAxisSpacing: kDefaultPadding*2,
-              mainAxisSpacing: kDefaultPadding*2,
+              crossAxisSpacing: kDefaultPadding * 2,
+              mainAxisSpacing: kDefaultPadding * 2,
               childAspectRatio: 1.1
               //mainAxisExtent: 400,
               ),

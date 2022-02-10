@@ -44,11 +44,16 @@ class _WishCardState extends State<WishCard> {
           ],
         ),
         SizedBox(height: 28),
-        RichText(
-            text: TextSpan(children: [
-          WidgetSpan(child: Icon(Icons.calendar_today_rounded, size: 20)),
-          TextSpan(text: now, style: TextStyle(fontSize: 20)),
-        ])),
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Icon(Icons.calendar_today_rounded, size: 20),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Text(now, style: TextStyle(fontSize: 20)),
+          ),
+        ]),
         SizedBox(
           height: 50,
         ),

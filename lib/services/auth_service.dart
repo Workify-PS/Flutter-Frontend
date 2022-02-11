@@ -2,7 +2,7 @@ import 'package:get/get_connect.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:workify/models/UserModel.dart';
 
-class LoginService extends GetConnect {
+class AuthService extends GetConnect {
   final String authUrl = "http://localhost:8081/authenticate";
   final String registerUrl = "http://localhost:8081/register";
 

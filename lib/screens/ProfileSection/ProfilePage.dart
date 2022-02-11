@@ -1,12 +1,12 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:workify/screens/ProfileSection/profile_details.dart';
 // import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';
 
-import 'ProfileSectionControllers/profile_widgets.dart';
+
+import 'ProfileSectionControllers/profile_widgets_controller.dart';
 import 'basic_details.dart';
 import 'position_details.dart';
 import 'education_details.dart';
@@ -46,110 +46,127 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Profile Page',
+          'Testing Profile Page',
           style: TextStyle(
-            color: kSecondaryColor,
+            // color: kSecondaryColor,
             fontWeight: FontWeight.bold,
-          ),
-        ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            // gradient: LinearGradient(
-            //   begin: Alignment.topRight,
-            //   end: Alignment.bottomLeft,
-            //   colors: [kPrimaryColor,Colors.teal],
-            // ),
-            color: kPrimaryColor,
           ),
         ),
       ),
       body: Center(
         child: Container(
-          width: device.size.width / 1.1,
-          height: device.size.height / 1.1,
-          decoration: BoxDecoration(
-            // gradient: LinearGradient(
-            //   begin: Alignment.topRight,
-            //   end: Alignment.bottomLeft,
-            //   colors: [Colors.transparent, Colors.teal],
-            // ),
-            color: kPrimaryColor,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Flex(
-            //Outer shell design
-            // direction: portrait == true ? Axis.horizontal : Axis.vertical,
-            direction: Axis.vertical,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Flex(
-                  // details buttons design
-                  // direction: portrait == true ? Axis.vertical : Axis.horizontal,
-                  direction: Axis.horizontal,
-                  children: [
-                    Expanded(
-                      // flex: portrait == true ? 1 : 2,
-                      flex: 1,
-                      child: BasicDetailsButton(
-                        profileDetails: "Basic Details",
-                        // profileWidgetHandler: setProfileWidget,
-                      ),
-                    ),
-                    Expanded(
-                      // flex: portrait == true ? 1 : 2,
-                      flex: 1,
-                      child: PositionDetailsButton(
-                        profileDetails: "Position Details",
-                        // profileWidgetHandler: setProfileWidget,
-                      ),
-                    ),
-                    Expanded(
-                      // flex: portrait == true ? 1 : 2,
-
-                      flex: 1,
-                      child: EmploymentDetailsButton(
-                        profileDetails: "Employment Details",
-                        // profileWidgetHandler: setProfileWidget,
-                      ),
-                    ),
-                    Expanded(
-                      // flex: portrait == true ? 1 : 2,
-                      flex: 1,
-                      child: EducationDetailsButton(
-                        profileDetails: "Education Details",
-                        // profileWidgetHandler: setProfileWidget,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 10,
-                child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Container(
-                    width: screenWidth,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      // gradient: LinearGradient(
-                      //   begin: Alignment.bottomLeft,
-                      //   end: Alignment.topRight,
-                      //   colors: [Colors.transparent, Colors.teal],
-                      // ),
-                      color: kPrimaryColor,
-                    ),
-                    // Rendering All widgets here
-                    child: Obx(() => profileWidgets[
-                        controller.widgetString.value.toString()]!),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          child: ProfileDetails(),
         ),
       ),
+        
     );
+    // return Scaffold(
+      // appBar: AppBar(
+      //   title: Text(
+      //     'Profile Page',
+      //     style: TextStyle(
+      //       color: kSecondaryColor,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+    //     flexibleSpace: Container(
+    //       decoration: BoxDecoration(
+    //         // gradient: LinearGradient(
+    //         //   begin: Alignment.topRight,
+    //         //   end: Alignment.bottomLeft,
+    //         //   colors: [kPrimaryColor,Colors.teal],
+    //         // ),
+    //         color: kPrimaryColor,
+    //       ),
+    //     ),
+    //   ),
+    //   body: Center(
+    //     child: Container(
+    //       width: device.size.width / 1.1,
+    //       height: device.size.height / 1.1,
+    //       decoration: BoxDecoration(
+    //         // gradient: LinearGradient(
+    //         //   begin: Alignment.topRight,
+    //         //   end: Alignment.bottomLeft,
+    //         //   colors: [Colors.transparent, Colors.teal],
+    //         // ),
+    //         color: kPrimaryColor,
+    //         borderRadius: BorderRadius.circular(30),
+    //       ),
+    //       child: Flex(
+    //         //Outer shell design
+    //         // direction: portrait == true ? Axis.horizontal : Axis.vertical,
+    //         direction: Axis.vertical,
+    //         children: [
+    //           Expanded(
+    //             flex: 1,
+    //             child: Flex(
+    //               // details buttons design
+    //               // direction: portrait == true ? Axis.vertical : Axis.horizontal,
+    //               direction: Axis.horizontal,
+    //               children: [
+    //                 Expanded(
+    //                   // flex: portrait == true ? 1 : 2,
+    //                   flex: 1,
+    //                   child: BasicDetailsButton(
+    //                     profileDetails: "Basic Details",
+    //                     // profileWidgetHandler: setProfileWidget,
+    //                   ),
+    //                 ),
+    //                 Expanded(
+    //                   // flex: portrait == true ? 1 : 2,
+    //                   flex: 1,
+    //                   child: PositionDetailsButton(
+    //                     profileDetails: "Position Details",
+    //                     // profileWidgetHandler: setProfileWidget,
+    //                   ),
+    //                 ),
+    //                 Expanded(
+    //                   // flex: portrait == true ? 1 : 2,
+
+    //                   flex: 1,
+    //                   child: EmploymentDetailsButton(
+    //                     profileDetails: "Employment Details",
+    //                     // profileWidgetHandler: setProfileWidget,
+    //                   ),
+    //                 ),
+    //                 Expanded(
+    //                   // flex: portrait == true ? 1 : 2,
+    //                   flex: 1,
+    //                   child: EducationDetailsButton(
+    //                     profileDetails: "Education Details",
+    //                     // profileWidgetHandler: setProfileWidget,
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //           Expanded(
+    //             flex: 10,
+    //             child: Padding(
+    //               padding: const EdgeInsets.all(32.0),
+    //               child: Container(
+    //                 width: screenWidth,
+    //                 decoration: BoxDecoration(
+    //                   borderRadius: BorderRadius.circular(20),
+    //                   // gradient: LinearGradient(
+    //                   //   begin: Alignment.bottomLeft,
+    //                   //   end: Alignment.topRight,
+    //                   //   colors: [Colors.transparent, Colors.teal],
+    //                   // ),
+    //                   color: kPrimaryColor,
+    //                 ),
+    //                 // Rendering All widgets here
+    //                 child: Obx(() => profileWidgets[
+    //                     controller.widgetString.value.toString()]!),
+    //               ),
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 }
 
@@ -261,6 +278,3 @@ class EducationDetailsButton extends StatelessWidget {
     );
   }
 }
-
-
-

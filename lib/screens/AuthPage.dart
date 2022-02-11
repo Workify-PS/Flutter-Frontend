@@ -15,8 +15,8 @@ class _AuthPageState extends State<AuthPage> {
   FocusNode myFocusNode = FocusNode();
   FocusNode myFocusNode2 = FocusNode();
   final _passwordIsVisible = false.obs;
-  final _emailController = TextEditingController();
-  final _passController = TextEditingController();
+  final _emailController = TextEditingController(text: "rishabh");
+  final _passController = TextEditingController(text: "password");
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -219,7 +219,7 @@ class _AuthPageState extends State<AuthPage> {
                                         )),
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
-                                          vertical: 8.0, horizontal: 58),
+                                          vertical: 4.0, horizontal: 58),
                                       child: Wrap(
                                         crossAxisAlignment:
                                             WrapCrossAlignment.center,
@@ -256,7 +256,7 @@ class _AuthPageState extends State<AuthPage> {
                                           )),
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 8.0),
+                                            vertical: 4.0),
                                         child: Wrap(
                                           crossAxisAlignment:
                                               WrapCrossAlignment.center,

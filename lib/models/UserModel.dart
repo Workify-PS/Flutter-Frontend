@@ -1,4 +1,4 @@
-class User {
+class UserModel {
   String? username;
   String? password;
   bool? isActive;
@@ -25,7 +25,7 @@ class User {
   int? createdBy;
   int? modifiedBy;
 
-  User(
+  UserModel(
       {this.username,
       this.password,
       this.isActive,
@@ -51,7 +51,7 @@ class User {
       this.createdBy,
       this.modifiedBy});
 
-  User.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson(Map<String, dynamic> json) {
     username = json['username'];
     password = json['password'];
     isActive = json['isActive'];

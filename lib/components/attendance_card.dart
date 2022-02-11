@@ -9,6 +9,7 @@ import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/theme.dart';
 
+
 class AttendanceCard extends StatefulWidget {
   const AttendanceCard({Key? key}) : super(key: key);
   @override
@@ -151,7 +152,7 @@ class _AttendanceCardState extends State<AttendanceCard> {
           height: 19,
         ),
         Spacer(),
-        Button(buttontext: 'ATTENDANCE STATUS'),
+        Button(buttonTextWidget : Text('ATTENDANCE STATUS')),
         SizedBox(
           height: kDefaultPadding,
         ),

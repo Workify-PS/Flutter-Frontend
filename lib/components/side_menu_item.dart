@@ -32,8 +32,11 @@ class _SideMenuItemState extends State<SideMenuItem> {
     Color dividerColor =
         !(MyTheme().isDark(context)) ? kDividerColor : kDividerDarkColor;
 
-    Color hoverColor =
-        MyTheme().isDark(context) ? Colors.lightBlue :  kPrimaryColor;
+    Color hoverColor = widget.title.toLowerCase() == "report"
+        ? Colors.redAccent
+        : MyTheme().isDark(context)
+            ? Colors.lightBlue
+            : kPrimaryColor;
     return Padding(
       padding:
           const EdgeInsets.only(top: kDefaultPadding, bottom: kDefaultPadding),

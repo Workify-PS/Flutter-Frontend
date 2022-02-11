@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workify/utils/constants.dart';
+// import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
 
 class SettingsPage extends StatefulWidget {

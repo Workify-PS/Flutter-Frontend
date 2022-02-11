@@ -5,11 +5,14 @@ import 'package:workify/utils/constants.dart';
 
 class SideMenu extends StatelessWidget {
   SideMenu({Key? key}) : super(key: key);
-  final titles = ["Home", "Attendance", "Profile", "Settings"];
+  final titles = ["Home", "Profile","Attendance","Leave", "Report", "Settings"];
   final icons = [
     Icons.home_outlined,
-    Icons.list_alt_outlined,
     Icons.person_outline_outlined,
+    Icons.list_alt_outlined,
+    Icons.time_to_leave_outlined,
+    Icons.flag_outlined,
+    
     Icons.settings_outlined
   ];
 
@@ -30,7 +33,7 @@ class SideMenu extends StatelessWidget {
                 child: Image.asset(
                   "assets/images/banner.png",
                   fit: BoxFit.contain,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
                 // child: FlutterLogo(
                 //   size: 64,

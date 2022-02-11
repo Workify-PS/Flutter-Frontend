@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
-import 'package:workify/models/dailyattendance.dart';
+import 'package:workify/models/DailyAttendanceModel.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/theme.dart';
@@ -24,7 +24,7 @@ class _AttendanceCardState extends State<AttendanceCard> {
   //   });
   // }
   bool _isdiabled = true;
-  final daily = DailyAttendance().obs;
+  final daily = DailyAttendanceModel().obs;
 
   void newintime() {
     daily.update((daily) {

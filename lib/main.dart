@@ -11,7 +11,6 @@ import 'package:workify/screens/SettingsPage.dart';
 
 import 'package:workify/utils/theme.dart';
 
-// import 'package:workify/components/profile_completion_card.dart';
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
@@ -26,6 +25,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

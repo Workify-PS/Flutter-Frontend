@@ -1,123 +1,128 @@
-// To parse required this JSON data, do
+// To parse this JSON data, do
 //
 //     final welcome = welcomeFromJson(jsonString);
 
-import 'dart:convert';
 
 
-ProfileModel userProfileDataFromJson(Map<String, dynamic> json) => 
-    ProfileModel.fromJson(json);
+// ProfileModel userProfileDataFromJson(Map<String, dynamic> json) => 
+//     ProfileModel.fromJson(json);
 
-String userProfileDataToJson(ProfileModel data) => json.encode(data.toJson());
+// String userProfileDataToJson(ProfileModel data) => json.encode(data.toJson());
 
 class ProfileModel {
-  ProfileModel({
-    required this.userId,
-    required this.username,
-    required this.password,
-    required this.officialMail,
-    required this.mobile,
-    required this.dob,
-    required this.doj,
-    required this.firstName,
-    required this.lastName,
-    required this.fullName,
-    required this.middleName,
-    required this.country,
-    required this.state,
-    required this.city,
-    required this.workLocation,
-    required this.role,
-    required this.department,
-    required this.orgId,
-    required this.empCode,
-    required this.creationDate,
-    required this.modifiedDate,
-    required this.createdBy,
-    required this.modifiedBy,
-    required this.active,
-    required this.accountLocked,
-  });
-
-  int userId;
-  String username;
-  String password;
-  String officialMail;
-  String mobile;
+  int? userId;
+  String? username;
+  String? password;
+  String? officialMail;
+  String? mobile;
   dynamic dob;
   dynamic doj;
-  String firstName;
-  String lastName;
-  String fullName;
-  String middleName;
-  String country;
-  String state;
-  String city;
-  String workLocation;
-  String role;
-  String department;
-  int orgId;
-  String empCode;
+  String? firstName;
+  String? lastName;
+  String? fullName;
+  String? middleName;
+  String? country;
+  String? state;
+  String? city;
+  String? workLocation;
+  String? role;
+  String? department;
+  int? orgId;
+  String? empCode;
   dynamic creationDate;
   dynamic modifiedDate;
-  int createdBy;
-  int modifiedBy;
-  bool active;
-  bool accountLocked;
+  int? createdBy;
+  int? modifiedBy;
+  bool? active;
+  bool? accountLocked;
 
-  factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
-        userId: json["userId"],
-        username: json["username"],
-        password: json["password"],
-        officialMail: json["officialMail"],
-        mobile: json["mobile"],
-        dob: json["dob"],
-        doj: json["doj"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        fullName: json["fullName"],
-        middleName: json["middleName"],
-        country: json["country"],
-        state: json["state"],
-        city: json["city"],
-        workLocation: json["workLocation"],
-        role: json["role"],
-        department: json["department"],
-        orgId: json["orgId"],
-        empCode: json["empCode"],
-        creationDate: json["creationDate"],
-        modifiedDate: json["modifiedDate"],
-        createdBy: json["createdBy"],
-        modifiedBy: json["modifiedBy"],
-        active: json["active"],
-        accountLocked: json["accountLocked"],
-      );
 
-  Map<String, dynamic> toJson() => {
-        "userId": userId,
-        "username": username,
-        "password": password,
-        "officialMail": officialMail,
-        "mobile": mobile,
-        "dob": dob,
-        "doj": doj,
-        "firstName": firstName,
-        "lastName": lastName,
-        "fullName": fullName,
-        "middleName": middleName,
-        "country": country,
-        "state": state,
-        "city": city,
-        "workLocation": workLocation,
-        "role": role,
-        "department": department,
-        "orgId": orgId,
-        "empCode": empCode,
-        "creationDate": creationDate,
-        "modifiedDate": modifiedDate,
-        "createdBy": createdBy,
-        "modifiedBy": modifiedBy,
-        "active": active,
-        "accountLocked": accountLocked,
-      };
+  ProfileModel({
+    this.userId,
+    this.username,
+    this.password,
+    this.officialMail,
+    this.mobile,
+    this.dob,
+    this.doj,
+    this.firstName,
+    this.lastName,
+    this.fullName,
+    this.middleName,
+    this.country,
+    this.state,
+    this.city,
+    this.workLocation,
+    this.role,
+    this.department,
+    this.orgId,
+    this.empCode,
+    this.creationDate,
+    this.modifiedDate,
+    this.createdBy,
+    this.modifiedBy,
+    this.active,
+    this.accountLocked,
+  });
+
+  
+
+  ProfileModel.fromJson(Map<String, dynamic> json){
+    userId = json["userId"];
+    username =json["username"];
+    password =  json["password"];
+    officialMail =  json["officialMail"];
+    mobile =  json["mobile"];
+    dob =  json["dob"];
+    doj =  json["doj"];
+    firstName =  json["firstName"];
+    lastName =  json["lastName"];
+    fullName =  json["fullName"];
+    middleName =  json["middleName"];
+    country =  json["country"];
+    state =  json["state"];
+    city =  json["city"];
+    workLocation =  json["workLocation"];
+    role =  json["role"];
+    department =  json["department"];
+    orgId =  json["orgId"];
+    empCode =  json["empCode"];
+    creationDate =  json["creationDate"];
+    modifiedDate =  json["modifiedDate"];
+    createdBy =  json["createdBy"];
+    modifiedBy =  json["modifiedBy"];
+    active =  json["active"];
+    accountLocked =  json["accountLocked"];
+  }
+  
+
+Map<String, dynamic> toJson() {
+  final Map<String,dynamic> profileModelData = <String,dynamic>{};
+    profileModelData["userId"]= userId;
+    profileModelData["username"]= username;
+    profileModelData["password"]= password;
+    profileModelData["officialMail"]= officialMail;
+    profileModelData["mobile"]= mobile;
+    profileModelData["dob"]= dob;
+    profileModelData["doj"]= doj;
+    profileModelData["firstName"]= firstName;
+    profileModelData["lastName"]= lastName;
+    profileModelData["middleName"]= firstName;
+    profileModelData["fullName"]= fullName;
+    profileModelData["country"]= country;
+    profileModelData["state"]= state;
+    profileModelData["city"]= city;
+    profileModelData["workLocation"]= workLocation;
+    profileModelData["role"]= role;
+    profileModelData["department"]= department;
+    profileModelData["orgId"]= orgId;
+    profileModelData["empCode"]= empCode;
+    profileModelData["creationDate"]= creationDate;
+    profileModelData["modifiedDate"]= modifiedDate;
+    profileModelData["createdBy"]= createdBy;
+    profileModelData["modifiedBy"]= modifiedBy;
+    profileModelData["active"]= active;
+    profileModelData["accountLocked"]= accountLocked;
+    return profileModelData;
+  }
 }

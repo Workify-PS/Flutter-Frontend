@@ -1,58 +1,75 @@
-import 'dart:convert';
+// import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:workify/models/ProfileModel.dart';
 
 class ProfileApiService {
-  static Future<ProfileModel> profileDetails() async {
-    String url = 'http://localhost:8080/profile';
-    var headers = {
-      'Authorization':
-          'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBamF5IiwiaXNBZG1pbiI6dHJ1ZSwiZXhwIjoxNjQ0NTk4NTEwLCJpYXQiOjE2NDQ1ODA1MTB9.zZgG0oiz12TI4KPxDPsv42IvMK7uQwG-TCjz5LXlsCNuybmAvuQhXyQfQa2VQFangkHp9StUuGdtu141W-M8XA',
-      'Content-Type': 'application/json'
-    };
-    late ProfileModel profileData;
+  static void callAuthenticateApi() async {
+    String authenticateUrl = 'http://localhost:8080/authenticate';
     final Dio dio = Dio();
     try {
+      var headers = {'Content-Type': 'application/json'};
       dio.options.headers = headers;
-
-      var response = await dio.post(url);
-
-      var data = userProfileDataFromJson(response.data);
-      // profileData = response.data;
-      // print('\nStatus Code : ' + response.statusCode.toString());
-      profileData = data;
-      print('\n\n In Profile Api Service File :: Block 1 ');
-      print('-----------------------------');
-      print(data.runtimeType);
-      print(profileData.runtimeType);
-      print('\n\nProfile Details ->\n' + profileData.username);
-      print(profileData.city);
-      print(profileData.state);
-      print(profileData.country);
-      // print('\nProfile Details ::\n' + profileData['username']);
-      // print(profileData['city']);
-      // print(profileData['state']);
-      // print(profileData['country']);
-      print('-----------------------------');
-      print('\n');
+      var userCredentials = {'username': 'kingOfMirzapur', 'password': '#1234'};
+      var response = await dio.post(authenticateUrl, data: userCredentials);
 
       if (response.statusCode == 200) {
-        print('In Profile Api Service File :: Block 2 : Status Code 200 Message');
-        print('-----------------------------');
-        print('Everything OK !!');
-        print('-----------------------------');
+        print(response.data);
       } else {
-        print(response.statusCode);
+        print(
+            '\n--In Profile Api Service File :: callAuthenticateApi(){} : Block 1\n');
+        print('Status Code :\n' + response.statusCode.toString());
+        print('------------- End Block 1 ----------------');
       }
     } on DioError catch (error) {
-      print("\n In Profile Api Service File :: Block 3 : DioError Catch Block");
-      print('-----------------------------');
+      print(
+          '\n-- In Profile Api Service File :: callAuthenticateApi(){} : Block 2\n');
       print(error.message);
-      print('-----------------------------');
-      print('\n');
+      print('------------- End Block 2 ----------------\n');
     }
+  }
 
-    return profileData;
+  static Future<Map<String, dynamic>> callProfileApi() async {
+    String profileUrl = 'http://localhost:8080/profile';
+    // ignore: prefer_typing_uninitialized_variables
+    var responseData;
+    try {
+      var headers = {
+        'Authorization':
+            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJraW5nT2ZNaXJ6YXB1ciIsImlzQWRtaW4iOnRydWUsImV4cCI6MTY0NDY4NzgwMSwiaWF0IjoxNjQ0NjY5ODAxfQ.BRltAyc2Sdq8b_ugGPeiqLrbk6nwAjaWCml_QOYvEWMyCd65S15pr4Y0NA1PY4lSwpKecYQWPEAx1WbKvY3dEQ',
+        'Content-Type': 'application/json'
+      };
+      final Dio dio = Dio();
+      dio.options.headers = headers;
+      var response = await dio.post(
+        profileUrl,
+      );
+      if (response.statusCode == 200) {
+        responseData = response.data;
+      } else {
+        print(
+            '\n--In Profile Api Service File :: callProfileApi(){} : Block 1\n');
+        print('Status Code :\n' + response.statusCode.toString());
+        print('------------- End Block 1 ----------------');
+      }
+    } on DioError catch (error) {
+      print(
+          '\n-- In Profile Api Service File :: callProfileApi(){} : Block 2\n');
+      print(error.message);
+      print('------------- End Block 2 ----------------\n');
+    }
+    return responseData;
+  }
+
+  static Future<ProfileModel> fetchProfileDetails() async {
+    // callAuthenticateApi(); //token Generated at 16:34 till 21:34
+    Map<String, dynamic> profileApiResponse = await callProfileApi();
+    var data = ProfileModel.fromJson(profileApiResponse);
+    
+    print(
+        '\n-- In Profile Api Service File :: fetchProfileDetails(){} : Block 1\n');
+    print('Profile Api Response :\n'+profileApiResponse.toString());
+    print('------------- End Block 1 ----------------\n');
+    return data;
   }
 }

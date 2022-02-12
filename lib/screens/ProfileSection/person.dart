@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:workify/utils/sizes.dart';
+import 'ProfileSectionControllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
+
+final profileDetailsController = Get.put(ProfileDetailsController());
 
 class Person extends StatelessWidget {
   const Person({Key? key}) : super(key: key);
@@ -36,10 +40,8 @@ class Person extends StatelessWidget {
         ),
       ),
     );
-        
   }
 }
-
 
 class Avatar extends StatelessWidget {
   const Avatar({Key? key}) : super(key: key);
@@ -68,13 +70,20 @@ class Name extends StatelessWidget {
   const Name({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Name',
-      style: TextStyle(
-        // fontSize: screenWidth * 0.017,
-        fontWeight: FontWeight.bold,
-        color: kSecondaryColor,
-      ),
-    );
+    return Obx(() {
+      if (profileDetailsController.isLoading.value) {
+        return Text('Loading');
+      } else {
+        return Text(
+          // 'Avatar Name',
+          profileDetailsController.profileModelDetails?.fullName ?? 'Got Null',
+          style: TextStyle(
+            // fontSize: screenWidth * 0.017,
+            fontWeight: FontWeight.bold,
+            color: kSecondaryColor,
+          ),
+        );
+      }
+    });
   }
 }

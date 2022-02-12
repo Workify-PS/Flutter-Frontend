@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/controllers/user_controller.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -15,9 +17,10 @@ class _AuthPageState extends State<AuthPage> {
   FocusNode myFocusNode = FocusNode();
   FocusNode myFocusNode2 = FocusNode();
   final _passwordIsVisible = false.obs;
-  final _emailController = TextEditingController(text: "rishabh");
+  final _usernameController = TextEditingController(text: "samarth");
   final _passController = TextEditingController(text: "password");
   final _formKey = GlobalKey<FormState>();
+  final AuthController _authController = Get.find();
   @override
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();
@@ -57,7 +60,7 @@ class _AuthPageState extends State<AuthPage> {
                         flex: 10,
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Theme.of(context).scaffoldBackgroundColor,
                               borderRadius: BorderRadius.circular(10)),
                           child: ListView(
                             controller: ScrollController(),
@@ -108,7 +111,7 @@ class _AuthPageState extends State<AuthPage> {
                                       child: TextFormField(
                                         focusNode: myFocusNode,
                                         cursorColor: kBottomShadowColor,
-                                        controller: _emailController,
+                                        controller: _usernameController,
                                         validator: (userID) =>
                                             userID!.isNotEmpty
                                                 ? null
@@ -288,6 +291,9 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   Future<void> loginAction() async {
-    if (_formKey.currentState!.validate()) {}
+    if (_formKey.currentState?.validate() ?? false) {
+     await _authController.loginUser(_usernameController.text, _passController.text);
+     
+    }
   }
 }

@@ -1,18 +1,23 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/screens/AuthPage.dart';
 import 'package:workify/screens/ChangePass.dart';
 import 'package:workify/screens/ForgotPass.dart';
 import 'package:workify/screens/HomePage.dart';
 import 'package:workify/screens/ProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SettingsPage.dart';
+import 'package:workify/screens/SplashScreen/SplashScreen.dart';
 import 'package:workify/utils/theme.dart';
-
-// import 'package:workify/components/profile_completion_card.dart';
+import 'package:http/http.dart' as http;
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
+  await GetStorage.init();
   runApp(MyApp());
 }
 
@@ -28,15 +33,16 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/auth",
+      initialRoute: "/",
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,
+      initialBinding: BindingsBuilder(() => {Get.put(AuthController())}),
       getPages: [
-        // GetPage(
-        //     name: "/",
-        //     page: () =>
-        //         false ? HomePage() : AuthPage()), //check for already signed in
+        GetPage(
+          name: "/",
+          page: () => SplashScreen(),
+        ), //check for already signed in
         GetPage(
           name: "/auth",
           page: () => AuthPage(),

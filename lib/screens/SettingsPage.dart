@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/controllers/AuthController.dart';
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
 
@@ -11,10 +12,11 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  AuthController _authController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(
+      appBar: AppBar(
         title: const Text('Settings'),
       ),
       body: Center(
@@ -26,12 +28,10 @@ class _SettingsPageState extends State<SettingsPage> {
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () {
-              final themeTobeChanged =
-                  MyTheme().isDark(context) ? ThemeMode.light : ThemeMode.dark;
-              Get.changeThemeMode(themeTobeChanged);
+              _authController.logOut();
             },
             child: Icon(
-              Icons.switch_camera_outlined,
+              Icons.exit_to_app,
               //color: Colors.black,
             ),
           ),

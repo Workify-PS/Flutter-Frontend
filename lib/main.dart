@@ -50,7 +50,10 @@ class _MyAppState extends State<MyApp> {
           page: () => AuthPage(),
         ),
 
-        GetPage(name: "/home", page: () => HomePage()),
+        GetPage(
+          name: "/home", 
+          page: () => HomePage()
+        ),
         GetPage(
           name: '/profile',
           page: () => ProfilePage(),

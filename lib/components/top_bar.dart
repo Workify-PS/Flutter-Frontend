@@ -20,9 +20,9 @@ class TopBar extends StatefulWidget {
 
 class _TopBarState extends State<TopBar> {
   final user = Get.find<UserController>().currentUser.value;
-  
+  late String fname;
   String greeting() {
-    final  fname = user?.firstName??"Buddy";
+     fname = user?.firstName ?? "Buddy";
     var hour = DateTime.now().hour;
     if (hour < 12) return 'Good Morning, $fname';
     if (hour < 17) return 'Good Afternoon $fname';
@@ -97,7 +97,7 @@ class _TopBarState extends State<TopBar> {
             SizedBox(width: kDefaultPadding),
             CircleAvatar(
               backgroundColor: kBadgeColor,
-              child: Text("P"),
+              child: Text(fname[0]),
             ),
           ],
         ),

@@ -7,11 +7,7 @@ import 'package:workify/models/ProfileModel.dart';
 
 class ProfileDetailsController extends GetxController {
   var isLoading = true.obs;
-  var _data;
-  // var profileModelDetails = ProfileModel().obs;
   ProfileModel? profileModelDetails;
-  // Map<String, dynamic> profileModelDetailsJson =
-  //     {'name': 'My name is Amar'}.obs;
   @override
   void onInit() {
     super.onInit();
@@ -21,7 +17,6 @@ class ProfileDetailsController extends GetxController {
   void callfetchProfileDetails() async {
     try {
       isLoading(true);
-      // await ProfileApiService.fetchProfileDetails();
       try {
         profileModelDetails = await ProfileApiService.fetchProfileDetails();
       } catch (error) {

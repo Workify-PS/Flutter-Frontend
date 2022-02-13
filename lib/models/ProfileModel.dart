@@ -1,14 +1,3 @@
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromJson(jsonString);
-
-
-
-// ProfileModel userProfileDataFromJson(Map<String, dynamic> json) => 
-//     ProfileModel.fromJson(json);
-
-// String userProfileDataToJson(ProfileModel data) => json.encode(data.toJson());
-
 class ProfileModel {
   int? userId;
   String? username;

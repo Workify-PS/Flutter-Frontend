@@ -42,178 +42,191 @@ class BasicDetails extends StatelessWidget {
                     child: Person(),
                   ),
                   Expanded(
-          flex: 6,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8,
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 5,
-                  // child: Container(
-                  //   width: 500,
-                  //   height: double.infinity,
-                  //   color: Colors.red,
-                  // ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Email',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
+                    flex: 6,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
                       ),
-                      Text(
-                        'Mobile Number',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 5,
+                            // child: Container(
+                            //   width: 500,
+                            //   height: double.infinity,
+                            //   color: Colors.red,
+                            // ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Personal Email',
+                                  style: TextStyle(
+                                    color: kSecondaryColor,
+                                  ),
+                                ),
+                                Text(
+                                  'Mobile Number',
+                                  style: TextStyle(
+                                    color: kSecondaryColor,
+                                  ),
+                                ),
+                                Text(
+                                  'Date of Birth',
+                                  style: TextStyle(
+                                    color: kSecondaryColor,
+                                  ),
+                                ),
+                                Text(
+                                  'City',
+                                  style: TextStyle(
+                                    color: kSecondaryColor,
+                                  ),
+                                ),
+                                Text(
+                                  'State',
+                                  style: TextStyle(
+                                    color: kSecondaryColor,
+                                  ),
+                                ),
+                                Text(
+                                  'Country',
+                                  style: TextStyle(
+                                    color: kSecondaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                              width: 20,
+                              height: double.infinity,
+                              color: Colors.transparent),
+                          Expanded(
+                            flex: 5,
+                            // child: Container(
+                            //   width: 500,
+                            //   height: double.infinity,
+                            //   color: Colors.amber,
+                            // ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Obx(() {
+                                  if (profileDetailsController
+                                          .isLoading.value ==
+                                      false) {
+                                    //change it to true when defined.
+                                    return Text(
+                                      'Personal Email Not Found !!',
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    );
+                                  } else {
+                                    return Text(
+                                      // 'HI',
+                                      profileDetailsController
+                                              .profileModelDetails
+                                              ?.officialMail ??
+                                          'Email Null',
+                                      style: TextStyle(
+                                        color: kSecondaryColor,
+                                      ),
+                                    );
+                                  }
+                                }),
+                                Obx(() {
+                                  if (profileDetailsController
+                                      .isLoading.value) {
+                                    return Text('Mobile Number Loading');
+                                  } else {
+                                    return Text(
+                                      // 'HI',
+                                      profileDetailsController
+                                              .profileModelDetails?.mobile ??
+                                          'Mobile Number Null',
+                                      style: TextStyle(
+                                        color: kSecondaryColor,
+                                      ),
+                                    );
+                                  }
+                                }),
+                                Obx(() {
+                                  if (profileDetailsController
+                                      .isLoading.value) {
+                                    return Text('Date of Birth Loading');
+                                  } else {
+                                    return Text(
+                                      // 'HI',
+                                      profileDetailsController
+                                              .profileModelDetails?.dob
+                                              .toString() ??
+                                          'Date of Birth Null',
+                                      style: TextStyle(
+                                        color: kSecondaryColor,
+                                      ),
+                                    );
+                                  }
+                                }),
+                                Obx(() {
+                                  if (profileDetailsController
+                                      .isLoading.value) {
+                                    return Text('City Loading');
+                                  } else {
+                                    return Text(
+                                      // 'HI',
+                                      profileDetailsController
+                                              .profileModelDetails?.city ??
+                                          'City Null',
+                                      style: TextStyle(
+                                        color: kSecondaryColor,
+                                      ),
+                                    );
+                                  }
+                                }),
+                                Obx(() {
+                                  if (profileDetailsController
+                                      .isLoading.value) {
+                                    return Text('State Loading');
+                                  } else {
+                                    return Text(
+                                      // 'HI',
+                                      profileDetailsController
+                                              .profileModelDetails?.state ??
+                                          'State Null',
+                                      style: TextStyle(
+                                        color: kSecondaryColor,
+                                      ),
+                                    );
+                                  }
+                                }),
+                                Obx(() {
+                                  if (profileDetailsController
+                                      .isLoading.value) {
+                                    return Text('Country Loading');
+                                  } else {
+                                    return Text(
+                                      // 'HI',
+                                      profileDetailsController
+                                              .profileModelDetails?.country ??
+                                          'Country Null',
+                                      style: TextStyle(
+                                        color: kSecondaryColor,
+                                      ),
+                                    );
+                                  }
+                                }),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Date of Birth',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
-                      ),
-                      Text(
-                        'City',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
-                      ),
-                      Text(
-                        'State',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
-                      ),
-                      Text(
-                        'Country',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-                Container(
-                  width: 20,
-                  height: double.infinity,
-                  color: Colors.transparent
-                ),
-                Expanded(
-                  flex: 5,
-                  // child: Container(
-                  //   width: 500,
-                  //   height: double.infinity,
-                  //   color: Colors.amber,
-                  // ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('Email Loading');
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.officialMail ??
-                                'Email Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('Mobile Number Loading');
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.mobile ??
-                                'Mobile Number Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('Date of Birth Loading');
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.dob ??
-                                'Date of Birth Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('City Loading');
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.city??
-                                'City Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('State Loading');
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.state ??
-                                'State Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('Country Loading');
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.country ??
-                                'Country Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),  
-
-
                 ],
               ),
             ),
@@ -252,7 +265,7 @@ class BasicDetailsPortraitView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Email',
+                        'Personal Email',
                         style: TextStyle(
                           color: kSecondaryColor,
                         ),
@@ -307,14 +320,21 @@ class BasicDetailsPortraitView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('Email Loading');
+                        if (profileDetailsController.isLoading.value == false) {
+                          //change it to true when defined.
+                          return Text(
+                            'Personal Email Not Found !!',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
                         } else {
                           return Text(
                             // 'HI',
                             profileDetailsController
                                     .profileModelDetails?.officialMail ??
-                                'Email Null',
+                                'Personal Email Null',
                             style: TextStyle(
                               color: kSecondaryColor,
                             ),
@@ -342,8 +362,8 @@ class BasicDetailsPortraitView extends StatelessWidget {
                         } else {
                           return Text(
                             // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.dob ??
+                            profileDetailsController.profileModelDetails?.dob
+                                    .toString() ??
                                 'Date of Birth Null',
                             style: TextStyle(
                               color: kSecondaryColor,
@@ -358,7 +378,7 @@ class BasicDetailsPortraitView extends StatelessWidget {
                           return Text(
                             // 'HI',
                             profileDetailsController
-                                    .profileModelDetails?.city??
+                                    .profileModelDetails?.city ??
                                 'City Null',
                             style: TextStyle(
                               color: kSecondaryColor,
@@ -407,6 +427,11 @@ class BasicDetailsPortraitView extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
 
 class Email extends StatelessWidget {
   const Email({Key? key}) : super(key: key);
@@ -519,8 +544,9 @@ class DoB extends StatelessWidget {
                 return Text('Loading');
               } else {
                 return Text(
-                  profileDetailsController.profileModelDetails?.dob ??
-                      'Got Null',
+                  profileDetailsController.profileModelDetails?.dob
+                          .toString() ??
+                      'Date of Birth Null',
                   style: TextStyle(
                     color: kSecondaryColor,
                   ),

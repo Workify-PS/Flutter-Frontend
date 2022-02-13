@@ -148,9 +148,9 @@ class _AttendanceCardState extends State<AttendanceCard> {
         SizedBox(
           height: kDefaultPadding,
         ),
-        SizedBox(
-          height: 19,
-        ),
+        // SizedBox(
+        //   height: 19,
+        // ),
         Spacer(),
         Button(buttonTextWidget : Text('ATTENDANCE STATUS')),
         SizedBox(

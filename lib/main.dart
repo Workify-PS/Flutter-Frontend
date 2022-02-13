@@ -5,6 +5,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/AuthPage.dart';
 import 'package:workify/screens/ChangePass.dart';
 import 'package:workify/screens/ForgotPass.dart';
@@ -37,7 +38,8 @@ class _MyAppState extends State<MyApp> {
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,
-      initialBinding: BindingsBuilder(() => {Get.put(AuthController())}),
+      initialBinding: BindingsBuilder(
+          () => {Get.put(AuthController()), Get.put(UserController())}),
       getPages: [
         GetPage(
           name: "/",
@@ -48,9 +50,7 @@ class _MyAppState extends State<MyApp> {
           page: () => AuthPage(),
         ),
 
-        GetPage(name: "/home", page: () => HomePage()
-            // false ? HomePage() : AuthPage() //check for already signed in
-            ),
+        GetPage(name: "/home", page: () => HomePage()),
         GetPage(
           name: '/profile',
           page: () => ProfilePage(),

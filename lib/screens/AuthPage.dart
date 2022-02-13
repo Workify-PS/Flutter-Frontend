@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workify/controllers/AuthController.dart';
-import 'package:workify/controllers/user_controller.dart';
+import 'package:workify/controllers/UserController.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -292,8 +292,9 @@ class _AuthPageState extends State<AuthPage> {
 
   Future<void> loginAction() async {
     if (_formKey.currentState?.validate() ?? false) {
-     await _authController.loginUser(_usernameController.text, _passController.text);
-     
+      await _authController.loginUser(
+          _usernameController.text, _passController.text);
+      Get.toNamed("/home");
     }
   }
 }

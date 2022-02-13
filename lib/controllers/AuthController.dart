@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/user_controller.dart';
+import 'package:workify/controllers/UserController.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/models/UserModel.dart';
 import 'package:workify/services/auth_service.dart';
 
 class AuthController extends GetxController with CacheManager {
-  final AuthService _authService = Get.put(AuthService());
+  
   final isSignedIn = false.obs;
+
   Future<void> loginUser(String username, String password) async {
+    final AuthService _authService = AuthService();
     final token = await _authService.loginService(username, password);
-    
+
     if (token != null) {
-      loginWithToken(token);
-      final userController = Get.put(UserController());
-      userController.getUser(token);
+      print("TOKEN: $token");
+      isSignedIn.value = true;
+      await saveToken(token);
+      final UserController _userController = Get.find<UserController>();
+     await _userController.setUser(token);
     } else {
       Get.defaultDialog(
           middleText: 'Failed to Authenticate',
@@ -27,6 +31,7 @@ class AuthController extends GetxController with CacheManager {
   }
 
   Future<void> registerUser(UserModel user) async {
+    final AuthService _authService = AuthService();
     final response = await _authService.registerService(user);
 
     if (response != null) {
@@ -41,15 +46,12 @@ class AuthController extends GetxController with CacheManager {
     }
   }
 
-  void logOut() {
+  Future<void> logOut() async {
     isSignedIn.value = false;
-    removeToken();
-  }
-
-  void loginWithToken(String? token) async {
-    isSignedIn.value = true;
-
-    await saveToken(token);
+    final UserController _userController = Get.find<UserController>();
+    //_userController.currentUser.close();
+    
+    await removeToken();
   }
 
   void checkLoginStatus() {

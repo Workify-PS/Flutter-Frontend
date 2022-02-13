@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/controllers/UserController.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
@@ -18,11 +19,14 @@ class TopBar extends StatefulWidget {
 }
 
 class _TopBarState extends State<TopBar> {
+  final user = Get.find<UserController>().currentUser.value;
+  
   String greeting() {
+    final  fname = user?.firstName??"Buddy";
     var hour = DateTime.now().hour;
-    if (hour < 12) return 'Good Morning, Buddy';
-    if (hour < 17) return 'Good Afternoon Buddy';
-    return 'Good Evening Buddy';
+    if (hour < 12) return 'Good Morning, $fname';
+    if (hour < 17) return 'Good Afternoon $fname';
+    return 'Good Evening $fname';
   }
 
   @override

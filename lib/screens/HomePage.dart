@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workify/components/side_menu.dart';
-import 'package:workify/controllers/user_controller.dart';
+import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/DashBoard.dart';
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';

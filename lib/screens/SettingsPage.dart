@@ -27,8 +27,9 @@ class _SettingsPageState extends State<SettingsPage> {
             splashColor: Colors.transparent,
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
-            onTap: () {
-              _authController.logOut();
+            onTap: ()async {
+              await _authController.logOut();
+              Get.toNamed("/auth");
             },
             child: Icon(
               Icons.exit_to_app,

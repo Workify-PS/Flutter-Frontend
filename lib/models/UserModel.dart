@@ -1,6 +1,5 @@
-class User {
+class UserModel {
   String? username;
-  String? password;
   bool? isActive;
   String? employee_id;
   String? officialMail;
@@ -25,9 +24,8 @@ class User {
   int? createdBy;
   int? modifiedBy;
 
-  User(
+  UserModel(
       {this.username,
-      this.password,
       this.isActive,
       this.officialMail,
       this.mobile,
@@ -51,9 +49,8 @@ class User {
       this.createdBy,
       this.modifiedBy});
 
-  User.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson(Map<String, dynamic> json) {
     username = json['username'];
-    password = json['password'];
     isActive = json['isActive'];
     officialMail = json['officialMail'];
     mobile = json['mobile'];
@@ -79,9 +76,8 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['username'] = username;
-    data['password'] = password;
     data['isActive'] = isActive;
     data['officialMail'] = officialMail;
     data['mobile'] = mobile;

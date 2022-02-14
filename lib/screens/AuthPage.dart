@@ -292,8 +292,8 @@ class _AuthPageState extends State<AuthPage> {
 
   Future<void> loginAction() async {
     if (_formKey.currentState?.validate() ?? false) {
-      await _authController.loginUser(
-          _usernameController.text, _passController.text);
+      await _authController.loginUser(username: _usernameController.text,password: _passController.text);
+
       Get.toNamed("/home");
     }
   }

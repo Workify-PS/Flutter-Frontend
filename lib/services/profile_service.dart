@@ -3,8 +3,7 @@ import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/models/ProfileModel.dart';
 
-class ProfileApiService {
-  // static String? authenticateToken;
+class ProfileService {
 
   static void callAuthenticateApi() async {
     String authenticateUrl = 'http://localhost:8080/authenticate';
@@ -13,7 +12,7 @@ class ProfileApiService {
       var headers = {'Content-Type': 'application/json'};
       dio.options.headers = headers;
       var userCredentials = {"username": "kingOfMirzapur", "password": "#1234"};
-      var response = await dio.post(authenticateUrl, data: userCredentials);
+      var response = await dio.post(authenticateUrl,data: userCredentials);
 
       if (response.statusCode == 200) {
         print(
@@ -42,6 +41,7 @@ class ProfileApiService {
     try {
       final _authController = Get.find<AuthController>();
       final token = _authController.getToken();
+
       var headers = {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ class ProfileApiService {
         responseData = response.data;
         print(
             '\n--In Profile Api Service File :: callProfileApi(){} : Block 1\n');
-        print('Everything OK !! \n' + response.data.toString());
+        print('Everything OK !!');
         print('------------- End Block 1 ----------------');
       } else {
         print(

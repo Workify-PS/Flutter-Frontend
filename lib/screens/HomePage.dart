@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workify/components/side_menu.dart';
+import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/DashBoard.dart';
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
@@ -14,7 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   RxBool isCollapsed = true.obs;
-
+  
   @override
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();

@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/models/ProfileModel.dart';
 
 class ProfileApiService {
@@ -38,9 +40,10 @@ class ProfileApiService {
     // ignore: prefer_typing_uninitialized_variables
     var responseData;
     try {
+      final _authController = Get.find<AuthController>();
+      final token = _authController.getToken();
       var headers = {
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJraW5nT2ZNaXJ6YXB1ciIsImlzQWRtaW4iOnRydWUsImV4cCI6MTY0NDc4NTkxMCwiaWF0IjoxNjQ0NzY3OTEwfQ.pbQae8dQRgeWYhYqFFwYkwTg8fz7glRRwcJKVQbxSb68Iw-kdUHXFAqjyUVjyf79eTYUTyIRCRVOBpdumhG3lw',
+        'Authorization': 'Bearer $token',
         'Content-Type': 'application/json'
       };
       final Dio dio = Dio();

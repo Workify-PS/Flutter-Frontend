@@ -55,11 +55,7 @@ class ProfileCompletionCard extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        Button(buttonTextWidget: Text(
-          'Complete Now'.toUpperCase(),
-          ),
-        ),
-        // Button(buttontext: "Complete Now".toUpperCase(),isActive: true),
+        Button(buttonTextWidget: Text("Complete Now".toUpperCase())),
         // InkWell(
         //   onTap: () {
         //     Get.to(ChangeProfilePage());

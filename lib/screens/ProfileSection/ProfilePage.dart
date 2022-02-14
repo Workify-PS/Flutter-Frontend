@@ -1,12 +1,13 @@
-
-
 import 'package:flutter/material.dart';
-// import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:workify/screens/ProfileSection/ProfileSectionControllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';
 
-import 'ProfileSectionControllers/profile_widgets.dart';
+// import 'package:workify/screens/ProfileSection/profile_details.dart';
+
+import 'ProfileSectionControllers/profile_widgets_controller.dart';
+
 import 'basic_details.dart';
 import 'position_details.dart';
 import 'education_details.dart';
@@ -18,7 +19,8 @@ import 'employment_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
 
-final controller = Get.put(ProfileWidget());
+final profileWidgetsController = Get.put(ProfileWidgetsController());
+final profileDetailsController = Get.put(ProfileDetailsController());
 
 // ignore: must_be_immutable
 class ProfilePage extends StatelessWidget {
@@ -43,6 +45,20 @@ class ProfilePage extends StatelessWidget {
     screenHeight = device.size.height;
     // bool portrait = screenWidth < 1000;
 
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: Text(
+    //       'Testing Profile Page',
+    //       style: TextStyle(
+    //         // color: kSecondaryColor,
+    //         fontWeight: FontWeight.bold,
+    //       ),
+    //     ),
+    //   ),
+    //   body: Center(
+    //     child: ProfileDetails(),
+    //   ),
+    // );
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -140,8 +156,9 @@ class ProfilePage extends StatelessWidget {
                       color: kPrimaryColor,
                     ),
                     // Rendering All widgets here
-                    child: Obx(() => profileWidgets[
-                        controller.widgetString.value.toString()]!),
+                    child: Obx(() => profileWidgets[profileWidgetsController
+                        .widgetString.value
+                        .toString()]!),
                   ),
                 ),
               ),
@@ -166,20 +183,20 @@ class Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var button = buttonIndex == 0
-        ? controller.basicButton
+        ? profileWidgetsController.basicButton
         : buttonIndex == 1
-            ? controller.positionButton
+            ? profileWidgetsController.positionButton
             : buttonIndex == 2
-                ? controller.employmentButton
-                : controller.educationButton;
+                ? profileWidgetsController.employmentButton
+                : profileWidgetsController.educationButton;
 
     return Obx(() => ElevatedButton(
           onPressed: () {
             // step to call such a method
             // profileWidgetHandler(profileDetails);
-            controller.resetButtons();
-            controller.updateWidgetString(profileDetails);
-            controller.setButton(str: profileDetails);
+            profileWidgetsController.resetButtons();
+            profileWidgetsController.updateWidgetString(profileDetails);
+            profileWidgetsController.setButton(str: profileDetails);
           },
           style: ElevatedButton.styleFrom(
             primary: button.value == true ? kPrimaryColor : kSecondaryColor,
@@ -261,6 +278,3 @@ class EducationDetailsButton extends StatelessWidget {
     );
   }
 }
-
-
-

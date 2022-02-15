@@ -7,6 +7,7 @@ class AuthService extends GetConnect {
   
   final String authUrl = "http://localhost:8080/authenticate";
   final String registerUrl = "http://localhost:8080/register";
+  
   Future<String?> loginService(String username, String pass) async {
     final response = await post(authUrl, {"username": username, "password": pass});
     

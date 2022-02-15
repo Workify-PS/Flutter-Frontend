@@ -295,6 +295,7 @@ class _AuthPageState extends State<AuthPage> {
       await _authController.loginUser(
           _usernameController.text, _passController.text);
       Get.toNamed("/home");
+      
     }
   }
 }

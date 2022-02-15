@@ -334,7 +334,7 @@ class FormattedMobileNumber extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: portrait == true ? const EdgeInsets.only(left: 8) : const EdgeInsets.only(left: 40),
+            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
             child: SizedBox(
               width: portrait == true ? 200 : 250,
               child: SingleChildScrollView(
@@ -373,7 +373,7 @@ class FormattedDoB extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: portrait == true ? const EdgeInsets.only(left: 8) : const EdgeInsets.only(left: 40),
+            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
             child: SizedBox(
               width: portrait == true ? 200 : 250,
               child: SingleChildScrollView(
@@ -406,7 +406,7 @@ class FormattedCity extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: portrait == true ? const EdgeInsets.only(left: 8) : const EdgeInsets.only(left: 40),
+            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
             child: SizedBox(
               width: portrait == true ? 200 : 250,
               child: SingleChildScrollView(
@@ -439,7 +439,7 @@ class FormattedState extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: portrait == true ? const EdgeInsets.only(left: 8) : const EdgeInsets.only(left: 40),
+            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
             child: SizedBox(
               width: portrait == true ? 200 : 250,
               child: SingleChildScrollView(
@@ -472,7 +472,7 @@ class FormattedCountry extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: portrait == true ? const EdgeInsets.only(left: 8) : const EdgeInsets.only(left: 40),
+            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
             child: SizedBox(
               width: portrait == true ? 200 : 250,
               child: SingleChildScrollView(

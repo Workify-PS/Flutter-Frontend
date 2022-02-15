@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:workify/screens/ProfileSection/ProfileSectionControllers/profile_details_controller.dart';
+import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';
 
 // import 'package:workify/screens/ProfileSection/profile_details.dart';
 
-import 'ProfileSectionControllers/profile_widgets_controller.dart';
+import '../../controllers/profile_widgets_controller.dart';
 
 import 'basic_details.dart';
 import 'position_details.dart';

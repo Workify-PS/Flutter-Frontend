@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:workify/utils/sizes.dart';
-import 'ProfileSectionControllers/profile_details_controller.dart';
+import '../../controllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -72,7 +72,12 @@ class Name extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('Loading');
+        return Text(
+          'Loading',
+          style: TextStyle(
+            color: kSecondaryColor,
+          ),
+          );
       } else {
         return Text(
           // 'Avatar Name',

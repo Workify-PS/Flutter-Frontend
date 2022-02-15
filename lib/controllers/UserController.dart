@@ -16,12 +16,10 @@ class UserController extends GetxController {
   // }
 
   Future<void> setUser(String token) async {
-    
     final user = await userService.userGetService(token);
-    
+
     //return;
     if (user != null) {
-      
       currentUser = Rx<UserModel?>(user);
     } else {
       Get.defaultDialog(
@@ -32,6 +30,7 @@ class UserController extends GetxController {
           onConfirm: () {
             Get.back();
           });
+      throw Exception();
     }
   }
 }

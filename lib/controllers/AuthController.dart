@@ -6,7 +6,6 @@ import 'package:workify/models/UserModel.dart';
 import 'package:workify/services/auth_service.dart';
 
 class AuthController extends GetxController with CacheManager {
-  
   final isSignedIn = false.obs;
 
   Future<void> loginUser(String username, String password) async {
@@ -18,7 +17,7 @@ class AuthController extends GetxController with CacheManager {
       isSignedIn.value = true;
       await saveToken(token);
       final UserController _userController = Get.find<UserController>();
-     await _userController.setUser(token);
+      await _userController.setUser(token);
     } else {
       Get.defaultDialog(
           middleText: 'Failed to Authenticate',
@@ -27,6 +26,7 @@ class AuthController extends GetxController with CacheManager {
           onConfirm: () {
             Get.back();
           });
+      throw Exception("Bad Credentials");
     }
   }
 
@@ -50,7 +50,7 @@ class AuthController extends GetxController with CacheManager {
     isSignedIn.value = false;
     final UserController _userController = Get.find<UserController>();
     //_userController.currentUser.close();
-    
+
     await removeToken();
   }
 

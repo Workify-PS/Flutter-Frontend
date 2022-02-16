@@ -8,8 +8,8 @@ class DeviceSize {
   }
 
   DeviceSize._internal();
-  static double masterHeight = 541.1681518554688;
-  static double masterWidth = 1161.3450927734375;
+  static double masterHeight = 612;
+  static double masterWidth = 1366;
   late Size size;
   double get heightMultiplier => size.height / masterHeight;
   double get widthMultiplier => size.width / masterWidth;

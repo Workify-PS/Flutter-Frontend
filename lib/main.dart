@@ -6,9 +6,10 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
-import 'package:workify/screens/AuthPage.dart';
+import 'package:workify/screens/AuthPage/AuthPage.dart';
+import 'package:workify/screens/AuthPage/AuthPageController.dart';
 import 'package:workify/screens/ChangePass.dart';
-import 'package:workify/screens/ForgotPass.dart';
+import 'package:workify/screens/AuthPage/ForgotPass.dart';
 import 'package:workify/screens/HomePage.dart';
 import 'package:workify/screens/ProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SettingsPage.dart';
@@ -50,7 +51,7 @@ class _MyAppState extends State<MyApp> {
         ), //check for already signed in
         GetPage(
           name: "/auth",
-          page: () => AuthPage(),
+          page: () => AuthPage(),binding: BindingsBuilder(()=>{Get.put(AuthPageController())})
         ),
 
         GetPage(name: "/home", page: () => HomePage()),
@@ -58,10 +59,10 @@ class _MyAppState extends State<MyApp> {
           name: '/profile',
           page: () => ProfilePage(),
         ),
-        GetPage(
-          name: "/forgot",
-          page: () => ForgotPass(),
-        ),
+        // GetPage(
+        //   name: "/forgot",
+        //   page: () => ForgotPass(),
+        // ),
         GetPage(name: "/change", page: () => ChangePass()),
         GetPage(
           name: '/settings',

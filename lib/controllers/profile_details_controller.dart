@@ -2,12 +2,14 @@ import 'package:intl/intl.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:get/get.dart';
-import 'package:workify/models/ProfileModel.dart';
+import 'package:workify/models/EmployeeDetailsModel.dart';
+import 'package:workify/models/EmployeeInfoModel.dart';
 import 'package:workify/services/profile_service.dart';
 
 class ProfileDetailsController extends GetxController with CacheManager {
   var isLoading = true.obs;
-  ProfileModel? profileModelDetails;
+  EmployeeInfoModel? employeeInfoModelDetails;
+  EmployeeDetailsModel? employeeDetailsModelDetails;
   final AuthController _authController = AuthController();
   @override
   void onInit() {
@@ -43,22 +45,40 @@ class ProfileDetailsController extends GetxController with CacheManager {
     try {
       isLoading(true);
       try {
-        profileModelDetails = await ProfileService.fetchProfileDetails();
+        employeeInfoModelDetails = await ProfileService.fetchProfileDetails();
       } catch (error) {
         print(
             '\n-- In Profile Details Controller file :: callFetchProfileDetails(){} : Block 1\n');
         print('Error :: ' + error.toString());
         print('-------------- End Block 1 ---------------');
       }
-      if (profileModelDetails != null) {
+      if (employeeInfoModelDetails != null) {
         print(
             '\n-- In Profile Details Controller file :: callFetchProfileDetails(){} : Block 2\n');
         print(
-            'DataType received from profile_service.dart :: callProfileApi -> ' +
-                profileModelDetails.runtimeType.toString());
+            'DataType received from profile_service.dart :: fetchProfileDetails -> ' +
+                employeeInfoModelDetails.runtimeType.toString());
         print('\nProfile Details received Successfully !! \n');
         print('-------------- End Block 2 ---------------');
       }
+      try{
+        employeeDetailsModelDetails = await ProfileService.fetchEmployeeDetails();
+      }catch(error){
+        print(
+            '\n-- In Profile Details Controller file :: callFetchProfileDetails(){} : Block 3\n');
+        print('Error :: ' + error.toString());
+        print('-------------- End Block 3 ---------------');
+      }
+      if (employeeDetailsModelDetails != null) {
+        print(
+            '\n-- In Profile Details Controller file :: callFetchProfileDetails(){} : Block 4\n');
+        print(
+            'DataType received from profile_service.dart :: fetchEmployeeDetails -> ' +
+                employeeInfoModelDetails.runtimeType.toString());
+        print('\nEmployee Details received Successfully !! \n');
+        print('-------------- End Block 4 ---------------');
+      }
+
     } finally {
       isLoading(false);
     }

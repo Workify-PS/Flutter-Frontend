@@ -27,6 +27,8 @@ class _AuthPageState extends State<AuthPage> {
     if (!(_authController.isSignedIn.value &&
         _userController.currentUser!.value != null)) {
       Get.toNamed("/auth");
+    } else {
+      Get.toNamed("/home");
     }
     super.initState();
   }

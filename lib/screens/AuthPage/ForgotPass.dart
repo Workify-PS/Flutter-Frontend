@@ -7,10 +7,8 @@ import 'package:workify/utils/constants.dart';
 // import 'package:workify/screens/AuthPage.dart';
 
 class ForgotPass extends GetView<AuthPageController> {
-  final GlobalKey<FormState> formKey ;
-  ForgotPass({
-    Key? key,required this.formKey
-  }) : super(key: key);
+  final GlobalKey<FormState> formKey;
+  ForgotPass({Key? key, required this.formKey}) : super(key: key);
   final _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -63,8 +61,14 @@ class ForgotPass extends GetView<AuthPageController> {
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: 'Email ID',
+                    labelStyle: TextStyle(
+                        color: Theme.of(context)
+                            .primaryTextTheme
+                            .headline1!
+                            .color),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black87)),
+                        borderSide:
+                            BorderSide(color: kPrimaryColor, width: 1.5)),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
                       borderSide: BorderSide(color: Colors.black, width: 2),

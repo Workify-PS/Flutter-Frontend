@@ -310,7 +310,7 @@ class AuthPage extends GetView<AuthPageController> {
                                                 style: ElevatedButton.styleFrom(
                                                     //primary: Colors.grey.shade50,
                                                     onPrimary: Colors.black,
-                                                    elevation: 2,
+                                                    elevation: 6,
                                                     shadowColor:
                                                         Colors.grey.shade800,
                                                     shape:

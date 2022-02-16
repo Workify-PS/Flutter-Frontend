@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
       initialRoute: "/",
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       initialBinding: BindingsBuilder(() => {
             Get.put(AuthController()).checkLoginStatus(),
             Get.put(UserController())
@@ -50,9 +50,9 @@ class _MyAppState extends State<MyApp> {
           page: () => SplashScreen(),
         ), //check for already signed in
         GetPage(
-          name: "/auth",
-          page: () => AuthPage(),binding: BindingsBuilder(()=>{Get.put(AuthPageController())})
-        ),
+            name: "/auth",
+            page: () => AuthPage(),
+            binding: BindingsBuilder(() => {Get.put(AuthPageController())})),
 
         GetPage(name: "/home", page: () => HomePage()),
         GetPage(

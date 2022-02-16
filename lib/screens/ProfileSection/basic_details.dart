@@ -189,7 +189,7 @@ class MobileNumber extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.mobile ??
+          profileDetailsController.employeeInfoModelDetails?.mobile ??
               'Mobile Number Null',
           style: TextStyle(
             color: kSecondaryColor,
@@ -215,9 +215,9 @@ class DoB extends StatelessWidget {
           );
         } 
         else {
-          if (profileDetailsController.checkValidDate(profileDetailsController.profileModelDetails?.dob)) {
+          if (profileDetailsController.checkValidDate(profileDetailsController.employeeInfoModelDetails?.dob)) {
             return Text(
-                DateFormat.yMMMMd('en_US').format(DateTime.parse(profileDetailsController.profileModelDetails?.dob)),
+                DateFormat.yMMMMd('en_US').format(DateTime.parse(profileDetailsController.employeeInfoModelDetails?.dob)),
                 style: TextStyle(
                   color: kSecondaryColor,
                 ),
@@ -253,7 +253,7 @@ class City extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.city ?? 'City Null',
+          profileDetailsController.employeeInfoModelDetails?.city ?? 'City Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -279,7 +279,7 @@ class State extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.state ?? 'State Null',
+          profileDetailsController.employeeInfoModelDetails?.state ?? 'State Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -305,7 +305,7 @@ class Country extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.country ??
+          profileDetailsController.employeeInfoModelDetails?.country ??
               'Country Null',
           style: TextStyle(
             color: kSecondaryColor,

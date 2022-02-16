@@ -17,8 +17,8 @@ class _AuthPageState extends State<AuthPage> {
   FocusNode myFocusNode = FocusNode();
   FocusNode myFocusNode2 = FocusNode();
   final _passwordIsVisible = false.obs;
-  final _usernameController = TextEditingController(text: "samarth");
-  final _passController = TextEditingController(text: "password");
+  final _usernameController = TextEditingController(text: "kingOfMirzapur");
+  final _passController = TextEditingController(text: "#1234");
   final _formKey = GlobalKey<FormState>();
   final AuthController _authController = Get.find();
   @override

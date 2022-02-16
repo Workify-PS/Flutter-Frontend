@@ -81,7 +81,7 @@ class Name extends StatelessWidget {
       } else {
         return Text(
           // 'Avatar Name',
-          profileDetailsController.profileModelDetails?.fullName ?? 'Got Null',
+          profileDetailsController.employeeInfoModelDetails?.fullName ?? 'Got Null',
           style: TextStyle(
             // fontSize: screenWidth * 0.017,
             fontWeight: FontWeight.bold,

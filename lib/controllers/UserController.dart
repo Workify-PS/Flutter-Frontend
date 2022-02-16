@@ -1,28 +1,49 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
+import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/mixins/cache.dart';
 import 'package:workify/models/UserModel.dart';
 import 'package:workify/services/user_get_service.dart';
 
-class UserController extends GetxController {
-  late Rx<UserModel?> currentUser;
-  final UserGetService userService = Get.put(UserGetService());
+class UserController extends GetxController with CacheManager {
+  Rx<UserModel>? currentUser;
+  final UserGetService userService = UserGetService();
+  final _authController = Get.find<AuthController>();
+  @override
+  void onInit() async {
+    //_authController.checkLoginStatus();
+    print("ON INIT OF USER CONTROLLER");
 
-  // @override
-  // void onInit() async {
-  //   print("ON INIT OF USER CONTROLLER");
+    if (_authController.isSignedIn.value) {
+      print("USER IS SIGNED IN");
+      final token = _authController.getToken();
+      print("WITH TOKEN $token");
+      //await setUser(token!);
+      final user = getUser();
+      if (user != null) {
+        currentUser = Rx<UserModel>(user);
+        print("NAME " + currentUser!.value.firstName.toString());
+      } else {
+        print("USER NOT FOUND IN LOCAL STORAGE");
+        _authController.logOut();
+       
+      }
+      super.onInit();
+    } else {
+      print("NOT SIGNED IN");
+      
+    }
+  }
 
-  //   super.onInit();
-  // }
+ 
 
   Future<void> setUser(String token) async {
-    
     final user = await userService.userGetService(token);
-    
-    //return;
+
     if (user != null) {
-      
-      currentUser = Rx<UserModel?>(user);
+      currentUser = Rx<UserModel>(user);
+      await saveUser(currentUser!.value);
     } else {
       Get.defaultDialog(
           middleText: 'Please Contact the Admin',
@@ -32,6 +53,7 @@ class UserController extends GetxController {
           onConfirm: () {
             Get.back();
           });
+      throw Exception();
     }
   }
 }

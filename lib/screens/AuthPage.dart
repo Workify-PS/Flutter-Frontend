@@ -20,7 +20,19 @@ class _AuthPageState extends State<AuthPage> {
   final _usernameController = TextEditingController(text: "samarth");
   final _passController = TextEditingController(text: "password");
   final _formKey = GlobalKey<FormState>();
-  final AuthController _authController = Get.find();
+  final AuthController _authController = Get.find<AuthController>();
+  final UserController _userController = Get.find<UserController>();
+  @override
+  void initState() {
+    if (!(_authController.isSignedIn.value &&
+        _userController.currentUser!.value != null)) {
+      Get.toNamed("/auth");
+    } else {
+      Get.toNamed("/home");
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();

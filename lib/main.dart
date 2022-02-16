@@ -18,7 +18,8 @@ import 'package:http/http.dart' as http;
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
-  await GetStorage.init();
+  await GetStorage.init('APP_SETTINGS');
+  await GetStorage.init('USER');
   runApp(MyApp());
 }
 
@@ -30,7 +31,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -39,8 +39,10 @@ class _MyAppState extends State<MyApp> {
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,
-      initialBinding: BindingsBuilder(
-          () => {Get.put(AuthController()), Get.put(UserController())}),
+      initialBinding: BindingsBuilder(() => {
+            Get.put(AuthController()).checkLoginStatus(),
+            Get.put(UserController())
+          }),
       getPages: [
         GetPage(
           name: "/",
@@ -51,10 +53,7 @@ class _MyAppState extends State<MyApp> {
           page: () => AuthPage(),
         ),
 
-        GetPage(
-          name: "/home", 
-          page: () => HomePage()
-        ),
+        GetPage(name: "/home", page: () => HomePage()),
         GetPage(
           name: '/profile',
           page: () => ProfilePage(),

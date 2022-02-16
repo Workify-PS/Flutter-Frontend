@@ -1,6 +1,6 @@
 // import 'dart:convert';
 
-import 'package:workify/apimodule/profile_api_service.dart';
+import 'package:workify/services/profile_api_service.dart';
 import 'package:get/get.dart';
 import 'package:workify/models/ProfileModel.dart';
 // import 'package:workify/models/profileModel.dart';

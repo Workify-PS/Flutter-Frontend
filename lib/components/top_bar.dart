@@ -19,10 +19,10 @@ class TopBar extends StatefulWidget {
 }
 
 class _TopBarState extends State<TopBar> {
-  final user = Get.find<UserController>().currentUser.value;
+  final user = Get.find<UserController>().currentUser;
   late String fname;
   String greeting() {
-     fname = user?.firstName ?? "Buddy";
+     fname = user?.value.firstName ?? "Buddy";
     var hour = DateTime.now().hour;
     if (hour < 12) return 'Good Morning, $fname';
     if (hour < 17) return 'Good Afternoon $fname';

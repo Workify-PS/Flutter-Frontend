@@ -1,0 +1,3 @@
+class BadCredentials implements Exception{
+ 
+}

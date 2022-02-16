@@ -57,31 +57,8 @@ class _AttendanceCardState extends State<AttendanceCard> {
     Color accentColor =
         MyTheme().isDark(context) ? kDividerColor : Colors.black87;
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Row(
-          children: [
-            SizedBox(
-              width: 32,
-              child: CircleAvatar(
-                backgroundColor: Colors.transparent,
-              ),
-            ),
-            SizedBox(
-              width: kDefaultPadding / 2,
-            ),
-          ],
-        ),
-        // SizedBox(height: 14),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //   children: [
-        //     Button(buttontext: 'OFFICE',),
-        //     SizedBox(
-        //       width: 30,
-        //     ),
-        //     Button(buttontext: 'REMOTE LOCATION'),
-        //   ],
-        // ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -144,17 +121,13 @@ class _AttendanceCardState extends State<AttendanceCard> {
             ),
           ],
         ),
-        SizedBox(
-          height: kDefaultPadding,
-        ),
+
         // SizedBox(
         //   height: 19,
         // ),
         Spacer(),
         Button(buttonTextWidget: Text('ATTENDANCE STATUS')),
-        SizedBox(
-          height: kDefaultPadding,
-        ),
+        
       ],
     );
   }

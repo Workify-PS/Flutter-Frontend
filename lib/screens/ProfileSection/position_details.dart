@@ -60,7 +60,8 @@ class PositionDetails extends StatelessWidget {
                     PositionInfoString(positionInfoString: 'Employee Code'),
                     PositionInfoString(positionInfoString: 'Department'),
                     PositionInfoString(positionInfoString: 'Work Location'),
-                    PositionInfoString(positionInfoString: 'Organization ID'),
+                    PositionInfoString(positionInfoString: 'Employment Status'),
+                    // PositionInfoString(positionInfoString: 'Organization ID'),
                   ],
                 ),
                 Padding(
@@ -71,7 +72,8 @@ class PositionDetails extends StatelessWidget {
                       FormattedEmployeeCode(),
                       FormattedDepartment(),
                       FormattedWorkLocation(),
-                      FormattedOrgID(),
+                      FormattedEmploymentStatus(),
+                      // FormattedOrgID(),
                     ],
                   ),
                 ),
@@ -101,10 +103,10 @@ class PositionDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
-                    PositionInfoString(positionInfoString: 'Account Active ?'),
                     PositionInfoString(positionInfoString: 'Official Email'),
                     PositionInfoString(positionInfoString: 'Date of Joining'),
                     PositionInfoString(positionInfoString: 'Job Role'),
+                    SizedBox(height: 5,),
                     
                   ],
                 ),
@@ -113,10 +115,10 @@ class PositionDetails extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FormattedAccountActive(),
                       FormattedOfficialEmail(),
                       FormattedDoJ(),
                       FormattedJobRole(),
+                      SizedBox(height: 5,),
                     ],
                   ),
                 ),
@@ -156,8 +158,8 @@ class PositionDetailsPortraitView extends StatelessWidget {
                     PositionInfoString(positionInfoString: 'Employee Code'),
                     PositionInfoString(positionInfoString: 'Department'),
                     PositionInfoString(positionInfoString: 'Work Location'),
-                    PositionInfoString(positionInfoString: 'Organization ID'),
-                    PositionInfoString(positionInfoString: 'Account Active ?'),
+                    // PositionInfoString(positionInfoString: 'Organization ID'),
+                    PositionInfoString(positionInfoString: 'Employment Status'),
                     PositionInfoString(positionInfoString: 'Official Email'),
                     PositionInfoString(positionInfoString: 'Date of Joining'),
                     PositionInfoString(positionInfoString: 'Job Role'),
@@ -176,8 +178,8 @@ class PositionDetailsPortraitView extends StatelessWidget {
                       FormattedEmployeeCode(),
                       FormattedDepartment(),
                       FormattedWorkLocation(),
-                      FormattedOrgID(),
-                      FormattedAccountActive(),
+                      // FormattedOrgID(),
+                      FormattedEmploymentStatus(),
                       FormattedOfficialEmail(),
                       FormattedDoJ(),
                       FormattedJobRole(),
@@ -353,8 +355,8 @@ class FormattedOrgID extends StatelessWidget {
   }
 }
 
-class FormattedAccountActive extends StatelessWidget {
-  const FormattedAccountActive({Key? key}) : super(key: key);
+class FormattedEmploymentStatus extends StatelessWidget {
+  const FormattedEmploymentStatus({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -375,7 +377,7 @@ class FormattedAccountActive extends StatelessWidget {
                width: portrait == true ? 200 : 250,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: AccountActive(),
+                child: EmploymentStatus(),
                 // child: Text(
                 //   'Hi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi there',
                 //   style: TextStyle(
@@ -503,7 +505,7 @@ class EmployeeCode extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.empCode ??
+          profileDetailsController.employeeInfoModelDetails?.empCode ??
               'Employee Code Null',
           style: TextStyle(
             color: kSecondaryColor,
@@ -525,7 +527,7 @@ class Department extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.department ??
+          profileDetailsController.employeeInfoModelDetails?.department ??
               'Department Null',
           style: TextStyle(
             color: kSecondaryColor,
@@ -547,7 +549,7 @@ class WorkLocation extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.workLocation ??
+          profileDetailsController.employeeInfoModelDetails?.workLocation ??
               'Work Location Null',
           style: TextStyle(
             color: kSecondaryColor,
@@ -569,7 +571,7 @@ class OrgID extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.orgId.toString() ??
+          profileDetailsController.employeeInfoModelDetails?.orgId.toString() ??
               'Organization ID Null',
           style: TextStyle(
             color: kSecondaryColor,
@@ -580,8 +582,8 @@ class OrgID extends StatelessWidget {
   }
 }
 
-class AccountActive extends StatelessWidget {
-  const AccountActive({Key? key}) : super(key: key);
+class EmploymentStatus extends StatelessWidget {
+  const EmploymentStatus({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -591,9 +593,9 @@ class AccountActive extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.active == true
-              ? 'Yes'
-              : 'No',
+          profileDetailsController.employeeInfoModelDetails?.active == true
+              ? 'Active'
+              : 'Inactive',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -614,7 +616,7 @@ class OfficialEmail extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.officialMail ??
+          profileDetailsController.employeeInfoModelDetails?.officialMail ??
               'Official Email Null',
           style: TextStyle(
             color: kSecondaryColor,
@@ -640,10 +642,10 @@ class DoJ extends StatelessWidget {
         );
       } else {
         if (profileDetailsController.checkValidDate(
-            profileDetailsController.profileModelDetails?.doj)) {
+            profileDetailsController.employeeInfoModelDetails?.doj)) {
           return Text(
             DateFormat.yMMMMd('en_US').format(DateTime.parse(
-                profileDetailsController.profileModelDetails?.doj)),
+                profileDetailsController.employeeInfoModelDetails?.doj)),
             style: TextStyle(
               color: kSecondaryColor,
             ),
@@ -672,7 +674,7 @@ class JobRole extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.role ?? 'Job Role Null',
+          profileDetailsController.employeeInfoModelDetails?.role ?? 'Job Role Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),

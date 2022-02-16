@@ -8,23 +8,19 @@ import 'package:workify/screens/SplashScreen/splash_widget.dart';
 class SplashScreen extends GetView<AuthController> {
   const SplashScreen({Key? key}) : super(key: key);
   Future<void> initializeSettings() async {
-    try {
-      controller.checkLoginStatus();
+     //controller.checkLoginStatus();
       if (controller.isSignedIn.value) {
         print("USER IS SIGNED IN");
         final token = controller.getToken();
         print("WITH TOKEN $token");
         final _userController = Get.find<UserController>();
         await _userController.setUser(token!);
+        
         Get.toNamed("/home");
       } else {
         print("CAN'T SET USER, NOT SIGNED IN");
         Get.toNamed("/auth");
       }
-    } catch (e) {
-      print(e.toString());
-      Get.toNamed("/auth");
-    }
   }
 
   @override

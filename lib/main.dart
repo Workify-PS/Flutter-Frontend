@@ -38,8 +38,10 @@ class _MyAppState extends State<MyApp> {
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,
-      initialBinding: BindingsBuilder(
-          () => {Get.put(AuthController()), Get.put(UserController())}),
+      initialBinding: BindingsBuilder(() => {
+            Get.put(AuthController()).checkLoginStatus(),
+            Get.put(UserController())
+          }),
       getPages: [
         GetPage(
           name: "/",

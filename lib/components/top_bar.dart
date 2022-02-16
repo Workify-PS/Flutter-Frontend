@@ -3,6 +3,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/UserController.dart';
+import 'package:workify/mixins/cache.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
@@ -18,11 +19,11 @@ class TopBar extends StatefulWidget {
   _TopBarState createState() => _TopBarState();
 }
 
-class _TopBarState extends State<TopBar> {
+class _TopBarState extends State<TopBar> with CacheManager {
   final user = Get.find<UserController>().currentUser;
   late String fname;
   String greeting() {
-     fname = user?.value.firstName ?? "Buddy";
+    fname = user?.value.firstName ?? "Buddy";
     var hour = DateTime.now().hour;
     if (hour < 12) return 'Good Morning, $fname';
     if (hour < 17) return 'Good Afternoon $fname';
@@ -81,10 +82,11 @@ class _TopBarState extends State<TopBar> {
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () {
-                final themeTobeChanged = MyTheme().isDark(context)
+                final themeToBeChanged = MyTheme().isDark(context)
                     ? ThemeMode.light
                     : ThemeMode.dark;
-                Get.changeThemeMode(themeTobeChanged);
+                Get.changeThemeMode(themeToBeChanged);
+                saveUserSettings(themeToBeChanged);
               },
               child: Padding(
                 padding: const EdgeInsets.all(12),

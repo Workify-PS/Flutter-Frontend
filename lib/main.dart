@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
+import 'package:workify/mixins/cache.dart';
 import 'package:workify/screens/AuthPage/AuthPage.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
 import 'package:workify/screens/ChangePass.dart';
@@ -34,12 +35,16 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    final String theme =
+        GetStorage("APP_SETTINGS").read(CacheManagerKey.THEME.toString());
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode:
+          theme == ThemeMode.light.name ? ThemeMode.light : ThemeMode.dark,
       initialBinding: BindingsBuilder(() => {
             Get.put(AuthController()).checkLoginStatus(),
             Get.put(UserController())

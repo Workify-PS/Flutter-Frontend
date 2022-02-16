@@ -17,8 +17,8 @@ class _AuthPageState extends State<AuthPage> {
   FocusNode myFocusNode = FocusNode();
   FocusNode myFocusNode2 = FocusNode();
   final _passwordIsVisible = false.obs;
-  final _usernameController = TextEditingController(text: "samarth");
-  final _passController = TextEditingController(text: "password");
+  final _usernameController = TextEditingController(text: "kingOfMirzapur");
+  final _passController = TextEditingController(text: "#1234");
   final _formKey = GlobalKey<FormState>();
   final AuthController _authController = Get.find<AuthController>();
   final UserController _userController = Get.find<UserController>();
@@ -304,8 +304,8 @@ class _AuthPageState extends State<AuthPage> {
 
   Future<void> loginAction() async {
     if (_formKey.currentState?.validate() ?? false) {
-      await _authController.loginUser(
-          _usernameController.text, _passController.text);
+      await _authController.loginUser(username: _usernameController.text,password: _passController.text);
+
       Get.toNamed("/home");
     }
   }

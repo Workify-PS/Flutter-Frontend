@@ -19,13 +19,24 @@ class UserController extends GetxController with CacheManager {
       print("USER IS SIGNED IN");
       final token = _authController.getToken();
       print("WITH TOKEN $token");
-      await setUser(token!);
-      print("name" + currentUser!.value.firstName.toString());
+      //await setUser(token!);
+      final user = getUser();
+      if (user != null) {
+        currentUser = Rx<UserModel>(user);
+        print("NAME " + currentUser!.value.firstName.toString());
+      } else {
+        print("USER NOT FOUND IN LOCAL STORAGE");
+        _authController.logOut();
+       
+      }
       super.onInit();
     } else {
       print("NOT SIGNED IN");
+      
     }
   }
+
+ 
 
   Future<void> setUser(String token) async {
     final user = await userService.userGetService(token);

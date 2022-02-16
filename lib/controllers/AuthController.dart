@@ -8,7 +8,7 @@ import 'package:workify/services/auth_service.dart';
 
 class AuthController extends GetxController with CacheManager {
   final isSignedIn = false.obs;
-  
+
   Future<void> loginUser(String username, String password) async {
     try {
       final AuthService _authService = AuthService();
@@ -61,9 +61,9 @@ class AuthController extends GetxController with CacheManager {
   Future<void> logOut() async {
     isSignedIn.value = false;
     final UserController _userController = Get.find<UserController>();
-    //_userController.currentUser.close();
-
+    _userController.currentUser = null;
     await removeToken();
+    await removeUser();
   }
 
   void checkLoginStatus() {

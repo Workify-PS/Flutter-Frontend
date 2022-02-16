@@ -18,7 +18,8 @@ import 'package:http/http.dart' as http;
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
-  await GetStorage.init();
+  await GetStorage.init('APP_SETTINGS');
+  await GetStorage.init('USER');
   runApp(MyApp());
 }
 

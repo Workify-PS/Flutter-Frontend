@@ -8,9 +8,19 @@ mixin CacheManager {
     return true;
   }
 
+  Future<void> saveUser(UserModel user) async {
+    final box = GetStorage('USER');
+    box.write(CacheManagerKey.USER.toString(), user);
+  }
+
   String? getToken() {
     final box = GetStorage('APP_SETTINGS');
     return box.read(CacheManagerKey.ACCESS_TOKEN.toString());
+  }
+
+  UserModel? getUser() {
+    final box = GetStorage('USER');
+    return UserModel.fromJson(box.read(CacheManagerKey.USER.toString()));
   }
 
   Future<void> removeToken() async {
@@ -18,10 +28,10 @@ mixin CacheManager {
     await box.remove(CacheManagerKey.ACCESS_TOKEN.toString());
   }
 
-  Future<void> saveUser(UserModel user) async {
+  Future<void> removeUser() async {
     final box = GetStorage('USER');
-    box.write("user", user);
+    await box.remove(CacheManagerKey.USER.toString());
   }
 }
 
-enum CacheManagerKey { ACCESS_TOKEN }
+enum CacheManagerKey { USER, ACCESS_TOKEN }

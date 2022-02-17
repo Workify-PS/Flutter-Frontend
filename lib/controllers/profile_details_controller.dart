@@ -12,17 +12,18 @@ class ProfileDetailsController extends GetxController with CacheManager {
   @override
   void onInit() {
     super.onInit();
-    foundToken();
+    // foundToken();
+    callFetchProfileEmployeeDetails();
   }
 
-  Future<void> foundToken() async {
-    final token = getToken();
-    if (token != null) {
-      callFetchProfileEmployeeDetails();
-    } else {
-      Get.offAllNamed('/auth');
-    }
-  }
+  // Future<void> foundToken() async {
+  //   final token = getToken();
+  //   if (token != null) {
+  //     callFetchProfileEmployeeDetails();
+  //   } else {
+  //     Get.offAllNamed('/auth');
+  //   }
+  // }
 
   void callFetchProfileEmployeeDetails() async {
     try {
@@ -66,7 +67,7 @@ class ProfileDetailsController extends GetxController with CacheManager {
           blockNumber: 4,
           printStatement:
               'DataType received from profile_service.dart :: fetchEmployeeDetails -> ' +
-                  employeeInfoModelDetails.runtimeType.toString()+
+                  employeeInfoModelDetails.runtimeType.toString() +
                   '\nEmployee Details received Successfully !! \n',
         );
       }

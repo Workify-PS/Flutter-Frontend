@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
+import 'package:workify/mixins/cache.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -13,7 +14,7 @@ class AuthPage extends StatefulWidget {
   State<AuthPage> createState() => _AuthPageState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _AuthPageState extends State<AuthPage> with CacheManager {
   FocusNode myFocusNode = FocusNode();
   FocusNode myFocusNode2 = FocusNode();
   final _passwordIsVisible = false.obs;
@@ -24,12 +25,16 @@ class _AuthPageState extends State<AuthPage> {
   final UserController _userController = Get.find<UserController>();
   @override
   void initState() {
-    if (!(_authController.isSignedIn.value &&
-        _userController.currentUser!.value != null)) {
-      Get.toNamed("/auth");
-    } else {
-      Get.toNamed("/home");
-    }
+    // if (!(_authController.isSignedIn.value &&
+    //     _userController.currentUser!.value != null)) {
+    //   Get.toNamed("/auth");
+    // } else {
+    //   Get.toNamed("/home");
+    // }
+    if (getToken() == null || _userController.currentUser!.value == null)
+      Get.toNamed('/auth');
+    else
+      Get.toNamed('/home');
     super.initState();
   }
 
@@ -304,7 +309,8 @@ class _AuthPageState extends State<AuthPage> {
 
   Future<void> loginAction() async {
     if (_formKey.currentState?.validate() ?? false) {
-      await _authController.loginUser(username: _usernameController.text,password: _passController.text);
+      await _authController.loginUser(
+          username: _usernameController.text, password: _passController.text);
 
       Get.toNamed("/home");
     }

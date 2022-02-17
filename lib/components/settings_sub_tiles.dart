@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/utils/constants.dart';
 
 class SettingsSubTiles extends StatelessWidget {
@@ -35,7 +36,7 @@ class SettingsSubTile extends StatelessWidget {
             settingsOptions == 'Preferences'
                 ? print('Preferences Selected')
                 : settingsOptions == 'Change Password'
-                    ? print('Change Pass Selected')
+                    ? Get.toNamed('/change-password')
                     : authController.callLogOut();
           },
           onHover: (value) => isSelected.value = value,

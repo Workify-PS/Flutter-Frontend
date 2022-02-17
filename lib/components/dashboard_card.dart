@@ -16,30 +16,25 @@ class DashBoardCard extends StatefulWidget {
 class _DashBoardCardState extends State<DashBoardCard> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: kDefaultPadding,
-        vertical: kDefaultPadding / 2,
-      ),
-      child: Container(
-              padding: EdgeInsets.all(kDefaultPadding),
-              decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Column(
-                children: [
-                  if (widget.title != null)
-                    Text(widget.title!,
-                        style: Theme.of(context).textTheme.headline5),
-                  Expanded(child: widget.child)
-                ],
-              ))
-          .makeRounded(MyTheme().isDark(context),
-              blurRadius: 15,
-              borderRadius: 15,
-              offset: Offset(5, 5),
-              ),
+    return Container(
+        padding: EdgeInsets.symmetric(vertical: kDefaultPadding * 1.5),
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          children: [
+            if (widget.title != null)
+              Text(widget.title!, style: Theme.of(context).textTheme.headline5!
+                  //.copyWith(backgroundColor: Colors.amberAccent)),
+                  ),
+            Expanded(child: widget.child)
+          ],
+        )).makeRounded(
+      MyTheme().isDark(context),
+      blurRadius: 15,
+      borderRadius: 15,
+      offset: Offset(5, 5),
     );
   }
 }

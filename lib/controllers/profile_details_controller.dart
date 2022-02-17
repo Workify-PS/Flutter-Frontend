@@ -1,5 +1,4 @@
-import 'package:intl/intl.dart';
-import 'package:workify/controllers/AuthController.dart';
+// import 'package:intl/intl.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:get/get.dart';
 import 'package:workify/models/EmployeeDetailsModel.dart';
@@ -10,7 +9,6 @@ class ProfileDetailsController extends GetxController with CacheManager {
   var isLoading = true.obs;
   EmployeeInfoModel? employeeInfoModelDetails;
   EmployeeDetailsModel? employeeDetailsModelDetails;
-  final AuthController _authController = AuthController();
   @override
   void onInit() {
     super.onInit();
@@ -23,23 +21,23 @@ class ProfileDetailsController extends GetxController with CacheManager {
     if (token != null) {
       callFetchProfileDetails();
     } else {
-      tempLogin();
+      Get.offAllNamed('/auth');
     }
   }
 
-  Future<void> tempLogin() async {
-    try {
-      await _authController.loginUser(
-          username: "kingOfMirzapur", password: '#1234');
-    } catch (error) {
-      print(
-          '\n-- In Profile Details Controller file :: tempLogin(){} : Block 1\n');
-      print('Login Error :: ' + error.toString());
-      print('-------------- End Block 1 ---------------');
-    } finally {
-      callFetchProfileDetails();
-    }
-  }
+  // Future<void> tempLogin() async {
+  //   try {
+  //     await _authController.loginUser(
+  //         username: "kingOfMirzapur", password: '#1234');
+  //   } catch (error) {
+  //     print(
+  //         '\n-- In Profile Details Controller file :: tempLogin(){} : Block 1\n');
+  //     print('Login Error :: ' + error.toString());
+  //     print('-------------- End Block 1 ---------------');
+  //   } finally {
+  //     callFetchProfileDetails();
+  //   }
+  // }
 
   void callFetchProfileDetails() async {
     try {
@@ -61,9 +59,10 @@ class ProfileDetailsController extends GetxController with CacheManager {
         print('\nProfile Details received Successfully !! \n');
         print('-------------- End Block 2 ---------------');
       }
-      try{
-        employeeDetailsModelDetails = await ProfileService.fetchEmployeeDetails();
-      }catch(error){
+      try {
+        employeeDetailsModelDetails =
+            await ProfileService.fetchEmployeeDetails();
+      } catch (error) {
         print(
             '\n-- In Profile Details Controller file :: callFetchProfileDetails(){} : Block 3\n');
         print('Error :: ' + error.toString());
@@ -76,9 +75,9 @@ class ProfileDetailsController extends GetxController with CacheManager {
             'DataType received from profile_service.dart :: fetchEmployeeDetails -> ' +
                 employeeInfoModelDetails.runtimeType.toString());
         print('\nEmployee Details received Successfully !! \n');
+        print('\n\nComplete Profile Section Fetched Successfully !! \n\n');
         print('-------------- End Block 4 ---------------');
       }
-
     } finally {
       isLoading(false);
     }

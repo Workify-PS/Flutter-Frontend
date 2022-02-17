@@ -6,7 +6,6 @@ class ProfileWidgetsController extends GetxController {
   updateWidgetString(String str) {
     widgetString(str);
   }
-
   RxBool basicButton = true.obs;
   RxBool positionButton = false.obs;
   RxBool employmentButton = false.obs;

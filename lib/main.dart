@@ -14,6 +14,7 @@ import 'package:workify/screens/ProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SettingsPage.dart';
 import 'package:workify/screens/SplashScreen/SplashScreen.dart';
 import 'package:workify/utils/theme.dart';
+import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:http/http.dart' as http;
 
 Future<void> main() async {
@@ -57,6 +58,9 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: '/profile',
           page: () => ProfilePage(),
+          binding: BindingsBuilder(()=> {
+             Get.put(ProfileWidgetsController()),
+          }),
         ),
         GetPage(
           name: "/forgot",

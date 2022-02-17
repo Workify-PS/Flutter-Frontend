@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 // import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
@@ -17,8 +19,8 @@ import 'employment_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
 
-final profileWidgetsController = Get.put(ProfileWidgetsController());
-// final profileDetailsController = Get.put(ProfileDetailsController());
+// late ProfileWidgetsController profileWidgetsController;
+// = Get.find<ProfileWidgetsController>();
 
 // ignore: must_be_immutable
 class ProfilePage extends StatelessWidget {
@@ -34,6 +36,8 @@ class ProfilePage extends StatelessWidget {
     // 'Dependent_Details': DependentDetails(),
     // 'Id_Details': IdDetails(),
   };
+  
+  ProfileWidgetsController profileWidgetsController = Get.find<ProfileWidgetsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +45,7 @@ class ProfilePage extends StatelessWidget {
     device.size = MediaQuery.of(context).size;
     screenWidth = device.size.width;
     screenHeight = device.size.height;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -130,9 +135,11 @@ class Buttons extends StatelessWidget {
   // step to call such a method
   // onpressed: () => profileWidgetHandler(profileDetails);
 
+  ProfileWidgetsController profileWidgetsController = Get.find<ProfileWidgetsController>();
+
   final String profileDetails;
   final int buttonIndex;
-  const Buttons(
+   Buttons(
       {Key? key, required this.profileDetails, required this.buttonIndex})
       : super(key: key);
 

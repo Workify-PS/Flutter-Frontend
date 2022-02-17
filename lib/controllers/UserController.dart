@@ -12,31 +12,31 @@ class UserController extends GetxController with CacheManager {
   final _authController = Get.find<AuthController>();
   @override
   void onInit() async {
-    //_authController.checkLoginStatus();
-    print("ON INIT OF USER CONTROLLER");
-
+      super.onInit();
     if (_authController.isSignedIn.value) {
-      print("USER IS SIGNED IN");
       final token = _authController.getToken();
-      print("WITH TOKEN $token");
+      print('\n-- In UserController file :: onInit(){} : Block 1\n');
+      print("USER IS SIGNED IN with TOKEN :: $token");
+      print('-------------- End Block 1 ---------------');
       //await setUser(token!);
       final user = getUser();
       if (user != null) {
         currentUser = Rx<UserModel>(user);
-        print("NAME " + currentUser!.value.firstName.toString());
+        print('\n-- In UserController file :: onInit(){} : Block 2\n');
+        print("User First Name : " + currentUser!.value.firstName.toString());
+        print('-------------- End Block 2 ---------------');
       } else {
+        print('\n-- In UserController file :: onInit(){} : Block 3\n');
         print("USER NOT FOUND IN LOCAL STORAGE");
+        print('-------------- End Block 3 ---------------');
         _authController.logOut();
-       
       }
-      super.onInit();
     } else {
+      print('\n-- In UserController file :: onInit(){} : Block 4\n');
       print("NOT SIGNED IN");
-      
+      print('-------------- End Block 4 ---------------');
     }
   }
-
- 
 
   Future<void> setUser(String token) async {
     final user = await userService.userGetService(token);
@@ -53,6 +53,9 @@ class UserController extends GetxController with CacheManager {
           onConfirm: () {
             Get.back();
           });
+      print('\n-- In UserController file :: setUser(){} : Block 1\n');
+      print("User Not found ");
+      print('-------------- End Block 1 ---------------');
       throw Exception();
     }
   }

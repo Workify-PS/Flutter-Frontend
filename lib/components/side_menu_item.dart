@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:workify/components/settings_sub_items.dart';
 import 'package:workify/components/sub_tiles.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
@@ -25,6 +26,8 @@ class SideMenuItem extends StatefulWidget {
 class _SideMenuItemState extends State<SideMenuItem> {
   bool isHover = false;
   bool isExpaned = false;
+  // Only to inflate Settings 
+  bool isSettingsExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +45,11 @@ class _SideMenuItemState extends State<SideMenuItem> {
           const EdgeInsets.only(top: kDefaultPadding, bottom: kDefaultPadding),
       child: InkWell(
         onTap: () {
-          // setState(() {
-          //   isExpaned = !isExpaned;
-          // });
-          Get.toNamed("/${widget.title.toLowerCase()}");
+          widget.title.toLowerCase() != 'settings'
+              ? Get.toNamed("/${widget.title.toLowerCase()}")
+              : setState(() {
+                  isSettingsExpanded = !isSettingsExpanded;
+                });
         },
         onHover: (value) {
           setState(() {
@@ -79,13 +83,13 @@ class _SideMenuItemState extends State<SideMenuItem> {
                         ),
                   ),
                   Spacer(),
-                  if (isHover && !isExpaned)
+                  if (isHover && !isExpaned && !isSettingsExpanded)
                     SvgPicture.asset(
                       "assets/icons/Angle right.svg",
                       width: 16,
                       color: accentColor,
                     ),
-                  if (isExpaned)
+                  if (isExpaned || isSettingsExpanded)
                     SvgPicture.asset(
                       "assets/icons/Angle down.svg",
                       width: 16,
@@ -94,6 +98,7 @@ class _SideMenuItemState extends State<SideMenuItem> {
                 ],
               ),
               if (isExpaned) SubTilesList()
+              else if (isSettingsExpanded) WrapSettingsSubItems()
             ],
           ),
         ),

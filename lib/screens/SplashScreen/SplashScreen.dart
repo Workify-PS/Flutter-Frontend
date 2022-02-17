@@ -11,12 +11,10 @@ class SplashScreen extends GetView<AuthController> {
   Future<void> initializeSettings() async {
      //controller.checkLoginStatus();
       if (controller.isSignedIn.value) {
-        print("USER IS SIGNED IN");
         final token = controller.getToken();
-        print("WITH TOKEN $token");
+        print("USER IS SIGNED IN with TOKEN $token");
         final _userController = Get.find<UserController>();
         await _userController.setUser(token!);
-        
         Get.toNamed("/home");
       } else {
         print(

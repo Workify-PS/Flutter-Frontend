@@ -59,12 +59,11 @@ class _HolidayCardState extends State<HolidaysCard> {
               itemBuilder: (context, index) {
                 return Card(
                   elevation: 1,
-                  color: kMenuColor,
+                  color: kDividerColor,
                   margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   child: Container(
-                    // padding: EdgeInsets.all(1),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      // mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(

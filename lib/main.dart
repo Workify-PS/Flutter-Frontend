@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
@@ -14,7 +13,6 @@ import 'package:workify/screens/HomePage.dart';
 import 'package:workify/screens/ProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SettingsPage.dart';
 import 'package:workify/screens/SplashScreen/SplashScreen.dart';
-import 'package:workify/services/holiday_get_service.dart';
 import 'package:workify/utils/theme.dart';
 import 'package:http/http.dart' as http;
 

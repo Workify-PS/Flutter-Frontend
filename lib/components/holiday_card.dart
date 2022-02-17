@@ -28,8 +28,9 @@ class _HolidayCardState extends State<HolidaysCard> {
 
   @override
   Widget build(BuildContext context) {
-    Color accentColor =
-        MyTheme().isDark(context) ? kDividerColor : Colors.black87;
+    // Color accentColor =
+    //     MyTheme().isDark(context) ? kDividerColor : Colors.black87;
+    final ScrollController _scrollController = ScrollController();
     return Scaffold(
       // children: [
       //   _items.isNotEmpty
@@ -54,14 +55,19 @@ class _HolidayCardState extends State<HolidaysCard> {
             return Text("${data.error}");
           } else if (data.hasData) {
             var items = data.data as List<HolidayModel>;
-            return ListView.builder(
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  elevation: 1,
-                  color: kDividerColor,
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  child: Container(
+            return Scrollbar(
+              isAlwaysShown: true,
+              showTrackOnHover: true,
+              controller: _scrollController,
+              child: ListView.builder(
+                controller: _scrollController,
+                itemCount: items.length,
+                // physics: FixedExtentScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return Card(
+                    elevation: 1,
+                    color: kDividerColor,
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     child: Row(
                       // mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -91,24 +97,27 @@ class _HolidayCardState extends State<HolidaysCard> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 40, right: 10),
+                              padding: EdgeInsets.only(left: 18, right: 10),
                               child: Text(
                                 items[index].holidayName.toString(),
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 27, fontWeight: FontWeight.bold),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 40, right: 2),
-                              child: Text(items[index].date.toString()),
+                              padding: EdgeInsets.only(left: 18, right: 2),
+                              child: Text(
+                                items[index].date.toString(),
+                                style: TextStyle(fontSize: 18),
+                              ),
                             )
                           ],
                         ))
                       ],
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             );
           } else {
             return Center(

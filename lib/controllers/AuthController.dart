@@ -17,11 +17,16 @@ class AuthController extends GetxController with CacheManager {
         await _authService.loginService(username: username, password: password);
 
     if (token != null) {
-      print('\nToken received Successfully !!\n$token');
       isSignedIn.value = true;
       await saveToken(token);
       final UserController _userController = Get.find<UserController>();
       await _userController.setUser(token);
+      PrintLog.printLog(
+        fileName: 'AuthController',
+        functionName: 'loginUser',
+        blockNumber: 1,
+        printStatement: '\nToken received Successfully !!\n$token',
+      );
     } else {
       Get.defaultDialog(
           middleText: 'Incorrect Username or Password',
@@ -51,32 +56,36 @@ class AuthController extends GetxController with CacheManager {
   }
 
   Future<void> logOut() async {
+    final UserController _userController = Get.find<UserController>();
+    _userController.currentUser = null;
+    await removeToken();
+    await removeUser();
+  }
+
+  Future<void> callLogOut() async {
     Get.defaultDialog(
-        title: 'LogOut',
-        textConfirm: 'Log Out',
+        title: 'Log Out',
+        middleText: 'Tussi Ja rhe ho :(',
+        textConfirm: 'Yes',
+        textCancel: 'No',
         onConfirm: () async {
-            final UserController _userController = Get.find<UserController>();
-            _userController.currentUser = null;
-            await removeToken();
-            await removeUser();
-            if (getToken() == null) {
-              isSignedIn.value = false;
-              Get.offAllNamed('/auth');
-              PrintLog.printLog(
-                  fileName: 'AuthController.dart',
-                  functionName: 'logOut(){}',
-                  blockNumber: 1,
-                  printStatement: 'User Logged Out Successfully !!');
-            } else {
-              PrintLog.printLog(
-                  fileName: 'AuthController.dart',
-                  functionName: 'logOut(){}',
-                  blockNumber: 2,
-                  printStatement: 'Token Still Alive !!');
-            }
+          logOut();
+          if (getToken() == null) {
+            isSignedIn.value = false;
+            Get.offAllNamed('/auth');
+            PrintLog.printLog(
+                fileName: 'AuthController.dart',
+                functionName: 'logOut(){}',
+                blockNumber: 1,
+                printStatement: 'User Logged Out Successfully !!');
+          } else {
+            PrintLog.printLog(
+                fileName: 'AuthController.dart',
+                functionName: 'logOut(){}',
+                blockNumber: 2,
+                printStatement: 'Token Is Still Alive !!');
           }
-        );
-        
+        });
   }
 
   void checkLoginStatus() {

@@ -36,7 +36,7 @@ class SettingsSubTile extends StatelessWidget {
                 ? print('Preferences Selected')
                 : settingsOptions == 'Change Password'
                     ? print('Change Pass Selected')
-                    : authController.logOut();
+                    : authController.callLogOut();
           },
           onHover: (value) => isSelected.value = value,
           child: Padding(

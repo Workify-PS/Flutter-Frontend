@@ -2,6 +2,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/models/UserModel.dart';
 import 'package:workify/services/user_get_service.dart';
@@ -12,31 +13,41 @@ class UserController extends GetxController with CacheManager {
   final _authController = Get.find<AuthController>();
   @override
   void onInit() async {
-    //_authController.checkLoginStatus();
-    print("ON INIT OF USER CONTROLLER");
-
     if (_authController.isSignedIn.value) {
-      print("USER IS SIGNED IN");
       final token = _authController.getToken();
-      print("WITH TOKEN $token");
-      //await setUser(token!);
+      PrintLog.printLog(
+          fileName: 'UserController',
+          functionName: 'onInit',
+          blockNumber: 1,
+          printStatement: 'User is signed in with token\n$token');
       final user = getUser();
       if (user != null) {
         currentUser = Rx<UserModel>(user);
-        print("NAME " + currentUser!.value.firstName.toString());
+        PrintLog.printLog(
+          fileName: 'UserController',
+          functionName: 'onInit',
+          blockNumber: 2,
+          printStatement: 'User found in local Storage !!'
+        );
       } else {
-        print("USER NOT FOUND IN LOCAL STORAGE");
+        PrintLog.printLog(
+          fileName: 'UserController',
+          functionName: 'onInit',
+          blockNumber: 3,
+          printStatement: 'User NOT found in local Storage !!'
+        );
         _authController.logOut();
-       
       }
       super.onInit();
     } else {
-      print("NOT SIGNED IN");
-      
+        PrintLog.printLog(
+          fileName: 'UserController',
+          functionName: 'onInit',
+          blockNumber: 4,
+          printStatement: 'NOT Logged In !!'
+        );
     }
   }
-
- 
 
   Future<void> setUser(String token) async {
     final user = await userService.userGetService(token);

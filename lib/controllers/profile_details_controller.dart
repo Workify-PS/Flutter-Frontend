@@ -18,13 +18,13 @@ class ProfileDetailsController extends GetxController with CacheManager {
   Future<void> foundToken() async {
     final token = getToken();
     if (token != null) {
-      callFetchProfileDetails();
+      callFetchProfileEmployeeDetails();
     } else {
       Get.offAllNamed('/auth');
     }
   }
 
-  void callFetchProfileDetails() async {
+  void callFetchProfileEmployeeDetails() async {
     try {
       isLoading(true);
       try {
@@ -32,7 +32,7 @@ class ProfileDetailsController extends GetxController with CacheManager {
       } catch (error) {
         PrintLog.printLog(
           fileName: 'Profile Details Controller file',
-          functionName: 'callFetchProfileDetails(){}',
+          functionName: 'callFetchProfileEmployeeDetails(){}',
           blockNumber: 1,
           printStatement: 'Error :: ' + error.toString(),
         );
@@ -40,7 +40,7 @@ class ProfileDetailsController extends GetxController with CacheManager {
       if (employeeInfoModelDetails != null) {
         PrintLog.printLog(
           fileName: 'Profile Details Controller file',
-          functionName: 'callFetchProfileDetails(){}',
+          functionName: 'callFetchProfileEmployeeDetails(){}',
           blockNumber: 2,
           printStatement:
               'DataType received from profile_service.dart :: fetchProfileDetails -> ' +
@@ -54,7 +54,7 @@ class ProfileDetailsController extends GetxController with CacheManager {
       } catch (error) {
         PrintLog.printLog(
           fileName: 'Profile Details Controller file',
-          functionName: 'callFetchProfileDetails(){}',
+          functionName: 'callFetchProfileEmployeeDetails(){}',
           blockNumber: 3,
           printStatement: 'Error :: ' + error.toString(),
         );
@@ -62,11 +62,12 @@ class ProfileDetailsController extends GetxController with CacheManager {
       if (employeeDetailsModelDetails != null) {
         PrintLog.printLog(
           fileName: 'Profile Details Controller file',
-          functionName: 'callFetchProfileDetails(){}',
+          functionName: 'callFetchProfileEmployeeDetails(){}',
           blockNumber: 4,
           printStatement:
               'DataType received from profile_service.dart :: fetchEmployeeDetails -> ' +
-                  employeeInfoModelDetails.runtimeType.toString(),
+                  employeeInfoModelDetails.runtimeType.toString()+
+                  '\nEmployee Details received Successfully !! \n',
         );
       }
     } finally {

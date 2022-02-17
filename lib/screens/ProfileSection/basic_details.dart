@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:workify/utils/sizes.dart';
 
 import 'person.dart';
-import 'ProfileSectionControllers/profile_details_controller.dart';
+import '../../controllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
 // import './modify_history_buttons.dart';
 
@@ -35,7 +36,6 @@ class BasicDetails extends StatelessWidget {
                 color: Colors.transparent,
               ),
               child: Row(
-                // direction: portrait == true ? Axis.vertical : Axis.horizontal,
                 children: [
                   Expanded(
                     flex: 4,
@@ -43,188 +43,47 @@ class BasicDetails extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 6,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 5,
-                            // child: Container(
-                            //   width: 500,
-                            //   height: double.infinity,
-                            //   color: Colors.red,
-                            // ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            // color: Colors.red,
+                            color: Colors.transparent,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              BasicInfoString(basicInfoString: 'Mobile Number'),
+                              BasicInfoString(basicInfoString: 'Date of Birth'),
+                              BasicInfoString(basicInfoString: 'City'),
+                              BasicInfoString(basicInfoString: 'State'),
+                              BasicInfoString(basicInfoString: 'Country'),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex: 7,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 16),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Personal Email',
-                                  style: TextStyle(
-                                    color: kSecondaryColor,
-                                  ),
-                                ),
-                                Text(
-                                  'Mobile Number',
-                                  style: TextStyle(
-                                    color: kSecondaryColor,
-                                  ),
-                                ),
-                                Text(
-                                  'Date of Birth',
-                                  style: TextStyle(
-                                    color: kSecondaryColor,
-                                  ),
-                                ),
-                                Text(
-                                  'City',
-                                  style: TextStyle(
-                                    color: kSecondaryColor,
-                                  ),
-                                ),
-                                Text(
-                                  'State',
-                                  style: TextStyle(
-                                    color: kSecondaryColor,
-                                  ),
-                                ),
-                                Text(
-                                  'Country',
-                                  style: TextStyle(
-                                    color: kSecondaryColor,
-                                  ),
-                                ),
+                                FormattedMobileNumber(),
+                                FormattedDoB(),
+                                FormattedCity(),
+                                FormattedState(),
+                                FormattedCountry(),
                               ],
                             ),
                           ),
-                          Container(
-                              width: 20,
-                              height: double.infinity,
-                              color: Colors.transparent),
-                          Expanded(
-                            flex: 5,
-                            // child: Container(
-                            //   width: 500,
-                            //   height: double.infinity,
-                            //   color: Colors.amber,
-                            // ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Obx(() {
-                                  if (profileDetailsController
-                                          .isLoading.value ==
-                                      false) {
-                                    //change it to true when defined.
-                                    return Text(
-                                      'Personal Email Not Found !!',
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    );
-                                  } else {
-                                    return Text(
-                                      // 'HI',
-                                      profileDetailsController
-                                              .profileModelDetails
-                                              ?.officialMail ??
-                                          'Email Null',
-                                      style: TextStyle(
-                                        color: kSecondaryColor,
-                                      ),
-                                    );
-                                  }
-                                }),
-                                Obx(() {
-                                  if (profileDetailsController
-                                      .isLoading.value) {
-                                    return Text('Mobile Number Loading');
-                                  } else {
-                                    return Text(
-                                      // 'HI',
-                                      profileDetailsController
-                                              .profileModelDetails?.mobile ??
-                                          'Mobile Number Null',
-                                      style: TextStyle(
-                                        color: kSecondaryColor,
-                                      ),
-                                    );
-                                  }
-                                }),
-                                Obx(() {
-                                  if (profileDetailsController
-                                      .isLoading.value) {
-                                    return Text('Date of Birth Loading');
-                                  } else {
-                                    return Text(
-                                      // 'HI',
-                                      profileDetailsController
-                                              .profileModelDetails?.dob
-                                              .toString() ??
-                                          'Date of Birth Null',
-                                      style: TextStyle(
-                                        color: kSecondaryColor,
-                                      ),
-                                    );
-                                  }
-                                }),
-                                Obx(() {
-                                  if (profileDetailsController
-                                      .isLoading.value) {
-                                    return Text('City Loading');
-                                  } else {
-                                    return Text(
-                                      // 'HI',
-                                      profileDetailsController
-                                              .profileModelDetails?.city ??
-                                          'City Null',
-                                      style: TextStyle(
-                                        color: kSecondaryColor,
-                                      ),
-                                    );
-                                  }
-                                }),
-                                Obx(() {
-                                  if (profileDetailsController
-                                      .isLoading.value) {
-                                    return Text('State Loading');
-                                  } else {
-                                    return Text(
-                                      // 'HI',
-                                      profileDetailsController
-                                              .profileModelDetails?.state ??
-                                          'State Null',
-                                      style: TextStyle(
-                                        color: kSecondaryColor,
-                                      ),
-                                    );
-                                  }
-                                }),
-                                Obx(() {
-                                  if (profileDetailsController
-                                      .isLoading.value) {
-                                    return Text('Country Loading');
-                                  } else {
-                                    return Text(
-                                      // 'HI',
-                                      profileDetailsController
-                                              .profileModelDetails?.country ??
-                                          'Country Null',
-                                      style: TextStyle(
-                                        color: kSecondaryColor,
-                                      ),
-                                    );
-                                  }
-                                }),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -247,180 +106,44 @@ class BasicDetailsPortraitView extends StatelessWidget {
         ),
         Expanded(
           flex: 6,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8,
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 4,
-                  // child: Container(
-                  //   width: 500,
-                  //   height: double.infinity,
-                  //   color: Colors.red,
-                  // ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Personal Email',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
-                      ),
-                      Text(
-                        'Mobile Number',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
-                      ),
-                      Text(
-                        'Date of Birth',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
-                      ),
-                      Text(
-                        'City',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
-                      ),
-                      Text(
-                        'State',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
-                      ),
-                      Text(
-                        'Country',
-                        style: TextStyle(
-                          color: kSecondaryColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: screenWidth * 0.1,
-                  height: double.infinity,
+          child: Row(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Container(
+                  // color: Colors.red,
                   color: Colors.transparent,
                 ),
-                Expanded(
-                  flex: 7,
-                  // child: Container(
-                  //   width: 500,
-                  //   height: double.infinity,
-                  //   color: Colors.amber,
-                  // ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value == false) {
-                          //change it to true when defined.
-                          return Text(
-                            'Personal Email Not Found !!',
-                            style: TextStyle(
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          );
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.officialMail ??
-                                'Personal Email Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('Mobile Number Loading');
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.mobile ??
-                                'Mobile Number Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('Date of Birth Loading');
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController.profileModelDetails?.dob
-                                    .toString() ??
-                                'Date of Birth Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('City Loading');
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.city ??
-                                'City Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('State Loading');
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.state ??
-                                'State Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                      Obx(() {
-                        if (profileDetailsController.isLoading.value) {
-                          return Text('Country Loading');
-                        } else {
-                          return Text(
-                            // 'HI',
-                            profileDetailsController
-                                    .profileModelDetails?.country ??
-                                'Country Null',
-                            style: TextStyle(
-                              color: kSecondaryColor,
-                            ),
-                          );
-                        }
-                      }),
-                    ],
-                  ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BasicInfoString(basicInfoString: 'Mobile Number'),
+                    BasicInfoString(basicInfoString: 'Date of Birth'),
+                    BasicInfoString(basicInfoString: 'City'),
+                    BasicInfoString(basicInfoString: 'State'),
+                    BasicInfoString(basicInfoString: 'Country'),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              Expanded(
+                flex: 6,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FormattedMobileNumber(),
+                    FormattedDoB(),
+                    FormattedCity(),
+                    FormattedState(),
+                    FormattedCountry(),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ],
@@ -429,399 +152,338 @@ class BasicDetailsPortraitView extends StatelessWidget {
 }
 
 
+class BasicInfoString extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
+  final basicInfoString;
 
+  const BasicInfoString({
+    Key? key,
+    required this.basicInfoString,
+  }) : super(key: key);
 
-
-
-class Email extends StatelessWidget {
-  const Email({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Email ID',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenWidth * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Obx(() {
-              if (profileDetailsController.isLoading.value) {
-                return Text('Loading');
-              } else {
-                return Text(
-                  profileDetailsController.profileModelDetails?.officialMail ??
-                      'Got Null',
-                  style: TextStyle(
-                    color: kSecondaryColor,
-                  ),
-                );
-              }
-            }),
-          ),
-        ),
-      ],
+    return Text(
+      basicInfoString,
+      style: TextStyle(
+        color: kSecondaryColor,
+      ),
     );
   }
 }
+
 
 class MobileNumber extends StatelessWidget {
   const MobileNumber({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Mobile Number',
+    return Obx(() {
+      if (profileDetailsController.isLoading.value) {
+        return Text(
+          'Mobile Number Loading',
           style: TextStyle(
-            fontWeight: FontWeight.bold,
             color: kSecondaryColor,
           ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenWidth * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Obx(() {
-              if (profileDetailsController.isLoading.value) {
-                return Text('Loading');
-              } else {
-                return Text(
-                  profileDetailsController.profileModelDetails?.mobile ??
-                      'Got Null',
-                  style: TextStyle(
-                    color: kSecondaryColor,
-                  ),
-                );
-              }
-            }),
+        );
+      } else {
+        return Text(
+          // 'HI',
+          profileDetailsController.employeeInfoModelDetails?.mobile ??
+              'Mobile Number Null',
+          style: TextStyle(
+            color: kSecondaryColor,
           ),
-        ),
-      ],
-    );
+        );
+      }
+    });
   }
 }
 
 class DoB extends StatelessWidget {
   const DoB({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Date of Birth',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenWidth * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Obx(() {
-              if (profileDetailsController.isLoading.value) {
-                return Text('Loading');
-              } else {
-                return Text(
-                  profileDetailsController.profileModelDetails?.dob
-                          .toString() ??
-                      'Date of Birth Null',
-                  style: TextStyle(
-                    color: kSecondaryColor,
-                  ),
-                );
-              }
-            }),
-          ),
-        ),
-      ],
+      return Obx(() {
+        if (profileDetailsController.isLoading.value) {
+          return Text(
+            'Date of Birth Loading',
+            style: TextStyle(
+              color: kSecondaryColor,
+            ),
+          );
+        } 
+        else {
+          if (profileDetailsController.checkValidDate(profileDetailsController.employeeInfoModelDetails?.dob)) {
+            return Text(
+                DateFormat.yMMMMd('en_US').format(DateTime.parse(profileDetailsController.employeeInfoModelDetails?.dob)),
+                style: TextStyle(
+                  color: kSecondaryColor,
+                ),
+              );
+          } 
+          else {
+            return Text(
+            'Invalid date found',
+              style: TextStyle(
+                color: kSecondaryColor,
+              ),
+            );
+          }
+        }
+      }
     );
   }
 }
 
 class City extends StatelessWidget {
   const City({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'City',
+    return Obx(() {
+      if (profileDetailsController.isLoading.value) {
+        return Text(
+          'City Loading',
           style: TextStyle(
-            fontWeight: FontWeight.bold,
             color: kSecondaryColor,
           ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenWidth * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Obx(() {
-              if (profileDetailsController.isLoading.value) {
-                return Text('Loading');
-              } else {
-                return Text(
-                  profileDetailsController.profileModelDetails?.city ??
-                      'Got Null',
-                  style: TextStyle(
-                    color: kSecondaryColor,
-                  ),
-                );
-              }
-            }),
+        );
+      } else {
+        return Text(
+          // 'HI',
+          profileDetailsController.employeeInfoModelDetails?.city ?? 'City Null',
+          style: TextStyle(
+            color: kSecondaryColor,
           ),
-        ),
-      ],
-    );
+        );
+      }
+    });
   }
 }
 
 class State extends StatelessWidget {
   const State({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'State',
+    return Obx(() {
+      if (profileDetailsController.isLoading.value) {
+        return Text(
+          'State Loading',
           style: TextStyle(
-            fontWeight: FontWeight.bold,
             color: kSecondaryColor,
           ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenWidth * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Obx(() {
-              if (profileDetailsController.isLoading.value) {
-                return Text('Loading');
-              } else {
-                return Text(
-                  profileDetailsController.profileModelDetails?.state ??
-                      'Got Null',
-                  style: TextStyle(
-                    color: kSecondaryColor,
-                  ),
-                );
-              }
-            }),
+        );
+      } else {
+        return Text(
+          // 'HI',
+          profileDetailsController.employeeInfoModelDetails?.state ?? 'State Null',
+          style: TextStyle(
+            color: kSecondaryColor,
           ),
-        ),
-      ],
-    );
+        );
+      }
+    });
   }
 }
 
 class Country extends StatelessWidget {
   const Country({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Country',
+    return Obx(() {
+      if (profileDetailsController.isLoading.value) {
+        return Text(
+          'Country Loading',
           style: TextStyle(
-            fontWeight: FontWeight.bold,
             color: kSecondaryColor,
           ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenWidth * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Obx(() {
-              if (profileDetailsController.isLoading.value) {
-                return Text('Loading');
-              } else {
-                return Text(
-                  profileDetailsController.profileModelDetails?.country ??
-                      'Got Null',
-                  style: TextStyle(
-                    color: kSecondaryColor,
-                  ),
-                );
-              }
-            }),
+        );
+      } else {
+        return Text(
+          // 'HI',
+          profileDetailsController.employeeInfoModelDetails?.country ??
+              'Country Null',
+          style: TextStyle(
+            color: kSecondaryColor,
           ),
-        ),
-      ],
+        );
+      }
+    });
+  }
+}
+
+
+class FormattedMobileNumber extends StatelessWidget {
+  const FormattedMobileNumber({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: portrait == true ? 250 : 300,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            ':',
+            style: TextStyle(
+              color: kSecondaryColor,
+            ),
+          ),
+          Padding(
+            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
+            child: SizedBox(
+              width: portrait == true ? 200 : 250,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: MobileNumber(),
+                // child: Text(
+                //   'Hi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi there',
+                //   style: TextStyle(
+                //     color: kSecondaryColor,
+                //   ),
+                // ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
-class Gender extends StatelessWidget {
-  const Gender({Key? key}) : super(key: key);
+
+class FormattedDoB extends StatelessWidget {
+  const FormattedDoB({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Gender',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
+    return SizedBox(
+      width: portrait == true ? 250 : 300,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            ':',
+            style: TextStyle(
+              color: kSecondaryColor,
+            ),
           ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
+          Padding(
+            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
+            child: SizedBox(
+              width: portrait == true ? 200 : 250,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DoB(),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
 
-class Marital extends StatelessWidget {
-  const Marital({Key? key}) : super(key: key);
+
+class FormattedCity extends StatelessWidget {
+  const FormattedCity({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Marital',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
+    return SizedBox(
+      width: portrait == true ? 250 : 300,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            ':',
+            style: TextStyle(
+              color: kSecondaryColor,
+            ),
           ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
+          Padding(
+            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
+            child: SizedBox(
+              width: portrait == true ? 200 : 250,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: City(),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
 
-class Ethnic extends StatelessWidget {
-  const Ethnic({Key? key}) : super(key: key);
+
+class FormattedState extends StatelessWidget {
+  const FormattedState({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Natinoality',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
+    return SizedBox(
+      width: portrait == true ? 250 : 300,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            ':',
+            style: TextStyle(
+              color: kSecondaryColor,
+            ),
           ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Indian',
-              style: TextStyle(
-                color: kSecondaryColor,
+          Padding(
+            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
+            child: SizedBox(
+              width: portrait == true ? 200 : 250,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: State(),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
 
-class Health extends StatelessWidget {
-  const Health({Key? key}) : super(key: key);
+
+class FormattedCountry extends StatelessWidget {
+  const FormattedCountry({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Health',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
+    return SizedBox(
+      width: portrait == true ? 250 : 300,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            ':',
+            style: TextStyle(
+              color: kSecondaryColor,
+            ),
           ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
+          Padding(
+            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
+            child: SizedBox(
+              width: portrait == true ? 200 : 250,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Country(),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
+

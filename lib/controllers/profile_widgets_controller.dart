@@ -10,7 +10,7 @@ class ProfileWidgetsController extends GetxController {
   RxBool basicButton = true.obs;
   RxBool positionButton = false.obs;
   RxBool employmentButton = false.obs;
-  RxBool educationButton = false.obs;
+  // RxBool educationButton = false.obs;
 
   // RxList<bool> buttonPressed = [false, false, false, false].obs;
 
@@ -21,7 +21,7 @@ class ProfileWidgetsController extends GetxController {
     basicButton(false);
     positionButton(false);
     employmentButton(false);
-    educationButton(false);
+    // educationButton(false);
   }
 
   setButton({
@@ -35,8 +35,9 @@ class ProfileWidgetsController extends GetxController {
       positionButton(true);
     } else if (str == 'Employment Details') {
       employmentButton(true);
-    } else if (str == 'Education Details') {
-      educationButton(true);
     }
+    //  else if (str == 'Education Details') {
+    //   educationButton(true);
+    // }
   }
 }

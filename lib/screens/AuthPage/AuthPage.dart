@@ -366,7 +366,7 @@ class AuthPage extends GetView<AuthPageController> {
   Future<void> loginAction() async {
     if (_formKey.currentState?.validate() ?? false) {
       await _authController.loginUser(
-          _usernameController.text, _passController.text);
+          username: _usernameController.text, password: _passController.text);
       Get.toNamed("/home");
     }
   }

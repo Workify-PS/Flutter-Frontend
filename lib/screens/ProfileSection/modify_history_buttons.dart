@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workify/screens/ProfileSection/profile_history.dart';
+import 'package:workify/screens/ProfileSection/change_profile_page.dart';
 import 'package:workify/utils/constants.dart';
 
 import './change_profile_page.dart';
@@ -51,7 +51,7 @@ class HistoryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        Get.to(ProfileHistory());
+        Get.to(ChangeProfilePage());
       },
       child: Center(
         child: Text(

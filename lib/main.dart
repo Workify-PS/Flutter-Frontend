@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
+import 'package:workify/controllers/WishController.dart';
 import 'package:workify/screens/AuthPage.dart';
 import 'package:workify/screens/ChangePass.dart';
 import 'package:workify/screens/ForgotPass.dart';
@@ -13,12 +14,14 @@ import 'package:workify/screens/HomePage.dart';
 import 'package:workify/screens/ProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SettingsPage.dart';
 import 'package:workify/screens/SplashScreen/SplashScreen.dart';
+import 'package:workify/services/holiday_get_service.dart';
 import 'package:workify/utils/theme.dart';
 import 'package:http/http.dart' as http;
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
   await GetStorage.init();
+  // HolidayGetService().getHolidays();
   runApp(MyApp());
 }
 
@@ -30,7 +33,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -39,8 +41,11 @@ class _MyAppState extends State<MyApp> {
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
       themeMode: ThemeMode.light,
-      initialBinding: BindingsBuilder(
-          () => {Get.put(AuthController()), Get.put(UserController())}),
+      initialBinding: BindingsBuilder(() => {
+            Get.put(AuthController()),
+            Get.put(UserController()),
+            Get.put(WishController())
+          }),
       getPages: [
         GetPage(
           name: "/",
@@ -51,10 +56,7 @@ class _MyAppState extends State<MyApp> {
           page: () => AuthPage(),
         ),
 
-        GetPage(
-          name: "/home", 
-          page: () => HomePage()
-        ),
+        GetPage(name: "/home", page: () => HomePage()),
         GetPage(
           name: '/profile',
           page: () => ProfilePage(),

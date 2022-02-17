@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/controllers/WishController.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:workify/utils/constants.dart';
 // import 'package:workify/utils/extensions.dart';
 
@@ -17,6 +18,12 @@ class WishCard extends StatefulWidget {
 
 class _WishCardState extends State<WishCard> {
   String now = DateFormat("dd-MM-yyyy").format(DateTime.now());
+  // final user = Get.find<WishController>().cuser.value;
+  // late String? fname = user.fullName;
+  // late String? id = user.empCode;
+  // late String? birth = user.dob;
+  // late String? join = user.doj;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,37 +66,38 @@ class _WishCardState extends State<WishCard> {
         ),
         Expanded(
           flex: 1,
-          child:Row(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              //  Obx(() => Text(WishController.))
               Button(
                 buttonTextWidget: Text(
                   'Birthdays',
-                   style: TextStyle(
+                  style: TextStyle(
                     fontSize: 11.5,
                     fontWeight: FontWeight.bold,
                     // color:kTextColor,
-                  ), 
+                  ),
                 ),
               ),
               Button(
                 buttonTextWidget: Text(
                   'Anniversaries',
-                   style: TextStyle(
+                  style: TextStyle(
                     fontSize: 11.5,
                     fontWeight: FontWeight.bold,
                     // color:kTextColor,
-                  ), 
+                  ),
                 ),
               ),
               Button(
                 buttonTextWidget: Text(
                   'New Joiners',
-                   style: TextStyle(
+                  style: TextStyle(
                     fontSize: 11.5,
                     fontWeight: FontWeight.bold,
                     // color:kTextColor,
-                  ), 
+                  ),
                 ),
               ),
             ],

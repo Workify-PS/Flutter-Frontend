@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/exceptions/BadCredentials.dart';
+import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/models/UserModel.dart';
 import 'package:workify/services/auth_service.dart';
@@ -9,7 +10,8 @@ import 'package:workify/services/auth_service.dart';
 class AuthController extends GetxController with CacheManager {
   final isSignedIn = false.obs;
 
-  Future<void> loginUser({required String username,required String password}) async {
+  Future<void> loginUser(
+      {required String username, required String password}) async {
     final AuthService _authService = AuthService();
     final token =
         await _authService.loginService(username: username, password: password);
@@ -49,11 +51,32 @@ class AuthController extends GetxController with CacheManager {
   }
 
   Future<void> logOut() async {
-    isSignedIn.value = false;
-    final UserController _userController = Get.find<UserController>();
-    _userController.currentUser = null;
-    await removeToken();
-    await removeUser();
+    Get.defaultDialog(
+        title: 'LogOut',
+        textConfirm: 'Log Out',
+        onConfirm: () async {
+            final UserController _userController = Get.find<UserController>();
+            _userController.currentUser = null;
+            await removeToken();
+            await removeUser();
+            if (getToken() == null) {
+              isSignedIn.value = false;
+              Get.offAllNamed('/auth');
+              PrintLog.printLog(
+                  fileName: 'AuthController.dart',
+                  functionName: 'logOut(){}',
+                  blockNumber: 1,
+                  printStatement: 'User Logged Out Successfully !!');
+            } else {
+              PrintLog.printLog(
+                  fileName: 'AuthController.dart',
+                  functionName: 'logOut(){}',
+                  blockNumber: 2,
+                  printStatement: 'Token Still Alive !!');
+            }
+          }
+        );
+        
   }
 
   void checkLoginStatus() {

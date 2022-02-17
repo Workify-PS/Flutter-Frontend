@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
+import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/screens/AuthPage.dart';
 import 'package:workify/screens/ChangePass.dart';
 import 'package:workify/screens/ForgotPass.dart';
@@ -57,6 +58,9 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: '/profile',
           page: () => ProfilePage(),
+          binding: BindingsBuilder(() => {
+            Get.put(ProfileWidgetsController()),
+          }),
         ),
         GetPage(
           name: "/forgot",

@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/models/EmployeeDetailsModel.dart';
 import 'package:workify/models/EmployeeInfoModel.dart';
 
 class ProfileService {
-
   static Future<Map<String, dynamic>> callProfileApi() async {
     String profileUrl = 'http://localhost:8080/workify/v1/profile';
     // ignore: prefer_typing_uninitialized_variables
@@ -25,21 +25,26 @@ class ProfileService {
       );
       if (response.statusCode == 200) {
         responseData = response.data;
-        print(
-            '\n--In Profile Api Service File :: callProfileApi(){} : Block 1\n');
-        print('Everything OK !!');
-        print('------------- End Block 1 ----------------');
+        PrintLog.printLog(
+            fileName: 'Profile Api Service File',
+            functionName: 'callProfileApi(){}',
+            blockNumber: 1,
+            printStatement: 'Everything OK !!');
       } else {
-        print(
-            '\n--In Profile Api Service File :: callProfileApi(){} : Block 2\n');
-        print('Status Code :\n' + response.statusCode.toString());
-        print('------------- End Block 2 ----------------');
+        PrintLog.printLog(
+          fileName: 'Profile Api Service File',
+          functionName: 'callProfileApi(){}',
+          blockNumber: 2,
+          printStatement: 'Status Code :: ' + response.statusCode.toString(),
+        );
       }
     } on DioError catch (error) {
-      print(
-          '\n-- In Profile Api Service File :: callProfileApi(){} : Block 3\n');
-      print(error.message);
-      print('------------- End Block 3 ----------------\n');
+      PrintLog.printLog(
+          fileName: 'Profile Api Service File',
+          functionName: 'callProfileApi(){}',
+          blockNumber: 3,
+          printStatement: 'Error :: ' + error.message.toString(),
+      );
     }
     return responseData;
   }
@@ -63,21 +68,27 @@ class ProfileService {
       );
       if (response.statusCode == 200) {
         responseData = response.data;
-        print(
-            '\n--In Profile Api Service File :: callEmpDetails(){} : Block 1\n');
-        print('Everything OK !!');
-        print('------------- End Block 1 ----------------');
+        PrintLog.printLog(
+          fileName: 'Profile Api Service File',
+          functionName: 'callEmpDetails(){}',
+          blockNumber: 1,
+          printStatement: 'Everything OK !!',
+        );
       } else {
-        print(
-            '\n--In Profile Api Service File :: callEmpDetails(){} : Block 2\n');
-        print('Status Code :\n' + response.statusCode.toString());
-        print('------------- End Block 2 ----------------');
+        PrintLog.printLog(
+          fileName: 'Profile Api Service File',
+          functionName: 'callEmpDetails(){}',
+          blockNumber: 2,
+          printStatement: 'Status Code :\n' + response.statusCode.toString(),
+        );
       }
     } on DioError catch (error) {
-      print(
-          '\n-- In Profile Api Service File :: callEmpDetails(){} : Block 3\n');
-      print(error.message);
-      print('------------- End Block 3 ----------------\n');
+      PrintLog.printLog(
+          fileName: 'Profile Api Service File',
+          functionName: 'callEmpDetails(){}',
+          blockNumber: 3,
+          printStatement: 'Error :: '+error.message.toString(),
+      );
     }
     return responseData;
   }
@@ -85,24 +96,24 @@ class ProfileService {
   static Future<EmployeeInfoModel> fetchProfileDetails() async {
     Map<String, dynamic> profileApiResponse = await callProfileApi();
     var data = EmployeeInfoModel.fromJson(profileApiResponse);
-
-    print(
-        '\n-- In Profile Api Service File :: fetchProfileDetails(){} : Block 1\n');
-    print('Profile Api Response :\n' + profileApiResponse.toString());
-    print('------------- End Block 1 ----------------\n');
+    PrintLog.printLog(
+          fileName: 'Profile Api Service File',
+          functionName: 'fetchProfileDetails(){}',
+          blockNumber: 1,
+          printStatement: 'Profile Api Response :\n' + profileApiResponse.toString(),
+    );
     return data;
   }
-
 
   static Future<EmployeeDetailsModel> fetchEmployeeDetails() async {
     Map<String, dynamic> empDetailsApiResponse = await callEmpDetailsApi();
     var data = EmployeeDetailsModel.fromJson(empDetailsApiResponse);
-
-    print(
-        '\n-- In Profile Api Service File :: fetchProfileDetails(){} : Block 1\n');
-    print('Profile Api Response :\n' + empDetailsApiResponse.toString());
-    print('------------- End Block 1 ----------------\n');
+    PrintLog.printLog(
+          fileName: 'Profile Api Service File',
+          functionName: 'fetchEmployeeDetails(){}',
+          blockNumber: 1,
+          printStatement: 'EmployeeDetails Api Response :\n' + empDetailsApiResponse.toString(),
+    );
     return data;
-
   }
 }

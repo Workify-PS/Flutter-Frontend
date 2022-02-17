@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     final String theme =
-        GetStorage("APP_SETTINGS").read(CacheManagerKey.THEME.toString());
+        GetStorage("APP_SETTINGS").read(CacheManagerKey.THEME.toString())??ThemeMode.light.name;
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,

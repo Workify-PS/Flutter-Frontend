@@ -126,8 +126,9 @@ class _AttendanceCardState extends State<AttendanceCard> {
         //   height: 19,
         // ),
         Spacer(),
-        Button(buttonTextWidget: Text('ATTENDANCE STATUS')),
-        
+        Button(
+          text: 'ATTENDANCE STATUS',
+        ),
       ],
     );
   }

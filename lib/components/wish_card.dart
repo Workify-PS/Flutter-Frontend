@@ -63,35 +63,17 @@ class _WishCardState extends State<WishCard> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Button(
-                buttonTextWidget: Text(
-                  'Birthdays',
-                   style: TextStyle(
-                    fontSize: 11.5,
-                    fontWeight: FontWeight.bold,
-                    // color:kTextColor,
-                  ), 
-                ),
+                text: 'Birthdays',
               ),
               Button(
-                buttonTextWidget: Text(
-                  'Anniversaries',
-                   style: TextStyle(
-                    fontSize: 11.5,
-                    fontWeight: FontWeight.bold,
-                    // color:kTextColor,
-                  ), 
+               text: 'Anniversaries',
                 ),
-              ),
+              
               Button(
-                buttonTextWidget: Text(
-                  'New Joiners',
-                   style: TextStyle(
-                    fontSize: 11.5,
-                    fontWeight: FontWeight.bold,
-                    // color:kTextColor,
-                  ), 
+               text: 'New Joiners',
                 ),
-              ),
+            
+              
             ],
           ),
         ),

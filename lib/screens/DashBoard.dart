@@ -44,12 +44,12 @@ class _DashBoardState extends State<DashBoard> {
           itemCount: cards.length,
           controller: ScrollController(),
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 650,
-              crossAxisSpacing: kDefaultPadding*2,
-              mainAxisSpacing: kDefaultPadding*2,
-              childAspectRatio: 1,
-              //mainAxisExtent: 400,
-              ),
+            maxCrossAxisExtent: 650,
+            crossAxisSpacing: kDefaultPadding * 2,
+            mainAxisSpacing: kDefaultPadding * 2,
+            childAspectRatio: 1.2,
+            //mainAxisExtent: 400,
+          ),
 
           itemBuilder: (context, index) =>
               DashBoardCard(child: cards[index], title: titles[index]),

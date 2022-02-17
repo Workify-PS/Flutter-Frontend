@@ -6,9 +6,11 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
-import 'package:workify/screens/AuthPage.dart';
+import 'package:workify/mixins/cache.dart';
+import 'package:workify/screens/AuthPage/AuthPage.dart';
+import 'package:workify/screens/AuthPage/AuthPageController.dart';
 import 'package:workify/screens/ChangePass.dart';
-import 'package:workify/screens/ForgotPass.dart';
+import 'package:workify/screens/AuthPage/ForgotPass.dart';
 import 'package:workify/screens/HomePage.dart';
 import 'package:workify/screens/ProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SettingsPage.dart';
@@ -33,12 +35,16 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    final String theme =
+        GetStorage("APP_SETTINGS").read(CacheManagerKey.THEME.toString());
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode:
+          theme == ThemeMode.light.name ? ThemeMode.light : ThemeMode.dark,
       initialBinding: BindingsBuilder(() => {
             Get.put(AuthController()).checkLoginStatus(),
             Get.put(UserController())
@@ -49,19 +55,19 @@ class _MyAppState extends State<MyApp> {
           page: () => SplashScreen(),
         ), //check for already signed in
         GetPage(
-          name: "/auth",
-          page: () => AuthPage(),
-        ),
+            name: "/auth",
+            page: () => AuthPage(),
+            binding: BindingsBuilder(() => {Get.put(AuthPageController())})),
 
         GetPage(name: "/home", page: () => HomePage()),
         GetPage(
           name: '/profile',
           page: () => ProfilePage(),
         ),
-        GetPage(
-          name: "/forgot",
-          page: () => ForgotPass(),
-        ),
+        // GetPage(
+        //   name: "/forgot",
+        //   page: () => ForgotPass(),
+        // ),
         GetPage(name: "/change", page: () => ChangePass()),
         GetPage(
           name: '/settings',

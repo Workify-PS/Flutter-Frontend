@@ -6,18 +6,18 @@ import 'package:workify/utils/theme.dart';
 // Changed buttonTextString to buttonTextWidget for customized text styling
 
 class Button extends StatelessWidget {
-  final Widget buttonTextWidget;
-  const Button({
-    Key? key, 
-    required this.buttonTextWidget
-  }) : super(key: key);
+  final String text;
+  final VoidCallback? press;
+  final Color? color;
+  const Button({Key? key, required this.text, this.press, this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    MediaQuery.of(context).size.width * 0.25;
     return ElevatedButton(
-      onPressed: () {},
-      child: buttonTextWidget,
+      onPressed: press??() {},
+      child: Text(text),
+      
     ).makeRounded(MyTheme().isDark(context));
   }
 }

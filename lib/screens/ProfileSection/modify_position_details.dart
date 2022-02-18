@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workify/components/button.dart';
-import 'package:workify/components/text_form.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -41,6 +41,13 @@ void cancelClicked (){
       'Grade',
       'Job Role',
     ];
+    
+    var textFormList_2_Controller = {
+      'User Position ID' : TextEditingController(text: 'userPosId'),
+      'Designation' : TextEditingController(text: 'designation'),
+      'Grade' : TextEditingController(text: 'grade'),
+      'Job Role' : TextEditingController(text: 'jobRole'),
+    };
 
     return Padding(
       padding: portrait == false
@@ -55,9 +62,10 @@ void cancelClicked (){
               flex: 9,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(4,(index) => TextForm(
+                children: List.generate(4,(index) => TextFormModifyProfileDetails(
                     myFocusNode: FocusNode(),
                     text: textFormList[index],
+                    controller:textFormList_2_Controller[textFormList[index]],
                   )
                 ),
               ),

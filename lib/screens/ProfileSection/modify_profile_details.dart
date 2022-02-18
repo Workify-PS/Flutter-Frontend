@@ -40,22 +40,22 @@ class ModifyProfileDetails extends StatelessWidget {
         title: Text(
           'Modify Employee Profile',
           style: TextStyle(
-            color: kSecondaryColor,
+            // color: kSecondaryColor,
             fontWeight: FontWeight.bold,
           ),
         ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            color: kPrimaryColor,
-          ),
-        ),
+        // flexibleSpace: Container(
+        //   decoration: BoxDecoration(
+        //     color: kPrimaryColor,
+        //   ),
+        // ),
       ),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,
           height: device.size.height / 1.1,
           decoration: BoxDecoration(
-            color: kPrimaryColor,
+            // color: kPrimaryColor,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Flex(
@@ -95,7 +95,7 @@ class ModifyProfileDetails extends StatelessWidget {
                     width: screenWidth,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: kPrimaryColor,
+                      // color: kPrimaryColor,
                     ),
                     // Rendering All widgets here
                     child: Obx(() => profileWidgets[profileWidgetsController

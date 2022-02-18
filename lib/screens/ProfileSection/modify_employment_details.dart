@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:workify/components/button.dart';
-import 'package:workify/components/text_form.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -47,6 +47,17 @@ class ModifyEmploymentDetails extends StatelessWidget {
       'HR Manager ID',
     ];
 
+
+    var textFormList_2_Controller = {
+      'Work Location' : TextEditingController(text: 'workLoc'),
+      'Employment Category' : TextEditingController(text: 'empCat'),
+      'Employment Status' : TextEditingController(text: 'empStatus'),
+      'Employement Type' : TextEditingController(text: 'empType'),
+      'L1 Manager ID' : TextEditingController(text: 'L1_id'),
+      'L2 Manager ID' : TextEditingController(text: 'L2_id'),
+      'HR Manager ID' : TextEditingController(text: 'hr_id'),
+    };
+
     return Padding(
       padding: portrait == false
           ? const EdgeInsets.symmetric(horizontal: 300)
@@ -60,9 +71,10 @@ class ModifyEmploymentDetails extends StatelessWidget {
               flex: 9,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(7,(index) => TextForm(
+                children: List.generate(7,(index) => TextFormModifyProfileDetails(
                     myFocusNode: FocusNode(),
                     text: textFormList[index],
+                    controller:textFormList_2_Controller[textFormList[index]],
                   )
                 ),
               ),

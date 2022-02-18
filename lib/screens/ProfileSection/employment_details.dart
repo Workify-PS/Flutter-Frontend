@@ -87,7 +87,7 @@ class EmploymentDetails extends StatelessWidget {
                     child: Container(
                       width: 1,
                       height: 300,
-                      color: kSecondaryColor,
+                      color: kPrimaryColor,
                     ),
                   ),
                 ),
@@ -215,9 +215,9 @@ class EmploymentInfoString extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       employmentInfoString,
-      style: TextStyle(
-        color: kSecondaryColor,
-      ),
+      // style: TextStyle(
+      //   color: kSecondaryColor,
+      // ),
     );
   }
 }
@@ -251,9 +251,9 @@ class FormattedEmploymentInfo extends StatelessWidget {
         children: [
           Text(
             ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
+            // style: TextStyle(
+            //   color: kSecondaryColor,
+            // ),
           ),
           Padding(
             padding: portrait == true
@@ -293,9 +293,9 @@ class EmployeeCode extends StatelessWidget {
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.empCode ??
               'Employee Code Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -315,9 +315,9 @@ class Department extends StatelessWidget {
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.department ??
               'Department Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -337,9 +337,9 @@ class WorkLocation extends StatelessWidget {
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.workLocation ??
               'Work Location Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -361,9 +361,9 @@ class EmploymentCategory extends StatelessWidget {
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.empCategory ??
               'Employment Category Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -384,9 +384,9 @@ class EmploymentStatus extends StatelessWidget {
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.empStatus ??
               'Employment Status Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -407,9 +407,9 @@ class EmploymentType extends StatelessWidget {
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.empType ??
               'Employment Type Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -430,9 +430,9 @@ class L1ManagerID extends StatelessWidget {
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.l1ManagerId.toString() ??
               'L1 Manager ID Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -453,9 +453,9 @@ class L2ManagerID extends StatelessWidget {
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.l2ManagerId.toString() ??
               'L2 Manager ID Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -476,9 +476,9 @@ class HRManagerID extends StatelessWidget {
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.hrManagerId.toString() ??
               'HR Manager ID Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -504,7 +504,7 @@ class EmploymentDetailsFooter extends StatelessWidget {
                   Text(
                     'History',
                     style: TextStyle(
-                      color: kSecondaryColor,
+                      // color: kSecondaryColor,
                       fontSize: 15,
                     ),
                   ),
@@ -516,7 +516,7 @@ class EmploymentDetailsFooter extends StatelessWidget {
               ),
               Table(
                 border: TableBorder.all(
-                  color: kSecondaryColor,
+                  color: kPrimaryColor,
                 ),
                 children: [
                   TableRow(
@@ -525,21 +525,21 @@ class EmploymentDetailsFooter extends StatelessWidget {
                         'Heading 1',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: kSecondaryColor,
+                          // color: kSecondaryColor,
                         ),
                       ),
                       Text(
                         'Heading 2',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: kSecondaryColor,
+                          // color: kSecondaryColor,
                         ),
                       ),
                       Text(
                         'Heading 3',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: kSecondaryColor,
+                          // color: kSecondaryColor,
                         ),
                       ),
                     ],
@@ -568,28 +568,28 @@ class EmploymentHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Table(
       border: TableBorder.all(
-        color: kSecondaryColor,
+        color: kPrimaryColor,
       ),
       children: [
         TableRow(
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
@@ -597,21 +597,21 @@ class EmploymentHistory extends StatelessWidget {
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
@@ -619,21 +619,21 @@ class EmploymentHistory extends StatelessWidget {
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
@@ -641,21 +641,21 @@ class EmploymentHistory extends StatelessWidget {
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
@@ -663,21 +663,21 @@ class EmploymentHistory extends StatelessWidget {
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
@@ -685,21 +685,21 @@ class EmploymentHistory extends StatelessWidget {
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
@@ -707,21 +707,21 @@ class EmploymentHistory extends StatelessWidget {
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
@@ -729,21 +729,21 @@ class EmploymentHistory extends StatelessWidget {
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
@@ -751,21 +751,21 @@ class EmploymentHistory extends StatelessWidget {
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
@@ -773,21 +773,21 @@ class EmploymentHistory extends StatelessWidget {
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
@@ -795,21 +795,21 @@ class EmploymentHistory extends StatelessWidget {
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
@@ -817,24 +817,25 @@ class EmploymentHistory extends StatelessWidget {
           children: [
             Text(
               'Cell 1',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 2',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
             Text(
               'Cell 3',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
+              // style: TextStyle(
+              //   color: kSecondaryColor,
+              // ),
             ),
           ],
         ),
+        
       ],
     );
   }

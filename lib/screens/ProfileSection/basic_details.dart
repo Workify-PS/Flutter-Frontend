@@ -164,9 +164,9 @@ class BasicInfoString extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       basicInfoString,
-      style: TextStyle(
-        color: kSecondaryColor,
-      ),
+      // style: TextStyle(
+      //   color: kSecondaryColor,
+      // ),
     );
   }
 }
@@ -195,9 +195,9 @@ class FormattedBasicInfo extends StatelessWidget {
         children: [
           Text(
             ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
+            // style: TextStyle(
+            //   color: kSecondaryColor,
+            // ),
           ),
           Padding(
             padding: portrait == true
@@ -232,18 +232,18 @@ class MobileNumber extends StatelessWidget {
       if (profileDetailsController.isLoading.value) {
         return Text(
           'Mobile Number Loading',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       } else {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.mobile ??
               'Mobile Number Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -259,9 +259,9 @@ class DoB extends StatelessWidget {
       if (profileDetailsController.isLoading.value) {
         return Text(
           'Date of Birth Loading',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       } else {
         if (profileDetailsController.checkValidDate(
@@ -269,16 +269,16 @@ class DoB extends StatelessWidget {
           return Text(
             DateFormat.yMMMMd('en_US').format(DateTime.parse(
                 profileDetailsController.employeeInfoModelDetails?.dob)),
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
+            // style: TextStyle(
+            //   color: kSecondaryColor,
+            // ),
           );
         } else {
           return Text(
             'Invalid date found',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
+            // style: TextStyle(
+            //   color: kSecondaryColor,
+            // ),
           );
         }
       }
@@ -295,18 +295,18 @@ class City extends StatelessWidget {
       if (profileDetailsController.isLoading.value) {
         return Text(
           'City Loading',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       } else {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.city ??
               'City Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -322,18 +322,18 @@ class State extends StatelessWidget {
       if (profileDetailsController.isLoading.value) {
         return Text(
           'State Loading',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       } else {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.state ??
               'State Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -349,18 +349,18 @@ class Country extends StatelessWidget {
       if (profileDetailsController.isLoading.value) {
         return Text(
           'Country Loading',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       } else {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.country ??
               'Country Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });

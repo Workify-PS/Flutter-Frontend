@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
-import 'package:workify/screens/ProfileSection/modify_button.dart';
+
 import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
@@ -40,23 +40,23 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Profile Page',
-          style: TextStyle(
-            color: kSecondaryColor,
-            fontWeight: FontWeight.bold,
-          ),
+          // style: TextStyle(
+          //   color: kPrimaryColor,
+          //   fontWeight: FontWeight.bold,
+          // ),
         ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            color: kPrimaryColor,
-          ),
-        ),
+        // flexibleSpace: Container(
+        //   decoration: BoxDecoration(
+        //     color: kPrimaryColor,
+        //   ),
+        // ),
       ),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,
           height: device.size.height / 1.1,
           decoration: BoxDecoration(
-            color: kPrimaryColor,
+            // color: Colors.transparent,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Flex(
@@ -102,7 +102,7 @@ class ProfilePage extends StatelessWidget {
                     width: screenWidth,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: kPrimaryColor,
+                      // color: kPrimaryColor,
                     ),
                     // Rendering All widgets here
                     child: Obx(() => profileWidgets[profileWidgetsController

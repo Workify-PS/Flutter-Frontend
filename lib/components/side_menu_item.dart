@@ -48,9 +48,7 @@ class _SideMenuItemState extends State<SideMenuItem> {
           setState(() {
             // isExpaned = !isExpaned;
             if(widgetTitle == 'settings'){
-              print('Settings Expanded : '+isSettingsExpanded.toString());
               isSettingsExpanded = !isSettingsExpanded;
-              print('Settings Expanded : '+isSettingsExpanded.toString());
             }
           });
           if(widgetTitle != 'settings'){

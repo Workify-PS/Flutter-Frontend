@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/screens/ChangePassword.dart';
@@ -80,9 +81,17 @@ class ChangeTheme extends StatefulWidget {
 }
 
 class _ChangeThemeState extends State<ChangeTheme> {
-  var _icon = Get.theme == ThemeMode.dark ? Icons.brightness_2 : Icons.wb_sunny;
+  var _icon;
+
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      if (MyTheme().isDark(context) == true) {
+        _icon = Icons.wb_sunny;
+      } else {
+        _icon = Icons.brightness_2;
+      }
+    });
     return IconButton(
       icon: Icon(
         _icon,
@@ -91,10 +100,8 @@ class _ChangeThemeState extends State<ChangeTheme> {
       onPressed: () {
         setState(() {
           if (_icon == Icons.wb_sunny) {
-            _icon = Icons.brightness_2;
             Get.changeThemeMode(ThemeMode.light);
           } else {
-            _icon = Icons.wb_sunny;
             Get.changeThemeMode(ThemeMode.dark);
           }
         });

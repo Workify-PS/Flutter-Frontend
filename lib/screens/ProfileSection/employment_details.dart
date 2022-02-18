@@ -56,26 +56,25 @@ class EmploymentDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     EmploymentInfoString(
-                        positionInfoString: 'User Position ID'),
-                    EmploymentInfoString(positionInfoString: 'Designation'),
-                    EmploymentInfoString(positionInfoString: 'Grade'),
+                        employmentInfoString: 'Employee Code'),
+                    EmploymentInfoString(employmentInfoString: 'Department'),
+                    EmploymentInfoString(employmentInfoString: 'Work Location'),
                     EmploymentInfoString(
-                        positionInfoString: 'Employment Category'),
+                        employmentInfoString: 'Employment Category'),
                     EmploymentInfoString(
-                        positionInfoString: 'Employment Status'),
+                        employmentInfoString: 'Employment Status'),
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.only(left: 40),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-
-                      FormattedUserPosID(),
-                      FormattedDesignation(),
-                      FormattedGrade(),
-                      FormattedEmploymentCategory(),
-                      FormattedEmploymentStatus(),
+                      FormattedEmploymentInfo(employmentInfoString: 'Employee Code'),
+                      FormattedEmploymentInfo(employmentInfoString: 'Department'),
+                      FormattedEmploymentInfo(employmentInfoString: 'Work Location'),
+                      FormattedEmploymentInfo(employmentInfoString: 'Employment Category'),
+                      FormattedEmploymentInfo(employmentInfoString: 'Employment Status'),
                     ],
                   ),
                 ),
@@ -104,21 +103,21 @@ class EmploymentDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    EmploymentInfoString(positionInfoString: 'Employment Type'),
-                    EmploymentInfoString(positionInfoString: 'L1 Manager ID'),
-                    EmploymentInfoString(positionInfoString: 'L2 Manager ID'),
-                    EmploymentInfoString(positionInfoString: 'HR Manager ID'),
+                    EmploymentInfoString(employmentInfoString: 'Employment Type'),
+                    EmploymentInfoString(employmentInfoString: 'L1 Manager ID'),
+                    EmploymentInfoString(employmentInfoString: 'L2 Manager ID'),
+                    EmploymentInfoString(employmentInfoString: 'HR Manager ID'),
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.only(left: 40),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FormattedEmploymentType(),
-                      FormattedL1ManagerID(),
-                      FormattedL2ManagerID(),
-                      FormattedHRManagerID(),
+                      FormattedEmploymentInfo(employmentInfoString: 'Employment Type'),
+                      FormattedEmploymentInfo(employmentInfoString: 'L1 Manager ID'),
+                      FormattedEmploymentInfo(employmentInfoString: 'L2 Manager ID'),
+                      FormattedEmploymentInfo(employmentInfoString: 'HR Manager ID'),
                     ],
                   ),
                 ),
@@ -156,37 +155,37 @@ class EmploymentDetailsPortraitView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     EmploymentInfoString(
-                        positionInfoString: 'User Position ID'),
-                    EmploymentInfoString(positionInfoString: 'Designation'),
-                    EmploymentInfoString(positionInfoString: 'Grade'),
+                        employmentInfoString: 'Employee Code'),
+                    EmploymentInfoString(employmentInfoString: 'Department'),
+                    EmploymentInfoString(employmentInfoString: 'Work Location'),
                     EmploymentInfoString(
-                        positionInfoString: 'Employment Category'),
+                        employmentInfoString: 'Employment Category'),
                     EmploymentInfoString(
-                        positionInfoString: 'Employment Status'),
-                    EmploymentInfoString(positionInfoString: 'Employment Type'),
-                    EmploymentInfoString(positionInfoString: 'L1 Manager ID'),
-                    EmploymentInfoString(positionInfoString: 'L2 Manager ID'),
-                    EmploymentInfoString(positionInfoString: 'HR Manager ID'),
+                        employmentInfoString: 'Employment Status'),
+                    EmploymentInfoString(employmentInfoString: 'Employment Type'),
+                    EmploymentInfoString(employmentInfoString: 'L1 Manager ID'),
+                    EmploymentInfoString(employmentInfoString: 'L2 Manager ID'),
+                    EmploymentInfoString(employmentInfoString: 'HR Manager ID'),
                   ],
                 ),
               ),
               Expanded(
                 flex: 3,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.only(left: 32),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FormattedUserPosID(),
-                      FormattedDesignation(),
-                      FormattedGrade(),
-                      FormattedEmploymentCategory(),
-                      FormattedEmploymentStatus(),
-                      FormattedEmploymentType(),
-                      FormattedL1ManagerID(),
-                      FormattedL2ManagerID(),
-                      FormattedHRManagerID(),
+                      FormattedEmploymentInfo(employmentInfoString: 'Employee Code'),
+                      FormattedEmploymentInfo(employmentInfoString: 'Department'),
+                      FormattedEmploymentInfo(employmentInfoString: 'Work Location'),
+                      FormattedEmploymentInfo(employmentInfoString: 'Employment Category'),
+                      FormattedEmploymentInfo(employmentInfoString: 'Employment Status'),
+                      FormattedEmploymentInfo(employmentInfoString: 'Employment Type'),
+                      FormattedEmploymentInfo(employmentInfoString: 'L1 Manager ID'),
+                      FormattedEmploymentInfo(employmentInfoString: 'L2 Manager ID'),
+                      FormattedEmploymentInfo(employmentInfoString: 'HR Manager ID'),
                     ],
                   ),
                 ),
@@ -205,17 +204,17 @@ class EmploymentDetailsPortraitView extends StatelessWidget {
 
 class EmploymentInfoString extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
-  final positionInfoString;
+  final employmentInfoString;
 
   const EmploymentInfoString({
     Key? key,
-    required this.positionInfoString,
+    required this.employmentInfoString,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      positionInfoString,
+      employmentInfoString,
       style: TextStyle(
         color: kSecondaryColor,
       ),
@@ -223,8 +222,25 @@ class EmploymentInfoString extends StatelessWidget {
   }
 }
 
-class FormattedUserPosID extends StatelessWidget {
-  const FormattedUserPosID({Key? key}) : super(key: key);
+
+class FormattedEmploymentInfo extends StatelessWidget {
+  String employmentInfoString;
+  FormattedEmploymentInfo({
+    Key? key,
+    required this.employmentInfoString
+  }) : super(key: key);
+
+  var string_2_EmploymentInfoMap = {
+    'Employee Code' : EmployeeCode(),
+    'Department': Department(),
+    'Work Location': WorkLocation(),
+    'Employment Category': EmploymentCategory(),
+    'Employment Status': EmploymentStatus(),
+    'Employment Type': EmploymentType(),
+    'L1 Manager ID': L1ManagerID(),
+    'L2 Manager ID': L2ManagerID(),
+    'HR Manager ID': HRManagerID(),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -240,12 +256,14 @@ class FormattedUserPosID extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 8),
+            padding: portrait == true
+                ? const EdgeInsets.only(left: 32)
+                : const EdgeInsets.only(left: 40),
             child: SizedBox(
               width: portrait == true ? 200 : 250,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: UserPosID(),
+                child: string_2_EmploymentInfoMap[employmentInfoString],
                 // child: Text(
                 //   'Hi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi there',
                 //   style: TextStyle(
@@ -262,283 +280,19 @@ class FormattedUserPosID extends StatelessWidget {
 }
 
 
-class FormattedDesignation extends StatelessWidget {
-  const FormattedDesignation({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Designation(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class FormattedGrade extends StatelessWidget {
-  const FormattedGrade({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Grade(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class FormattedEmploymentCategory extends StatelessWidget {
-  const FormattedEmploymentCategory({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: EmploymentCategory(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class FormattedEmploymentStatus extends StatelessWidget {
-  const FormattedEmploymentStatus({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: EmploymentStatus(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class FormattedEmploymentType extends StatelessWidget {
-  const FormattedEmploymentType({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: EmploymentType(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class FormattedL1ManagerID extends StatelessWidget {
-  const FormattedL1ManagerID({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: L1ManagerID(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class FormattedL2ManagerID extends StatelessWidget {
-  const FormattedL2ManagerID({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: L2ManagerID(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class FormattedHRManagerID extends StatelessWidget {
-  const FormattedHRManagerID({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: HRManagerID(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-
-class UserPosID extends StatelessWidget {
-  const UserPosID({Key? key}) : super(key: key);
+class EmployeeCode extends StatelessWidget {
+  const EmployeeCode({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('User Position ID Loading');
+        return Text('Employee Code Loading');
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.userPosId.toString() ??
-              'User Position ID Null',
+          profileDetailsController.employeeInfoModelDetails?.empCode ??
+              'Employee Code Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -548,19 +302,19 @@ class UserPosID extends StatelessWidget {
   }
 }
 
-class Designation extends StatelessWidget {
-  const Designation({Key? key}) : super(key: key);
+class Department extends StatelessWidget {
+  const Department({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('Designation Loading');
+        return Text('Department Loading');
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.designation ??
-              'Designation Null',
+          profileDetailsController.employeeInfoModelDetails?.department ??
+              'Department Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -570,19 +324,19 @@ class Designation extends StatelessWidget {
   }
 }
 
-class Grade extends StatelessWidget {
-  const Grade({Key? key}) : super(key: key);
+class WorkLocation extends StatelessWidget {
+  const WorkLocation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('Grade Loading');
+        return Text('Work Location Loading');
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.grade ??
-              'Grade Null',
+          profileDetailsController.employeeInfoModelDetails?.workLocation ??
+              'Work Location Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -591,6 +345,7 @@ class Grade extends StatelessWidget {
     });
   }
 }
+
 
 
 class EmploymentCategory extends StatelessWidget {

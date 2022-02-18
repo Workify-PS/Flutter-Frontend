@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:workify/components/settings_sub_items.dart';
+import 'package:workify/components/settings_sub_tiles.dart';
 import 'package:workify/components/sub_tiles.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
@@ -25,9 +25,8 @@ class SideMenuItem extends StatefulWidget {
 
 class _SideMenuItemState extends State<SideMenuItem> {
   bool isHover = false;
-  bool isExpaned = false;
-  // Only to inflate Settings 
   bool isSettingsExpanded = false;
+  bool isExpaned = false;
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +44,18 @@ class _SideMenuItemState extends State<SideMenuItem> {
           const EdgeInsets.only(top: kDefaultPadding, bottom: kDefaultPadding),
       child: InkWell(
         onTap: () {
-          widget.title.toLowerCase() != 'settings'
-              ? Get.toNamed("/${widget.title.toLowerCase()}")
-              : setState(() {
-                  isSettingsExpanded = !isSettingsExpanded;
-                });
+          var widgetTitle = widget.title.toLowerCase();
+          setState(() {
+            // isExpaned = !isExpaned;
+            if(widgetTitle == 'settings'){
+              print('Settings Expanded : '+isSettingsExpanded.toString());
+              isSettingsExpanded = !isSettingsExpanded;
+              print('Settings Expanded : '+isSettingsExpanded.toString());
+            }
+          });
+          if(widgetTitle != 'settings'){
+            Get.toNamed("/${widget.title.toLowerCase()}");
+          }
         },
         onHover: (value) {
           setState(() {
@@ -97,8 +103,10 @@ class _SideMenuItemState extends State<SideMenuItem> {
                     ),
                 ],
               ),
-              if (isExpaned) SubTilesList()
-              else if (isSettingsExpanded) WrapSettingsSubItems()
+              if (isExpaned)
+                SubTilesList()
+              else if (isSettingsExpanded)
+                SettingsSubTiles()
             ],
           ),
         ),

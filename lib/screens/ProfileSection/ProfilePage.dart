@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:workify/controllers/profile_widgets_controller.dart';
 // import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/profile_widgets_controller.dart';
 
 import 'basic_details.dart';
 import 'position_details.dart';
@@ -19,8 +19,6 @@ import 'employment_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
 
-// late ProfileWidgetsController profileWidgetsController;
-// = Get.find<ProfileWidgetsController>();
 
 // ignore: must_be_immutable
 class ProfilePage extends StatelessWidget {
@@ -46,6 +44,7 @@ class ProfilePage extends StatelessWidget {
     screenWidth = device.size.width;
     screenHeight = device.size.height;
 
+    final profileWidgetsController = Get.find<ProfileWidgetsController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -145,6 +144,7 @@ class Buttons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileWidgetsController = Get.find<ProfileWidgetsController>();
     var button = buttonIndex == 0
         ? profileWidgetsController.basicButton
         : buttonIndex == 1

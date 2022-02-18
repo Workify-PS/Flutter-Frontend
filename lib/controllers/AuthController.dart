@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/exceptions/BadCredentials.dart';
+import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/models/UserModel.dart';
 import 'package:workify/services/auth_service.dart';
@@ -16,15 +17,16 @@ class AuthController extends GetxController with CacheManager {
         await _authService.loginService(username: username, password: password);
 
     if (token != null) {
-      print('\n-- In Auth_Controller file :: loginUser(){} : Block 1\n');
-      print('Token received Successfully !! Token :\n $token');
-      print('-------------- End Block 1 ---------------');
-
       isSignedIn.value = true;
       await saveToken(token);
       final UserController _userController = Get.find<UserController>();
       await _userController.setUser(token);
-
+      PrintLog.printLog(
+        fileName: 'AuthController',
+        functionName: 'loginUser',
+        blockNumber: 1,
+        printStatement: '\nToken received Successfully !!\n$token',
+      );
     } else {
       Get.defaultDialog(
           middleText: 'Incorrect Username or Password',
@@ -57,31 +59,34 @@ class AuthController extends GetxController with CacheManager {
   }
 
   Future<void> logOut() async {
+    final UserController _userController = Get.find<UserController>();
+    _userController.currentUser = null;
+    await removeToken();
+    await removeUser();
+  }
+
+  Future<void> callLogOut() async {
     Get.defaultDialog(
-        title: 'Log out !',
-        middleText: 'We hate to see you leave...',
-        textCancel: 'Cancel',
-        textConfirm: 'Log Out',
+        title: 'Log Out',
+        middleText: 'Tussi Ja rhe ho :(',
+        textConfirm: 'Yes',
+        textCancel: 'No',
         onConfirm: () async {
-          isSignedIn.value = false;
-          final UserController _userController = Get.find<UserController>();
-          _userController.currentUser = null;
-          try {
-            await removeToken();
-            await removeUser();
+          logOut();
+          if (getToken() == null) {
+            isSignedIn.value = false;
             Get.offAllNamed('/auth');
-            print('\n-- In AuthController file :: logOut(){} : Block 1\n');
-            if (getToken() == null) {
-              print('Token removed Successfully !!');
-            } else {
-              print('Token still alive !!');
-            }
-            print("Logged Out Successfully !! ");
-            print('-------------- End Block 1 ---------------');
-          } catch (error) {
-            print('\n-- In AuthController file :: logOut(){} : Block 2\n');
-            print('Error :: ' + error.toString());
-            print('-------------- End Block 2 ---------------');
+            PrintLog.printLog(
+                fileName: 'AuthController.dart',
+                functionName: 'logOut(){}',
+                blockNumber: 1,
+                printStatement: 'User Logged Out Successfully !!');
+          } else {
+            PrintLog.printLog(
+                fileName: 'AuthController.dart',
+                functionName: 'logOut(){}',
+                blockNumber: 2,
+                printStatement: 'Token Is Still Alive !!');
           }
         });
   }

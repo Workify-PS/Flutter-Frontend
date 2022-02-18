@@ -2,6 +2,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/models/UserModel.dart';
 import 'package:workify/services/user_get_service.dart';
@@ -12,29 +13,38 @@ class UserController extends GetxController with CacheManager {
   final _authController = Get.find<AuthController>();
   @override
   void onInit() async {
-      super.onInit();
     if (_authController.isSignedIn.value) {
       final token = _authController.getToken();
-      print('\n-- In UserController file :: onInit(){} : Block 1\n');
-      print("USER IS SIGNED IN with TOKEN :: $token");
-      print('-------------- End Block 1 ---------------');
-      //await setUser(token!);
+      PrintLog.printLog(
+          fileName: 'UserController',
+          functionName: 'onInit',
+          blockNumber: 1,
+          printStatement: 'User is signed in with token\n$token');
       final user = getUser();
       if (user != null) {
         currentUser = Rx<UserModel>(user);
-        print('\n-- In UserController file :: onInit(){} : Block 2\n');
-        print("User First Name : " + currentUser!.value.firstName.toString());
-        print('-------------- End Block 2 ---------------');
+        PrintLog.printLog(
+          fileName: 'UserController',
+          functionName: 'onInit',
+          blockNumber: 2,
+          printStatement: 'User found in local Storage !!'
+        );
       } else {
-        print('\n-- In UserController file :: onInit(){} : Block 3\n');
-        print("USER NOT FOUND IN LOCAL STORAGE");
-        print('-------------- End Block 3 ---------------');
+        PrintLog.printLog(
+          fileName: 'UserController',
+          functionName: 'onInit',
+          blockNumber: 3,
+          printStatement: 'User NOT found in local Storage !!'
+        );
         _authController.logOut();
       }
     } else {
-      print('\n-- In UserController file :: onInit(){} : Block 4\n');
-      print("NOT SIGNED IN");
-      print('-------------- End Block 4 ---------------');
+        PrintLog.printLog(
+          fileName: 'UserController',
+          functionName: 'onInit',
+          blockNumber: 4,
+          printStatement: 'NOT Logged In !!'
+        );
     }
   }
 

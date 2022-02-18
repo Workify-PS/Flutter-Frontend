@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:workify/utils/constants.dart';
 
-import './modify_history_buttons.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -483,10 +482,6 @@ class PositionDetailsFooter extends StatelessWidget {
                       color: kSecondaryColor,
                       fontSize: 15,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: ModifyButton(),
                   ),
                 ],
               ),

@@ -2,23 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
-// import 'package:workify/controllers/profile_details_controller.dart';
+import 'package:workify/screens/ProfileSection/modify_button.dart';
+import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';
 
-
 import 'basic_details.dart';
 import 'position_details.dart';
 import 'employment_details.dart';
-// import 'education_details.dart';
-// import 'id_details.dart';
-// import 'bank_details.dart';
-// import 'contact_details.dart';
-// import 'dependent_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
-
 
 // ignore: must_be_immutable
 class ProfilePage extends StatelessWidget {
@@ -28,14 +22,10 @@ class ProfilePage extends StatelessWidget {
     'Basic Details': BasicDetails(),
     'Position Details': PositionDetails(),
     'Employment Details': EmploymentDetails(),
-    // 'Education Details': EducationDetails(),
-    // 'Bank_Details': BankDetails(),
-    // 'Contact_Details': ContactDetails(),
-    // 'Dependent_Details': DependentDetails(),
-    // 'Id_Details': IdDetails(),
   };
-  
-  ProfileWidgetsController profileWidgetsController = Get.find<ProfileWidgetsController>();
+
+  ProfileWidgetsController profileWidgetsController =
+      Get.find<ProfileWidgetsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +47,6 @@ class ProfilePage extends StatelessWidget {
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            // gradient: LinearGradient(
-            //   begin: Alignment.topRight,
-            //   end: Alignment.bottomLeft,
-            //   colors: [kPrimaryColor,Colors.teal],
-            // ),
             color: kPrimaryColor,
           ),
         ),
@@ -100,6 +85,12 @@ class ProfilePage extends StatelessWidget {
                         profileDetails: "Employment Details",
                       ),
                     ),
+                    Expanded(
+                      flex: 1,
+                      child: ModifyProfileDetailsButton(
+                        profileDetails: "Modify Profile Details",
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -134,12 +125,12 @@ class Buttons extends StatelessWidget {
   // step to call such a method
   // onpressed: () => profileWidgetHandler(profileDetails);
 
-  ProfileWidgetsController profileWidgetsController = Get.find<ProfileWidgetsController>();
+  ProfileWidgetsController profileWidgetsController =
+      Get.find<ProfileWidgetsController>();
 
   final String profileDetails;
   final int buttonIndex;
-   Buttons(
-      {Key? key, required this.profileDetails, required this.buttonIndex})
+  Buttons({Key? key, required this.profileDetails, required this.buttonIndex})
       : super(key: key);
 
   @override
@@ -149,13 +140,20 @@ class Buttons extends StatelessWidget {
         ? profileWidgetsController.basicButton
         : buttonIndex == 1
             ? profileWidgetsController.positionButton
-            : profileWidgetsController.employmentButton;
+            : buttonIndex == 2
+                ? profileWidgetsController.employmentButton
+                : profileWidgetsController.modifyButton;
 
     return Obx(() => ElevatedButton(
           onPressed: () {
-            profileWidgetsController.resetButtons();
-            profileWidgetsController.updateWidgetString(profileDetails);
-            profileWidgetsController.setButton(str: profileDetails);
+            if (buttonIndex == 3) {
+              Get.to(ModifyProfileDetails());
+            }
+            else{
+              profileWidgetsController.resetButtons();
+              profileWidgetsController.updateWidgetString(profileDetails);
+              profileWidgetsController.setButton(str: profileDetails);
+            }
           },
           style: ElevatedButton.styleFrom(
             primary: button.value == true ? kPrimaryColor : kSecondaryColor,
@@ -218,6 +216,22 @@ class EmploymentDetailsButton extends StatelessWidget {
     return Buttons(
       profileDetails: profileDetails,
       buttonIndex: 2,
+    );
+  }
+}
+
+class ModifyProfileDetailsButton extends StatelessWidget {
+  final String profileDetails;
+
+  const ModifyProfileDetailsButton({
+    Key? key,
+    required this.profileDetails,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Buttons(
+      profileDetails: profileDetails,
+      buttonIndex: 3,
     );
   }
 }

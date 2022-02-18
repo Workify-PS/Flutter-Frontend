@@ -126,7 +126,10 @@ class _AttendanceCardState extends State<AttendanceCard> {
         //   height: 19,
         // ),
         Spacer(),
-        Button(buttonTextWidget: Text('ATTENDANCE STATUS')),
+        Button(
+          buttonTextWidget: Text('ATTENDANCE STATUS'),
+          onPressed: (){},
+        ),
         
       ],
     );

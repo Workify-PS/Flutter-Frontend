@@ -6,7 +6,7 @@ import 'package:workify/components/button.dart';
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 // import 'package:workify/utils/extensions.dart';
-import 'package:workify/screens/ProfileSection/change_profile_page.dart';
+import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -56,7 +56,10 @@ class ProfileCompletionCard extends StatelessWidget {
           ),
         ),
         Spacer(),
-        Button(buttonTextWidget: Text("Complete Now".toUpperCase())),
+        Button(
+          buttonTextWidget: Text("Complete Now".toUpperCase()),
+          onPressed: (){},
+        ),
         // InkWell(
         //   onTap: () {
         //     Get.to(ChangeProfilePage());

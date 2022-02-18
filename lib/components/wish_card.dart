@@ -71,6 +71,7 @@ class _WishCardState extends State<WishCard> {
                     // color:kTextColor,
                   ), 
                 ),
+                onPressed: (){},
               ),
               Button(
                 buttonTextWidget: Text(
@@ -81,6 +82,7 @@ class _WishCardState extends State<WishCard> {
                     // color:kTextColor,
                   ), 
                 ),
+                onPressed: (){},
               ),
               Button(
                 buttonTextWidget: Text(
@@ -91,6 +93,7 @@ class _WishCardState extends State<WishCard> {
                     // color:kTextColor,
                   ), 
                 ),
+                onPressed: (){},
               ),
             ],
           ),

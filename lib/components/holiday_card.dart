@@ -6,6 +6,7 @@ import 'package:workify/models/HolidayModel.dart';
 import 'package:flutter/services.dart' as rootBundle;
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
+import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 
 class HolidaysCard extends StatefulWidget {
   HolidaysCard({Key? key}) : super(key: key);
@@ -32,22 +33,6 @@ class _HolidayCardState extends State<HolidaysCard> {
     //     MyTheme().isDark(context) ? kDividerColor : Colors.black87;
     final ScrollController _scrollController = ScrollController();
     return Scaffold(
-      // children: [
-      //   _items.isNotEmpty
-      //       ? Expanded(
-      //           child: ListView.builder(
-      //               itemCount: _items.length,
-      //               itemBuilder: (context, index) {
-      //                 return Card(
-      //                     margin: const EdgeInsets.all(10),
-      //                     child: ListTile(
-      //                       leading: Icon(_items[index]['image']),
-      //                       title: Text(_items[index]['name']),
-      //                       subtitle: Text(_items[index]['date']),
-      //                     ));
-      //               }))
-      //       : Container()
-      // ],
       body: FutureBuilder(
         future: ReadJsonData(),
         builder: (context, data) {
@@ -59,64 +44,67 @@ class _HolidayCardState extends State<HolidaysCard> {
               isAlwaysShown: true,
               showTrackOnHover: true,
               controller: _scrollController,
-              child: ListView.builder(
-                controller: _scrollController,
-                itemCount: items.length,
-                // physics: FixedExtentScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 1,
-                    color: kDividerColor,
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(40.0),
-                          child: SizedBox(
-                            height: 45,
-                            // child: Icon(IconData(int.parse('source',))
-                            // Image(
-                            //     image: NetworkImage(
-                            //         items[index].imagePath.toString(),
-                            //         scale: 0.1),
-                            //     fit: BoxFit.fitHeight
-                            //     // backgroundColor: Colors.transparent,
-                            //     )
-                            child: Image.asset(
-                              items[index].imagePath.toString(),
-                              alignment: Alignment.centerRight,
-                              // scale: 7.5,
+              child: FadingEdgeScrollView.fromScrollView(
+                child: ListView.builder(
+                  controller: _scrollController,
+                  itemCount: items.length,
+                  // physics: FixedExtentScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return Card(
+                      elevation: 1,
+                      color: kDividerColor,
+                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(40.0),
+                            child: SizedBox(
+                              height: 45,
+                              // child: Icon(IconData(int.parse('source',))
+                              // Image(
+                              //     image: NetworkImage(
+                              //         items[index].imagePath.toString(),
+                              //         scale: 0.1),
+                              //     fit: BoxFit.fitHeight
+                              //     // backgroundColor: Colors.transparent,
+                              //     )
+                              child: Image.asset(
+                                items[index].imagePath.toString(),
+                                alignment: Alignment.centerRight,
+                                // scale: 7.5,
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                            child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 18, right: 10),
-                              child: Text(
-                                items[index].holidayName.toString(),
-                                style: TextStyle(
-                                    fontSize: 27, fontWeight: FontWeight.bold),
+                          Expanded(
+                              child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 18, right: 10),
+                                child: Text(
+                                  items[index].holidayName.toString(),
+                                  style: TextStyle(
+                                      fontSize: 27,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 18, right: 2),
-                              child: Text(
-                                items[index].date.toString(),
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            )
-                          ],
-                        ))
-                      ],
-                    ),
-                  );
-                },
+                              Padding(
+                                padding: EdgeInsets.only(left: 18, right: 2),
+                                child: Text(
+                                  items[index].date.toString(),
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              )
+                            ],
+                          ))
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             );
           } else {

@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
-import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
 

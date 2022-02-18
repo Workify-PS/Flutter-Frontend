@@ -80,7 +80,7 @@ class ChangeTheme extends StatefulWidget {
 }
 
 class _ChangeThemeState extends State<ChangeTheme> {
-  var _icon = Icons.brightness_2;
+  var _icon = Get.theme == ThemeMode.dark ? Icons.brightness_2 : Icons.wb_sunny;
   @override
   Widget build(BuildContext context) {
     return IconButton(

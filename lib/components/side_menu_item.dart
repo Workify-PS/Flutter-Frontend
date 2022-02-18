@@ -44,14 +44,18 @@ class _SideMenuItemState extends State<SideMenuItem> {
           const EdgeInsets.only(top: kDefaultPadding, bottom: kDefaultPadding),
       child: InkWell(
         onTap: () {
-          // setState(() {
-          //   isExpaned = !isExpaned;
-          // });
-          widget.title.toLowerCase() == 'settings'
-              ? setState(() {
-                  isSettingsExpanded = true;
-                })
-              : Get.toNamed("/${widget.title.toLowerCase()}");
+          var widgetTitle = widget.title.toLowerCase();
+          setState(() {
+            // isExpaned = !isExpaned;
+            if(widgetTitle == 'settings'){
+              print('Settings Expanded : '+isSettingsExpanded.toString());
+              isSettingsExpanded = !isSettingsExpanded;
+              print('Settings Expanded : '+isSettingsExpanded.toString());
+            }
+          });
+          if(widgetTitle != 'settings'){
+            Get.toNamed("/${widget.title.toLowerCase()}");
+          }
         },
         onHover: (value) {
           setState(() {

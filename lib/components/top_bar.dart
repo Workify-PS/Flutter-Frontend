@@ -40,20 +40,21 @@ class _TopBarState extends State<TopBar> {
         padding: const EdgeInsets.only(left: 36, right: 48),
         child: Row(
           children: [
-            false
-                ? AnimatedTextKit(
-                    animatedTexts: [
-                      TyperAnimatedText(
-                        greeting(),
-                        speed: Duration(milliseconds: 80),
-                        textStyle: Theme.of(context).primaryTextTheme.headline1,
-                      ),
-                    ],
-                    totalRepeatCount: 1,
-                    displayFullTextOnTap: true,
-                    stopPauseOnTap: false,
-                  )
-                : Text(greeting(),
+            // false
+            //     ? AnimatedTextKit(
+            //         animatedTexts: [
+            //           TyperAnimatedText(
+            //             greeting(),
+            //             speed: Duration(milliseconds: 80),
+            //             textStyle: Theme.of(context).primaryTextTheme.headline1,
+            //           ),
+            //         ],
+            //         totalRepeatCount: 1,
+            //         displayFullTextOnTap: true,
+            //         stopPauseOnTap: false,
+            //       )
+            //     :
+                 Text(greeting(),
                     style: Theme.of(context).primaryTextTheme.headline1),
             Spacer(),
             InkWell(
@@ -74,27 +75,6 @@ class _TopBarState extends State<TopBar> {
                 ),
               ),
             ),
-            InkWell(
-              borderRadius: BorderRadius.circular(100),
-              radius: 100,
-              splashColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () {
-                final themeTobeChanged = MyTheme().isDark(context)
-                    ? ThemeMode.light
-                    : ThemeMode.dark;
-                Get.changeThemeMode(themeTobeChanged);
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Icon(
-                  Icons.switch_camera_outlined,
-                  size: iconSize,
-                ),
-              ),
-            ),
-            SizedBox(width: kDefaultPadding),
             CircleAvatar(
               backgroundColor: kBadgeColor,
               child: Text(fname[0]),

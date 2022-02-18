@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/theme.dart';
 
 class SettingsSubTiles extends StatelessWidget {
   const SettingsSubTiles({Key? key}) : super(key: key);
@@ -14,7 +16,7 @@ class SettingsSubTiles extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SettingsSubTile(settingsOptions: 'Preferences'),
+            WrapChangeTheme(),
             SettingsSubTile(settingsOptions: 'Change Password'),
             SettingsSubTile(settingsOptions: 'Log Out'),
           ],
@@ -33,8 +35,8 @@ class SettingsSubTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => InkWell(
           onTap: () {
-            settingsOptions == 'Preferences'
-                ? print('Preferences Selected')
+            settingsOptions == 'Change Theme'
+                ? WrapChangeTheme()
                 : settingsOptions == 'Change Password'
                     ? Get.toNamed('/change-password')
                     : authController.callLogOut();
@@ -53,5 +55,50 @@ class SettingsSubTile extends StatelessWidget {
             ),
           ),
         ));
+  }
+}
+
+class WrapChangeTheme extends StatelessWidget {
+  const WrapChangeTheme({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: kDefaultPadding * 0.8,
+        vertical: kDefaultPadding / 1.4,
+      ),
+      child: ChangeTheme(),
+    );
+  }
+}
+
+class ChangeTheme extends StatefulWidget {
+  const ChangeTheme({Key? key}) : super(key: key);
+
+  @override
+  _ChangeThemeState createState() => _ChangeThemeState();
+}
+
+class _ChangeThemeState extends State<ChangeTheme> {
+  var _icon = Icons.brightness_2;
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        _icon,
+        size: 30,
+      ),
+      onPressed: () {
+        setState(() {
+          if (_icon == Icons.wb_sunny) {
+            _icon = Icons.brightness_2;
+            Get.changeThemeMode(ThemeMode.light);
+          } else {
+            _icon = Icons.wb_sunny;
+            Get.changeThemeMode(ThemeMode.dark);
+          }
+        });
+      },
+    );
   }
 }

@@ -74,11 +74,11 @@ class BasicDetails extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                FormattedMobileNumber(),
-                                FormattedDoB(),
-                                FormattedCity(),
-                                FormattedState(),
-                                FormattedCountry(),
+                                FormattedBasicInfo(basicInfoString: 'Mobile Number'),
+                                FormattedBasicInfo(basicInfoString: 'Date of Birth'),
+                                FormattedBasicInfo(basicInfoString: 'City'),
+                                FormattedBasicInfo(basicInfoString: 'State'),
+                                FormattedBasicInfo(basicInfoString: 'Country'),
                               ],
                             ),
                           ),
@@ -135,11 +135,11 @@ class BasicDetailsPortraitView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FormattedMobileNumber(),
-                    FormattedDoB(),
-                    FormattedCity(),
-                    FormattedState(),
-                    FormattedCountry(),
+                    FormattedBasicInfo(basicInfoString: 'Mobile Number'),
+                    FormattedBasicInfo(basicInfoString: 'Date of Birth'),
+                    FormattedBasicInfo(basicInfoString: 'City'),
+                    FormattedBasicInfo(basicInfoString: 'State'),
+                    FormattedBasicInfo(basicInfoString: 'Country'),
                   ],
                 ),
               ),
@@ -150,7 +150,6 @@ class BasicDetailsPortraitView extends StatelessWidget {
     );
   }
 }
-
 
 class BasicInfoString extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -172,6 +171,57 @@ class BasicInfoString extends StatelessWidget {
   }
 }
 
+class FormattedBasicInfo extends StatelessWidget {
+  String basicInfoString;
+  FormattedBasicInfo({
+    Key? key,
+    required this.basicInfoString
+  }) : super(key: key);
+
+  var string_2_BasicInfoMap = {
+    'Mobile Number': MobileNumber(),
+    'Date of Birth': DoB(),
+    'City': City(),
+    'State': State(),
+    'Country': Country(),
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: portrait == true ? 250 : 300,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            ':',
+            style: TextStyle(
+              color: kSecondaryColor,
+            ),
+          ),
+          Padding(
+            padding: portrait == true
+                ? const EdgeInsets.only(left: 32)
+                : const EdgeInsets.only(left: 40),
+            child: SizedBox(
+              width: portrait == true ? 200 : 250,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: string_2_BasicInfoMap[basicInfoString],
+                // child: Text(
+                //   'Hi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi there',
+                //   style: TextStyle(
+                //     color: kSecondaryColor,
+                //   ),
+                // ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class MobileNumber extends StatelessWidget {
   const MobileNumber({Key? key}) : super(key: key);
@@ -205,35 +255,34 @@ class DoB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return Obx(() {
-        if (profileDetailsController.isLoading.value) {
+    return Obx(() {
+      if (profileDetailsController.isLoading.value) {
+        return Text(
+          'Date of Birth Loading',
+          style: TextStyle(
+            color: kSecondaryColor,
+          ),
+        );
+      } else {
+        if (profileDetailsController.checkValidDate(
+            profileDetailsController.employeeInfoModelDetails?.dob)) {
           return Text(
-            'Date of Birth Loading',
+            DateFormat.yMMMMd('en_US').format(DateTime.parse(
+                profileDetailsController.employeeInfoModelDetails?.dob)),
             style: TextStyle(
               color: kSecondaryColor,
             ),
           );
-        } 
-        else {
-          if (profileDetailsController.checkValidDate(profileDetailsController.employeeInfoModelDetails?.dob)) {
-            return Text(
-                DateFormat.yMMMMd('en_US').format(DateTime.parse(profileDetailsController.employeeInfoModelDetails?.dob)),
-                style: TextStyle(
-                  color: kSecondaryColor,
-                ),
-              );
-          } 
-          else {
-            return Text(
+        } else {
+          return Text(
             'Invalid date found',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            );
-          }
+            style: TextStyle(
+              color: kSecondaryColor,
+            ),
+          );
         }
       }
-    );
+    });
   }
 }
 
@@ -253,7 +302,8 @@ class City extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeInfoModelDetails?.city ?? 'City Null',
+          profileDetailsController.employeeInfoModelDetails?.city ??
+              'City Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -279,7 +329,8 @@ class State extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeInfoModelDetails?.state ?? 'State Null',
+          profileDetailsController.employeeInfoModelDetails?.state ??
+              'State Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -315,175 +366,3 @@ class Country extends StatelessWidget {
     });
   }
 }
-
-
-class FormattedMobileNumber extends StatelessWidget {
-  const FormattedMobileNumber({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: MobileNumber(),
-                // child: Text(
-                //   'Hi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi there',
-                //   style: TextStyle(
-                //     color: kSecondaryColor,
-                //   ),
-                // ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class FormattedDoB extends StatelessWidget {
-  const FormattedDoB({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: DoB(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class FormattedCity extends StatelessWidget {
-  const FormattedCity({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: City(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class FormattedState extends StatelessWidget {
-  const FormattedState({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: State(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class FormattedCountry extends StatelessWidget {
-  const FormattedCountry({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: portrait == true ? const EdgeInsets.only(left: 32) : const EdgeInsets.only(left: 40),
-            child: SizedBox(
-              width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Country(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-

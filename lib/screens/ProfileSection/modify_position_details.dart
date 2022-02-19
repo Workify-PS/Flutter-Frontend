@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:workify/components/button.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
+import 'package:workify/controllers/profile_details_controller.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
 class ModifyPositionDetails extends StatelessWidget {
-  const ModifyPositionDetails({Key? key}) : super(key: key);
-void cancelClicked (){
+  ModifyPositionDetails({Key? key}) : super(key: key);
+  
+  final profileDetailsController = Get.find<ProfileDetailsController>();
+
+  void cancelClicked (){
     PrintLog.printLog(
       fileName: 'modify_position_details',
       functionName: 'Cancel : onPressed',
@@ -43,10 +49,22 @@ void cancelClicked (){
     ];
     
     var textFormList_2_Controller = {
-      'User Position ID' : TextEditingController(text: 'userPosId'),
-      'Designation' : TextEditingController(text: 'designation'),
-      'Grade' : TextEditingController(text: 'grade'),
-      'Job Role' : TextEditingController(text: 'jobRole'),
+      'User Position ID' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.userPosId.toString()
+          ?? 'User Position ID Not Found',
+      ),
+      'Designation' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.designation
+          ?? 'Designation Not Found',
+      ),
+      'Grade' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.grade
+          ?? 'Grade Not Found',
+      ),
+      'Job Role' : TextEditingController(
+        text: profileDetailsController.employeeInfoModelDetails?.role
+          ?? 'Job Role Not Found',
+      ),
     };
 
     return Padding(

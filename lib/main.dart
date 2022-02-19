@@ -16,6 +16,8 @@ import 'package:workify/screens/SettingsPage.dart';
 import 'package:workify/screens/SplashScreen/SplashScreen.dart';
 import 'package:workify/utils/theme.dart';
 
+import 'controllers/profile_details_controller.dart';
+
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
@@ -63,6 +65,7 @@ class _MyAppState extends State<MyApp> with CacheManager {
           page: () => ProfilePage(),
           binding: BindingsBuilder(() => {
             Get.put(ProfileWidgetsController()),
+            Get.put(ProfileDetailsController()),
           }),
         ),
         GetPage(

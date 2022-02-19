@@ -10,7 +10,7 @@ import 'package:workify/controllers/profile_details_controller.dart';
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
-final profileDetailsController = Get.put(ProfileDetailsController());
+final profileDetailsController = Get.find<ProfileDetailsController>();
 
 class WrapPositionDetails extends StatefulWidget {
   const WrapPositionDetails({Key? key}) : super(key: key);

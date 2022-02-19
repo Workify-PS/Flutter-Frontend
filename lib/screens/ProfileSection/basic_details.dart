@@ -7,13 +7,13 @@ import 'package:workify/utils/sizes.dart';
 
 import 'person.dart';
 import '../../controllers/profile_details_controller.dart';
-import 'package:workify/utils/constants.dart';
+// import 'package:workify/utils/constants.dart';
 // import './modify_history_buttons.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
-final profileDetailsController = Get.put(ProfileDetailsController());
+final profileDetailsController = Get.find<ProfileDetailsController>();
 
 class BasicDetails extends StatelessWidget {
   const BasicDetails({Key? key}) : super(key: key);

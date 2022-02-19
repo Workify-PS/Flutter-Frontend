@@ -9,7 +9,7 @@ double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 // bool fresher = false;
 
-final profileDetailsController = Get.put(ProfileDetailsController());
+final profileDetailsController = Get.find<ProfileDetailsController>();
 
 class WrapEmploymentDetails extends StatefulWidget {
   const WrapEmploymentDetails({Key? key}) : super(key: key);

@@ -77,7 +77,7 @@ class MyTheme {
                 CupertinoThemeData().textTheme.navLargeTitleTextStyle.copyWith(
                       fontSize: 36,
                       fontWeight: FontWeight.bold,
-                      color: kTextColor,
+                      color: kTextDarkColor,
                     ),
           ),
           scaffoldBackgroundColor: kScaffoldDarkColor,

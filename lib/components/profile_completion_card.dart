@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:get/get.dart';
@@ -55,8 +56,9 @@ class ProfileCompletionCard extends StatelessWidget {
             ),
             Spacer(),
             Button(
-              buttonTextWidget: Text("Complete Now".toUpperCase()),
+              buttonTextWidget: Text("Complete Now"),
               onPressed: () {},
+              primaryColor: kPrimaryColor,
             ),
             // InkWell(
             //   onTap: () {

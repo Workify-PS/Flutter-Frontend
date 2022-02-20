@@ -1,18 +1,26 @@
 // import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:workify/components/side_menu_item.dart';
 import 'package:workify/utils/constants.dart';
 
 class SideMenu extends StatelessWidget {
   SideMenu({Key? key}) : super(key: key);
-  final titles = ["Home", "Profile","Attendance","Leave", "Report", "Settings"];
+  final titles = [
+    "Home",
+    "Profile",
+    "Attendance",
+    "Leave",
+    "Report",
+    "Settings"
+  ];
   final icons = [
     Icons.home_outlined,
-    Icons.person_outline_outlined,
-    Icons.list_alt_outlined,
+    CupertinoIcons.person,
+    CupertinoIcons.square_favorites,
     Icons.time_to_leave_outlined,
     Icons.flag_outlined,
-    Icons.settings_outlined
+    CupertinoIcons.gear_alt
   ];
 
   @override

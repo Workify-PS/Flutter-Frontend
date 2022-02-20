@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -180,7 +181,7 @@ class _AttendanceCardState extends State<AttendanceCard> {
                           shape: NeumorphicShape.flat,
                           boxShape: NeumorphicBoxShape.roundRect(
                               BorderRadius.circular(12)),
-                          depth: isPunchedOut ? -5 : 10,
+                          depth: isPunchedOut ? -3 : 10,
                           border: NeumorphicBorder(color: primaryColor),
                           lightSource: LightSource.topLeft,
                           shadowLightColor: Colors.lightBlue.withOpacity(0.7),
@@ -262,8 +263,9 @@ class _AttendanceCardState extends State<AttendanceCard> {
               ),
           Spacer(),
           Button(
-            buttonTextWidget: Text('ATTENDANCE STATUS'),
+            buttonTextWidget: Text('Attendance Status'),
             onPressed: () {},
+            icon: Icon(CupertinoIcons.calendar_circle),
           ),
         ],
       ),

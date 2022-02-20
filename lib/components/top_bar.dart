@@ -55,8 +55,8 @@ class _TopBarState extends State<TopBar> with CacheManager {
             //         stopPauseOnTap: false,
             //       )
             //     :
-                 Text(greeting(),
-                    style: Theme.of(context).primaryTextTheme.headline1),
+            Text(greeting(),
+                style: Theme.of(context).primaryTextTheme.headline1),
             Spacer(),
             InkWell(
               borderRadius: BorderRadius.circular(100),
@@ -69,7 +69,8 @@ class _TopBarState extends State<TopBar> with CacheManager {
                 widget.parentScaffoldkey.currentState!.openEndDrawer();
               },
               child: Padding(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.symmetric(
+                    vertical: kDefaultPadding, horizontal: kDefaultPadding * 2),
                 child: Icon(
                   Icons.notifications_outlined,
                   size: iconSize,

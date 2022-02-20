@@ -148,8 +148,7 @@ class Buttons extends StatelessWidget {
           onPressed: () {
             if (buttonIndex == 3) {
               Get.to(ModifyProfileDetails());
-            }
-            else{
+            } else {
               profileWidgetsController.resetButtons();
               profileWidgetsController.updateWidgetString(profileDetails);
               profileWidgetsController.setButton(str: profileDetails);

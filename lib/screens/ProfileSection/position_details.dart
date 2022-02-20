@@ -1,11 +1,11 @@
 // import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:workify/utils/constants.dart';
 
-import './modify_history_buttons.dart';
-import 'package:workify/screens/ProfileSection/ProfileSectionControllers/profile_details_controller.dart';
+import 'package:workify/controllers/profile_details_controller.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -37,102 +37,99 @@ class PositionDetails extends StatelessWidget {
     screenWidth = device.size.width;
     screenHeight = device.size.height;
     portrait = screenWidth < 1000;
-    // print('\n\n\n' + portrait.toString() + '\n\n');
-    // Condition to get Portrait or LandScape View
-    return portrait == false
-        ? Column(
-            children: [
-              Expanded(
-                flex: 7,
-                child: Row(
+    if (portrait == false) {
+      return Column(
+        children: [
+          Expanded(
+            flex: 7,
+            child: Row(
+              children: [
+                //Side padding before Column 1
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    // color: Colors.red,
+                    color: Colors.transparent,
+                  ),
+                ),
+                Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Employeecode,poscode,designation,grade,
-                        EmployeeCode(),
-                        PositionCode(),
-                        Designation(),
-                        Grade(),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // empCate,empstat,emptyp,dept
-                        EmploymentCategory(),
-                        EmploymentStatus(),
-                        EmploymentType(),
-                        Department(),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // workLoc,l1,l2,hr
-                        WorkLocation(),
-                        L1ManagerId(),
-                        L2ManagerId(),
-                        HRManagerId(),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // orgId,isAct,ofmail,doj,
-                        OrgId(),
-                        IsActive(),
-                        OfficialEmail(),
-                        DoJ(),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        JobRole(),
-                        SizedBox(
-                          height: screenHeight * 0.16,
-                        ),
-                        ModifyButton(),
-                      ],
-                    ),
+                    PositionInfoString(positionInfoString: 'User Position ID'),
+                    PositionInfoString(positionInfoString: 'Designation'),
+                    PositionInfoString(positionInfoString: 'Grade'),
                   ],
                 ),
-              ),
-              // Landscape Footer
-              Expanded(
-                flex: 3,
-                child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: [
-                        Text(
-                          'History',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: kSecondaryColor,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        PositionHistory(),
-                      ],
+                Padding(
+                  padding: const EdgeInsets.only(left: 40),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      FormattedPositionInfo(
+                          positionInfoString: 'User Position ID'),
+                      FormattedPositionInfo(positionInfoString: 'Designation'),
+                      FormattedPositionInfo(
+                          positionInfoString: 'Grade'),
+                    ],
+                  ),
+                ),
+                // Border between Column 1 and Column 2
+                Container(
+                  width: 30,
+                  color: Colors.transparent,
+                  // color:Colors.black,
+                  child: Center(
+                    child: Container(
+                      width: 1,
+                      height: 300,
+                      color: kSecondaryColor,
                     ),
                   ),
                 ),
-              ),
-            ],
-          )
-        : PositionDetailsPortraitView();
+                //Side padding before Column 2
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    // color: Colors.red,
+                    color: Colors.transparent,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    PositionInfoString(positionInfoString: 'Official Email'),
+                    PositionInfoString(positionInfoString: 'Date of Joining'),
+                    PositionInfoString(positionInfoString: 'Job Role'),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 40),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      FormattedPositionInfo(
+                          positionInfoString: 'Official Email'),
+                      FormattedPositionInfo(
+                          positionInfoString: 'Date of Joining'),
+                      FormattedPositionInfo(positionInfoString: 'Job Role'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // History Table and Modify Button
+          Expanded(
+            flex: 3,
+            child: PositionDetailsFooter(),
+          ),
+        ],
+      );
+    } else {
+      return PositionDetailsPortraitView();
+    }
   }
 }
 
@@ -140,255 +137,150 @@ class PositionDetailsPortraitView extends StatelessWidget {
   const PositionDetailsPortraitView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // return Column(
-    //   children: [
-    //     Expanded(
-    //       flex: 8,
-    //       child: Padding(
-    //         padding: const EdgeInsets.symmetric(
-    //           horizontal: 8,
-    //           vertical: 5,
-    //         ),
-    //         child: Column(
-    //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //           children: [
-    //             EmployeeCode(),
-    //             PositionCode(),
-    //             Designation(),
-    //             Grade(),
-    //             EmploymentCategory(),
-    //             EmploymentStatus(),
-    //             EmploymentType(),
-    //             Department(),
-    //             WorkLocation(),
-    //             L1ManagerId(),
-    //             L2ManagerId(),
-    //             HRManagerId(),
-    //             OrgId(),
-    //             IsActive(),
-    //             OfficialEmail(),
-    //             DoJ(),
-    //             JobRole(),
-    //             Row(
-    //               mainAxisAlignment: MainAxisAlignment.start,
-    //               children: [
-    //                 ModifyButton(),
-    //               ],
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    // Expanded(
-    //   flex: 2,
-    //   child: SingleChildScrollView(
-    //     scrollDirection: Axis.vertical,
-    //     child: Padding(
-    //       padding: const EdgeInsets.all(8.0),
-    //       child: Column(
-    //         children: [
-    //           Text(
-    //             'History',
-    //             style: TextStyle(
-    //               fontWeight: FontWeight.bold,
-    //               color:kSecondaryColor,
-    //             ),
-    //           ),
-    //           SizedBox(
-    //                   height: 10,
-    //           ),
-    //           PositionHistory(),
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    // ),
-    //   ],
-    // );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
           flex: 6,
-          // child: Container(
-          //   width: 500,
-          //   height: double.infinity,
-          //   color: Colors.red,
-          // ),
           child: Row(
             children: [
               Expanded(
-                flex: 3,
-                // child: Container(
-                //   width: 500,
-                //   height: double.infinity,
-                //   color: Colors.red,
-                // ),
+                flex: 2,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                      'Employee Code',
-                      style: TextStyle(
-                        color: kSecondaryColor,
-                      ),
-                    ),
-                    // Text(
-                    //   'Employment Status', //accountLocked ?
-                    //   style: TextStyle(
-                    //     color: kSecondaryColor,
-                    //   ),
-                    // ),
-                    Text(
-                      'Department',
-                      style: TextStyle(
-                        color: kSecondaryColor,
-                      ),
-                    ),
-                    Text(
-                      'Work Location',
-                      style: TextStyle(
-                        color: kSecondaryColor,
-                      ),
-                    ),
-                    Text(
-                      'Organization ID',
-                      style: TextStyle(
-                        color: kSecondaryColor,
-                      ),
-                    ),
-                    Text(
-                      'Account Active ?',
-                      style: TextStyle(
-                        color: kSecondaryColor,
-                      ),
-                    ),
-                    Text(
-                      'Official Mail',
-                      style: TextStyle(
-                        color: kSecondaryColor,
-                      ),
-                    ),
-                    Text(
-                      'Date of Joining',
-                      style: TextStyle(
-                        color: kSecondaryColor,
-                      ),
-                    ),
-                    Text(
-                      'Job Role',
-                      style: TextStyle(
-                        color: kSecondaryColor,
-                      ),
-                    ),
+                    PositionInfoString(positionInfoString: 'User Position ID'),
+                    PositionInfoString(positionInfoString: 'Designation'),
+                    PositionInfoString(positionInfoString: 'Grade'),
+                    PositionInfoString(positionInfoString: 'Official Email'),
+                    PositionInfoString(positionInfoString: 'Date of Joining'),
+                    PositionInfoString(positionInfoString: 'Job Role'),
                   ],
                 ),
               ),
-              Container(
-                width: screenWidth * 0.1,
-                height: double.infinity,
-                color: Colors.transparent,
-              ),
               Expanded(
-                flex: 4,
-                // child: Container(
-                //   width: 500,
-                //   height: double.infinity,
-                //   color: Colors.amber,
-                // ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: EmployeeCode_(),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Department_(),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: WorkLocation_(),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: OrgID_(),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: AccountActive_(),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: OfficialEmail_(),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: DoJ_(),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: JobRole_(),
-                    ),
-                  ],
+                flex: 3,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 32),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FormattedPositionInfo(
+                          positionInfoString: 'User Position ID'),
+                      FormattedPositionInfo(positionInfoString: 'Designation'),
+                      FormattedPositionInfo(
+                          positionInfoString: 'Grade'),
+                      FormattedPositionInfo(
+                          positionInfoString: 'Official Email'),
+                      FormattedPositionInfo(
+                          positionInfoString: 'Date of Joining'),
+                      FormattedPositionInfo(positionInfoString: 'Job Role'),
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
         ),
         Expanded(
-          flex: 4,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 1,
-                child:ModifyButton(),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Expanded(
-                flex: 0,
-                child: Text(
-                  'History',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: kSecondaryColor,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: PositionHistory(),
-                ),
-              ),
-            ],
-          ),
+          flex: 3,
+          child: PositionDetailsFooter(),
         ),
       ],
     );
   }
 }
 
-class EmployeeCode_ extends StatelessWidget {
-  const EmployeeCode_({Key? key}) : super(key: key);
+class PositionInfoString extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
+  final positionInfoString;
+
+  const PositionInfoString({
+    Key? key,
+    required this.positionInfoString,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      positionInfoString,
+      style: TextStyle(
+        color: kSecondaryColor,
+      ),
+    );
+  }
+}
+
+class FormattedPositionInfo extends StatelessWidget {
+  String positionInfoString;
+  FormattedPositionInfo({
+    Key? key, 
+    required this.positionInfoString
+  })
+    : super(key: key);
+
+  Map<String,Widget> string_2_PositionInfoMap = {
+    'User Position ID': UserPosID(),
+    'Designation': Designation(),
+    'Grade': Grade(),
+    'Employment Status': EmploymentStatus(),
+    'Official Email': OfficialEmail(),
+    'Date of Joining': DoJ(),
+    'Job Role': JobRole(),
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: portrait == true ? 250 : 300,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text(
+            ':',
+            style: TextStyle(
+              color: kSecondaryColor,
+            ),
+          ),
+          Padding(
+            padding: portrait == true
+                ? const EdgeInsets.only(left: 32)
+                : const EdgeInsets.only(left: 40),
+            child: SizedBox(
+              width: portrait == true ? 200 : 250,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: string_2_PositionInfoMap[positionInfoString],
+                // child: Text(
+                //   'Hi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi there',
+                //   style: TextStyle(
+                //     color: kSecondaryColor,
+                //   ),
+                // ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class UserPosID extends StatelessWidget {
+  const UserPosID({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('Employee Code Loading');
+        return Text('User Position ID Loading');
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.empCode ??
-              'Employee Code Null',
+          profileDetailsController.employeeDetailsModelDetails?.userPosId.toString() ??
+              'User Position ID Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -398,19 +290,19 @@ class EmployeeCode_ extends StatelessWidget {
   }
 }
 
-class Department_ extends StatelessWidget {
-  const Department_({Key? key}) : super(key: key);
+class Designation extends StatelessWidget {
+  const Designation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('Department Loading');
+        return Text('Designation Loading');
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.department ??
-              'Department Null',
+          profileDetailsController.employeeDetailsModelDetails?.designation ??
+              'Designation Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -420,19 +312,19 @@ class Department_ extends StatelessWidget {
   }
 }
 
-class WorkLocation_ extends StatelessWidget {
-  const WorkLocation_({Key? key}) : super(key: key);
+class Grade extends StatelessWidget {
+  const Grade({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('Work Location Loading');
+        return Text('Grade Loading');
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.workLocation ??
-              'Work Location Null',
+          profileDetailsController.employeeDetailsModelDetails?.grade ??
+              'Grade Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -443,8 +335,8 @@ class WorkLocation_ extends StatelessWidget {
 }
 
 
-class OrgID_ extends StatelessWidget {
-  const OrgID_({Key? key}) : super(key: key);
+class OrgID extends StatelessWidget {
+  const OrgID({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -454,7 +346,7 @@ class OrgID_ extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.orgId.toString() ??
+          profileDetailsController.employeeInfoModelDetails?.orgId.toString() ??
               'Organization ID Null',
           style: TextStyle(
             color: kSecondaryColor,
@@ -465,9 +357,8 @@ class OrgID_ extends StatelessWidget {
   }
 }
 
-
-class AccountActive_ extends StatelessWidget {
-  const AccountActive_({Key? key}) : super(key: key);
+class EmploymentStatus extends StatelessWidget {
+  const EmploymentStatus({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -477,7 +368,9 @@ class AccountActive_ extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.active == true ? 'Yes' : 'No',
+          profileDetailsController.employeeInfoModelDetails?.active == true
+              ? 'Active'
+              : 'Inactive',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -487,9 +380,8 @@ class AccountActive_ extends StatelessWidget {
   }
 }
 
-
-class OfficialEmail_ extends StatelessWidget {
-  const OfficialEmail_({Key? key}) : super(key: key);
+class OfficialEmail extends StatelessWidget {
+  const OfficialEmail({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -499,7 +391,7 @@ class OfficialEmail_ extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.officialMail ??
+          profileDetailsController.employeeInfoModelDetails?.officialMail ??
               'Official Email Null',
           style: TextStyle(
             color: kSecondaryColor,
@@ -510,32 +402,44 @@ class OfficialEmail_ extends StatelessWidget {
   }
 }
 
-
-class DoJ_ extends StatelessWidget {
-  const DoJ_({Key? key}) : super(key: key);
+class DoJ extends StatelessWidget {
+  const DoJ({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('Date of Joining Loading');
-      } else {
         return Text(
-          // 'HI',
-          profileDetailsController.profileModelDetails?.doj ??
-              'Date of Joining Null',
+          'Date of Joining Loading',
           style: TextStyle(
             color: kSecondaryColor,
           ),
         );
+      } else {
+        if (profileDetailsController.checkValidDate(
+            profileDetailsController.employeeInfoModelDetails?.doj)) {
+          return Text(
+            DateFormat.yMMMMd('en_US').format(DateTime.parse(
+                profileDetailsController.employeeInfoModelDetails?.doj)),
+            style: TextStyle(
+              color: kSecondaryColor,
+            ),
+          );
+        } else {
+          return Text(
+            'Invalid date found',
+            style: TextStyle(
+              color: kSecondaryColor,
+            ),
+          );
+        }
       }
     });
   }
 }
 
-
-class JobRole_ extends StatelessWidget {
-  const JobRole_({Key? key}) : super(key: key);
+class JobRole extends StatelessWidget {
+  const JobRole({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -545,7 +449,7 @@ class JobRole_ extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.profileModelDetails?.role ??
+          profileDetailsController.employeeInfoModelDetails?.role ??
               'Job Role Null',
           style: TextStyle(
             color: kSecondaryColor,
@@ -556,616 +460,71 @@ class JobRole_ extends StatelessWidget {
   }
 }
 
+class PositionDetailsFooter extends StatelessWidget {
+  const PositionDetailsFooter({Key? key}) : super(key: key);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class EmployeeCode extends StatelessWidget {
-  const EmployeeCode({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Employee Code',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
+        Expanded(
+          flex: 1,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'History',
+                    style: TextStyle(
+                      color: kSecondaryColor,
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class PositionCode extends StatelessWidget {
-  const PositionCode({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Position Code',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
+              Table(
+                border: TableBorder.all(
+                  color: kSecondaryColor,
+                ),
+                children: [
+                  TableRow(
+                    children: [
+                      Text(
+                        'Heading 1',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: kSecondaryColor,
+                        ),
+                      ),
+                      Text(
+                        'Heading 2',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: kSecondaryColor,
+                        ),
+                      ),
+                      Text(
+                        'Heading 3',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: kSecondaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class Designation extends StatelessWidget {
-  const Designation({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Designation',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
+              Expanded(
+                flex: 2,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: PositionHistory(),
+                ),
               ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class Grade extends StatelessWidget {
-  const Grade({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Grade',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class EmploymentCategory extends StatelessWidget {
-  const EmploymentCategory({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Employment Category',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class EmploymentStatus extends StatelessWidget {
-  const EmploymentStatus({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Employment Status',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class EmploymentType extends StatelessWidget {
-  const EmploymentType({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Employment Type',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class Department extends StatelessWidget {
-  const Department({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Department',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class WorkLocation extends StatelessWidget {
-  const WorkLocation({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Work Location',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class L1ManagerId extends StatelessWidget {
-  const L1ManagerId({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'L1 Manager ID',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class L2ManagerId extends StatelessWidget {
-  const L2ManagerId({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'L2 Manager ID',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class HRManagerId extends StatelessWidget {
-  const HRManagerId({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'HR Manager ID',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class OrgId extends StatelessWidget {
-  const OrgId({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Organization ID',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class IsActive extends StatelessWidget {
-  const IsActive({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Is Active ?',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class OfficialEmail extends StatelessWidget {
-  const OfficialEmail({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Official Email',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class DoJ extends StatelessWidget {
-  const DoJ({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Date of Joining',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class JobRole extends StatelessWidget {
-  const JobRole({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Flex(
-      direction: portrait == true ? Axis.horizontal : Axis.vertical,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Job Role',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
-          ),
-        ),
-        SizedBox(
-          // color: Colors.red,
-          width: screenHeight * 0.2,
-          height: screenHeight * 0.025,
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Text(
-              'Happy ForeverHappy ForeverHappy ForeverHappy ForeverHappy Forever',
-              style: TextStyle(
-                color: kSecondaryColor,
-              ),
-            ),
+            ],
           ),
         ),
       ],
@@ -1186,31 +545,6 @@ class PositionHistory extends StatelessWidget {
         TableRow(
           children: [
             Text(
-              'Heading 1',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: kSecondaryColor,
-              ),
-            ),
-            Text(
-              'Heading 2',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: kSecondaryColor,
-              ),
-            ),
-            Text(
-              'Heading 3',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: kSecondaryColor,
-              ),
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
               'Cell 1',
               style: TextStyle(
                 color: kSecondaryColor,
@@ -1472,7 +806,6 @@ class PositionHistory extends StatelessWidget {
             ),
           ],
         ),
-        
       ],
     );
   }

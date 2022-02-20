@@ -12,7 +12,6 @@ class SideMenu extends StatelessWidget {
     Icons.list_alt_outlined,
     Icons.time_to_leave_outlined,
     Icons.flag_outlined,
-    
     Icons.settings_outlined
   ];
 

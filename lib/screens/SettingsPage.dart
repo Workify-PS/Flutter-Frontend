@@ -12,7 +12,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  AuthController _authController = Get.find();
+  // AuthController _authController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +27,9 @@ class _SettingsPageState extends State<SettingsPage> {
             splashColor: Colors.transparent,
             hoverColor: Colors.transparent,
             highlightColor: Colors.transparent,
-            onTap: ()async {
-              await _authController.logOut();
-              Get.toNamed("/auth");
+            onTap: () {
+              print('\n\nIn SettingsPage.dart \n\n');
+              print('Button Tapped');
             },
             child: Icon(
               Icons.exit_to_app,

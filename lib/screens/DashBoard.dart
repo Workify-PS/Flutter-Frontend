@@ -47,7 +47,7 @@ class _DashBoardState extends State<DashBoard> {
             maxCrossAxisExtent: 650,
             crossAxisSpacing: kDefaultPadding * 2,
             mainAxisSpacing: kDefaultPadding * 2,
-            childAspectRatio: 1,
+            childAspectRatio: 1.2,
             //mainAxisExtent: 400,
           ),
 

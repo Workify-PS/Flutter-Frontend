@@ -1,25 +1,26 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
-import 'package:workify/controllers/WishController.dart';
-import 'package:workify/screens/AuthPage.dart';
-import 'package:workify/screens/ChangePass.dart';
-import 'package:workify/screens/ForgotPass.dart';
+import 'package:workify/controllers/profile_widgets_controller.dart';
+import 'package:workify/mixins/cache.dart';
+import 'package:workify/screens/AuthPage/AuthPage.dart';
+import 'package:workify/screens/AuthPage/AuthPageController.dart';
+
+import 'package:workify/screens/AuthPage/ForgotPass.dart';
+import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/HomePage.dart';
 import 'package:workify/screens/ProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SettingsPage.dart';
 import 'package:workify/screens/SplashScreen/SplashScreen.dart';
 import 'package:workify/utils/theme.dart';
-import 'package:http/http.dart' as http;
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
-  await GetStorage.init();
-  // HolidayGetService().getHolidays();
+  await GetStorage.init('APP_SETTINGS');
+  await GetStorage.init('USER');
   runApp(MyApp());
 }
 
@@ -30,19 +31,23 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with CacheManager {
   @override
   Widget build(BuildContext context) {
+    final String theme =
+        GetStorage("APP_SETTINGS").read(CacheManagerKey.THEME.toString()) ??
+            ThemeMode.light.name;
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode:
+          theme == ThemeMode.light.name ? ThemeMode.light : ThemeMode.dark,
       initialBinding: BindingsBuilder(() => {
-            Get.put(AuthController()),
-            Get.put(UserController()),
-            Get.put(WishController())
+            Get.put(AuthController()).checkLoginStatus(),
+            Get.put(UserController())
           }),
       getPages: [
         GetPage(
@@ -50,20 +55,25 @@ class _MyAppState extends State<MyApp> {
           page: () => SplashScreen(),
         ), //check for already signed in
         GetPage(
-          name: "/auth",
-          page: () => AuthPage(),
-        ),
+            name: "/auth",
+            page: () => AuthPage(),
+            binding: BindingsBuilder(() => {Get.put(AuthPageController())})),
 
-        GetPage(name: "/home", page: () => HomePage()),
-        GetPage(
-          name: '/profile',
-          page: () => ProfilePage(),
-        ),
-        GetPage(
-          name: "/forgot",
-          page: () => ForgotPass(),
-        ),
-        GetPage(name: "/change", page: () => ChangePass()),
+        if (getToken() != null) GetPage(name: "/home", page: () => HomePage()),
+
+        if (getToken() != null)
+          GetPage(
+            name: '/profile',
+            page: () => ProfilePage(),
+            binding: BindingsBuilder(() => {
+                  Get.put(ProfileWidgetsController()),
+                }),
+          ),
+        // GetPage(
+        //   name: "/forgot",
+        //   page: () => ForgotPass(),
+        // ),
+        GetPage(name: "/change", page: () => ChangePassword()),
         GetPage(
           name: '/settings',
           page: () => SettingsPage(),

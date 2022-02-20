@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
     final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
+    
     return Scaffold(
       key: _scaffoldkey,
       //backgroundColor:  Theme.of(context).scaffoldBackgroundColor,

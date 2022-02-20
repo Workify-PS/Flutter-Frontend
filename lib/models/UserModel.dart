@@ -49,7 +49,7 @@ class UserModel {
       this.createdBy,
       this.modifiedBy});
 
-  UserModel.fromJson(Map<String, dynamic> json) {
+  UserModel.fromJson( json) {
     username = json['username'];
     isActive = json['isActive'];
     officialMail = json['officialMail'];

@@ -3,8 +3,8 @@ import 'package:workify/components/text_form.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
-class ChangePass extends StatelessWidget {
-  const ChangePass({Key? key}) : super(key: key);
+class ChangePassword extends StatelessWidget {
+  const ChangePassword({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();

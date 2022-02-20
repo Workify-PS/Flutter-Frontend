@@ -79,27 +79,18 @@ class _WishCardState extends State<WishCard> {
                     // color:kTextColor,
                   ),
                 ),
+                onPressed: () {},
               ),
-              Button(
-                buttonTextWidget: Text(
-                  'Anniversaries',
-                  style: TextStyle(
-                    fontSize: 11.5,
-                    fontWeight: FontWeight.bold,
-                    // color:kTextColor,
-                  ),
-                ),
-              ),
-              Button(
-                buttonTextWidget: Text(
-                  'New Joiners',
-                  style: TextStyle(
-                    fontSize: 11.5,
-                    fontWeight: FontWeight.bold,
-                    // color:kTextColor,
-                  ),
-                ),
-              ),
+              // Button(
+              //  text: 'Anniversaries',
+              //   ),
+              //   onPressed: (){},
+              // ),
+              // Button(
+              //  text: 'New Joiners',
+              //   ),
+              //   onPressed: (){},
+              //),
             ],
           ),
         ),

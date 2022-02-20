@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/utils/constants.dart';
 
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 // import 'package:workify/utils/extensions.dart';
-import 'package:workify/screens/ProfileSection/change_profile_page.dart';
+import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -24,52 +25,45 @@ class ProfileCompletionCard extends StatelessWidget {
     screenHeight = device.size.height;
     portrait = screenWidth < 1000;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        CircularPercentIndicator(
-          radius: 150,
-          lineWidth: 10,
-          percent: percent,
-          animation: true,
-          reverse: true,
-          center: Avatar(),
-          // header: Text(
-          //   'Profile',
-          //   style: TextStyle(
-          //     fontSize: 24,
-          //     fontWeight: FontWeight.w500,
-          //     //color: kTextColor,
-          //   ),
-          // ),
-          progressColor: ((percent * 100) >= 0 && (percent * 100) <= 30)
-              ? Colors.red
-              : ((percent * 100) > 30 && (percent * 100) <= 70)
-                  ? Colors.yellow
-                  : Colors.green,
-          backgroundColor: Colors.grey,
-        ),
-        Text(
-          (percent * 100).toString() + ' % Complete',
-          style: TextStyle(
-            fontSize: 20,
-          ),
-        ),
-        Button(buttonTextWidget: Text("Complete Now".toUpperCase())),
-        // InkWell(
-        //   onTap: () {
-        //     Get.to(ChangeProfilePage());
-        //   },
-        //   child: Text(
-        //     'Complete Now',
-        //     style: TextStyle(
-        //       fontSize: 24,
-        //       //color: Colors.grey,
-        //     ),
-        //   ),
-        // )
-      ],
-    );
+    return Padding(
+        padding: const EdgeInsets.all(kDefaultPadding * 1.5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            CircularPercentIndicator(
+              radius: 150,
+              lineWidth: 10,
+              percent: percent,
+              animation: true,
+              reverse: true,
+              center: Avatar(),
+              progressColor: ((percent * 100) >= 0 && (percent * 100) <= 30)
+                  ? Colors.red
+                  : ((percent * 100) > 30 && (percent * 100) <= 70)
+                      ? Colors.yellow
+                      : Colors.green,
+              backgroundColor: Colors.grey,
+            ),
+
+            Spacer(),
+            Button(
+              buttonTextWidget: Text("Complete Now".toUpperCase()),
+              onPressed: () {},
+            ),
+            // InkWell(
+            //   onTap: () {
+            //     Get.to(ChangeProfilePage());
+            //   },
+            //   child: Text(
+            //     'Complete Now',
+            //     style: TextStyle(
+            //       fontSize: 24,
+            //       //color: Colors.grey,
+            //     ),
+            //   ),
+            // )
+          ],
+        ));
   }
 }
 

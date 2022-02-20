@@ -2,30 +2,29 @@
 
 import 'package:flutter/material.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
-import 'package:workify/screens/ProfileSection/modify_button.dart';
-import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';
 
-import 'basic_details.dart';
-import 'position_details.dart';
-import 'employment_details.dart';
+
+import 'modify_basic_details.dart';
+import 'modify_position_details.dart';
+import 'modify_employment_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
 
+
 // ignore: must_be_immutable
-class ProfilePage extends StatelessWidget {
-  ProfilePage({Key? key}) : super(key: key);
+class ModifyProfileDetails extends StatelessWidget {
+  ModifyProfileDetails({Key? key}) : super(key: key);
 
   Map<String, Widget> profileWidgets = {
-    'Basic Details': BasicDetails(),
-    'Position Details': PositionDetails(),
-    'Employment Details': EmploymentDetails(),
+    'Modify Basic Details': ModifyBasicDetails(),
+    'Modify Position Details': ModifyPositionDetails(),
+    'Modify Employment Details': ModifyEmploymentDetails(),
   };
-
-  ProfileWidgetsController profileWidgetsController =
-      Get.find<ProfileWidgetsController>();
+  
+  ProfileWidgetsController profileWidgetsController = Get.find<ProfileWidgetsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Profile Page',
+          'Modify Employee Profile',
           style: TextStyle(
             color: kSecondaryColor,
             fontWeight: FontWeight.bold,
@@ -70,25 +69,19 @@ class ProfilePage extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: BasicDetailsButton(
-                        profileDetails: "Basic Details",
+                        modifyProfileDetailsString: "Modify Basic Details",
                       ),
                     ),
                     Expanded(
                       flex: 1,
                       child: PositionDetailsButton(
-                        profileDetails: "Position Details",
+                        modifyProfileDetailsString: "Modify Position Details",
                       ),
                     ),
                     Expanded(
                       flex: 1,
                       child: EmploymentDetailsButton(
-                        profileDetails: "Employment Details",
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: ModifyProfileDetailsButton(
-                        profileDetails: "Modify Profile Details",
+                        modifyProfileDetailsString: "Modify Employment Details",
                       ),
                     ),
                   ],
@@ -106,7 +99,7 @@ class ProfilePage extends StatelessWidget {
                     ),
                     // Rendering All widgets here
                     child: Obx(() => profileWidgets[profileWidgetsController
-                        .widgetString.value
+                        .modifyProfileWidgetString.value
                         .toString()]!),
                   ),
                 ),
@@ -123,44 +116,37 @@ class Buttons extends StatelessWidget {
   // method with parameters in stateful widget
   // final void Function(String) profileWidgetHandler;
   // step to call such a method
-  // onpressed: () => profileWidgetHandler(profileDetails);
+  // onpressed: () => profileWidgetHandler(modifyProfileDetailsString);
 
-  ProfileWidgetsController profileWidgetsController =
-      Get.find<ProfileWidgetsController>();
+  ProfileWidgetsController profileWidgetsController = Get.find<ProfileWidgetsController>();
 
-  final String profileDetails;
+  final String modifyProfileDetailsString;
   final int buttonIndex;
-  Buttons({Key? key, required this.profileDetails, required this.buttonIndex})
+   Buttons(
+      {Key? key, required this.modifyProfileDetailsString, required this.buttonIndex})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final profileWidgetsController = Get.find<ProfileWidgetsController>();
     var button = buttonIndex == 0
-        ? profileWidgetsController.basicButton
+        ? profileWidgetsController.modifyBasicButton
         : buttonIndex == 1
-            ? profileWidgetsController.positionButton
-            : buttonIndex == 2
-                ? profileWidgetsController.employmentButton
-                : profileWidgetsController.modifyButton;
+            ? profileWidgetsController.modifyPositionButton
+            : profileWidgetsController.modifyEmploymentButton;
 
     return Obx(() => ElevatedButton(
           onPressed: () {
-            if (buttonIndex == 3) {
-              Get.to(ModifyProfileDetails());
-            }
-            else{
-              profileWidgetsController.resetButtons();
-              profileWidgetsController.updateWidgetString(profileDetails);
-              profileWidgetsController.setButton(str: profileDetails);
-            }
+            profileWidgetsController.resetModifyProfileButtons();
+            profileWidgetsController.updateModifyProfileWidgetString(modifyProfileDetailsString);
+            profileWidgetsController.setModifyProfileButton(str: modifyProfileDetailsString);
           },
           style: ElevatedButton.styleFrom(
             primary: button.value == true ? kPrimaryColor : kSecondaryColor,
           ),
           child: Center(
             child: Text(
-              profileDetails,
+              modifyProfileDetailsString,
               style: TextStyle(
                 fontSize: screenWidth * 0.015,
                 // fontWeight: FontWeight.bold,
@@ -173,65 +159,49 @@ class Buttons extends StatelessWidget {
 }
 
 class BasicDetailsButton extends StatelessWidget {
-  final String profileDetails;
+  final String modifyProfileDetailsString;
 
   const BasicDetailsButton({
     Key? key,
-    required this.profileDetails,
+    required this.modifyProfileDetailsString,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Buttons(
-      profileDetails: profileDetails,
+      modifyProfileDetailsString: modifyProfileDetailsString,
       buttonIndex: 0,
     );
   }
 }
 
 class PositionDetailsButton extends StatelessWidget {
-  final String profileDetails;
+  final String modifyProfileDetailsString;
 
   const PositionDetailsButton({
     Key? key,
-    required this.profileDetails,
+    required this.modifyProfileDetailsString,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Buttons(
-      profileDetails: profileDetails,
+      modifyProfileDetailsString: modifyProfileDetailsString,
       buttonIndex: 1,
     );
   }
 }
 
 class EmploymentDetailsButton extends StatelessWidget {
-  final String profileDetails;
+  final String modifyProfileDetailsString;
 
   const EmploymentDetailsButton({
     Key? key,
-    required this.profileDetails,
+    required this.modifyProfileDetailsString,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Buttons(
-      profileDetails: profileDetails,
+      modifyProfileDetailsString: modifyProfileDetailsString,
       buttonIndex: 2,
-    );
-  }
-}
-
-class ModifyProfileDetailsButton extends StatelessWidget {
-  final String profileDetails;
-
-  const ModifyProfileDetailsButton({
-    Key? key,
-    required this.profileDetails,
-  }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Buttons(
-      profileDetails: profileDetails,
-      buttonIndex: 3,
     );
   }
 }

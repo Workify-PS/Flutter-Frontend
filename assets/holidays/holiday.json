@@ -1,0 +1,64 @@
+[
+    {   "hname":"Holi",
+        "date":"Fri, 19 March 2022",
+        "imagepath":"assets/holidays/holi.png"
+    },
+    {   "hname":"Gudi Padwa",
+        "date":"Sat, 02 April 2022",
+        "imagepath":"assets/holidays/gudi.png"
+    },
+    {
+           "hname":"Good Friday",
+        "date":"Fri, 15 April 2022",
+        "imagepath":"assets/holidays/gfriday.png"
+    },
+    {   "hname":"Labour Day",
+        "date":"Sun, 01 May 2022",
+        "imagepath":"assets/holidays/labour.png"
+    },
+    {   "hname":"Idul Fitar",
+        "date":"Tue, 03 May 2022",
+        "imagepath":"assets/holidays/idulfitr.png"
+    },
+    {   "hname":"Id-ul-Zuha(Bakrid)",
+        "date":"Sun, 10 Jul 2022",
+        "imagepath":"assets/holidays/idulfitr.png"
+    },
+    {   "hname":"Raksha Bandhan",
+        "date":"Fri, 12 Aug 2022",
+        "imagepath":"assets/holidays/rakhi.png"
+    },{   "hname":"Independance Day",
+        "date":"Mon, 15 Aug 2022",
+        "imagepath":"assets/holidays/independence.png"
+    },{   "hname":"Gandhi Jayanti",
+        "date":"Sun, 02 Oct 2022",
+        "imagepath":"assets/holidays/gandhi.png"
+    },{   "hname":"Dussehra",
+        "date":"Wed, 05 Oct 2022",
+        "imagepath":"assets/holidays/holiday.png"
+    },
+   {    "hname": "Diwali",
+        "date":"Tue, 25 Oct 2022",
+        "imagepath":"assets/holidays/diwali.png"
+    },
+    {    "hname": "Govardhan Puja",
+         "date":"Wed, 26 Oct 2022",
+         "imagepath":"assets/holidays/holiday.png"
+     },
+     {    "hname": "Bhai Dooj",
+          "date":"Thu, 27 Oct 2022",
+          "imagepath":"assets/holidays/holiday.png"
+      },
+      {    "hname": "Haryana Day",
+           "date":"Tue, 01 Nov 2022",
+           "imagepath":"assets/holidays/holiday.png"
+       },
+       {    "hname": "Guru Parab",
+            "date":"Tue, 08 Nov 2022",
+            "imagepath":"assets/holidays/guruparab.png"
+        },
+        {    "hname": "Christmas",
+             "date":"Sun, 15 Dec 2022",
+             "imagepath":"assets/holidays/christmas.png"
+         }
+]

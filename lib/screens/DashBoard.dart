@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workify/components/holiday_card.dart';
 import 'package:workify/components/wish_card.dart';
 import 'package:workify/components/dashboard_card.dart';
 import 'package:workify/components/profile_completion_card.dart';
@@ -25,14 +26,12 @@ class _DashBoardState extends State<DashBoard> {
     ProfileCompletionCard(),
     AttendanceCard(),
     WishCard(),
-    //HolidaysCard()
-    Container()
+    HolidaysCard(),
   ];
   final titles = ["Profile", "Attendance", "Wish", "Holidays"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(bannerHeight),
           child: TopBar(
@@ -47,7 +46,7 @@ class _DashBoardState extends State<DashBoard> {
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 550,
             crossAxisSpacing: kDefaultPadding * 4,
-            mainAxisSpacing: kDefaultPadding * 2.5,
+            mainAxisSpacing: kDefaultPadding * 1,
             childAspectRatio: 1.2,
             //mainAxisExtent: 400,
           ),

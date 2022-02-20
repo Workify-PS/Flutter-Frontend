@@ -3,12 +3,18 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
-import 'package:workify/models/DailyAttendanceModel.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/theme.dart';
+
+class DailyAttendanceModel {
+  String inTime;
+  List<String> outTime = [""];
+  DailyAttendanceModel({
+    this.inTime = "",
+  });
+}
 
 class AttendanceCard extends StatefulWidget {
   const AttendanceCard({Key? key}) : super(key: key);
@@ -64,39 +70,55 @@ class _AttendanceCardState extends State<AttendanceCard> {
               width: double.infinity,
               height: 160,
               alignment: Alignment.centerRight,
-              padding: const EdgeInsets.all(kDefaultPadding * 1.5),
+              padding: const EdgeInsets.all(kDefaultPadding),
               decoration: BoxDecoration(
                   color: primaryColor,
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(16),
                       bottomRight: Radius.circular(16))),
-              child: Neumorphic(
-                child: FlatButton(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  color: Colors.black.withOpacity(0.02),
-                  onPressed: isPunchedIn ? punchOut : punchIn,
-                  padding: const EdgeInsets.all(kDefaultPadding),
-                  child: SvgPicture.asset(
-                    isPunchedIn
-                        ? "assets/icons/punch_out.svg"
-                        : "assets/icons/punch_in.svg",
-                    height: 90,
-                    color: Colors.white,
-                    width: 5,
+              child: Row(
+                children: [
+                  Spacer(),
+                  Neumorphic(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        children: [
+                          FlatButton(
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            //color: Colors.black.withOpacity(0.02),
+                            onPressed: isPunchedIn ? punchOut : punchIn,
+                            padding: const EdgeInsets.all(kDefaultPadding),
+                            child: SvgPicture.asset(
+                              isPunchedIn
+                                  ? "assets/icons/punch_out.svg"
+                                  : "assets/icons/punch_in.svg",
+                              height: 70,
+                              fit: BoxFit.fitHeight,
+                              color: Colors.white,
+                              width: 5,
+                            ),
+                          ),
+                          !isPunchedIn
+                              ? const Text("Punch In")
+                              : const Text("Punch Out")
+                        ],
+                      ),
+                    ),
+                    style: NeumorphicStyle(
+                        shape: NeumorphicShape.flat,
+                        boxShape: NeumorphicBoxShape.roundRect(
+                            BorderRadius.circular(12)),
+                        depth: isPunchedIn ? -5 : 5,
+                        border: NeumorphicBorder(color: primaryColor),
+                        lightSource: LightSource.topLeft,
+                        shadowLightColor: Colors.white54,
+                        surfaceIntensity: 0.5,
+                        color: primaryColor),
                   ),
-                ),
-                style: NeumorphicStyle(
-                    shape: NeumorphicShape.flat,
-                    boxShape:
-                        NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
-                    depth: isPunchedIn ? -5 : 5,
-                    border: NeumorphicBorder(color: primaryColor),
-                    lightSource: LightSource.topLeft,
-                    shadowLightColor: Colors.white54,
-                    surfaceIntensity: 0.5,
-                    color: primaryColor),
+                ],
               )
 
               // : Row(

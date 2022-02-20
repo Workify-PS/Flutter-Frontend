@@ -15,6 +15,7 @@ class MyTheme {
    textTheme: GoogleFonts.ptSansTextTheme().apply(bodyColor: kTextColor),
   
   ).copyWith(
+      textSelectionColor: kTextColor,
       secondaryHeaderColor: Colors.white.withOpacity(0.5),
       focusColor: kPrimaryColor,
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -58,6 +59,7 @@ class MyTheme {
           textTheme:
               GoogleFonts.latoTextTheme().apply(bodyColor: kTextDarkColor))
       .copyWith(
+          textSelectionColor: kTextDarkColor,
           secondaryHeaderColor: kBottomShadowColorDark.withOpacity(0.7),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:workify/utils/constants.dart';
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
@@ -19,19 +20,25 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      child: buttonTextWidget,
-      style: TextButton.styleFrom(
-        backgroundColor: primaryColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        padding: const EdgeInsets.symmetric(
-            horizontal: kDefaultPadding, vertical: kDefaultPadding),
-      ),
-    ).neuromorphism(
-      context,
-      topShadowColor: Colors.white,
-      bottomShadowColor: primaryColor.withOpacity(0.2),
-    );
+    return true
+        ? NeumorphicButton(
+            onPressed: onPressed,
+            child: buttonTextWidget,
+          )
+        : TextButton(
+            onPressed: onPressed,
+            child: buttonTextWidget,
+            style: TextButton.styleFrom(
+              backgroundColor: primaryColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPadding, vertical: kDefaultPadding),
+            ),
+          ).neuromorphism(
+            context,
+            topShadowColor: Colors.white,
+            bottomShadowColor: primaryColor.withOpacity(0.2),
+          );
   }
 }

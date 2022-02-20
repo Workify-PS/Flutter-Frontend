@@ -43,70 +43,80 @@ class _HolidayCardState extends State<HolidaysCard> {
           } else if (data.hasData) {
             var items = data.data as List<HolidayModel>;
             return Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.only(
+                  top: kDefaultPadding,
+                  right: kDefaultPadding,
+                  left: kDefaultPadding),
               child: Scrollbar(
                 isAlwaysShown: true,
                 showTrackOnHover: true,
                 controller: _scrollController,
                 child: FadingEdgeScrollView.fromScrollView(
+                  gradientFractionOnStart: 0.6,
                   child: ListView.builder(
                     controller: _scrollController,
                     itemCount: items.length,
                     // physics: FixedExtentScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return Card(
-                        elevation: 1,
-                        color: cardColor,
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(40.0),
-                              child: SizedBox(
-                                height: 45,
-                                // child: Icon(IconData(int.parse('source',))
-                                // Image(
-                                //     image: NetworkImage(
-                                //         items[index].imagePath.toString(),
-                                //         scale: 0.1),
-                                //     fit: BoxFit.fitHeight
-                                //     // backgroundColor: Colors.transparent,
-                                //     )
-                                child: Image.asset(
-                                  items[index].imagePath.toString(),
-                                  alignment: Alignment.centerRight,
-                                  // scale: 7.5,
+                      return Column(
+                        children: [
+                          Row(
+                            // mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding * 2,
+                                    vertical: kDefaultPadding * 1.2),
+                                child: SizedBox(
+                                  height: 36,
+                                  width: 36,
+                                  // child: Icon(IconData(int.parse('source',))
+                                  // Image(
+                                  //     image: NetworkImage(
+                                  //         items[index].imagePath.toString(),
+                                  //         scale: 0.1),
+                                  //     fit: BoxFit.fitHeight
+                                  //     // backgroundColor: Colors.transparent,
+                                  //     )
+                                  child: Image.asset(
+                                    items[index].imagePath.toString(),
+                                    alignment: Alignment.center,
+                                    // scale: 7.5,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                                child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 18, right: 10),
-                                  child: Text(
-                                    items[index].holidayName.toString(),
-                                    style: TextStyle(
-                                        fontSize: 27,
-                                        fontWeight: FontWeight.bold),
+                              Expanded(
+                                  child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: kDefaultPadding, right: 10),
+                                    child: Text(
+                                      items[index].holidayName.toString(),
+                                      style:
+                                          Theme.of(context).textTheme.headline5,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 18, right: 2),
-                                  child: Text(
-                                    items[index].date.toString(),
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                )
-                              ],
-                            ))
-                          ],
-                        ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 18, right: 2),
+                                    child: Text(
+                                      items[index].date.toString(),
+                                      style:
+                                          Theme.of(context).textTheme.subtitle1,
+                                    ),
+                                  )
+                                ],
+                              ))
+                            ],
+                          ),
+                          Divider(
+                            endIndent: kDefaultPadding,
+                          )
+                        ],
                       );
                     },
                   ),

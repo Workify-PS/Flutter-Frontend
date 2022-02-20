@@ -30,8 +30,8 @@ class _DashBoardCardState extends State<DashBoardCard> {
                   ),
             Expanded(child: widget.child)
           ],
-        )).makeRounded(
-      MyTheme().isDark(context),
+        )).neuromorphism(
+      context,
       blurRadius: 15,
       borderRadius: 15,
       offset: Offset(5, 5),

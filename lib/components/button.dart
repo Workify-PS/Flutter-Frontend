@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workify/utils/constants.dart';
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/theme.dart';
@@ -8,17 +9,29 @@ import 'package:workify/utils/theme.dart';
 class Button extends StatelessWidget {
   final Widget buttonTextWidget;
   final void Function() onPressed;
-  const Button({
-    Key? key,
-    required this.buttonTextWidget,
-    required this.onPressed,
-  }) : super(key: key);
+  final Color primaryColor;
+  const Button(
+      {Key? key,
+      required this.buttonTextWidget,
+      required this.onPressed,
+      this.primaryColor = kPrimaryColor})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return TextButton(
       onPressed: onPressed,
       child: buttonTextWidget,
-    ).makeRounded(MyTheme().isDark(context));
+      style: TextButton.styleFrom(
+        backgroundColor: primaryColor,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        padding: const EdgeInsets.symmetric(
+            horizontal: kDefaultPadding, vertical: kDefaultPadding),
+      ),
+    ).neuromorphism(
+      context,
+      topShadowColor: Colors.white,
+      bottomShadowColor: primaryColor.withOpacity(0.2),
+    );
   }
 }

@@ -10,8 +10,10 @@ class MyTheme {
       secondary: kTextColor,
       background: Colors.grey.shade50,
       surface: Colors.white,
+
     ),
-    textTheme: GoogleFonts.latoTextTheme().apply(bodyColor: kTextColor),
+   textTheme: GoogleFonts.ptSansTextTheme().apply(bodyColor: kTextColor),
+  
   ).copyWith(
       textSelectionColor: kTextColor,
       secondaryHeaderColor: Colors.white.withOpacity(0.5),

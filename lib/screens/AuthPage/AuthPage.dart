@@ -346,8 +346,7 @@ class AuthPage extends GetView<AuthPageController> {
                                                   ),
                                                 ),
                                               ),
-                                            ).makeRounded(
-                                                MyTheme().isDark(context))
+                                            ).neuromorphism(context)
                                           ],
                                         ),
                                       ],

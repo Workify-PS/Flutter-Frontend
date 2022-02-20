@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/mixins/cache.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
 
@@ -77,7 +78,7 @@ class ChangeTheme extends StatefulWidget {
   _ChangeThemeState createState() => _ChangeThemeState();
 }
 
-class _ChangeThemeState extends State<ChangeTheme> {
+class _ChangeThemeState extends State<ChangeTheme> with CacheManager {
   var _icon;
 
   @override
@@ -98,8 +99,10 @@ class _ChangeThemeState extends State<ChangeTheme> {
         setState(() {
           if (_icon == Icons.wb_sunny) {
             Get.changeThemeMode(ThemeMode.light);
+            saveAppSettings(ThemeMode.light);
           } else {
             Get.changeThemeMode(ThemeMode.dark);
+            saveAppSettings(ThemeMode.dark);
           }
         });
       },

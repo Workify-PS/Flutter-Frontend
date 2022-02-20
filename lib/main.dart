@@ -19,8 +19,17 @@ import 'package:workify/utils/theme.dart';
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
+  WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init('APP_SETTINGS');
   await GetStorage.init('USER');
+  // final box = GetStorage('USER');
+  // final res = box.read(CacheManagerKey.ACCESS_TOKEN.toString());
+  // final boxt = GetStorage('APP_SETTINGS');
+  // final rest = boxt.read(CacheManagerKey.THEME.toString());
+  
+  // print(res);
+  // print(rest);
+
   runApp(MyApp());
 }
 

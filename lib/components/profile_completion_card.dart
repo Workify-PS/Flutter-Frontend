@@ -26,7 +26,7 @@ class ProfileCompletionCard extends StatelessWidget {
     portrait = screenWidth < 1000;
 
     return Padding(
-        padding: const EdgeInsets.all(kDefaultPadding * 1.5),
+        padding: const EdgeInsets.only(top: kDefaultPadding * 1.5),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -44,7 +44,15 @@ class ProfileCompletionCard extends StatelessWidget {
                       : Colors.green,
               backgroundColor: Colors.grey,
             ),
-
+            Padding(
+              padding: const EdgeInsets.only(top: kDefaultPadding),
+              child: Text(
+                (percent * 100).toString() + ' % Complete',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
             Spacer(),
             Button(
               buttonTextWidget: Text("Complete Now".toUpperCase()),

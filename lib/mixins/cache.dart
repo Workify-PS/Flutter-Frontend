@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:workify/models/UserModel.dart';
 
@@ -11,6 +12,10 @@ mixin CacheManager {
   Future<void> saveUser(UserModel user) async {
     final box = GetStorage('USER');
     box.write(CacheManagerKey.USER.toString(), user);
+  }
+  Future<void> saveUserSettings(ThemeMode theme)async{
+    final box = GetStorage('APP_SETTINGS');
+    box.write(CacheManagerKey.THEME.toString(), theme.name);
   }
 
   String? getToken() {
@@ -32,6 +37,7 @@ mixin CacheManager {
     final box = GetStorage('USER');
     await box.remove(CacheManagerKey.USER.toString());
   }
+  
 }
 
-enum CacheManagerKey { USER, ACCESS_TOKEN }
+enum CacheManagerKey { USER, ACCESS_TOKEN,THEME }

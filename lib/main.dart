@@ -7,9 +7,11 @@ import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/mixins/cache.dart';
-import 'package:workify/screens/AuthPage.dart';
+import 'package:workify/screens/AuthPage/AuthPage.dart';
+import 'package:workify/screens/AuthPage/AuthPageController.dart';
+
+import 'package:workify/screens/AuthPage/ForgotPass.dart';
 import 'package:workify/screens/ChangePassword.dart';
-import 'package:workify/screens/ForgotPass.dart';
 import 'package:workify/screens/HomePage.dart';
 import 'package:workify/screens/ProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SettingsPage.dart';
@@ -34,12 +36,16 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with CacheManager {
   @override
   Widget build(BuildContext context) {
+    final String theme =
+        GetStorage("APP_SETTINGS").read(CacheManagerKey.THEME.toString())??ThemeMode.light.name;
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode:
+          theme == ThemeMode.light.name ? ThemeMode.light : ThemeMode.dark,
       initialBinding: BindingsBuilder(() => {
             Get.put(AuthController()).checkLoginStatus(),
             Get.put(UserController())
@@ -50,9 +56,9 @@ class _MyAppState extends State<MyApp> with CacheManager {
           page: () => SplashScreen(),
         ), //check for already signed in
         GetPage(
-          name: "/auth",
-          page: () => AuthPage(),
-        ),
+            name: "/auth",
+            page: () => AuthPage(),
+            binding: BindingsBuilder(() => {Get.put(AuthPageController())})),
 
         if(getToken() != null)
         GetPage(name: "/home", page: () => HomePage()),
@@ -65,13 +71,11 @@ class _MyAppState extends State<MyApp> with CacheManager {
             Get.put(ProfileWidgetsController()),
           }),
         ),
-        GetPage(
-          name: "/forgot",
-          page: () => ForgotPass(),
-        ),
-        if(getToken() != null)
-          GetPage(name: "/change-password", page: () => ChangePassword()),
-        
+        // GetPage(
+        //   name: "/forgot",
+        //   page: () => ForgotPass(),
+        // ),
+        GetPage(name: "/change", page: () => ChangePassword()),
         GetPage(
           name: '/settings',
           page: () => SettingsPage(),

@@ -16,7 +16,6 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MediaQuery.of(context).size.width * 0.25;
     return ElevatedButton(
       onPressed: onPressed,
       child: buttonTextWidget,

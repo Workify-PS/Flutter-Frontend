@@ -10,9 +10,9 @@ import 'package:workify/utils/theme.dart';
 
 class DailyAttendanceModel {
   String inTime;
-  List<String> outTime = [""];
+  List<String> outTime = ["--:--"];
   DailyAttendanceModel({
-    this.inTime = "",
+    this.inTime = "--:--",
   });
 }
 
@@ -78,6 +78,39 @@ class _AttendanceCardState extends State<AttendanceCard> {
                       bottomRight: Radius.circular(16))),
               child: Row(
                 children: [
+                  Row(
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            "Punch In",
+                            style: Theme.of(context).textTheme.subtitle1,
+                          ),
+                          Obx(
+                            () => Text(
+                              daily.value.inTime,
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 40),
+                      Column(
+                        children: [
+                          Text(
+                            "Punch Out",
+                            style: Theme.of(context).textTheme.subtitle1,
+                          ),
+                          Obx(
+                            () => Text(
+                              daily.value.outTime.last,
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                   Spacer(),
                   Neumorphic(
                     child: Padding(
@@ -102,8 +135,14 @@ class _AttendanceCardState extends State<AttendanceCard> {
                             ),
                           ),
                           !isPunchedIn
-                              ? const Text("Punch In")
-                              : const Text("Punch Out")
+                              ? Text(
+                                  "Punch In",
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                )
+                              : Text(
+                                  "Punch Out",
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                )
                         ],
                       ),
                     ),

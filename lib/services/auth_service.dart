@@ -15,7 +15,8 @@ class AuthService extends GetConnect {
 
       if (response.statusCode == HttpStatus.ok) {
         print('\n-- In auth_service file :: loginService(){} : Block 1\n');
-        print('logged In Successfully :: with Token :\n'+response.body['token']);
+        print('logged In Successfully :: with Token :\n' +
+            response.body['token']);
         print('-------------- End Block 1 ---------------');
       } else {
         print('\n-- In auth_service file :: loginService(){} : Block 2\n');

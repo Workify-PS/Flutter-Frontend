@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workify/components/holiday_card.dart';
 import 'package:workify/components/wish_card.dart';
 import 'package:workify/components/dashboard_card.dart';
 import 'package:workify/components/profile_completion_card.dart';
@@ -25,8 +26,7 @@ class _DashBoardState extends State<DashBoard> {
     ProfileCompletionCard(),
     AttendanceCard(),
     WishCard(),
-    //HolidaysCard()
-    Container()
+    HolidaysCard(),
   ];
   final titles = ["Profile", "Attendance", "Wish", "Holidays"];
   @override

@@ -42,6 +42,7 @@ dependencies:
   intl: ^0.17.0
   percent_indicator: ^3.4.0
   http: ^0.13.4
+  fading_edge_scrollview: ^2.0.1
 
 dev_dependencies:
   flutter_lints: ^1.0.0
@@ -60,6 +61,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/holidays/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

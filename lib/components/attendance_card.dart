@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
-import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
-import 'package:workify/models/DailyAttendanceModel.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/theme.dart';
+
+class DailyAttendanceModel {
+  String inTime;
+  List<String> outTime = [""];
+  DailyAttendanceModel({
+    this.inTime = "",
+  });
+}
 
 class AttendanceCard extends StatefulWidget {
   const AttendanceCard({Key? key}) : super(key: key);
@@ -99,9 +105,7 @@ class _AttendanceCardState extends State<AttendanceCard> {
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(90.0)))),
-                  onPressed: () {
-                    newouttime();
-                  },
+                  onPressed: _isdiabled ? newouttime : null,
                   child: SvgPicture.asset(
                     "assets/icons/punch_out.svg",
                     height: 70,

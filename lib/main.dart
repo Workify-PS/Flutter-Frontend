@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
@@ -18,7 +17,6 @@ import 'package:workify/screens/SettingsPage.dart';
 import 'package:workify/screens/SplashScreen/SplashScreen.dart';
 import 'package:workify/utils/theme.dart';
 
-
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
   await GetStorage.init('APP_SETTINGS');
@@ -37,7 +35,8 @@ class _MyAppState extends State<MyApp> with CacheManager {
   @override
   Widget build(BuildContext context) {
     final String theme =
-        GetStorage("APP_SETTINGS").read(CacheManagerKey.THEME.toString())??ThemeMode.light.name;
+        GetStorage("APP_SETTINGS").read(CacheManagerKey.THEME.toString()) ??
+            ThemeMode.light.name;
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
@@ -60,17 +59,16 @@ class _MyAppState extends State<MyApp> with CacheManager {
             page: () => AuthPage(),
             binding: BindingsBuilder(() => {Get.put(AuthPageController())})),
 
-        if(getToken() != null)
-        GetPage(name: "/home", page: () => HomePage()),
+        if (getToken() != null) GetPage(name: "/home", page: () => HomePage()),
 
-        if(getToken() != null)
-        GetPage(
-          name: '/profile',
-          page: () => ProfilePage(),
-          binding: BindingsBuilder(() => {
-            Get.put(ProfileWidgetsController()),
-          }),
-        ),
+        if (getToken() != null)
+          GetPage(
+            name: '/profile',
+            page: () => ProfilePage(),
+            binding: BindingsBuilder(() => {
+                  Get.put(ProfileWidgetsController()),
+                }),
+          ),
         // GetPage(
         //   name: "/forgot",
         //   page: () => ForgotPass(),

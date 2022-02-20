@@ -32,6 +32,7 @@ class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(bannerHeight),
           child: TopBar(

@@ -4,7 +4,7 @@ import 'package:workify/models/UserModel.dart';
 
 mixin CacheManager {
   Future<bool> saveToken(String? token) async {
-    final box = GetStorage('APP_SETTINGS');
+    final box = GetStorage('USER');
     await box.write(CacheManagerKey.ACCESS_TOKEN.toString(), token);
     return true;
   }
@@ -13,13 +13,13 @@ mixin CacheManager {
     final box = GetStorage('USER');
     box.write(CacheManagerKey.USER.toString(), user);
   }
-  Future<void> saveUserSettings(ThemeMode theme)async{
+  Future<void> saveAppSettings(ThemeMode theme)async{
     final box = GetStorage('APP_SETTINGS');
     box.write(CacheManagerKey.THEME.toString(), theme.name);
   }
 
   String? getToken() {
-    final box = GetStorage('APP_SETTINGS');
+    final box = GetStorage('USER');
     return box.read(CacheManagerKey.ACCESS_TOKEN.toString());
   }
 
@@ -29,7 +29,7 @@ mixin CacheManager {
   }
 
   Future<void> removeToken() async {
-    final box = GetStorage('APP_SETTINGS');
+    final box = GetStorage('USER');
     await box.remove(CacheManagerKey.ACCESS_TOKEN.toString());
   }
 

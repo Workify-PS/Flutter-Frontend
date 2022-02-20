@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:workify/utils/constants.dart';
 
-import './modify_history_buttons.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -57,23 +56,21 @@ class PositionDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PositionInfoString(positionInfoString: 'Employee Code'),
-                    PositionInfoString(positionInfoString: 'Department'),
-                    PositionInfoString(positionInfoString: 'Work Location'),
-                    PositionInfoString(positionInfoString: 'Employment Status'),
-                    // PositionInfoString(positionInfoString: 'Organization ID'),
+                    PositionInfoString(positionInfoString: 'User Position ID'),
+                    PositionInfoString(positionInfoString: 'Designation'),
+                    PositionInfoString(positionInfoString: 'Grade'),
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.only(left: 40),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FormattedEmployeeCode(),
-                      FormattedDepartment(),
-                      FormattedWorkLocation(),
-                      FormattedEmploymentStatus(),
-                      // FormattedOrgID(),
+                      FormattedPositionInfo(
+                          positionInfoString: 'User Position ID'),
+                      FormattedPositionInfo(positionInfoString: 'Designation'),
+                      FormattedPositionInfo(
+                          positionInfoString: 'Grade'),
                     ],
                   ),
                 ),
@@ -102,23 +99,21 @@ class PositionDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     PositionInfoString(positionInfoString: 'Official Email'),
                     PositionInfoString(positionInfoString: 'Date of Joining'),
                     PositionInfoString(positionInfoString: 'Job Role'),
-                    SizedBox(height: 5,),
-                    
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.only(left: 40),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FormattedOfficialEmail(),
-                      FormattedDoJ(),
-                      FormattedJobRole(),
-                      SizedBox(height: 5,),
+                      FormattedPositionInfo(
+                          positionInfoString: 'Official Email'),
+                      FormattedPositionInfo(
+                          positionInfoString: 'Date of Joining'),
+                      FormattedPositionInfo(positionInfoString: 'Job Role'),
                     ],
                   ),
                 ),
@@ -155,39 +150,37 @@ class PositionDetailsPortraitView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    PositionInfoString(positionInfoString: 'Employee Code'),
-                    PositionInfoString(positionInfoString: 'Department'),
-                    PositionInfoString(positionInfoString: 'Work Location'),
-                    // PositionInfoString(positionInfoString: 'Organization ID'),
-                    PositionInfoString(positionInfoString: 'Employment Status'),
+                    PositionInfoString(positionInfoString: 'User Position ID'),
+                    PositionInfoString(positionInfoString: 'Designation'),
+                    PositionInfoString(positionInfoString: 'Grade'),
                     PositionInfoString(positionInfoString: 'Official Email'),
                     PositionInfoString(positionInfoString: 'Date of Joining'),
                     PositionInfoString(positionInfoString: 'Job Role'),
                   ],
                 ),
               ),
-
               Expanded(
                 flex: 3,
                 child: Padding(
-                  padding: const EdgeInsets.only(left:8),
+                  padding: const EdgeInsets.only(left: 32),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      FormattedEmployeeCode(),
-                      FormattedDepartment(),
-                      FormattedWorkLocation(),
-                      // FormattedOrgID(),
-                      FormattedEmploymentStatus(),
-                      FormattedOfficialEmail(),
-                      FormattedDoJ(),
-                      FormattedJobRole(),
+                      FormattedPositionInfo(
+                          positionInfoString: 'User Position ID'),
+                      FormattedPositionInfo(positionInfoString: 'Designation'),
+                      FormattedPositionInfo(
+                          positionInfoString: 'Grade'),
+                      FormattedPositionInfo(
+                          positionInfoString: 'Official Email'),
+                      FormattedPositionInfo(
+                          positionInfoString: 'Date of Joining'),
+                      FormattedPositionInfo(positionInfoString: 'Job Role'),
                     ],
                   ),
                 ),
               ),
-              
             ],
           ),
         ),
@@ -220,9 +213,23 @@ class PositionInfoString extends StatelessWidget {
   }
 }
 
+class FormattedPositionInfo extends StatelessWidget {
+  String positionInfoString;
+  FormattedPositionInfo({
+    Key? key, 
+    required this.positionInfoString
+  })
+    : super(key: key);
 
-class FormattedEmployeeCode extends StatelessWidget {
-  const FormattedEmployeeCode({Key? key}) : super(key: key);
+  Map<String,Widget> string_2_PositionInfoMap = {
+    'User Position ID': UserPosID(),
+    'Designation': Designation(),
+    'Grade': Grade(),
+    'Employment Status': EmploymentStatus(),
+    'Official Email': OfficialEmail(),
+    'Date of Joining': DoJ(),
+    'Job Role': JobRole(),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -238,12 +245,14 @@ class FormattedEmployeeCode extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 8),
+            padding: portrait == true
+                ? const EdgeInsets.only(left: 32)
+                : const EdgeInsets.only(left: 40),
             child: SizedBox(
               width: portrait == true ? 200 : 250,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: EmployeeCode(),
+                child: string_2_PositionInfoMap[positionInfoString],
                 // child: Text(
                 //   'Hi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi there',
                 //   style: TextStyle(
@@ -259,254 +268,19 @@ class FormattedEmployeeCode extends StatelessWidget {
   }
 }
 
-class FormattedDepartment extends StatelessWidget {
-  const FormattedDepartment({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-       width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-               width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Department(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class FormattedWorkLocation extends StatelessWidget {
-  const FormattedWorkLocation({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-       width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-               width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: WorkLocation(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class FormattedOrgID extends StatelessWidget {
-  const FormattedOrgID({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-       width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-               width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: OrgID(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class FormattedEmploymentStatus extends StatelessWidget {
-  const FormattedEmploymentStatus({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-       width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-               width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: EmploymentStatus(),
-                // child: Text(
-                //   'Hi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi thereHi there',
-                //   style: TextStyle(
-                //     color: kSecondaryColor,
-                //   ),
-                // ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class FormattedOfficialEmail extends StatelessWidget {
-  const FormattedOfficialEmail({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-       width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-               width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: OfficialEmail(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class FormattedDoJ extends StatelessWidget {
-  const FormattedDoJ({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-       width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-               width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: DoJ(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class FormattedJobRole extends StatelessWidget {
-  const FormattedJobRole({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-       width: portrait == true ? 250 : 300,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: SizedBox(
-               width: portrait == true ? 200 : 250,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: JobRole(),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-
-
-
-
-class EmployeeCode extends StatelessWidget {
-  const EmployeeCode({Key? key}) : super(key: key);
+class UserPosID extends StatelessWidget {
+  const UserPosID({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('Employee Code Loading');
+        return Text('User Position ID Loading');
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeInfoModelDetails?.empCode ??
-              'Employee Code Null',
+          profileDetailsController.employeeDetailsModelDetails?.userPosId.toString() ??
+              'User Position ID Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -516,19 +290,19 @@ class EmployeeCode extends StatelessWidget {
   }
 }
 
-class Department extends StatelessWidget {
-  const Department({Key? key}) : super(key: key);
+class Designation extends StatelessWidget {
+  const Designation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('Department Loading');
+        return Text('Designation Loading');
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeInfoModelDetails?.department ??
-              'Department Null',
+          profileDetailsController.employeeDetailsModelDetails?.designation ??
+              'Designation Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -538,19 +312,19 @@ class Department extends StatelessWidget {
   }
 }
 
-class WorkLocation extends StatelessWidget {
-  const WorkLocation({Key? key}) : super(key: key);
+class Grade extends StatelessWidget {
+  const Grade({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('Work Location Loading');
+        return Text('Grade Loading');
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeInfoModelDetails?.workLocation ??
-              'Work Location Null',
+          profileDetailsController.employeeDetailsModelDetails?.grade ??
+              'Grade Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -559,6 +333,7 @@ class WorkLocation extends StatelessWidget {
     });
   }
 }
+
 
 class OrgID extends StatelessWidget {
   const OrgID({Key? key}) : super(key: key);
@@ -674,7 +449,8 @@ class JobRole extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeInfoModelDetails?.role ?? 'Job Role Null',
+          profileDetailsController.employeeInfoModelDetails?.role ??
+              'Job Role Null',
           style: TextStyle(
             color: kSecondaryColor,
           ),
@@ -706,10 +482,6 @@ class PositionDetailsFooter extends StatelessWidget {
                       color: kSecondaryColor,
                       fontSize: 15,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: ModifyButton(),
                   ),
                 ],
               ),

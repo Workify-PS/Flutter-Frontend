@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/exceptions/BadCredentials.dart';
+import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/models/UserModel.dart';
 import 'package:workify/services/auth_service.dart';
@@ -11,28 +12,22 @@ class AuthController extends GetxController with CacheManager {
 
   Future<void> loginUser(
       {required String username, required String password}) async {
-    try {
-      final AuthService _authService = AuthService();
-      final token = await _authService.loginService(
-          username: username, password: password);
+    final AuthService _authService = AuthService();
+    final token =
+        await _authService.loginService(username: username, password: password);
 
-      if (token != null) {
-        print('\nToken received Successfully !!\n$token');
-        isSignedIn.value = true;
-        await saveToken(token);
-        final UserController _userController = Get.find<UserController>();
-        await _userController.setUser(token);
-      } else {
-        Get.defaultDialog(
-            middleText: 'Incorrect Username or Password',
-            textConfirm: 'Dismiss',
-            confirmTextColor: Colors.white,
-            onConfirm: () {
-              Get.back();
-            });
-        throw BadCredentials();
-      }
-    } on BadCredentials {
+    if (token != null) {
+      isSignedIn.value = true;
+      await saveToken(token);
+      final UserController _userController = Get.find<UserController>();
+      await _userController.setUser(token);
+      PrintLog.printLog(
+        fileName: 'AuthController',
+        functionName: 'loginUser',
+        blockNumber: 1,
+        printStatement: '\nToken received Successfully !!\n$token',
+      );
+    } else {
       Get.defaultDialog(
           middleText: 'Incorrect Username or Password',
           textConfirm: 'Dismiss',
@@ -40,7 +35,10 @@ class AuthController extends GetxController with CacheManager {
           onConfirm: () {
             Get.back();
           });
-          throw BadCredentials();
+      print('\n-- In Auth_Controller file :: loginUser(){} : Block 2\n');
+      print('Incorrect Credentials !!');
+      print('-------------- End Block 2 ---------------');
+      throw BadCredentials();
     }
   }
 
@@ -61,11 +59,36 @@ class AuthController extends GetxController with CacheManager {
   }
 
   Future<void> logOut() async {
-    isSignedIn.value = false;
     final UserController _userController = Get.find<UserController>();
     _userController.currentUser = null;
     await removeToken();
     await removeUser();
+  }
+
+  Future<void> callLogOut() async {
+    Get.defaultDialog(
+        title: 'Log Out',
+        middleText: 'Tussi Ja rhe ho :(',
+        textConfirm: 'Yes',
+        textCancel: 'No',
+        onConfirm: () async {
+          logOut();
+          if (getToken() == null) {
+            isSignedIn.value = false;
+            Get.offAllNamed('/auth');
+            PrintLog.printLog(
+                fileName: 'AuthController.dart',
+                functionName: 'logOut(){}',
+                blockNumber: 1,
+                printStatement: 'User Logged Out Successfully !!');
+          } else {
+            PrintLog.printLog(
+                fileName: 'AuthController.dart',
+                functionName: 'logOut(){}',
+                blockNumber: 2,
+                printStatement: 'Token Is Still Alive !!');
+          }
+        });
   }
 
   void checkLoginStatus() {

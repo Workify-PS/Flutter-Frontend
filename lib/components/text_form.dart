@@ -18,12 +18,12 @@ class TextForm extends StatelessWidget {
       decoration: InputDecoration(
         labelText: text,
         labelStyle:
-            TextStyle(color: myFocusNode.hasFocus ? Colors.blue : Colors.black),
+            TextStyle(color: Colors.white),
         focusedBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.black87)),
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide(color: Colors.black, width: 2),
+          borderSide: BorderSide(color: Colors.white, width: 2),
         ),
       ),
     );

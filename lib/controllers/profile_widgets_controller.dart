@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 class ProfileWidgetsController extends GetxController {
   RxString widgetString = 'Basic Details'.obs;
+  RxString modifyProfileWidgetString = 'Modify Basic Details'.obs;
+
   updateWidgetString(String str) {
     widgetString(str);
   }
@@ -10,34 +12,54 @@ class ProfileWidgetsController extends GetxController {
   RxBool basicButton = true.obs;
   RxBool positionButton = false.obs;
   RxBool employmentButton = false.obs;
-  // RxBool educationButton = false.obs;
-
-  // RxList<bool> buttonPressed = [false, false, false, false].obs;
+  RxBool modifyButton = false.obs;
 
   resetButtons() {
-    // for (int i = 0; i < buttonPressed.length; i++) {
-    //   buttonPressed[i] = false;
-    // }
     basicButton(false);
     positionButton(false);
     employmentButton(false);
-    // educationButton(false);
+    modifyButton(false);
   }
 
   setButton({
     required String str,
-    // required int index,
   }) {
-    // buttonPressed[index] = true;
     if (str == 'Basic Details') {
       basicButton(true);
     } else if (str == 'Position Details') {
       positionButton(true);
     } else if (str == 'Employment Details') {
       employmentButton(true);
+    } else if (str == 'Modify Profile Details') {
+      modifyButton(true);
     }
-    //  else if (str == 'Education Details') {
-    //   educationButton(true);
-    // }
+  }
+
+  updateModifyProfileWidgetString(String str) {
+    modifyProfileWidgetString(str);
+  }
+
+
+  RxBool modifyBasicButton = true.obs;
+  RxBool modifyPositionButton = false.obs;
+  RxBool modifyEmploymentButton = false.obs;
+
+
+  resetModifyProfileButtons() {
+    modifyBasicButton(false);
+    modifyPositionButton(false);
+    modifyEmploymentButton(false);
+  }
+
+  setModifyProfileButton({
+    required String str,
+  }) {
+    if (str == 'Modify Basic Details') {
+      modifyBasicButton(true);
+    } else if (str == 'Modify Position Details') {
+      modifyPositionButton(true);
+    } else if (str == 'Modify Employment Details') {
+      modifyEmploymentButton(true);
+    }
   }
 }

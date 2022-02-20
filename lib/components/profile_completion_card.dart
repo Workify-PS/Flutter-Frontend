@@ -7,7 +7,7 @@ import 'package:workify/utils/constants.dart';
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 // import 'package:workify/utils/extensions.dart';
-import 'package:workify/screens/ProfileSection/change_profile_page.dart';
+import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -26,38 +26,44 @@ class ProfileCompletionCard extends StatelessWidget {
     portrait = screenWidth < 1000;
 
     return Padding(
-      padding: const EdgeInsets.all(kDefaultPadding * 1.5),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          CircularPercentIndicator(
-            radius: 150,
-            lineWidth: 10,
-            percent: percent,
-            animation: true,
-            reverse: true,
-            center: Avatar(),
-            progressColor: ((percent * 100) >= 0 && (percent * 100) <= 30)
-                ? Colors.red
-                : ((percent * 100) > 30 && (percent * 100) <= 70)
-                    ? Colors.yellow
-                    : Colors.green,
-            backgroundColor: Colors.grey,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: kDefaultPadding),
-            child: Text(
-              (percent * 100).toString() + ' % Complete',
-              style: TextStyle(
-                fontSize: 20,
-              ),
+        padding: const EdgeInsets.all(kDefaultPadding * 1.5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            CircularPercentIndicator(
+              radius: 150,
+              lineWidth: 10,
+              percent: percent,
+              animation: true,
+              reverse: true,
+              center: Avatar(),
+              progressColor: ((percent * 100) >= 0 && (percent * 100) <= 30)
+                  ? Colors.red
+                  : ((percent * 100) > 30 && (percent * 100) <= 70)
+                      ? Colors.yellow
+                      : Colors.green,
+              backgroundColor: Colors.grey,
             ),
-          ),
-          Spacer(),
-          Button(text: "Complete Now".toUpperCase(),),
-        ],
-      ),
-    );
+
+            Spacer(),
+            Button(
+              buttonTextWidget: Text("Complete Now".toUpperCase()),
+              onPressed: () {},
+            ),
+            // InkWell(
+            //   onTap: () {
+            //     Get.to(ChangeProfilePage());
+            //   },
+            //   child: Text(
+            //     'Complete Now',
+            //     style: TextStyle(
+            //       fontSize: 24,
+            //       //color: Colors.grey,
+            //     ),
+            //   ),
+            // )
+          ],
+        ));
   }
 }
 

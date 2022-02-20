@@ -10,10 +10,8 @@ class MyTheme {
       secondary: kTextColor,
       background: Colors.grey.shade50,
       surface: Colors.white,
-
     ),
-   textTheme: GoogleFonts.ptSansTextTheme().apply(bodyColor: kTextColor),
-  
+    textTheme: GoogleFonts.latoTextTheme().apply(bodyColor: kTextColor),
   ).copyWith(
       textSelectionColor: kTextColor,
       secondaryHeaderColor: Colors.white.withOpacity(0.5),
@@ -32,8 +30,8 @@ class MyTheme {
       primaryTextTheme: TextTheme(
         headline1:
             CupertinoThemeData().textTheme.navLargeTitleTextStyle.copyWith(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
                   color: kTextColor,
                 ),
       ),
@@ -77,9 +75,9 @@ class MyTheme {
           primaryTextTheme: TextTheme(
             headline1:
                 CupertinoThemeData().textTheme.navLargeTitleTextStyle.copyWith(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w600,
-                      color: kMenuColor,
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: kTextColor,
                     ),
           ),
           scaffoldBackgroundColor: kScaffoldDarkColor,

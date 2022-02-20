@@ -14,16 +14,19 @@ class EmployeeInfoModel {
   String? state;
   String? city;
   String? workLocation;
-  String? role;
+  String? jobPosition;
+  String? jobRole;
   String? department;
+  bool? isAccountLocked;
   int? orgId;
   String? empCode;
   dynamic creationDate;
   dynamic modifiedDate;
   int? createdBy;
   int? modifiedBy;
-  bool? active;
-  bool? accountLocked;
+  bool? isActive;
+  String? marriageStatus;
+  dynamic dom;
 
   EmployeeInfoModel({
     this.userId,
@@ -41,16 +44,19 @@ class EmployeeInfoModel {
     this.state,
     this.city,
     this.workLocation,
-    this.role,
+    this.jobPosition,
+    this.jobRole,
     this.department,
+    this.isAccountLocked,
     this.orgId,
     this.empCode,
     this.creationDate,
     this.modifiedDate,
     this.createdBy,
     this.modifiedBy,
-    this.active,
-    this.accountLocked,
+    this.isActive,
+    this.marriageStatus,
+    this.dom,
   });
 
   EmployeeInfoModel.fromJson(Map<String, dynamic> json) {
@@ -69,16 +75,19 @@ class EmployeeInfoModel {
     state = json["state"];
     city = json["city"];
     workLocation = json["workLocation"];
-    role = json["role"];
+    jobPosition = json["jobPosition"];
+    jobRole = json["role"];
     department = json["department"];
+    isAccountLocked = json["isAccountLocked"];
     orgId = json["orgId"];
     empCode = json["empCode"];
     creationDate = json["creationDate"];
     modifiedDate = json["modifiedDate"];
     createdBy = json["createdBy"];
     modifiedBy = json["modifiedBy"];
-    active = json["active"];
-    accountLocked = json["accountLocked"];
+    isActive = json["isActive"];
+    marriageStatus = json["marriageStatus"];
+    dom = json["dom"];
   }
 
   Map<String, dynamic> toJson() {
@@ -98,16 +107,20 @@ class EmployeeInfoModel {
     EmployeeInfoModelData["state"] = state;
     EmployeeInfoModelData["city"] = city;
     EmployeeInfoModelData["workLocation"] = workLocation;
-    EmployeeInfoModelData["role"] = role;
+    EmployeeInfoModelData["jobPosition"] = jobPosition;
+    EmployeeInfoModelData["role"] = jobRole;
     EmployeeInfoModelData["department"] = department;
+    EmployeeInfoModelData["isAccountLocked"] = isAccountLocked;
     EmployeeInfoModelData["orgId"] = orgId;
     EmployeeInfoModelData["empCode"] = empCode;
     EmployeeInfoModelData["creationDate"] = creationDate;
     EmployeeInfoModelData["modifiedDate"] = modifiedDate;
     EmployeeInfoModelData["createdBy"] = createdBy;
     EmployeeInfoModelData["modifiedBy"] = modifiedBy;
-    EmployeeInfoModelData["active"] = active;
-    EmployeeInfoModelData["accountLocked"] = accountLocked;
+    EmployeeInfoModelData["isActive"] = isActive;
+    EmployeeInfoModelData["marriageStatus"] = marriageStatus;
+    EmployeeInfoModelData["dom"] = dom;
+
     return EmployeeInfoModelData;
   }
 }

@@ -62,7 +62,7 @@ class ModifyPositionDetails extends StatelessWidget {
           ?? 'Grade Not Found',
       ),
       'Job Role' : TextEditingController(
-        text: profileDetailsController.employeeInfoModelDetails?.role
+        text: profileDetailsController.employeeInfoModelDetails?.jobRole
           ?? 'Job Role Not Found',
       ),
     };

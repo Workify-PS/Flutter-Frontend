@@ -83,7 +83,8 @@ class PositionDetails extends StatelessWidget {
                     child: Container(
                       width: 1,
                       height: 300,
-                      color: kPrimaryColor,
+                      // color: Colors.white,
+                      color: kTextColor,
                     ),
                   ),
                 ),
@@ -101,7 +102,13 @@ class PositionDetails extends StatelessWidget {
                   children: [
                     PositionInfoString(positionInfoString: 'Official Email'),
                     PositionInfoString(positionInfoString: 'Date of Joining'),
-                    PositionInfoString(positionInfoString: 'Job Role'),
+                    // PositionInfoString(positionInfoString: 'Job Role'),
+                    Container(
+                      height: 30,
+                      width: 10,
+                      // color: Colors.red,
+                      color: Colors.transparent,
+                    )
                   ],
                 ),
                 Padding(
@@ -113,7 +120,13 @@ class PositionDetails extends StatelessWidget {
                           positionInfoString: 'Official Email'),
                       FormattedPositionInfo(
                           positionInfoString: 'Date of Joining'),
-                      FormattedPositionInfo(positionInfoString: 'Job Role'),
+                      // FormattedPositionInfo(positionInfoString: 'Job Role'),
+                      Container(
+                      height: 30,
+                      width: 10,
+                      // color: Colors.red,
+                      color: Colors.transparent,
+                      )
                     ],
                   ),
                 ),
@@ -155,7 +168,13 @@ class PositionDetailsPortraitView extends StatelessWidget {
                     PositionInfoString(positionInfoString: 'Grade'),
                     PositionInfoString(positionInfoString: 'Official Email'),
                     PositionInfoString(positionInfoString: 'Date of Joining'),
-                    PositionInfoString(positionInfoString: 'Job Role'),
+                    // PositionInfoString(positionInfoString: 'Job Role'),
+                    Container(
+                      height: 30,
+                      width: 10,
+                      // color: Colors.red,
+                      color: Colors.transparent,
+                    )
                   ],
                 ),
               ),
@@ -176,7 +195,13 @@ class PositionDetailsPortraitView extends StatelessWidget {
                           positionInfoString: 'Official Email'),
                       FormattedPositionInfo(
                           positionInfoString: 'Date of Joining'),
-                      FormattedPositionInfo(positionInfoString: 'Job Role'),
+                      // FormattedPositionInfo(positionInfoString: 'Job Role'),
+                      Container(
+                      height: 30,
+                        width: 10,
+                        // color: Colors.red,
+                        color: Colors.transparent,
+                      )
                     ],
                   ),
                 ),
@@ -225,10 +250,10 @@ class FormattedPositionInfo extends StatelessWidget {
     'User Position ID': UserPosID(),
     'Designation': Designation(),
     'Grade': Grade(),
-    'Employment Status': EmploymentStatus(),
+    // 'Employment Status': EmploymentStatus(),
     'Official Email': OfficialEmail(),
     'Date of Joining': DoJ(),
-    'Job Role': JobRole(),
+    // 'Job Role': JobRole(),
   };
 
   @override
@@ -280,7 +305,7 @@ class UserPosID extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.userPosId.toString() ??
-              'User Position ID Null',
+              'User Position ID Not Found',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -302,7 +327,7 @@ class Designation extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.designation ??
-              'Designation Null',
+              'Designation Not Found',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -324,7 +349,7 @@ class Grade extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.grade ??
-              'Grade Null',
+              'Grade Not Found',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -347,7 +372,7 @@ class OrgID extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.orgId.toString() ??
-              'Organization ID Null',
+              'Organization ID Not Found',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -357,28 +382,28 @@ class OrgID extends StatelessWidget {
   }
 }
 
-class EmploymentStatus extends StatelessWidget {
-  const EmploymentStatus({Key? key}) : super(key: key);
+// class EmploymentStatus extends StatelessWidget {
+//   const EmploymentStatus({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Obx(() {
-      if (profileDetailsController.isLoading.value) {
-        return Text('Account Active Loading');
-      } else {
-        return Text(
-          // 'HI',
-          profileDetailsController.employeeInfoModelDetails?.active == true
-              ? 'Active'
-              : 'Inactive',
-          // style: TextStyle(
-          //   color: kSecondaryColor,
-          // ),
-        );
-      }
-    });
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Obx(() {
+//       if (profileDetailsController.isLoading.value) {
+//         return Text('Account Active Loading');
+//       } else {
+//         return Text(
+//           // 'HI',
+//           profileDetailsController.employeeInfoModelDetails?.isActive == true
+//               ? 'Active'
+//               : 'Inactive',
+//           // style: TextStyle(
+//           //   color: kSecondaryColor,
+//           // ),
+//         );
+//       }
+//     });
+//   }
+// }
 
 class OfficialEmail extends StatelessWidget {
   const OfficialEmail({Key? key}) : super(key: key);
@@ -392,7 +417,7 @@ class OfficialEmail extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.officialMail ??
-              'Official Email Null',
+              'Official Email Not Found',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -449,8 +474,8 @@ class JobRole extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeInfoModelDetails?.role ??
-              'Job Role Null',
+          profileDetailsController.employeeInfoModelDetails?.jobRole ??
+              'Job Role Not Found',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -487,7 +512,8 @@ class PositionDetailsFooter extends StatelessWidget {
               ),
               Table(
                 border: TableBorder.all(
-                  color: kPrimaryColor,
+                  // color: kPrimaryColor,
+                  color: kTextColor,
                 ),
                 children: [
                   TableRow(
@@ -539,7 +565,8 @@ class PositionHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Table(
       border: TableBorder.all(
-        color: kPrimaryColor,
+        // color: kPrimaryColor,
+        color: kTextColor,
       ),
       children: [
         TableRow(

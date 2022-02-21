@@ -240,7 +240,7 @@ class MobileNumber extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.mobile ??
-              'Mobile Number Null',
+              'Mobile Number Not Found',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -303,7 +303,7 @@ class City extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.city ??
-              'City Null',
+              'City Not Found',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -330,7 +330,7 @@ class State extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.state ??
-              'State Null',
+              'State Not Found',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -357,7 +357,7 @@ class Country extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.country ??
-              'Country Null',
+              'Country Not Found',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),

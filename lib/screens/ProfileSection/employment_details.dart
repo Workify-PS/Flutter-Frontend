@@ -517,7 +517,8 @@ class EmploymentDetailsFooter extends StatelessWidget {
               ),
               Table(
                 border: TableBorder.all(
-                  color: kPrimaryColor,
+                  // color: kPrimaryColor,
+                  color: kTextColor,
                 ),
                 children: [
                   TableRow(
@@ -569,7 +570,8 @@ class EmploymentHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Table(
       border: TableBorder.all(
-        color: kPrimaryColor,
+        // color: kPrimaryColor,
+        color: kTextColor,
       ),
       children: [
         TableRow(

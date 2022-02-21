@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
-import 'package:workify/screens/ProfileSection/modify_button.dart';
+import 'package:workify/screens/ProfileSection/modify_basic_details.dart';
 import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
-import 'package:get/get.dart';
 
 import 'basic_details.dart';
 import 'position_details.dart';
@@ -22,6 +24,7 @@ class ProfilePage extends StatelessWidget {
     'Basic Details': BasicDetails(),
     'Position Details': PositionDetails(),
     'Employment Details': EmploymentDetails(),
+    'Modify Basic Details': ModifyBasicDetails(),
   };
 
   ProfileWidgetsController profileWidgetsController =
@@ -35,28 +38,29 @@ class ProfilePage extends StatelessWidget {
     screenHeight = device.size.height;
 
     final profileWidgetsController = Get.find<ProfileWidgetsController>();
+    final profileDetailsController = Get.find<ProfileDetailsController>();
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Profile Page',
-          style: TextStyle(
-            color: kSecondaryColor,
-            fontWeight: FontWeight.bold,
-          ),
+          // style: TextStyle(
+          //   color: kPrimaryColor,
+          //   fontWeight: FontWeight.bold,
+          // ),
         ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            color: kPrimaryColor,
-          ),
-        ),
+        // flexibleSpace: Container(
+        //   decoration: BoxDecoration(
+        //     color: kPrimaryColor,
+        //   ),
+        // ),
       ),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,
           height: device.size.height / 1.1,
           decoration: BoxDecoration(
-            color: kPrimaryColor,
+            // color: Colors.transparent,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Flex(
@@ -88,8 +92,15 @@ class ProfilePage extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: ModifyProfileDetailsButton(
-                        profileDetails: "Modify Profile Details",
-                      ),
+                          profileDetails: 'Modify Profile Details'
+                          // profileDetails: 'Modify Basic Details'
+                          // Change here for respective Role
+                          // profileDetailsController.employeeInfoModelDetails?.jobRole !=null
+                          // && profileDetailsController.employeeInfoModelDetails?.jobRole
+                          // == 'Employee'
+                          // ? 'Modify Basic Details'
+                          // : "Modify Profile Details",
+                          ),
                     ),
                   ],
                 ),
@@ -98,16 +109,19 @@ class ProfilePage extends StatelessWidget {
                 flex: 10,
                 child: Padding(
                   padding: const EdgeInsets.all(32.0),
-                  child: Container(
-                    width: screenWidth,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: kPrimaryColor,
+                  child: Material(
+                    elevation: 20,
+                    color: Colors.transparent,
+                    child: SizedBox(
+                      width: screenWidth,
+                      // decoration: BoxDecoration(
+                      //   borderRadius: BorderRadius.circular(20),
+                      // ),
+                      // Rendering All widgets here
+                      child: Obx(() => profileWidgets[profileWidgetsController
+                          .widgetString.value
+                          .toString()]!),
                     ),
-                    // Rendering All widgets here
-                    child: Obx(() => profileWidgets[profileWidgetsController
-                        .widgetString.value
-                        .toString()]!),
                   ),
                 ),
               ),
@@ -142,12 +156,14 @@ class Buttons extends StatelessWidget {
             ? profileWidgetsController.positionButton
             : buttonIndex == 2
                 ? profileWidgetsController.employmentButton
-                : profileWidgetsController.modifyButton;
+                : profileDetails == 'Modify Basic Details'
+                  ? profileWidgetsController.modifyBasicButton
+                  : profileWidgetsController.modifyButton;
 
     return Obx(() => ElevatedButton(
           onPressed: () {
-            if (buttonIndex == 3) {
-              Get.to(ModifyProfileDetails());
+            if (buttonIndex == 3 && profileDetails == 'Modify Profile Details') {
+             Get.to(ModifyProfileDetails());
             } else {
               profileWidgetsController.resetButtons();
               profileWidgetsController.updateWidgetString(profileDetails);

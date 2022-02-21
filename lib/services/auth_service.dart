@@ -1,6 +1,7 @@
 import 'package:get/get_connect.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:workify/exceptions/BadCredentials.dart';
+import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/models/UserModel.dart';
 
 class AuthService extends GetConnect {
@@ -14,20 +15,29 @@ class AuthService extends GetConnect {
           await post(authUrl, {"username": username, "password": password});
 
       if (response.statusCode == HttpStatus.ok) {
-        print('\n-- In auth_service file :: loginService(){} : Block 1\n');
-        print('logged In Successfully :: with Token :\n' +
-            response.body['token']);
-        print('-------------- End Block 1 ---------------');
+        PrintLog.printLog(
+          fileName: 'auth_service',
+          functionName: 'loginService',
+          blockNumber: 1,
+          printStatement: 'logged In Successfully :: with Token :\n' +
+            response.body['token']
+        );
       } else {
-        print('\n-- In auth_service file :: loginService(){} : Block 2\n');
-        print("ERROR + ${response.statusText}");
-        print('-------------- End Block 2 ---------------');
+        PrintLog.printLog(
+          fileName: 'auth_service',
+          functionName: 'loginService',
+          blockNumber: 2,
+          printStatement: "ERROR : ${response.statusText}"
+        );
         throw BadCredentials();
       }
     } catch (error) {
-      print('\n-- In auth_service file :: loginService(){} : Block 3\n');
-      print('Error :: ' + error.toString());
-      print('-------------- End Block 3 ---------------');
+      PrintLog.printLog(
+          fileName: 'auth_service',
+          functionName: 'loginService',
+          blockNumber: 3,
+          printStatement: 'Error :: ' + error.toString()
+        );
     }
     return response.body['token'];
   }
@@ -38,19 +48,28 @@ class AuthService extends GetConnect {
       response = await post(registerUrl, model.toJson());
 
       if (response.statusCode == HttpStatus.ok) {
-        print('\n-- In auth_service file :: loginService(){} : Block 1\n');
-        print(response.bodyString);
-        print('-------------- End Block 1 ---------------');
+        PrintLog.printLog(
+          fileName: 'auth_service',
+          functionName: 'registerService',
+          blockNumber: 1,
+          printStatement: response.bodyString
+        );
       } else {
-        print('\n-- In auth_service file :: loginService(){} : Block 2\n');
-        print("ERROR + ${response.statusText}");
-        print('-------------- End Block 2 ---------------');
+        PrintLog.printLog(
+          fileName: 'auth_service',
+          functionName: 'registerService',
+          blockNumber: 2,
+          printStatement: "ERROR + ${response.statusText}"
+        );
         return null;
       }
     } catch (error) {
-      print('\n-- In auth_service file :: loginService(){} : Block 3\n');
-      print('Error :: ' + error.toString());
-      print('-------------- End Block 3 ---------------');
+      PrintLog.printLog(
+          fileName: 'auth_service',
+          functionName: 'registerService',
+          blockNumber: 3,
+          printStatement: 'Error :: ' + error.toString()
+        );
     }
     return response.bodyString;
   }

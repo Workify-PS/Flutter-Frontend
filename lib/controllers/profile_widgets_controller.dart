@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class ProfileWidgetsController extends GetxController {
   RxString widgetString = 'Basic Details'.obs;
-  RxString modifyProfileWidgetString = 'Modify Basic Details'.obs;
+  RxString modifyProfileWidgetString = 'Modify Position Details'.obs;
 
   updateWidgetString(String str) {
     widgetString(str);
@@ -13,12 +13,14 @@ class ProfileWidgetsController extends GetxController {
   RxBool positionButton = false.obs;
   RxBool employmentButton = false.obs;
   RxBool modifyButton = false.obs;
+  RxBool modifyBasicButton = false.obs;
 
   resetButtons() {
     basicButton(false);
     positionButton(false);
     employmentButton(false);
     modifyButton(false);
+    modifyBasicButton(false);
   }
 
   setButton({
@@ -30,23 +32,21 @@ class ProfileWidgetsController extends GetxController {
       positionButton(true);
     } else if (str == 'Employment Details') {
       employmentButton(true);
+    } else if (str == 'Modify Basic Details') {
+      modifyBasicButton(true);
     } else if (str == 'Modify Profile Details') {
       modifyButton(true);
-    }
+    } 
   }
 
   updateModifyProfileWidgetString(String str) {
     modifyProfileWidgetString(str);
   }
 
-
-  RxBool modifyBasicButton = true.obs;
-  RxBool modifyPositionButton = false.obs;
+  RxBool modifyPositionButton = true.obs;
   RxBool modifyEmploymentButton = false.obs;
 
-
   resetModifyProfileButtons() {
-    modifyBasicButton(false);
     modifyPositionButton(false);
     modifyEmploymentButton(false);
   }
@@ -54,9 +54,7 @@ class ProfileWidgetsController extends GetxController {
   setModifyProfileButton({
     required String str,
   }) {
-    if (str == 'Modify Basic Details') {
-      modifyBasicButton(true);
-    } else if (str == 'Modify Position Details') {
+    if (str == 'Modify Position Details') {
       modifyPositionButton(true);
     } else if (str == 'Modify Employment Details') {
       modifyEmploymentButton(true);

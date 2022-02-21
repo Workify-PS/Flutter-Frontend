@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:workify/components/button.dart';
-import 'package:workify/components/text_form.dart';
+import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
 class ModifyEmploymentDetails extends StatelessWidget {
-  const ModifyEmploymentDetails({Key? key}) : super(key: key);
+  ModifyEmploymentDetails({Key? key}) : super(key: key);
+
+  final profileDetailsController = Get.find<ProfileDetailsController>();
 
   void cancelClicked() {
     PrintLog.printLog(
@@ -47,6 +52,38 @@ class ModifyEmploymentDetails extends StatelessWidget {
       'HR Manager ID',
     ];
 
+
+    var textFormList_2_Controller = {
+      'Work Location' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.location ??
+        'Work Location Not Found',
+      ),
+      'Employment Category' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.empCategory ??
+        'Employment Category Not Found',
+      ),
+      'Employment Status' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.empStatus ??
+        'Employment Status Not Found',
+      ),
+      'Employement Type' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.empType ??
+        'Employment Type Not Found',
+      ),
+      'L1 Manager ID' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.l1ManagerId.toString() ??
+        'L1 Manager ID Not Found',
+      ),
+      'L2 Manager ID' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.l2ManagerId.toString() ??
+        'L2 Manager ID Not Found',
+      ),
+      'HR Manager ID' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.hrManagerId.toString() ??
+        'HR Manager ID Not Found',
+      ),
+    };
+
     return Padding(
       padding: portrait == false
           ? const EdgeInsets.symmetric(horizontal: 300)
@@ -60,9 +97,10 @@ class ModifyEmploymentDetails extends StatelessWidget {
               flex: 9,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(7,(index) => TextForm(
+                children: List.generate(7,(index) => TextFormModifyProfileDetails(
                     myFocusNode: FocusNode(),
                     text: textFormList[index],
+                    controller:textFormList_2_Controller[textFormList[index]],
                   )
                 ),
               ),

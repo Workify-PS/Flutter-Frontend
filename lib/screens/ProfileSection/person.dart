@@ -85,7 +85,7 @@ class Name extends StatelessWidget {
           style: TextStyle(
             // fontSize: screenWidth * 0.017,
             fontWeight: FontWeight.bold,
-            color: kSecondaryColor,
+            // color: kSecondaryColor,
           ),
         );
       }

@@ -101,7 +101,7 @@ class EmployeeInfoModel {
     EmployeeInfoModelData["doj"] = doj;
     EmployeeInfoModelData["firstName"] = firstName;
     EmployeeInfoModelData["lastName"] = lastName;
-    EmployeeInfoModelData["middleName"] = firstName;
+    EmployeeInfoModelData["middleName"] = middleName;
     EmployeeInfoModelData["fullName"] = fullName;
     EmployeeInfoModelData["country"] = country;
     EmployeeInfoModelData["state"] = state;

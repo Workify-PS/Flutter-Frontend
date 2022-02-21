@@ -259,7 +259,7 @@ class FormattedPositionInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: portrait == true ? 250 : 300,
+      width: portrait == true ? 200 : 250,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -274,7 +274,7 @@ class FormattedPositionInfo extends StatelessWidget {
                 ? const EdgeInsets.only(left: 32)
                 : const EdgeInsets.only(left: 40),
             child: SizedBox(
-              width: portrait == true ? 200 : 250,
+              width: portrait == true ? 150 : 200,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: string_2_PositionInfoMap[positionInfoString],

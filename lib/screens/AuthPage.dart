@@ -18,8 +18,8 @@ class _AuthPageState extends State<AuthPage> with CacheManager {
   FocusNode myFocusNode = FocusNode();
   FocusNode myFocusNode2 = FocusNode();
   final _passwordIsVisible = false.obs;
-  final _usernameController = TextEditingController(text: "King");
-  final _passController = TextEditingController(text: "#1234");
+  final _usernameController = TextEditingController(text: "rishabh");
+  final _passController = TextEditingController(text: "password");
   final _formKey = GlobalKey<FormState>();
   final AuthController _authController = Get.find<AuthController>();
   final UserController _userController = Get.find<UserController>();

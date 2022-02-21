@@ -1,5 +1,7 @@
 // import 'dart:html';
 
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -60,6 +62,7 @@ class BasicDetails extends StatelessWidget {
                             children: [
                               BasicInfoString(basicInfoString: 'Mobile Number'),
                               BasicInfoString(basicInfoString: 'Date of Birth'),
+                              BasicInfoString(basicInfoString: 'Marriage Status'),
                               BasicInfoString(basicInfoString: 'City'),
                               BasicInfoString(basicInfoString: 'State'),
                               BasicInfoString(basicInfoString: 'Country'),
@@ -76,6 +79,7 @@ class BasicDetails extends StatelessWidget {
                               children: [
                                 FormattedBasicInfo(basicInfoString: 'Mobile Number'),
                                 FormattedBasicInfo(basicInfoString: 'Date of Birth'),
+                                FormattedBasicInfo(basicInfoString: 'Marriage Status'),
                                 FormattedBasicInfo(basicInfoString: 'City'),
                                 FormattedBasicInfo(basicInfoString: 'State'),
                                 FormattedBasicInfo(basicInfoString: 'Country'),
@@ -123,6 +127,7 @@ class BasicDetailsPortraitView extends StatelessWidget {
                   children: [
                     BasicInfoString(basicInfoString: 'Mobile Number'),
                     BasicInfoString(basicInfoString: 'Date of Birth'),
+                    BasicInfoString(basicInfoString: 'Marriage Status'),
                     BasicInfoString(basicInfoString: 'City'),
                     BasicInfoString(basicInfoString: 'State'),
                     BasicInfoString(basicInfoString: 'Country'),
@@ -137,6 +142,7 @@ class BasicDetailsPortraitView extends StatelessWidget {
                   children: [
                     FormattedBasicInfo(basicInfoString: 'Mobile Number'),
                     FormattedBasicInfo(basicInfoString: 'Date of Birth'),
+                    FormattedBasicInfo(basicInfoString: 'Marriage Status'),
                     FormattedBasicInfo(basicInfoString: 'City'),
                     FormattedBasicInfo(basicInfoString: 'State'),
                     FormattedBasicInfo(basicInfoString: 'Country'),
@@ -181,6 +187,7 @@ class FormattedBasicInfo extends StatelessWidget {
   var string_2_BasicInfoMap = {
     'Mobile Number': MobileNumber(),
     'Date of Birth': DoB(),
+    'Marriage Status': MarriageStatus(),
     'City': City(),
     'State': State(),
     'Country': Country(),
@@ -189,7 +196,7 @@ class FormattedBasicInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: portrait == true ? 250 : 300,
+      width: portrait == true ? 200 : 250,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -204,7 +211,7 @@ class FormattedBasicInfo extends StatelessWidget {
                 ? const EdgeInsets.only(left: 32)
                 : const EdgeInsets.only(left: 40),
             child: SizedBox(
-              width: portrait == true ? 200 : 250,
+              width: portrait == true ? 150 : 200,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: string_2_BasicInfoMap[basicInfoString],
@@ -241,6 +248,34 @@ class MobileNumber extends StatelessWidget {
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.mobile ??
               'Mobile Number Not Found',
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
+        );
+      }
+    });
+  }
+}
+
+
+class MarriageStatus extends StatelessWidget {
+  const MarriageStatus({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      if (profileDetailsController.isLoading.value) {
+        return Text(
+          'Marriage Status  Loading',
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
+        );
+      } else {
+        return Text(
+          // 'HI',
+          profileDetailsController.employeeInfoModelDetails?.marriageStatus ??
+              'Marriage Status Not Found',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),

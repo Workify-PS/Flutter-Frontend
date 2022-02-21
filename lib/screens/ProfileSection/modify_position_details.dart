@@ -45,7 +45,7 @@ class ModifyPositionDetails extends StatelessWidget {
       'User Position ID',
       'Designation',
       'Grade',
-      'Job Role',
+      'Job Position',
     ];
     
     var textFormList_2_Controller = {
@@ -61,9 +61,9 @@ class ModifyPositionDetails extends StatelessWidget {
         text: profileDetailsController.employeeDetailsModelDetails?.grade
           ?? 'Grade Not Found',
       ),
-      'Job Role' : TextEditingController(
-        text: profileDetailsController.employeeInfoModelDetails?.jobRole
-          ?? 'Job Role Not Found',
+      'Job Position' : TextEditingController(
+        text: profileDetailsController.employeeInfoModelDetails?.jobPosition
+          ?? 'Job Position Not Found',
       ),
     };
 

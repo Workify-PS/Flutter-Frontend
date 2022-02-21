@@ -21,16 +21,16 @@ class TextFormModifyProfileDetails extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         labelText: text,
-        labelStyle: TextStyle(color: Colors.red),
+        labelStyle: TextStyle(color: kPrimaryColor),
         focusedBorder:
             OutlineInputBorder(
               borderSide: BorderSide(
-                color: Colors.red
+                color: kPrimaryColor
               )
             ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide(color: Colors.red, width: 2),
+          borderSide: BorderSide(color: kPrimaryColor, width: 2),
         ),
       ),
     );

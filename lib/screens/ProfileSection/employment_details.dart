@@ -48,7 +48,7 @@ class EmploymentDetails extends StatelessWidget {
                   flex: 1,
                   child: Container(
                     // color: Colors.red,
-                    color: Colors.transparent,
+                    // color: Colors.transparent,
                   ),
                 ),
                 Column(
@@ -80,7 +80,7 @@ class EmploymentDetails extends StatelessWidget {
                 ),
                 // Border between Column 1 and Column 2
                 Container(
-                  width: 30,
+                  width: 20,
                   color: Colors.transparent,
                   // color:Colors.black,
                   child: Center(
@@ -246,7 +246,7 @@ class FormattedEmploymentInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: portrait == true ? 250 : 300,
+      width: portrait == true ? 200 : 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -261,7 +261,7 @@ class FormattedEmploymentInfo extends StatelessWidget {
                 ? const EdgeInsets.only(left: 32)
                 : const EdgeInsets.only(left: 40),
             child: SizedBox(
-              width: portrait == true ? 200 : 250,
+              width: portrait == true ? 150 : 150,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: string_2_EmploymentInfoMap[employmentInfoString],

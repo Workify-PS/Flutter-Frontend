@@ -44,6 +44,7 @@ final profileDetailsController = Get.find<ProfileDetailsController>();
     var textFormList = [
       'Mobile Number',
       'Date of Birth',
+      'Marriage Status',
       'City',
       'State',
       'Country'
@@ -57,6 +58,10 @@ final profileDetailsController = Get.find<ProfileDetailsController>();
       'Date of Birth' : TextEditingController(
         text: profileDetailsController.employeeInfoModelDetails?.dob
           ?? 'Date of Birth Not Found',
+      ),
+      'Marriage Status' : TextEditingController(
+        text: profileDetailsController.employeeInfoModelDetails?.marriageStatus
+          ?? 'Marriage Status Not Found',
       ),
       'City' : TextEditingController(
         text: profileDetailsController.employeeInfoModelDetails?.city 

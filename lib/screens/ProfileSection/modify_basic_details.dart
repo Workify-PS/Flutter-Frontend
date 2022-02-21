@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/controllers/update_profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
@@ -10,9 +11,8 @@ double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
 class ModifyBasicDetails extends StatelessWidget {
-   ModifyBasicDetails({Key? key}) : super(key: key);
+  const ModifyBasicDetails({Key? key}) : super(key: key);
 
-final profileDetailsController = Get.find<ProfileDetailsController>();
 
   void cancelClicked() {
     PrintLog.printLog(
@@ -23,17 +23,12 @@ final profileDetailsController = Get.find<ProfileDetailsController>();
     );
   }
 
-  void submitClicked() {
-    PrintLog.printLog(
-      fileName: 'modify_basic_details',
-      functionName: 'Submit : onPressed',
-      blockNumber: 1,
-      printStatement: 'Submit Clicked',
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+
+    final profileDetailsController = Get.find<ProfileDetailsController>();
+    final updateProfileDetailsController = Get.put(UpdateProfileDetailsController());
+
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
     screenWidth = device.size.width;
@@ -110,7 +105,7 @@ final profileDetailsController = Get.find<ProfileDetailsController>();
                   ),
                   Button(
                     buttonTextWidget: Text('Submit'),
-                    onPressed: submitClicked,
+                    onPressed: updateProfileDetailsController.onSubmitBasicDetails,
                   ),
                 ],
               ),

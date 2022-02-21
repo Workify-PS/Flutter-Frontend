@@ -4,6 +4,7 @@ import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/models/EmployeeDetailsModel.dart';
 import 'package:workify/models/EmployeeInfoModel.dart';
+import 'package:workify/models/UpdateEmployeeInfoCombined.dart';
 
 class ProfileService {
   static Future<Map<String, dynamic>> callProfileApi() async {
@@ -40,10 +41,10 @@ class ProfileService {
       }
     } on DioError catch (error) {
       PrintLog.printLog(
-          fileName: 'Profile Api Service File',
-          functionName: 'callProfileApi(){}',
-          blockNumber: 3,
-          printStatement: 'Error :: ' + error.message.toString(),
+        fileName: 'Profile Api Service File',
+        functionName: 'callProfileApi(){}',
+        blockNumber: 3,
+        printStatement: 'Error :: ' + error.message.toString(),
       );
     }
     return responseData;
@@ -84,10 +85,10 @@ class ProfileService {
       }
     } on DioError catch (error) {
       PrintLog.printLog(
-          fileName: 'Profile Api Service File',
-          functionName: 'callEmpDetails(){}',
-          blockNumber: 3,
-          printStatement: 'Error :: '+error.message.toString(),
+        fileName: 'Profile Api Service File',
+        functionName: 'callEmpDetails(){}',
+        blockNumber: 3,
+        printStatement: 'Error :: ' + error.message.toString(),
       );
     }
     return responseData;
@@ -96,12 +97,16 @@ class ProfileService {
   static Future<EmployeeInfoModel> fetchProfileDetails() async {
     Map<String, dynamic> profileApiResponse = await callProfileApi();
     var data = EmployeeInfoModel.fromJson(profileApiResponse);
+    // UpdateEmployeeInfoCombined updateEmployeeInfoCombined =
+    //     UpdateEmployeeInfoCombined(profileApiResponse);
     PrintLog.printLog(
-          fileName: 'Profile Api Service File',
-          functionName: 'fetchProfileDetails(){}',
-          blockNumber: 1,
-          printStatement: 'Profile Api Response :\n' + profileApiResponse.toString(),
-    );
+        fileName: 'Profile Api Service File',
+        functionName: 'fetchProfileDetails(){}',
+        blockNumber: 1,
+        printStatement:
+            'Profile Api Response :\n' + profileApiResponse.toString()
+        // +'\n\n\nCombined \n' + updateEmployeeInfoCombined.fullName.toString(),
+        );
     return data;
   }
 
@@ -109,10 +114,11 @@ class ProfileService {
     Map<String, dynamic> empDetailsApiResponse = await callEmpDetailsApi();
     var data = EmployeeDetailsModel.fromJson(empDetailsApiResponse);
     PrintLog.printLog(
-          fileName: 'Profile Api Service File',
-          functionName: 'fetchEmployeeDetails(){}',
-          blockNumber: 1,
-          printStatement: 'EmployeeDetails Api Response :\n' + empDetailsApiResponse.toString(),
+      fileName: 'Profile Api Service File',
+      functionName: 'fetchEmployeeDetails(){}',
+      blockNumber: 1,
+      printStatement:
+          'EmployeeDetails Api Response :\n' + empDetailsApiResponse.toString(),
     );
     return data;
   }

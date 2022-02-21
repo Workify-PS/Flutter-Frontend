@@ -1,5 +1,7 @@
 // import 'dart:html';
 
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -7,13 +9,13 @@ import 'package:workify/utils/sizes.dart';
 
 import 'person.dart';
 import '../../controllers/profile_details_controller.dart';
-import 'package:workify/utils/constants.dart';
+// import 'package:workify/utils/constants.dart';
 // import './modify_history_buttons.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
-final profileDetailsController = Get.put(ProfileDetailsController());
+final profileDetailsController = Get.find<ProfileDetailsController>();
 
 class BasicDetails extends StatelessWidget {
   const BasicDetails({Key? key}) : super(key: key);
@@ -60,6 +62,7 @@ class BasicDetails extends StatelessWidget {
                             children: [
                               BasicInfoString(basicInfoString: 'Mobile Number'),
                               BasicInfoString(basicInfoString: 'Date of Birth'),
+                              BasicInfoString(basicInfoString: 'Marriage Status'),
                               BasicInfoString(basicInfoString: 'City'),
                               BasicInfoString(basicInfoString: 'State'),
                               BasicInfoString(basicInfoString: 'Country'),
@@ -76,6 +79,7 @@ class BasicDetails extends StatelessWidget {
                               children: [
                                 FormattedBasicInfo(basicInfoString: 'Mobile Number'),
                                 FormattedBasicInfo(basicInfoString: 'Date of Birth'),
+                                FormattedBasicInfo(basicInfoString: 'Marriage Status'),
                                 FormattedBasicInfo(basicInfoString: 'City'),
                                 FormattedBasicInfo(basicInfoString: 'State'),
                                 FormattedBasicInfo(basicInfoString: 'Country'),
@@ -123,6 +127,7 @@ class BasicDetailsPortraitView extends StatelessWidget {
                   children: [
                     BasicInfoString(basicInfoString: 'Mobile Number'),
                     BasicInfoString(basicInfoString: 'Date of Birth'),
+                    BasicInfoString(basicInfoString: 'Marriage Status'),
                     BasicInfoString(basicInfoString: 'City'),
                     BasicInfoString(basicInfoString: 'State'),
                     BasicInfoString(basicInfoString: 'Country'),
@@ -137,6 +142,7 @@ class BasicDetailsPortraitView extends StatelessWidget {
                   children: [
                     FormattedBasicInfo(basicInfoString: 'Mobile Number'),
                     FormattedBasicInfo(basicInfoString: 'Date of Birth'),
+                    FormattedBasicInfo(basicInfoString: 'Marriage Status'),
                     FormattedBasicInfo(basicInfoString: 'City'),
                     FormattedBasicInfo(basicInfoString: 'State'),
                     FormattedBasicInfo(basicInfoString: 'Country'),
@@ -164,9 +170,9 @@ class BasicInfoString extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       basicInfoString,
-      style: TextStyle(
-        color: kSecondaryColor,
-      ),
+      // style: TextStyle(
+      //   color: kSecondaryColor,
+      // ),
     );
   }
 }
@@ -181,6 +187,7 @@ class FormattedBasicInfo extends StatelessWidget {
   var string_2_BasicInfoMap = {
     'Mobile Number': MobileNumber(),
     'Date of Birth': DoB(),
+    'Marriage Status': MarriageStatus(),
     'City': City(),
     'State': State(),
     'Country': Country(),
@@ -189,22 +196,22 @@ class FormattedBasicInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: portrait == true ? 250 : 300,
+      width: portrait == true ? 200 : 250,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
             ':',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
+            // style: TextStyle(
+            //   color: kSecondaryColor,
+            // ),
           ),
           Padding(
             padding: portrait == true
                 ? const EdgeInsets.only(left: 32)
                 : const EdgeInsets.only(left: 40),
             child: SizedBox(
-              width: portrait == true ? 200 : 250,
+              width: portrait == true ? 150 : 200,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: string_2_BasicInfoMap[basicInfoString],
@@ -232,18 +239,46 @@ class MobileNumber extends StatelessWidget {
       if (profileDetailsController.isLoading.value) {
         return Text(
           'Mobile Number Loading',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       } else {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.mobile ??
-              'Mobile Number Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+              'Mobile Number Not Found',
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
+        );
+      }
+    });
+  }
+}
+
+
+class MarriageStatus extends StatelessWidget {
+  const MarriageStatus({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      if (profileDetailsController.isLoading.value) {
+        return Text(
+          'Marriage Status  Loading',
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
+        );
+      } else {
+        return Text(
+          // 'HI',
+          profileDetailsController.employeeInfoModelDetails?.marriageStatus ??
+              'Marriage Status Not Found',
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -259,9 +294,9 @@ class DoB extends StatelessWidget {
       if (profileDetailsController.isLoading.value) {
         return Text(
           'Date of Birth Loading',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       } else {
         if (profileDetailsController.checkValidDate(
@@ -269,16 +304,16 @@ class DoB extends StatelessWidget {
           return Text(
             DateFormat.yMMMMd('en_US').format(DateTime.parse(
                 profileDetailsController.employeeInfoModelDetails?.dob)),
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
+            // style: TextStyle(
+            //   color: kSecondaryColor,
+            // ),
           );
         } else {
           return Text(
             'Invalid date found',
-            style: TextStyle(
-              color: kSecondaryColor,
-            ),
+            // style: TextStyle(
+            //   color: kSecondaryColor,
+            // ),
           );
         }
       }
@@ -295,18 +330,18 @@ class City extends StatelessWidget {
       if (profileDetailsController.isLoading.value) {
         return Text(
           'City Loading',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       } else {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.city ??
-              'City Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+              'City Not Found',
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -322,18 +357,18 @@ class State extends StatelessWidget {
       if (profileDetailsController.isLoading.value) {
         return Text(
           'State Loading',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       } else {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.state ??
-              'State Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+              'State Not Found',
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });
@@ -349,18 +384,18 @@ class Country extends StatelessWidget {
       if (profileDetailsController.isLoading.value) {
         return Text(
           'Country Loading',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       } else {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.country ??
-              'Country Null',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
+              'Country Not Found',
+          // style: TextStyle(
+          //   color: kSecondaryColor,
+          // ),
         );
       }
     });

@@ -9,13 +9,16 @@ import 'package:workify/mixins/cache.dart';
 import 'package:workify/screens/AuthPage/AuthPage.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
 
-import 'package:workify/screens/AuthPage/ForgotPass.dart';
+// import 'package:workify/screens/AuthPage/ForgotPass.dart';
 import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/HomePage.dart';
 import 'package:workify/screens/ProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SettingsPage.dart';
 import 'package:workify/screens/SplashScreen/SplashScreen.dart';
 import 'package:workify/utils/theme.dart';
+
+import 'controllers/profile_details_controller.dart';
+
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
@@ -70,19 +73,22 @@ class _MyAppState extends State<MyApp> with CacheManager {
 
         if (getToken() != null) GetPage(name: "/home", page: () => HomePage()),
 
-        if (getToken() != null)
-          GetPage(
-            name: '/profile',
-            page: () => ProfilePage(),
-            binding: BindingsBuilder(() => {
-                  Get.put(ProfileWidgetsController()),
-                }),
-          ),
+        if(getToken() != null)
+        GetPage(
+          name: '/profile',
+          page: () => ProfilePage(),
+          binding: BindingsBuilder(() => {
+            Get.put(ProfileWidgetsController()),
+            Get.put(ProfileDetailsController()),
+          }),
+        ),
         // GetPage(
         //   name: "/forgot",
         //   page: () => ForgotPass(),
         // ),
-        GetPage(name: "/change", page: () => ChangePassword()),
+        if(getToken() != null)
+          GetPage(name: "/change-password", page: () => ChangePassword()),
+        
         GetPage(
           name: '/settings',
           page: () => SettingsPage(),

@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:workify/components/button.dart';
-import 'package:workify/components/text_form.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
+import 'package:workify/controllers/profile_details_controller.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
 class ModifyPositionDetails extends StatelessWidget {
-  const ModifyPositionDetails({Key? key}) : super(key: key);
-void cancelClicked (){
+  ModifyPositionDetails({Key? key}) : super(key: key);
+  
+  final profileDetailsController = Get.find<ProfileDetailsController>();
+
+  void cancelClicked (){
     PrintLog.printLog(
       fileName: 'modify_position_details',
       functionName: 'Cancel : onPressed',
@@ -39,8 +45,27 @@ void cancelClicked (){
       'User Position ID',
       'Designation',
       'Grade',
-      'Job Role',
+      'Job Position',
     ];
+    
+    var textFormList_2_Controller = {
+      'User Position ID' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.userPosId.toString()
+          ?? 'User Position ID Not Found',
+      ),
+      'Designation' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.designation
+          ?? 'Designation Not Found',
+      ),
+      'Grade' : TextEditingController(
+        text: profileDetailsController.employeeDetailsModelDetails?.grade
+          ?? 'Grade Not Found',
+      ),
+      'Job Position' : TextEditingController(
+        text: profileDetailsController.employeeInfoModelDetails?.jobPosition
+          ?? 'Job Position Not Found',
+      ),
+    };
 
     return Padding(
       padding: portrait == false
@@ -55,9 +80,10 @@ void cancelClicked (){
               flex: 9,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(4,(index) => TextForm(
+                children: List.generate(4,(index) => TextFormModifyProfileDetails(
                     myFocusNode: FocusNode(),
                     text: textFormList[index],
+                    controller:textFormList_2_Controller[textFormList[index]],
                   )
                 ),
               ),

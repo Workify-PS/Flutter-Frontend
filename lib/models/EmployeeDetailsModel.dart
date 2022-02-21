@@ -1,44 +1,45 @@
 class EmployeeDetailsModel {
-  int? userPosId;
-  int? userId;
-  String? empCode;
-  String? designation;
-  String? grade;
-  String? empCategory;
-  String? empStatus;
-  String? empType;
-  String? department;
-  String? location;
-  int? l1ManagerId;
-  int? l2ManagerId;
-  int? hrManagerId;
-  int? orgId;
-  bool? isActive;
-  dynamic creationDate;
-  dynamic modifiedDate;
-  int? createdBy;
-  int? modifiedBy;
+    int? userPosId;
+    int? userId;
+    String? empCode;
+    String? designation;
+    String? grade;
+    dynamic empCategory;
+    dynamic empStatus;
+    dynamic empType;
+    String? department;
+    dynamic location;
+    int? l1ManagerId;
+    int? l2ManagerId;
+    int? hrManagerId;
+    int? orgId;
+    bool? isActive;
+    dynamic creationDate;
+    dynamic modifiedDate;
+    int? createdBy;
+    int? modifiedBy;
 
-  EmployeeDetailsModel(
-      {this.userPosId,
-      this.userId,
-      this.empCode,
-      this.designation,
-      this.grade,
-      this.empCategory,
-      this.empStatus,
-      this.empType,
-      this.department,
-      this.location,
-      this.l1ManagerId,
-      this.l2ManagerId,
-      this.hrManagerId,
-      this.orgId,
-      this.isActive,
-      this.creationDate,
-      this.modifiedDate,
-      this.createdBy,
-      this.modifiedBy});
+  EmployeeDetailsModel({
+    this.userPosId,
+    this.userId,
+    this.empCode,
+    this.designation,
+    this.grade,
+    this.empCategory,
+    this.empStatus,
+    this.empType,
+    this.department,
+    this.location,
+    this.l1ManagerId,
+    this.l2ManagerId,
+    this.hrManagerId,
+    this.orgId,
+    this.isActive,
+    this.creationDate,
+    this.modifiedDate,
+    this.createdBy,
+    this.modifiedBy
+    });
 
   EmployeeDetailsModel.fromJson(Map<String, dynamic> json) {
     userPosId = json["userPosId"];
@@ -83,7 +84,7 @@ class EmployeeDetailsModel {
     employeeDetailsModelData["modifiedDate"] = modifiedDate;
     employeeDetailsModelData["createdBy"] = createdBy;
     employeeDetailsModelData["modifiedBy"] = modifiedBy;
-    
+
     return employeeDetailsModelData;
   }
 }

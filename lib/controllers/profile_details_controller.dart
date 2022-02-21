@@ -67,7 +67,7 @@ class ProfileDetailsController extends GetxController with CacheManager {
           blockNumber: 4,
           printStatement:
               'DataType received from profile_service.dart :: fetchEmployeeDetails -> ' +
-                  employeeInfoModelDetails.runtimeType.toString() +
+                  employeeDetailsModelDetails.runtimeType.toString() +
                   '\nEmployee Details received Successfully !! \n',
         );
       }

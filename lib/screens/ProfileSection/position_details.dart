@@ -100,15 +100,15 @@ class PositionDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    PositionInfoString(positionInfoString: 'Job Position'),
                     PositionInfoString(positionInfoString: 'Official Email'),
                     PositionInfoString(positionInfoString: 'Date of Joining'),
-                    // PositionInfoString(positionInfoString: 'Job Role'),
-                    Container(
-                      height: 30,
-                      width: 10,
-                      // color: Colors.red,
-                      color: Colors.transparent,
-                    )
+                    // Container(
+                    //   height: 30,
+                    //   width: 10,
+                    //   // color: Colors.red,
+                    //   color: Colors.transparent,
+                    // )
                   ],
                 ),
                 Padding(
@@ -116,17 +116,17 @@ class PositionDetails extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
+                      FormattedPositionInfo(positionInfoString: 'Job Position'),
                       FormattedPositionInfo(
                           positionInfoString: 'Official Email'),
                       FormattedPositionInfo(
                           positionInfoString: 'Date of Joining'),
-                      // FormattedPositionInfo(positionInfoString: 'Job Role'),
-                      Container(
-                      height: 30,
-                      width: 10,
-                      // color: Colors.red,
-                      color: Colors.transparent,
-                      )
+                      // Container(
+                      // height: 30,
+                      // width: 10,
+                      // // color: Colors.red,
+                      // color: Colors.transparent,
+                      // )
                     ],
                   ),
                 ),
@@ -168,7 +168,7 @@ class PositionDetailsPortraitView extends StatelessWidget {
                     PositionInfoString(positionInfoString: 'Grade'),
                     PositionInfoString(positionInfoString: 'Official Email'),
                     PositionInfoString(positionInfoString: 'Date of Joining'),
-                    // PositionInfoString(positionInfoString: 'Job Role'),
+                    PositionInfoString(positionInfoString: 'Job Position'),
                     Container(
                       height: 30,
                       width: 10,
@@ -195,7 +195,7 @@ class PositionDetailsPortraitView extends StatelessWidget {
                           positionInfoString: 'Official Email'),
                       FormattedPositionInfo(
                           positionInfoString: 'Date of Joining'),
-                      // FormattedPositionInfo(positionInfoString: 'Job Role'),
+                      FormattedPositionInfo(positionInfoString: 'Job Position'),
                       Container(
                       height: 30,
                         width: 10,
@@ -253,7 +253,7 @@ class FormattedPositionInfo extends StatelessWidget {
     // 'Employment Status': EmploymentStatus(),
     'Official Email': OfficialEmail(),
     'Date of Joining': DoJ(),
-    // 'Job Role': JobRole(),
+    'Job Position': JobPosition(),
   };
 
   @override
@@ -305,7 +305,7 @@ class UserPosID extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.userPosId.toString() ??
-              'User Position ID Not Found',
+              'User Position ID Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -327,7 +327,7 @@ class Designation extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.designation ??
-              'Designation Not Found',
+              'Designation Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -349,7 +349,7 @@ class Grade extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeDetailsModelDetails?.grade ??
-              'Grade Not Found',
+              'Grade Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -372,7 +372,7 @@ class OrgID extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.orgId.toString() ??
-              'Organization ID Not Found',
+              'Organization ID Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -417,7 +417,7 @@ class OfficialEmail extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.officialMail ??
-              'Official Email Not Found',
+              'Official Email Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),
@@ -463,19 +463,19 @@ class DoJ extends StatelessWidget {
   }
 }
 
-class JobRole extends StatelessWidget {
-  const JobRole({Key? key}) : super(key: key);
+class JobPosition extends StatelessWidget {
+  const JobPosition({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
-        return Text('Job Role Loading');
+        return Text('Job Position Loading');
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeInfoModelDetails?.jobRole ??
-              'Job Role Not Found',
+          profileDetailsController.employeeInfoModelDetails?.jobPosition ??
+              'Job Position Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
           // ),

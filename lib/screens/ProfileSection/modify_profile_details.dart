@@ -14,6 +14,7 @@ import 'modify_employment_details.dart';
 double screenWidth = 0, screenHeight = 0;
 
 
+  
 // ignore: must_be_immutable
 class ModifyProfileDetails extends StatelessWidget {
   ModifyProfileDetails({Key? key}) : super(key: key);
@@ -23,8 +24,6 @@ class ModifyProfileDetails extends StatelessWidget {
     'Modify Position Details': ModifyPositionDetails(),
     'Modify Employment Details': ModifyEmploymentDetails(),
   };
-  
-  ProfileWidgetsController profileWidgetsController = Get.find<ProfileWidgetsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +31,8 @@ class ModifyProfileDetails extends StatelessWidget {
     device.size = MediaQuery.of(context).size;
     screenWidth = device.size.width;
     screenHeight = device.size.height;
+    ProfileWidgetsController profileWidgetsController = Get.put(ProfileWidgetsController());
 
-    final profileWidgetsController = Get.find<ProfileWidgetsController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -121,8 +120,6 @@ class Buttons extends StatelessWidget {
   // step to call such a method
   // onpressed: () => profileWidgetHandler(modifyProfileDetailsString);
 
-  ProfileWidgetsController profileWidgetsController = Get.find<ProfileWidgetsController>();
-
   final String modifyProfileDetailsString;
   final int buttonIndex;
    Buttons(
@@ -131,7 +128,7 @@ class Buttons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileWidgetsController = Get.find<ProfileWidgetsController>();
+    ProfileWidgetsController profileWidgetsController = Get.put(ProfileWidgetsController());
     var button = buttonIndex == 1
             ? profileWidgetsController.modifyPositionButton
             : profileWidgetsController.modifyEmploymentButton;

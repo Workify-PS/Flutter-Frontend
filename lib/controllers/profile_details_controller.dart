@@ -6,8 +6,7 @@ import 'package:workify/services/profile_service.dart';
 
 class ProfileDetailsController extends GetxController with CacheManager {
   var isLoading = true.obs;
-  // EmployeeInfoModel? employeeInfoModelDetails;
-  // EmployeeDetailsModel? employeeInfoModelDetails;
+  static EmployeeInfoCombined? employeeInfoCombinedEveryWhere;
   EmployeeInfoCombined? employeeInfoModelDetails; //Change it to infoCombined
 
   @override
@@ -31,6 +30,7 @@ class ProfileDetailsController extends GetxController with CacheManager {
       isLoading(true);
       try {
         employeeInfoModelDetails = await ProfileService.fetchProfileDetails();
+        employeeInfoCombinedEveryWhere = employeeInfoModelDetails;
       } catch (error) {
         PrintLog.printLog(
           fileName: 'Profile Details Controller file',

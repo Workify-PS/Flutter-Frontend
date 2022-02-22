@@ -30,7 +30,7 @@ class ProfileService {
             functionName: 'callProfileApi(){}',
             blockNumber: 1,
             printStatement: 'Everything OK !!\n' +
-                response.data.toString() +
+                response.data.toString() + '\nDataType :: \n'+
                 response.data.runtimeType.toString());
       } else {
         PrintLog.printLog(

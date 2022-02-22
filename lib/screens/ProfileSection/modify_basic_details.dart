@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/update_profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/models/EmployeeInfoCombined.dart';
 import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
@@ -28,6 +30,11 @@ class WrapModifyBasicDetails extends StatefulWidget {
 }
 
 class _WrapModifyBasicDetailsState extends State<WrapModifyBasicDetails> {
+  final profileDetailsController = Get.find<ProfileDetailsController>();
+  final updateProfileDetailsController =
+      Get.put(UpdateProfileDetailsController());
+  var _mobileNumber, _DoB, _marriageStatus, _city, _state, _country;
+
   void cancelClicked() {
     PrintLog.printLog(
       fileName: 'modify_basic_details',
@@ -36,13 +43,19 @@ class _WrapModifyBasicDetailsState extends State<WrapModifyBasicDetails> {
       printStatement: 'Cancel Clicked',
     );
   }
+  void callOnSubmitBasicDetails(){
+    UpdateProfileDetailsController.onSubmitBasicDetails(
+      mobileNumber: _mobileNumber.text,
+      dateOfBirth: _DoB.text,
+      marriageStatus: _marriageStatus.text,
+      city: _city.text,
+      state: _state.text,
+      country: _country.text
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final profileDetailsController = Get.find<ProfileDetailsController>();
-    final updateProfileDetailsController =
-        Get.put(UpdateProfileDetailsController());
-
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
     screenWidth = device.size.width;
@@ -59,31 +72,31 @@ class _WrapModifyBasicDetailsState extends State<WrapModifyBasicDetails> {
       'Country'
     ];
 
-    var _mobileNumber = TextEditingController(
+     _mobileNumber = TextEditingController(
       text: profileDetailsController.employeeInfoModelDetails?.mobile ??
           'Mobile Number Not Found',
     );
 
-    var _DoB = TextEditingController(
+    _DoB = TextEditingController(
         text: DateFormat('dd-MM-yyyy').format(DateTime.parse(
             profileDetailsController.employeeInfoModelDetails?.dob)));
 
-    var _marriageStatus = TextEditingController(
+    _marriageStatus = TextEditingController(
       text: profileDetailsController.employeeInfoModelDetails?.marriageStatus ??
           'Marriage Status Not Found',
     );
 
-    var _city = TextEditingController(
+    _city = TextEditingController(
       text: profileDetailsController.employeeInfoModelDetails?.city ??
           'City Not Found',
     );
 
-    var _state = TextEditingController(
+    _state = TextEditingController(
       text: profileDetailsController.employeeInfoModelDetails?.state ??
           'State Not Found',
     );
 
-    var _country = TextEditingController(
+    _country = TextEditingController(
       text: profileDetailsController.employeeInfoModelDetails?.country ??
           'Country Not Found',
     );
@@ -131,11 +144,8 @@ class _WrapModifyBasicDetailsState extends State<WrapModifyBasicDetails> {
                   ),
                   Button(
                       buttonTextWidget: Text('Submit'),
-                      onPressed: () {
-                        print(_mobileNumber.text);
-                      }
-                      // updateProfileDetailsController.onSubmitBasicDetails,
-                      ),
+                      onPressed: callOnSubmitBasicDetails,
+                  )
                 ],
               ),
             ),

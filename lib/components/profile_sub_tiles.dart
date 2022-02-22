@@ -15,7 +15,7 @@ class ProfileSubTiles extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ProfileSubTile(profileOptions: 'My Profile'),
-            ProfileSubTile(profileOptions: 'Employee Profile'),
+            ProfileSubTile(profileOptions: 'Modify Employee Profile'),
           ],
         ));
   }

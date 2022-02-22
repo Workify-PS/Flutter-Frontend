@@ -304,7 +304,7 @@ class UserPosID extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.userPosId.toString() ??
+          profileDetailsController.employeeInfoModelDetails?.userId.toString() ??
               'User Position ID Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
@@ -326,7 +326,7 @@ class Designation extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.designation ??
+          profileDetailsController.employeeInfoModelDetails?.designation ??
               'Designation Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
@@ -348,7 +348,7 @@ class Grade extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.grade ??
+          profileDetailsController.employeeInfoModelDetails?.grade ??
               'Grade Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,

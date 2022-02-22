@@ -55,31 +55,31 @@ class ModifyEmploymentDetails extends StatelessWidget {
 
     var textFormList_2_Controller = {
       'Work Location' : TextEditingController(
-        text: profileDetailsController.employeeDetailsModelDetails?.location ??
+        text: profileDetailsController.employeeInfoModelDetails?.workLocation ??
         'Work Location Not Found',
       ),
       'Employment Category' : TextEditingController(
-        text: profileDetailsController.employeeDetailsModelDetails?.empCategory ??
+        text: profileDetailsController.employeeInfoModelDetails?.employementCategory ??
         'Employment Category Not Found',
       ),
       'Employment Status' : TextEditingController(
-        text: profileDetailsController.employeeDetailsModelDetails?.empStatus ??
+        text: profileDetailsController.employeeInfoModelDetails?.employementStatus ??
         'Employment Status Not Found',
       ),
       'Employement Type' : TextEditingController(
-        text: profileDetailsController.employeeDetailsModelDetails?.empType ??
+        text: profileDetailsController.employeeInfoModelDetails?.employementType ??
         'Employment Type Not Found',
       ),
       'L1 Manager ID' : TextEditingController(
-        text: profileDetailsController.employeeDetailsModelDetails?.l1ManagerId.toString() ??
+        text: profileDetailsController.employeeInfoModelDetails?.l1ManagerId.toString() ??
         'L1 Manager ID Not Found',
       ),
       'L2 Manager ID' : TextEditingController(
-        text: profileDetailsController.employeeDetailsModelDetails?.l2ManagerId.toString() ??
+        text: profileDetailsController.employeeInfoModelDetails?.l2ManagerId.toString() ??
         'L2 Manager ID Not Found',
       ),
       'HR Manager ID' : TextEditingController(
-        text: profileDetailsController.employeeDetailsModelDetails?.hrManagerId.toString() ??
+        text: profileDetailsController.employeeInfoModelDetails?.hrManagerId.toString() ??
         'HR Manager ID Not Found',
       ),
     };

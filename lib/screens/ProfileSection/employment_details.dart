@@ -292,7 +292,7 @@ class EmployeeCode extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.empCode ??
+          profileDetailsController.employeeInfoModelDetails?.empCode ??
               'Employee Code Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
@@ -314,7 +314,7 @@ class Department extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.department ??
+          profileDetailsController.employeeInfoModelDetails?.department ??
               'Department Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
@@ -336,7 +336,7 @@ class WorkLocation extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.location ??
+          profileDetailsController.employeeInfoModelDetails?.workLocation ??
               'Work Location Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
@@ -360,7 +360,7 @@ class EmploymentCategory extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.empCategory ??
+          profileDetailsController.employeeInfoModelDetails?.employementCategory ??
               'Employment Category Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
@@ -383,7 +383,7 @@ class EmploymentStatus extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.empStatus ??
+          profileDetailsController.employeeInfoModelDetails?.employementStatus ??
               'Employment Status Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
@@ -406,7 +406,7 @@ class EmploymentType extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.empType ??
+          profileDetailsController.employeeInfoModelDetails?.employementType ??
               'Employment Type Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
@@ -429,7 +429,7 @@ class L1ManagerID extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.l1ManagerId.toString() ??
+          profileDetailsController.employeeInfoModelDetails?.l1ManagerId.toString() ??
               'L1 Manager ID Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
@@ -452,7 +452,7 @@ class L2ManagerID extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.l2ManagerId.toString() ??
+          profileDetailsController.employeeInfoModelDetails?.l2ManagerId.toString() ??
               'L2 Manager ID Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
@@ -475,7 +475,7 @@ class HRManagerID extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeDetailsModelDetails?.hrManagerId.toString() ??
+          profileDetailsController.employeeInfoModelDetails?.hrManagerId.toString() ??
               'HR Manager ID Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,

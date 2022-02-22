@@ -6,6 +6,7 @@ import 'package:workify/controllers/profile_details_controller.dart';
 
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/models/EmployeeInfoCombined.dart';
+import 'package:workify/screens/ProfileSection/position_details.dart';
 
 import 'package:workify/services/update_profile_details_service.dart';
 
@@ -58,21 +59,60 @@ class UpdateProfileDetailsController extends GetxController {
     }
   }
 
-  static void onSubmitPositionDetails() {
-    PrintLog.printLog(
-      fileName: 'update_profile_details_controller',
-      functionName: 'Submit : onPressed',
-      blockNumber: 1,
-      printStatement: 'Position Submit Clicked',
-    );
+  static void onSubmitPositionDetails(
+      {userId, designation, grade, jobPosition}) async {
+    try {
+      var sendData = EmployeeInfoCombined().toJson(
+        employeeInfoCombined:
+            ProfileDetailsController.employeeInfoCombinedEveryWhere,
+      );
+      sendData['userId'] = userId;
+      sendData['designation'] = designation;
+      sendData['grade'] = grade;
+      sendData['jobPosition'] = jobPosition;
+
+      await UpdateProfileDetailsService.callEditUserApi(sendData);
+    } catch (error) {
+      PrintLog.printLog(
+        fileName: 'update_profile_details_controller',
+        functionName: 'onSubmitPositionDetails',
+        blockNumber: 2,
+        printStatement: error,
+      );
+    }
   }
 
-  static void onSubmitEmploymentDetails() {
-    PrintLog.printLog(
-      fileName: 'update_profile_details_controller',
-      functionName: 'Submit : onPressed',
-      blockNumber: 1,
-      printStatement: 'Employment Submit Clicked',
-    );
+  static void onSubmitEmploymentDetails(
+      {
+      workLocation,
+      employementCategory,
+      employementStatus,
+      employementType,
+      l1ManagerId,
+      l2ManagerId,
+      hrManagerId}) async {
+    try {
+      var sendData = EmployeeInfoCombined().toJson(
+        employeeInfoCombined:
+            ProfileDetailsController.employeeInfoCombinedEveryWhere,
+      );
+      sendData['workLocation'] = workLocation;
+      sendData['employementCategory'] = employementCategory;
+      sendData['employementStatus'] = employementStatus;
+      sendData['employementType'] = employementType;
+      sendData['l1ManagerId'] = l1ManagerId;
+      sendData['l2ManagerId'] = l2ManagerId;
+      sendData['hrManagerId'] = hrManagerId;
+
+      await UpdateProfileDetailsService.callEditUserApi(sendData);
+
+    } catch (error) {
+      PrintLog.printLog(
+        fileName: 'update_profile_details_controller',
+        functionName: 'onSubmitEmployementDetails',
+        blockNumber: 2,
+        printStatement: error,
+      );
+    }
   }
 }

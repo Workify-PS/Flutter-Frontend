@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/update_profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
-import 'package:workify/models/EmployeeInfoCombined.dart';
 import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
@@ -13,45 +12,41 @@ import 'package:workify/controllers/profile_details_controller.dart';
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
+final profileDetailsController = Get.find<ProfileDetailsController>();
+final updateProfileDetailsController =
+    Get.put(UpdateProfileDetailsController());
+
 class ModifyBasicDetails extends StatelessWidget {
   const ModifyBasicDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return WrapModifyBasicDetails();
+    return StatefulModifyBasicDetails();
   }
 }
 
-class WrapModifyBasicDetails extends StatefulWidget {
-  const WrapModifyBasicDetails({Key? key}) : super(key: key);
+class StatefulModifyBasicDetails extends StatefulWidget {
+  const StatefulModifyBasicDetails({Key? key}) : super(key: key);
 
   @override
-  _WrapModifyBasicDetailsState createState() => _WrapModifyBasicDetailsState();
+  _StatefulModifyBasicDetails createState() => _StatefulModifyBasicDetails();
 }
 
-class _WrapModifyBasicDetailsState extends State<WrapModifyBasicDetails> {
-  final profileDetailsController = Get.find<ProfileDetailsController>();
-  final updateProfileDetailsController =
-      Get.put(UpdateProfileDetailsController());
+class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
   var _mobileNumber, _DoB, _marriageStatus, _city, _state, _country;
 
-  void cancelClicked() {
-    PrintLog.printLog(
-      fileName: 'modify_basic_details',
-      functionName: 'Cancel : onPressed',
-      blockNumber: 1,
-      printStatement: 'Cancel Clicked',
-    );
+  void getBack() {
+    Get.offNamed('/home');
   }
-  void callOnSubmitBasicDetails(){
+
+  void callOnSubmitBasicDetails() {
     UpdateProfileDetailsController.onSubmitBasicDetails(
-      mobile: _mobileNumber.text,
-      dob: _DoB.text,
-      marriageStatus: _marriageStatus.text,
-      city: _city.text,
-      state: _state.text,
-      country: _country.text
-    );
+        mobile: _mobileNumber.text,
+        dob: _DoB.text,
+        marriageStatus: _marriageStatus.text,
+        city: _city.text,
+        state: _state.text,
+        country: _country.text);
   }
 
   @override
@@ -72,7 +67,7 @@ class _WrapModifyBasicDetailsState extends State<WrapModifyBasicDetails> {
       'Country'
     ];
 
-     _mobileNumber = TextEditingController(
+    _mobileNumber = TextEditingController(
       text: profileDetailsController.employeeInfoModelDetails?.mobile ??
           'Mobile Number Not Found',
     );
@@ -127,7 +122,7 @@ class _WrapModifyBasicDetailsState extends State<WrapModifyBasicDetails> {
                     5,
                     (index) => TextFormModifyProfileDetails(
                           myFocusNode: FocusNode(),
-                          enabled: index==1 ? false:true,
+                          enabled: index == 1 ? false : true,
                           text: textFormList[index],
                           controller:
                               textFormList_2_Controllers[textFormList[index]],
@@ -140,12 +135,12 @@ class _WrapModifyBasicDetailsState extends State<WrapModifyBasicDetails> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Button(
-                    buttonTextWidget: Text('Cancel'),
-                    onPressed: cancelClicked,
+                    buttonTextWidget: Text('Get Back'),
+                    onPressed: getBack,
                   ),
                   Button(
-                      buttonTextWidget: Text('Submit'),
-                      onPressed: callOnSubmitBasicDetails,
+                    buttonTextWidget: Text('Submit'),
+                    onPressed: callOnSubmitBasicDetails,
                   )
                 ],
               ),

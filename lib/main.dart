@@ -19,6 +19,7 @@ import 'package:workify/screens/SplashScreen/SplashScreen.dart';
 import 'package:workify/utils/theme.dart';
 
 import 'controllers/profile_details_controller.dart';
+import 'controllers/update_profile_details_controller.dart';
 
 
 Future<void> main() async {
@@ -99,6 +100,7 @@ class _MyAppState extends State<MyApp> with CacheManager {
             binding: BindingsBuilder(() => {
               Get.put(ProfileWidgetsController()),
               Get.put(ProfileDetailsController()),
+              Get.put(UpdateProfileDetailsController())
             }),
           ),
           

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -14,7 +16,7 @@ bool portrait = false;
 
 final profileDetailsController = Get.find<ProfileDetailsController>();
 final updateProfileDetailsController =
-    Get.put(UpdateProfileDetailsController());
+    Get.find<UpdateProfileDetailsController>();
 
 class ModifyBasicDetails extends StatelessWidget {
   const ModifyBasicDetails({Key? key}) : super(key: key);
@@ -33,7 +35,7 @@ class StatefulModifyBasicDetails extends StatefulWidget {
 }
 
 class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
-  var _mobileNumber, _DoB, _marriageStatus, _city, _state, _country;
+  var _mobileNumber, _doB, _marriageStatus, _city, _state, _country;
 
   void getBack() {
     Get.offNamed('/home');
@@ -42,7 +44,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
   void callOnSubmitBasicDetails() {
     UpdateProfileDetailsController.onSubmitBasicDetails(
         mobile: _mobileNumber.text,
-        dob: _DoB.text,
+        dob: _doB.text,
         marriageStatus: _marriageStatus.text,
         city: _city.text,
         state: _state.text,
@@ -58,6 +60,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
 
     portrait = screenWidth < 1000;
 
+
     var textFormList = [
       'Mobile Number',
       'Date of Birth',
@@ -72,7 +75,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
           'Mobile Number Not Found',
     );
 
-    _DoB = TextEditingController(
+    _doB = TextEditingController(
         text: DateFormat('dd-MM-yyyy').format(DateTime.parse(
             profileDetailsController.employeeInfoModelDetails?.dob)));
 
@@ -98,7 +101,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
 
     var textFormList_2_Controllers = {
       'Mobile Number': _mobileNumber,
-      'Date of Birth': _DoB,
+      'Date of Birth': _doB,
       'Marriage Status': _marriageStatus,
       'City': _city,
       'State': _state,

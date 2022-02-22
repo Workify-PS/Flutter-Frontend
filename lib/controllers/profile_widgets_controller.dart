@@ -1,13 +1,12 @@
 import 'package:get/get.dart';
-// import 'package:workify/screens/ProfileSection/ProfileSectionControllers/profile_details_controller.dart';
 
 class ProfileWidgetsController extends GetxController {
   RxString widgetString = 'Basic Details'.obs;
-  RxString modifyProfileWidgetString = 'Modify Position Details'.obs;
 
   updateWidgetString(String str) {
     widgetString(str);
   }
+
 
   RxBool basicButton = true.obs;
   RxBool positionButton = false.obs;
@@ -36,28 +35,6 @@ class ProfileWidgetsController extends GetxController {
       modifyBasicButton(true);
     } else if (str == 'Modify Profile Details') {
       modifyButton(true);
-    } 
-  }
-
-  updateModifyProfileWidgetString(String str) {
-    modifyProfileWidgetString(str);
-  }
-
-  RxBool modifyPositionButton = true.obs;
-  RxBool modifyEmploymentButton = false.obs;
-
-  resetModifyProfileButtons() {
-    modifyPositionButton(false);
-    modifyEmploymentButton(false);
-  }
-
-  setModifyProfileButton({
-    required String str,
-  }) {
-    if (str == 'Modify Position Details') {
-      modifyPositionButton(true);
-    } else if (str == 'Modify Employment Details') {
-      modifyEmploymentButton(true);
     }
   }
 }

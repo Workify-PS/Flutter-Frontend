@@ -1,105 +1,39 @@
 class UserModel {
-  String? username;
-  bool? isActive;
-  String? employee_id;
-  String? officialMail;
-  String? mobile;
-  String? dob;
-  String? doj;
   String? firstName;
   String? lastName;
   String? fullName;
   String? middleName;
-  String? country;
-  String? state;
-  String? city;
-  String? workLocation;
-  String? role;
-  String? department;
-  bool? isAccountLocked;
-  int? orgId;
+  String? jobRole;
   String? empCode;
-  String? creationDate;
-  String? modifiedDate;
-  int? createdBy;
-  int? modifiedBy;
 
-  UserModel(
-      {this.username,
-      this.isActive,
-      this.officialMail,
-      this.mobile,
-      this.dob,
-      this.doj,
+  UserModel({
       this.firstName,
       this.lastName,
       this.fullName,
       this.middleName,
-      this.country,
-      this.state,
-      this.city,
-      this.workLocation,
-      this.role,
-      this.department,
-      this.isAccountLocked,
-      this.orgId,
       this.empCode,
-      this.creationDate,
-      this.modifiedDate,
-      this.createdBy,
-      this.modifiedBy});
+      this.jobRole,
+      });
 
   UserModel.fromJson( json) {
-    username = json['username'];
-    isActive = json['isActive'];
-    officialMail = json['officialMail'];
-    mobile = json['mobile'];
-    dob = json['dob'];
-    doj = json['doj'];
-    firstName = json['firstName'];
-    lastName = json['lastName'];
-    fullName = json['fullName'];
-    middleName = json['middleName'];
-    country = json['country'];
-    state = json['state'];
-    city = json['city'];
-    workLocation = json['workLocation'];
-    role = json['role'];
-    department = json['department'];
-    isAccountLocked = json['isAccountLocked'];
-    orgId = json['orgId'];
-    empCode = json['empCode'];
-    creationDate = json['creationDate'];
-    modifiedDate = json['modifiedDate'];
-    createdBy = json['createdBy'];
-    modifiedBy = json['modifiedBy'];
+    firstName = json["firstName"];
+    lastName = json["lastName"];
+    fullName = json["fullName"];
+    middleName = json["middleName"];
+    empCode = json["empCode"];
+    jobRole = json["role"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['username'] = username;
-    data['isActive'] = isActive;
-    data['officialMail'] = officialMail;
-    data['mobile'] = mobile;
-    data['dob'] = dob;
-    data['doj'] = doj;
-    data['firstName'] = firstName;
-    data['lastName'] = lastName;
-    data['fullName'] = fullName;
-    data['middleName'] = middleName;
-    data['country'] = country;
-    data['state'] = state;
-    data['city'] = city;
-    data['workLocation'] = workLocation;
-    data['role'] = role;
-    data['department'] = department;
-    data['isAccountLocked'] = isAccountLocked;
-    data['orgId'] = orgId;
-    data['empCode'] = empCode;
-    data['creationDate'] = creationDate;
-    data['modifiedDate'] = modifiedDate;
-    data['createdBy'] = createdBy;
-    data['modifiedBy'] = modifiedBy;
+    
+    data["firstName"] = firstName;
+    data["lastName"] = lastName;
+    data["middleName"] = middleName;
+    data["fullName"] = fullName;
+    data["empCode"] = empCode;
+    data["role"] = jobRole;
+    
     return data;
   }
 }

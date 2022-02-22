@@ -1,6 +1,11 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
 import 'package:workify/components/button.dart';
+import 'package:workify/controllers/update_profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
@@ -9,27 +14,41 @@ import 'package:workify/controllers/profile_details_controller.dart';
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
-class ModifyBasicDetails extends StatelessWidget {
-   ModifyBasicDetails({Key? key}) : super(key: key);
-
 final profileDetailsController = Get.find<ProfileDetailsController>();
+final updateProfileDetailsController =
+    Get.find<UpdateProfileDetailsController>();
 
-  void cancelClicked() {
-    PrintLog.printLog(
-      fileName: 'modify_basic_details',
-      functionName: 'Cancel : onPressed',
-      blockNumber: 1,
-      printStatement: 'Cancel Clicked',
-    );
+class ModifyBasicDetails extends StatelessWidget {
+  const ModifyBasicDetails({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StatefulModifyBasicDetails();
+  }
+}
+
+class StatefulModifyBasicDetails extends StatefulWidget {
+  const StatefulModifyBasicDetails({Key? key}) : super(key: key);
+
+  @override
+  _StatefulModifyBasicDetails createState() => _StatefulModifyBasicDetails();
+}
+
+class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
+  var _mobileNumber, _doB, _marriageStatus, _city, _state, _country;
+
+  void getBack() {
+    Get.offNamed('/home');
   }
 
-  void submitClicked() {
-    PrintLog.printLog(
-      fileName: 'modify_basic_details',
-      functionName: 'Submit : onPressed',
-      blockNumber: 1,
-      printStatement: 'Submit Clicked',
-    );
+  void callOnSubmitBasicDetails() {
+    UpdateProfileDetailsController.onSubmitBasicDetails(
+        mobile: _mobileNumber.text,
+        dob: _doB.text,
+        marriageStatus: _marriageStatus.text,
+        city: _city.text,
+        state: _state.text,
+        country: _country.text);
   }
 
   @override
@@ -41,6 +60,7 @@ final profileDetailsController = Get.find<ProfileDetailsController>();
 
     portrait = screenWidth < 1000;
 
+
     var textFormList = [
       'Mobile Number',
       'Date of Birth',
@@ -50,31 +70,42 @@ final profileDetailsController = Get.find<ProfileDetailsController>();
       'Country'
     ];
 
-    var textFormList_2_Controller = {
-      'Mobile Number' : TextEditingController(
-        text: profileDetailsController.employeeInfoModelDetails?.mobile 
-          ?? 'Mobile Number Not Found',
-      ),
-      'Date of Birth' : TextEditingController(
-        text: profileDetailsController.employeeInfoModelDetails?.dob
-          ?? 'Date of Birth Not Found',
-      ),
-      'Marriage Status' : TextEditingController(
-        text: profileDetailsController.employeeInfoModelDetails?.marriageStatus
-          ?? 'Marriage Status Not Found',
-      ),
-      'City' : TextEditingController(
-        text: profileDetailsController.employeeInfoModelDetails?.city 
-          ?? 'City Not Found',
-      ),
-      'State' : TextEditingController(
-        text: profileDetailsController.employeeInfoModelDetails?.state
-          ?? 'State Not Found',
-      ),
-      'Country' : TextEditingController(
-        text: profileDetailsController.employeeInfoModelDetails?.country 
-          ?? 'Country Not Found',
-      )
+    _mobileNumber = TextEditingController(
+      text: profileDetailsController.employeeInfoModelDetails?.mobile ??
+          'Mobile Number Not Found',
+    );
+
+    _doB = TextEditingController(
+        text: DateFormat('dd-MM-yyyy').format(DateTime.parse(
+            profileDetailsController.employeeInfoModelDetails?.dob)));
+
+    _marriageStatus = TextEditingController(
+      text: profileDetailsController.employeeInfoModelDetails?.marriageStatus ??
+          'Marriage Status Not Found',
+    );
+
+    _city = TextEditingController(
+      text: profileDetailsController.employeeInfoModelDetails?.city ??
+          'City Not Found',
+    );
+
+    _state = TextEditingController(
+      text: profileDetailsController.employeeInfoModelDetails?.state ??
+          'State Not Found',
+    );
+
+    _country = TextEditingController(
+      text: profileDetailsController.employeeInfoModelDetails?.country ??
+          'Country Not Found',
+    );
+
+    var textFormList_2_Controllers = {
+      'Mobile Number': _mobileNumber,
+      'Date of Birth': _doB,
+      'Marriage Status': _marriageStatus,
+      'City': _city,
+      'State': _state,
+      'Country': _country
     };
 
     return Padding(
@@ -94,8 +125,10 @@ final profileDetailsController = Get.find<ProfileDetailsController>();
                     5,
                     (index) => TextFormModifyProfileDetails(
                           myFocusNode: FocusNode(),
+                          enabled: index == 1 ? false : true,
                           text: textFormList[index],
-                          controller:textFormList_2_Controller[textFormList[index]],
+                          controller:
+                              textFormList_2_Controllers[textFormList[index]],
                         )),
               ),
             ),
@@ -105,13 +138,13 @@ final profileDetailsController = Get.find<ProfileDetailsController>();
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Button(
-                    buttonTextWidget: Text('Cancel'),
-                    onPressed: cancelClicked,
+                    buttonTextWidget: Text('Get Back'),
+                    onPressed: getBack,
                   ),
                   Button(
                     buttonTextWidget: Text('Submit'),
-                    onPressed: submitClicked,
-                  ),
+                    onPressed: callOnSubmitBasicDetails,
+                  )
                 ],
               ),
             ),

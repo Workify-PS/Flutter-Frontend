@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:workify/components/button.dart';
+import 'package:workify/controllers/update_profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
@@ -10,26 +12,41 @@ import 'package:workify/controllers/profile_details_controller.dart';
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
-class ModifyPositionDetails extends StatelessWidget {
-  ModifyPositionDetails({Key? key}) : super(key: key);
-  
-  final profileDetailsController = Get.find<ProfileDetailsController>();
+final profileDetailsController = Get.find<ProfileDetailsController>();
+final updateProfileDetailsController =
+    Get.find<UpdateProfileDetailsController>();
 
-  void cancelClicked (){
-    PrintLog.printLog(
-      fileName: 'modify_position_details',
-      functionName: 'Cancel : onPressed',
-      blockNumber: 1,
-      printStatement: 'Cancel Clicked',
-    );
+class ModifyPositionDetails extends StatelessWidget {
+  const ModifyPositionDetails({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StatefulModifyPositionDetails();
   }
-  void submitClicked (){
-    PrintLog.printLog(
-      fileName: 'modify_position_details',
-      functionName: 'Submit : onPressed',
-      blockNumber: 1,
-      printStatement: 'Submit Clicked',
-    );
+}
+
+class StatefulModifyPositionDetails extends StatefulWidget {
+  const StatefulModifyPositionDetails({Key? key}) : super(key: key);
+
+  @override
+  _StatefulModifyPositionDetailsState createState() =>
+      _StatefulModifyPositionDetailsState();
+}
+
+class _StatefulModifyPositionDetailsState
+    extends State<StatefulModifyPositionDetails> {
+  var _userId, _designation, _grade, _jobPosition;
+
+  void getBack() {
+    Get.offAndToNamed('/home');
+  }
+
+  void callOnSubmitPositionDetails() {
+    UpdateProfileDetailsController.onSubmitPositionDetails(
+        userId: _userId.text,
+        designation: _designation.text,
+        grade: _grade.text,
+        jobPosition: _jobPosition.text);
   }
 
   @override
@@ -47,24 +64,33 @@ class ModifyPositionDetails extends StatelessWidget {
       'Grade',
       'Job Position',
     ];
-    
-    var textFormList_2_Controller = {
-      'User Position ID' : TextEditingController(
-        text: profileDetailsController.employeeDetailsModelDetails?.userPosId.toString()
-          ?? 'User Position ID Not Found',
-      ),
-      'Designation' : TextEditingController(
-        text: profileDetailsController.employeeDetailsModelDetails?.designation
-          ?? 'Designation Not Found',
-      ),
-      'Grade' : TextEditingController(
-        text: profileDetailsController.employeeDetailsModelDetails?.grade
-          ?? 'Grade Not Found',
-      ),
-      'Job Position' : TextEditingController(
-        text: profileDetailsController.employeeInfoModelDetails?.jobPosition
-          ?? 'Job Position Not Found',
-      ),
+
+    _userId = TextEditingController(
+      text: profileDetailsController.employeeInfoModelDetails?.userId
+              .toString() ??
+          'User Position ID Not Found',
+    );
+
+    _designation = TextEditingController(
+      text: profileDetailsController.employeeInfoModelDetails?.designation ??
+          'Designation Not Found',
+    );
+
+    _grade = TextEditingController(
+      text: profileDetailsController.employeeInfoModelDetails?.grade ??
+          'Grade Not Found',
+    );
+
+    _jobPosition = TextEditingController(
+      text: profileDetailsController.employeeInfoModelDetails?.jobPosition ??
+          'Job Position Not Found',
+    );
+
+    var textFormList_2_Controllers = {
+      'User Position ID': _userId,
+      'Designation': _designation,
+      'Grade': _grade,
+      'Job Position': _jobPosition
     };
 
     return Padding(
@@ -80,12 +106,15 @@ class ModifyPositionDetails extends StatelessWidget {
               flex: 9,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(4,(index) => TextFormModifyProfileDetails(
-                    myFocusNode: FocusNode(),
-                    text: textFormList[index],
-                    controller:textFormList_2_Controller[textFormList[index]],
-                  )
-                ),
+                children: List.generate(
+                    4,
+                    (index) => TextFormModifyProfileDetails(
+                          myFocusNode: FocusNode(),
+                          enabled: index == 0 ? false : true,
+                          text: textFormList[index],
+                          controller:
+                              textFormList_2_Controllers[textFormList[index]],
+                        )),
               ),
             ),
             Expanded(
@@ -94,12 +123,12 @@ class ModifyPositionDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Button(
-                    buttonTextWidget: Text('Cancel'),
-                    onPressed: cancelClicked,
+                    buttonTextWidget: Text('Get Back'),
+                    onPressed: getBack,
                   ),
                   Button(
                     buttonTextWidget: Text('Submit'),
-                    onPressed: submitClicked,
+                    onPressed: callOnSubmitPositionDetails,
                   ),
                 ],
               ),

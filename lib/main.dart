@@ -10,14 +10,17 @@ import 'package:workify/screens/AuthPage/AuthPage.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
 
 // import 'package:workify/screens/AuthPage/ForgotPass.dart';
+// import 'package:workify/screens/SettingsPage.dart';
 import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/HomePage.dart';
 import 'package:workify/screens/ProfileSection/ProfilePage.dart';
-import 'package:workify/screens/SettingsPage.dart';
+import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
 import 'package:workify/screens/SplashScreen/SplashScreen.dart';
 import 'package:workify/utils/theme.dart';
 
+import 'controllers/modify_profile_widgets_controller.dart';
 import 'controllers/profile_details_controller.dart';
+import 'controllers/update_profile_details_controller.dart';
 
 
 Future<void> main() async {
@@ -87,12 +90,25 @@ class _MyAppState extends State<MyApp> with CacheManager {
         //   page: () => ForgotPass(),
         // ),
         if(getToken() != null)
-          GetPage(name: "/change-password", page: () => ChangePassword()),
-        
-        GetPage(
-          name: '/settings',
-          page: () => SettingsPage(),
+          GetPage(name: "/change-password", 
+          page: () => ChangePassword()
         ),
+        
+        if(getToken() != null)
+          GetPage(
+            name: "/modify-employee-profile",
+            page: () => ModifyProfileDetails(),
+            binding: BindingsBuilder(() => {
+              Get.put(ModifyProfileWidgetsController()),
+              Get.put(ProfileDetailsController()),
+              Get.put(UpdateProfileDetailsController())
+            }),
+          ),
+          
+        // GetPage(
+        //   name: '/settings',
+        //   page: () => SettingsPage(),
+        // ),
       ],
     );
   }

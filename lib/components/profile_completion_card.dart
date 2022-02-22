@@ -4,7 +4,8 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/utils/constants.dart';
-
+import 'package:workify/utils/extensions.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 // import 'package:workify/utils/extensions.dart';
@@ -31,19 +32,25 @@ class ProfileCompletionCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            CircularPercentIndicator(
-              radius: 150,
-              lineWidth: 10,
-              percent: percent,
-              animation: true,
-              reverse: true,
-              center: Avatar(),
-              progressColor: ((percent * 100) >= 0 && (percent * 100) <= 30)
-                  ? Colors.red
-                  : ((percent * 100) > 30 && (percent * 100) <= 70)
-                      ? Colors.yellow
-                      : Colors.green,
-              backgroundColor: Colors.grey,
+            Neumorphic(
+              style: NeumorphicStyle(
+                  boxShape: NeumorphicBoxShape.circle(),
+                  color: Theme.of(context).scaffoldBackgroundColor),
+                  
+              child: CircularPercentIndicator(
+                radius: 150,
+                lineWidth: 10,
+                percent: percent,
+                animation: true,
+                reverse: true,
+                center: Avatar(),
+                progressColor: ((percent * 100) >= 0 && (percent * 100) <= 30)
+                    ? Colors.red
+                    : ((percent * 100) > 30 && (percent * 100) <= 70)
+                        ? Colors.yellow
+                        : Colors.green,
+                backgroundColor: Colors.grey,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: kDefaultPadding),
@@ -59,6 +66,7 @@ class ProfileCompletionCard extends StatelessWidget {
               buttonTextWidget: Text("Complete Now"),
               onPressed: () {},
               primaryColor: kPrimaryColor,
+              icon: Icon(CupertinoIcons.square_arrow_up),
             ),
             // InkWell(
             //   onTap: () {

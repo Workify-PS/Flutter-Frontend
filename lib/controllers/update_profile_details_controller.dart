@@ -26,28 +26,7 @@ class UpdateProfileDetailsController extends GetxController {
       sendData['city'] = city;
       sendData['state'] = state;
       sendData['country'] = country;
-
-      // PrintLog.printLog(
-      //   fileName: 'UpdateProfileDetailsController',
-      //   functionName: 'onSubmitBasicDetails',
-      //   blockNumber: 1,
-      //   printStatement: 'Mobile : ' +
-      //       mobileNumber +
-      //       '\nDoB : ' +
-      //       dateOfBirth +
-      //       '\nMarriage Status : ' +
-      //       marriageStatus +
-      //       '\ncity : ' +
-      //       city +
-      //       '\nstate : ' +
-      //       state +
-      //       '\ncountry : ' +
-      //       country +
-      //       '\nSend Data Type :: '+
-      //       sendData.runtimeType.toString()+
-      //       '\nJson Encode Send Data Type :: '+
-      //       jsonEncode(sendData).runtimeType.toString()
-      // );
+      
       await UpdateProfileDetailsService.callEditUserApi(sendData);
     } catch (error) {
       PrintLog.printLog(

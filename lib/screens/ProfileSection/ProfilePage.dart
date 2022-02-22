@@ -7,7 +7,6 @@ import 'package:workify/controllers/UserController.dart';
 // import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/screens/ProfileSection/modify_basic_details.dart';
-import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -29,7 +28,7 @@ class ProfilePage extends StatelessWidget {
   };
 
   final profileWidgetsController = Get.find<ProfileWidgetsController>();
-  final userController = Get.put(UserController());
+  // final userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -91,9 +90,8 @@ class ProfilePage extends StatelessWidget {
                     ),
                     Expanded(
                       flex: 1,
-                      child: ModifyProfileDetailsButton(
-                          profileDetails: 'Modify Basic Details'
-                      ),
+                      child: ModifyBasicDetailsButton(
+                          profileDetails: 'Modify Basic Details'),
                     ),
                   ],
                 ),
@@ -135,35 +133,26 @@ class Buttons extends StatelessWidget {
   final String profileDetails;
   final int buttonIndex;
 
-  Buttons(
-      {Key? key, required this.profileDetails, required this.buttonIndex})
+  Buttons({Key? key, required this.profileDetails, required this.buttonIndex})
       : super(key: key);
 
   final profileWidgetsController = Get.find<ProfileWidgetsController>();
-  
+
   @override
   Widget build(BuildContext context) {
-
     var button = buttonIndex == 0
         ? profileWidgetsController.basicButton
         : buttonIndex == 1
             ? profileWidgetsController.positionButton
             : buttonIndex == 2
                 ? profileWidgetsController.employmentButton
-                : profileDetails == 'Modify Basic Details'
-                    ? profileWidgetsController.modifyBasicButton
-                    : profileWidgetsController.modifyButton;
+                : profileWidgetsController.modifyBasicButton;
 
     return Obx(() => ElevatedButton(
           onPressed: () {
-            if (buttonIndex == 3 &&
-                profileDetails == 'Modify Profile Details') {
-              Get.to(ModifyProfileDetails());
-            } else {
-              profileWidgetsController.resetButtons();
-              profileWidgetsController.updateWidgetString(profileDetails);
-              profileWidgetsController.setButton(str: profileDetails);
-            }
+            profileWidgetsController.resetButtons();
+            profileWidgetsController.updateWidgetString(profileDetails);
+            profileWidgetsController.setButton(str: profileDetails);
           },
           style: ElevatedButton.styleFrom(
             primary: button.value == true ? kPrimaryColor : kSecondaryColor,
@@ -230,10 +219,10 @@ class EmploymentDetailsButton extends StatelessWidget {
   }
 }
 
-class ModifyProfileDetailsButton extends StatelessWidget {
+class ModifyBasicDetailsButton extends StatelessWidget {
   final String profileDetails;
 
-  const ModifyProfileDetailsButton({
+  const ModifyBasicDetailsButton({
     Key? key,
     required this.profileDetails,
   }) : super(key: key);

@@ -2,7 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/profile_widgets_controller.dart';
+import 'package:workify/controllers/modify_profile_widgets_controller.dart';
+import 'package:workify/controllers/profile_details_controller.dart';
+// import 'package:workify/controllers/profile_widgets_controller.dart';
+// import 'package:workify/screens/ProfileSection/basic_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -11,25 +14,27 @@ import 'modify_employment_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
 
-
 // ignore: must_be_immutable
 class ModifyProfileDetails extends StatelessWidget {
   ModifyProfileDetails({Key? key}) : super(key: key);
 
   Map<String, Widget> profileWidgets = {
+    // 'Basic Details': BasicDetails(),
     'Modify Position Details': ModifyPositionDetails(),
     'Modify Employment Details': ModifyEmploymentDetails(),
   };
 
+
+  final modifyProfileWidgetsController =
+        Get.find<ModifyProfileWidgetsController>();
   @override
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
     screenWidth = device.size.width;
     screenHeight = device.size.height;
-    ProfileWidgetsController profileWidgetsController =
-        Get.find<ProfileWidgetsController>();
-
+    
+    
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -89,9 +94,10 @@ class ModifyProfileDetails extends StatelessWidget {
                       //   borderRadius: BorderRadius.circular(20),
                       // ),
                       // Rendering All widgets here
-                      child: Obx(() => profileWidgets[profileWidgetsController
-                          .modifyProfileWidgetString.value
-                          .toString()]!),
+                      child: Obx(() => profileWidgets[
+                          modifyProfileWidgetsController
+                              .modifyProfileWidgetString.value
+                              .toString()]!),
                     ),
                   ),
                 ),
@@ -118,21 +124,22 @@ class Buttons extends StatelessWidget {
       required this.buttonIndex})
       : super(key: key);
 
+  final modifyProfileWidgetsController =
+        Get.find<ModifyProfileWidgetsController>();
+
   @override
   Widget build(BuildContext context) {
-    final profileWidgetsController =
-        Get.find<ProfileWidgetsController>();
 
     var button = buttonIndex == 0
-        ? profileWidgetsController.modifyPositionButton
-        : profileWidgetsController.modifyEmploymentButton;
+        ? modifyProfileWidgetsController.modifyPositionButton
+        : modifyProfileWidgetsController.modifyEmploymentButton;
 
     return Obx(() => ElevatedButton(
           onPressed: () {
-            profileWidgetsController.resetModifyProfileButtons();
-            profileWidgetsController
+            modifyProfileWidgetsController.resetModifyProfileButtons();
+            modifyProfileWidgetsController
                 .updateModifyProfileWidgetString(modifyProfileDetailsString);
-            profileWidgetsController.setModifyProfileButton(
+            modifyProfileWidgetsController.setModifyProfileButton(
                 str: modifyProfileDetailsString);
           },
           style: ElevatedButton.styleFrom(

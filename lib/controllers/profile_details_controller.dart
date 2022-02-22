@@ -50,28 +50,6 @@ class ProfileDetailsController extends GetxController with CacheManager {
                   '\nProfile Details received Successfully !! \n',
         );
       }
-      // try {
-      //   employeeInfoModelDetails =
-      //       await ProfileService.fetchEmployeeDetails();
-      // } catch (error) {
-      //   PrintLog.printLog(
-      //     fileName: 'Profile Details Controller file',
-      //     functionName: 'callFetchProfileEmployeeDetails(){}',
-      //     blockNumber: 3,
-      //     printStatement: 'Error :: ' + error.toString(),
-      //   );
-      // }
-      // if (employeeInfoModelDetails != null) {
-      //   PrintLog.printLog(
-      //     fileName: 'Profile Details Controller file',
-      //     functionName: 'callFetchProfileEmployeeDetails(){}',
-      //     blockNumber: 4,
-      //     printStatement:
-      //         'DataType received from profile_service.dart :: fetchEmployeeDetails -> ' +
-      //             employeeInfoModelDetails.runtimeType.toString() +
-      //             '\nEmployee Details received Successfully !! \n',
-      //   );
-      // }
     } finally {
       isLoading(false);
     }

@@ -18,6 +18,7 @@ import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
 import 'package:workify/screens/SplashScreen/SplashScreen.dart';
 import 'package:workify/utils/theme.dart';
 
+import 'controllers/modify_profile_widgets_controller.dart';
 import 'controllers/profile_details_controller.dart';
 import 'controllers/update_profile_details_controller.dart';
 
@@ -98,7 +99,7 @@ class _MyAppState extends State<MyApp> with CacheManager {
             name: "/modify-employee-profile",
             page: () => ModifyProfileDetails(),
             binding: BindingsBuilder(() => {
-              Get.put(ProfileWidgetsController()),
+              Get.put(ModifyProfileWidgetsController()),
               Get.put(ProfileDetailsController()),
               Get.put(UpdateProfileDetailsController())
             }),

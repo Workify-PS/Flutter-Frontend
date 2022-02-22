@@ -33,18 +33,9 @@ class ProfileSubTile extends StatelessWidget {
     return Obx(() => InkWell(
           onTap: () {
             profileOptions == 'My Profile'
-                ? 
-                  { 
-                    Get.toNamed('/profile')
-                  }
-                : 
-                  {
+                ? {Get.toNamed('/profile')}
+                : {
                     Get.toNamed('/modify-employee-profile'),
-                    // PrintLog.printLog(
-                    //     fileName: 'profile_sub_tiles',
-                    //     functionName: 'ProfileSubTile',
-                    //     blockNumber: 2,
-                    //     printStatement: 'Employee Profile Selected')
                   };
           },
           onHover: (value) => isSelected.value = value,

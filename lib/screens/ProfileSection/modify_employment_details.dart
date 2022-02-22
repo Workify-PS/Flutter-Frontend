@@ -137,7 +137,7 @@ class _StatefulModifyEmploymentDetailsState
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(
-                    4,
+                    7,
                     (index) => TextFormModifyProfileDetails(
                           myFocusNode: FocusNode(),
                           enabled: true,

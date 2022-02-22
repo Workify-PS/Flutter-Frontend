@@ -45,8 +45,8 @@ class _WrapModifyBasicDetailsState extends State<WrapModifyBasicDetails> {
   }
   void callOnSubmitBasicDetails(){
     UpdateProfileDetailsController.onSubmitBasicDetails(
-      mobileNumber: _mobileNumber.text,
-      dateOfBirth: _DoB.text,
+      mobile: _mobileNumber.text,
+      dob: _DoB.text,
       marriageStatus: _marriageStatus.text,
       city: _city.text,
       state: _state.text,
@@ -127,6 +127,7 @@ class _WrapModifyBasicDetailsState extends State<WrapModifyBasicDetails> {
                     5,
                     (index) => TextFormModifyProfileDetails(
                           myFocusNode: FocusNode(),
+                          enabled: index==1 ? false:true,
                           text: textFormList[index],
                           controller:
                               textFormList_2_Controllers[textFormList[index]],

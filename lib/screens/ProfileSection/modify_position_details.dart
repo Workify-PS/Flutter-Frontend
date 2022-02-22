@@ -82,6 +82,7 @@ class ModifyPositionDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(4,(index) => TextFormModifyProfileDetails(
                     myFocusNode: FocusNode(),
+                    enabled: true,
                     text: textFormList[index],
                     controller:textFormList_2_Controller[textFormList[index]],
                   )

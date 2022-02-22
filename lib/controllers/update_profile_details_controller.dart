@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 
 import 'package:workify/exceptions/print_log.dart';
@@ -8,32 +11,43 @@ import 'package:workify/services/update_profile_details_service.dart';
 
 class UpdateProfileDetailsController extends GetxController {
   static void onSubmitBasicDetails(
-      {mobileNumber, dateOfBirth, marriageStatus, city, state, country}) async {
+      {mobile, dob, marriageStatus, city, state, country}) async {
     try {
-      PrintLog.printLog(
-        fileName: 'UpdateProfileDetailsController',
-        functionName: 'onSubmitBasicDetails',
-        blockNumber: 1,
-        printStatement: 'Mobile : ' +
-            mobileNumber +
-            '\nDoB : ' +
-            dateOfBirth +
-            '\nMarriage Status : ' +
-            marriageStatus +
-            '\ncity : ' +
-            city +
-            '\nstate : ' +
-            state +
-            '\ncountry : ' +
-            country,
-      );
-
       var sendData = EmployeeInfoCombined().toJson(
         employeeInfoCombined:
             ProfileDetailsController.employeeInfoCombinedEveryWhere,
       );
-      sendData['mobile'] = mobileNumber;
-      await UpdateProfileDetailsService().callEditUserApi(sendData);
+      sendData['mobile'] = mobile;
+      // var date = DateFormat('yyyy-MM-dd').format(DateTime.parse('2002-02-02'));
+      // print('\n\nDob\n\n' + date);
+      // sendData['dob'] = dob;
+      sendData['marriageStatus'] = marriageStatus;
+      sendData['city'] = city;
+      sendData['state'] = state;
+      sendData['country'] = country;
+
+      // PrintLog.printLog(
+      //   fileName: 'UpdateProfileDetailsController',
+      //   functionName: 'onSubmitBasicDetails',
+      //   blockNumber: 1,
+      //   printStatement: 'Mobile : ' +
+      //       mobileNumber +
+      //       '\nDoB : ' +
+      //       dateOfBirth +
+      //       '\nMarriage Status : ' +
+      //       marriageStatus +
+      //       '\ncity : ' +
+      //       city +
+      //       '\nstate : ' +
+      //       state +
+      //       '\ncountry : ' +
+      //       country +
+      //       '\nSend Data Type :: '+
+      //       sendData.runtimeType.toString()+
+      //       '\nJson Encode Send Data Type :: '+
+      //       jsonEncode(sendData).runtimeType.toString()
+      // );
+      await UpdateProfileDetailsService.callEditUserApi(sendData);
     } catch (error) {
       PrintLog.printLog(
         fileName: 'update_profile_details_controller',

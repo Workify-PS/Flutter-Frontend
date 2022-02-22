@@ -15,7 +15,7 @@ class AuthPage extends GetView<AuthPageController> {
   final _formKey = GlobalKey<FormState>();
 
   final pageController = Get.find<AuthPageController>();
-  final _usernameController = TextEditingController(text: "ajay");
+  final _usernameController = TextEditingController(text: "rishabh");
   final _passController = TextEditingController(text: "password");
 
   final _authController = Get.find<AuthController>();

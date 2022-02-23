@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -18,104 +19,58 @@ class WishCard extends StatefulWidget {
 
 class _WishCardState extends State<WishCard> {
   String now = DateFormat("dd-MM-yyyy").format(DateTime.now());
-  // final user = Get.find<WishController>().cuser.value;
-  // late String? fname = user.fullName;
-  // late String? id = user.empCode;
-  // late String? birth = user.dob;
-  // late String? join = user.doj;
-
+  int _currentindex = 0;
+  final tabs = [
+    Center(child: Text('birthday')),
+    Center(child: Text('anniversaries')),
+    Center(child: Text('new joiners')),
+  ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            SizedBox(
-              width: 32,
-              child: CircleAvatar(
-                backgroundColor: Colors.transparent,
-              ),
-            ),
-            SizedBox(
-              width: kDefaultPadding / 2,
-            ),
-            // Expanded(
-            //     child: Text.rich(TextSpan(
-            //   text: "Wish",
-            //   style: TextStyle(
-            //     fontSize: 25,
-            //     fontWeight: FontWeight.w500,
-            //     color: kTextColor,
-            //   ),
-            // ))),
-          ],
-        ),
-        SizedBox(height: 28),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: Icon(Icons.calendar_today_rounded, size: 20),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: Text(now, style: TextStyle(fontSize: 20)),
+          SizedBox(
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Icon(Icons.calendar_today_rounded, size: 20),
+              Text(now, style: TextStyle(fontSize: 20)),
+            ]),
           ),
-        ]),
-        SizedBox(
-          height: 50,
-        ),
-        Expanded(
-          flex: 1,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              //  Obx(() => Text(WishController.))
-              Button(
-                buttonTextWidget: Text(
-                  'Birthdays',
-                  style: TextStyle(
-                    fontSize: 11.5,
-                    fontWeight: FontWeight.bold,
-                    // color:kTextColor,
-                  ),
-                ),
-                onPressed: () {},
-              ),
-              // Button(
-              //  text: 'Anniversaries',
-              //   ),
-              //   onPressed: (){},
-              // ),
-              // Button(
-              //  text: 'New Joiners',
-              //   ),
-              //   onPressed: (){},
-              //),
-            ],
+          SizedBox(
+            height: 245,
+            child: Scaffold(
+                body: tabs[_currentindex],
+                bottomNavigationBar: BottomNavigationBar(
+                  currentIndex: _currentindex,
+                  type: BottomNavigationBarType.fixed,
+                  backgroundColor: kPrimaryColor,
+                  unselectedItemColor: Colors.white60,
+                  selectedItemColor: Colors.white,
+                  selectedFontSize: 15.8,
+                  unselectedFontSize: 14,
+                  unselectedIconTheme: IconThemeData(opacity: 0, size: 0),
+                  selectedIconTheme: IconThemeData(opacity: 0, size: 0),
+                  items: [
+                    menu(label: 'Birthdays'),
+                    menu(label: 'Anniversaries'),
+                    menu(label: 'New Joiners'),
+                  ],
+                  onTap: (index) {
+                    setState(() {
+                      _currentindex = index;
+                    });
+                  },
+                )),
           ),
-        ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //   children: [
-
-        //     // ButtonTheme(
-        //     //   minWidth: 100,
-        //     //   height: 100,
-        //     //   child: Button(
-        //     //     buttontext: 'Birthdays',
-        //     //   ),
-        //     // ),
-        //     // ButtonTheme(
-        //     //   minWidth: 100,
-        //     //   height: 100,
-        //     //   child: Button(
-        //     //     buttontext: 'Anniversaries',
-        //     //   ),
-        //     // ),
-        //     // Button(buttontext: 'New Joiners'),
-        //   ],
-        // )
-      ],
+        ],
+      ),
     );
+  }
+
+  menu({required String label}) {
+    return BottomNavigationBarItem(label: label, icon: Icon(Icons.abc));
   }
 }

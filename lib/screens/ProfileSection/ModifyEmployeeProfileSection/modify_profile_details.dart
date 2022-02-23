@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/modify_profile_widgets_controller.dart';
+import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/user_specific_basic_details.dart';
 import 'package:workify/screens/ProfileSection/SelfProfileSection/basic_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
@@ -30,7 +31,7 @@ class ModifyProfileDetails extends StatelessWidget {
     // print('Data : ' + data.runtimeType.toString());
 
     Map<String, Widget> profileWidgets = {
-      'Employee Basic Details': BasicDetails(),
+      'Employee Basic Details': UserSpecificBasicDetails(index: data,),
       'Modify Position Details': ModifyPositionDetails(
         index: data,
       ),

@@ -25,7 +25,7 @@ class UpdateProfileDetailsController extends GetxController {
       sendData['city'] = city;
       sendData['state'] = state;
       sendData['country'] = country;
-      
+
       await UpdateProfileDetailsService.callEditUserApi(sendData);
     } catch (error) {
       PrintLog.printLog(
@@ -49,6 +49,8 @@ class UpdateProfileDetailsController extends GetxController {
       sendData['grade'] = grade;
       sendData['jobPosition'] = jobPosition;
 
+      // print('\n\n\npassword' + sendData['password']);
+      
       await UpdateProfileDetailsService.callEditUserApi(sendData);
     } catch (error) {
       PrintLog.printLog(
@@ -61,8 +63,7 @@ class UpdateProfileDetailsController extends GetxController {
   }
 
   static void onSubmitEmploymentDetails(
-      {
-      workLocation,
+      {workLocation,
       employementCategory,
       employementStatus,
       employementType,
@@ -83,7 +84,6 @@ class UpdateProfileDetailsController extends GetxController {
       sendData['hrManagerId'] = hrManagerId;
 
       await UpdateProfileDetailsService.callEditUserApi(sendData);
-
     } catch (error) {
       PrintLog.printLog(
         fileName: 'update_profile_details_controller',

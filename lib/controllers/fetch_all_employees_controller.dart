@@ -13,6 +13,7 @@ class FetchAllEmployeesController extends GetxController with CacheManager {
   @override
   void onInit() {
     super.onInit();
+    allEmployeeList.clear();
     callFetchAllEmployeesDetails();
   }
 
@@ -35,7 +36,6 @@ class FetchAllEmployeesController extends GetxController with CacheManager {
           for (var employee in listOfEmployee) {
             var data = EmployeeInfoCombined.fromJson(employee);
             allEmployeeList.add(data);
-            print('Designation in controller : '+data.designation.toString());
             print('\n');
             print(employee.toString() + '\n');
           }

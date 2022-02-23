@@ -71,20 +71,6 @@ class _StatefulModifyEmploymentDetailsState
     portrait = screenWidth < 1000;
 
 
-    // print('\nData : ');
-    // print(FetchAllEmployeesController.allEmployeeList.elementAt(idx).userId);
-    // print(
-    //     FetchAllEmployeesController.allEmployeeList.elementAt(idx).designation);
-    // print(FetchAllEmployeesController.allEmployeeList.elementAt(idx).grade);
-    // print(
-    //     FetchAllEmployeesController.allEmployeeList.elementAt(idx).jobPosition);
-
-    // print('\nProfileDetailsController :: ');
-    // print(profileDetailsController.employeeInfoModelDetails?.designation.toString());
-    // print(profileDetailsController.employeeInfoModelDetails?.grade.toString());
-
-
-
 
     var textFormList = [
       'Work Location',

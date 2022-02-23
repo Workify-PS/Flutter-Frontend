@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/controllers/fetch_all_employees_controller.dart';
 
 import 'package:workify/utils/sizes.dart';
-import '../../controllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
-final profileDetailsController = Get.put(ProfileDetailsController());
-
-class Person extends StatelessWidget {
-  const Person({Key? key}) : super(key: key);
+class UserSpecificPerson extends StatelessWidget {
+  final index;
+  const UserSpecificPerson({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,9 @@ class Person extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Avatar(),
-            Name(),
+            Name(
+              index: index,
+            ),
           ],
         ),
       ),
@@ -67,28 +68,16 @@ class Avatar extends StatelessWidget {
 }
 
 class Name extends StatelessWidget {
-  const Name({Key? key}) : super(key: key);
+  final index;
+  const Name({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      if (profileDetailsController.isLoading.value) {
-        return Text(
-          'Loading',
-          style: TextStyle(
-            color: kSecondaryColor,
-          ),
-          );
-      } else {
-        return Text(
-          // 'Avatar Name',
-          profileDetailsController.employeeInfoModelDetails?.fullName ?? 'Got Null',
-          style: TextStyle(
-            // fontSize: screenWidth * 0.017,
-            fontWeight: FontWeight.bold,
-            // color: kSecondaryColor,
-          ),
-        );
-      }
-    });
+    return Text(FetchAllEmployeesController.allEmployeeList
+        .elementAt(index)
+        .fullName
+        .toString());
   }
 }

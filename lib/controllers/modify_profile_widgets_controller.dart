@@ -1,16 +1,18 @@
 import 'package:get/get.dart';
 
-class ModifyProfileWidgetsController extends GetxController{
-  RxString modifyProfileWidgetString = 'Modify Position Details'.obs;
+class ModifyProfileWidgetsController extends GetxController {
+  RxString modifyProfileWidgetString = 'Employee Basic Details'.obs;
 
-    updateModifyProfileWidgetString(String str) {
+  updateModifyProfileWidgetString(String str) {
     modifyProfileWidgetString(str);
   }
 
-  RxBool modifyPositionButton = true.obs;
+  RxBool employeeBasicDetailsButton = true.obs;
+  RxBool modifyPositionButton = false.obs;
   RxBool modifyEmploymentButton = false.obs;
 
   resetModifyProfileButtons() {
+    employeeBasicDetailsButton(false);
     modifyPositionButton(false);
     modifyEmploymentButton(false);
   }
@@ -18,11 +20,14 @@ class ModifyProfileWidgetsController extends GetxController{
   setModifyProfileButton({
     required String str,
   }) {
-    if (str == 'Modify Position Details') {
+    if (str == 'Employee Basic Details') {
+      employeeBasicDetailsButton(true);
+    }
+    else if (str == 'Modify Position Details') {
       modifyPositionButton(true);
-    } else if (str == 'Modify Employment Details') {
+    }
+    else if (str == 'Modify Employment Details') {
       modifyEmploymentButton(true);
     }
   }
-
 }

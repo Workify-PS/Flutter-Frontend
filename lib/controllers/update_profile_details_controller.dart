@@ -6,7 +6,6 @@ import 'package:workify/controllers/profile_details_controller.dart';
 
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/models/EmployeeInfoCombined.dart';
-import 'package:workify/screens/ProfileSection/position_details.dart';
 
 import 'package:workify/services/update_profile_details_service.dart';
 
@@ -26,7 +25,7 @@ class UpdateProfileDetailsController extends GetxController {
       sendData['city'] = city;
       sendData['state'] = state;
       sendData['country'] = country;
-      
+
       await UpdateProfileDetailsService.callEditUserApi(sendData);
     } catch (error) {
       PrintLog.printLog(
@@ -50,6 +49,8 @@ class UpdateProfileDetailsController extends GetxController {
       sendData['grade'] = grade;
       sendData['jobPosition'] = jobPosition;
 
+      // print('\n\n\npassword' + sendData['password']);
+      
       await UpdateProfileDetailsService.callEditUserApi(sendData);
     } catch (error) {
       PrintLog.printLog(
@@ -62,8 +63,7 @@ class UpdateProfileDetailsController extends GetxController {
   }
 
   static void onSubmitEmploymentDetails(
-      {
-      workLocation,
+      {workLocation,
       employementCategory,
       employementStatus,
       employementType,
@@ -84,7 +84,6 @@ class UpdateProfileDetailsController extends GetxController {
       sendData['hrManagerId'] = hrManagerId;
 
       await UpdateProfileDetailsService.callEditUserApi(sendData);
-
     } catch (error) {
       PrintLog.printLog(
         fileName: 'update_profile_details_controller',

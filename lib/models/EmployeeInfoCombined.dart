@@ -10,8 +10,8 @@ class EmployeeInfoCombined {
   String? middleName;
   String? lastName;
   String? fullName;
-  bool? isAccountBlocked;
-  bool? isActive;
+  bool? accountLocked;
+  bool? active;
   String? mobile;
   int? modifiedBy;
   int? createdBy;
@@ -48,8 +48,8 @@ class EmployeeInfoCombined {
       this.middleName,
       this.lastName,
       this.fullName,
-      this.isAccountBlocked,
-      this.isActive,
+      this.accountLocked,
+      this.active,
       this.mobile,
       this.modifiedBy,
       this.createdBy,
@@ -86,8 +86,8 @@ class EmployeeInfoCombined {
     middleName = json["middleName"];
     lastName = json["lastName"];
     fullName = json["fullName"];
-    isAccountBlocked = json["isAccountBlocked"];
-    isActive = json["isActive"];
+    accountLocked = json["accountLocked"];
+    active = json["active"];
     mobile = json["mobile"];
     modifiedBy = json["modifiedBy"];
     createdBy = json["createdBy"];
@@ -149,74 +149,8 @@ class EmployeeInfoCombined {
       "l1ManagerId": employeeInfoCombined.l1ManagerId,
       "l2ManagerId": employeeInfoCombined.l2ManagerId,
       "hrManagerId": employeeInfoCombined.hrManagerId,
-      "accountLocked": false,
-      // employeeInfoCombined.isAccountBlocked,
-      "active": false
-      // employeeInfoCombined.isActive
+      "accountLocked": employeeInfoCombined.accountLocked,
+      "active": employeeInfoCombined.active
     };
-
   }
 }
-
-
-
-
-
-// Old Style
-// final Map<String, dynamic> EmployeeInfoCombinedModelData =
-//         <String, dynamic>{};
-//     EmployeeInfoCombinedModelData["userId"] = employeeInfoCombined.userId;
-//     EmployeeInfoCombinedModelData["city"] = employeeInfoCombined.city;
-//     EmployeeInfoCombinedModelData["country"] = employeeInfoCombined.country;
-//     EmployeeInfoCombinedModelData["department"] =
-//         employeeInfoCombined.department;
-//     EmployeeInfoCombinedModelData["dob"] = employeeInfoCombined.dob;
-//     EmployeeInfoCombinedModelData["doj"] = employeeInfoCombined.doj;
-//     EmployeeInfoCombinedModelData["empCode"] = employeeInfoCombined.empCode;
-//     EmployeeInfoCombinedModelData["firstName"] = employeeInfoCombined.firstName;
-//     EmployeeInfoCombinedModelData["middleName"] =
-//         employeeInfoCombined.middleName;
-//     EmployeeInfoCombinedModelData["lastName"] = employeeInfoCombined.lastName;
-//     EmployeeInfoCombinedModelData["fullName"] = employeeInfoCombined.fullName;
-//     EmployeeInfoCombinedModelData["isAccountBlocked"] =
-//         employeeInfoCombined.isAccountBlocked;
-//     EmployeeInfoCombinedModelData["isActive"] = employeeInfoCombined.isActive;
-//     EmployeeInfoCombinedModelData["mobile"] = employeeInfoCombined.mobile;
-//     EmployeeInfoCombinedModelData["modifiedBy"] =
-//         employeeInfoCombined.modifiedBy;
-//     EmployeeInfoCombinedModelData["createdBy"] = employeeInfoCombined.createdBy;
-//     EmployeeInfoCombinedModelData["modifiedDate"] =
-//         employeeInfoCombined.modifiedDate;
-//     EmployeeInfoCombinedModelData["createdDate"] =
-//         employeeInfoCombined.createdDate;
-//     EmployeeInfoCombinedModelData["officialMail"] =
-//         employeeInfoCombined.officialMail;
-//     EmployeeInfoCombinedModelData["orgId"] = employeeInfoCombined.orgId;
-//     EmployeeInfoCombinedModelData["userName"] = employeeInfoCombined.userName;
-//     EmployeeInfoCombinedModelData["password"] = employeeInfoCombined.password;
-//     EmployeeInfoCombinedModelData["jobRole"] = employeeInfoCombined.jobRole;
-//     EmployeeInfoCombinedModelData["state"] = employeeInfoCombined.state;
-//     EmployeeInfoCombinedModelData["workLocation"] =
-//         employeeInfoCombined.workLocation;
-//     EmployeeInfoCombinedModelData["marriageStatus"] =
-//         employeeInfoCombined.marriageStatus;
-//     EmployeeInfoCombinedModelData["dom"] = employeeInfoCombined.dom;
-//     EmployeeInfoCombinedModelData["jobPosition"] =
-//         employeeInfoCombined.jobPosition;
-//     EmployeeInfoCombinedModelData["designation"] =
-//         employeeInfoCombined.designation;
-//     EmployeeInfoCombinedModelData["grade"] = employeeInfoCombined.grade;
-//     EmployeeInfoCombinedModelData["employementCategory"] =
-//         employeeInfoCombined.employementCategory;
-//     EmployeeInfoCombinedModelData["employementStatus"] =
-//         employeeInfoCombined.employementStatus;
-//     EmployeeInfoCombinedModelData["employementType"] =
-//         employeeInfoCombined.employementType;
-//     EmployeeInfoCombinedModelData["l1ManagerId"] =
-//         employeeInfoCombined.l1ManagerId;
-//     EmployeeInfoCombinedModelData["l2ManagerId"] =
-//         employeeInfoCombined.l2ManagerId;
-//     EmployeeInfoCombinedModelData["hrManagerId"] =
-//         employeeInfoCombined.hrManagerId;
-//     return EmployeeInfoCombinedModelData;
-//   }

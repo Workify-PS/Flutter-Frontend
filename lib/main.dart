@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
+import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/screens/AuthPage/AuthPage.dart';
@@ -14,9 +15,12 @@ import 'package:workify/screens/AuthPage/AuthPageController.dart';
 import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/HomePage/HomePage.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
-import 'package:workify/screens/ProfileSection/ProfilePage.dart';
-import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
+
+import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/all_employee_profile.dart';
+import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_profile_details.dart';
+import 'package:workify/screens/ProfileSection/SelfProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SplashScreen/SplashScreen.dart';
+import 'package:workify/services/fetch_all_employee_service.dart';
 import 'package:workify/utils/theme.dart';
 
 import 'controllers/modify_profile_widgets_controller.dart';
@@ -106,11 +110,15 @@ class _MyAppState extends State<MyApp> with CacheManager {
                   Get.put(UpdateProfileDetailsController())
                 }),
           ),
-
-        // GetPage(
-        //   name: '/settings',
-        //   page: () => SettingsPage(),
-        // ),
+          
+        if(getToken() != null)
+        GetPage(
+          name: '/all-employee-profile',
+          page: () => AllEmployeeProfile(),
+          binding: BindingsBuilder(() => {
+            Get.put(FetchAllEmployeesController())
+          }),
+        ),
       ],
     );
   }

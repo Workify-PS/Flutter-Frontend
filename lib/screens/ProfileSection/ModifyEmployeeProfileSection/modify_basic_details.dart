@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/update_profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
-import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
+import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 

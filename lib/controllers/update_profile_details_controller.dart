@@ -6,7 +6,6 @@ import 'package:workify/controllers/profile_details_controller.dart';
 
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/models/EmployeeInfoCombined.dart';
-import 'package:workify/screens/ProfileSection/position_details.dart';
 
 import 'package:workify/services/update_profile_details_service.dart';
 

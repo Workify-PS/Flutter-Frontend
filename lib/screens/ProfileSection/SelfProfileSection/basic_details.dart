@@ -5,10 +5,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/utils/sizes.dart';
 
 import 'person.dart';
-import '../../controllers/profile_details_controller.dart';
 // import 'package:workify/utils/constants.dart';
 // import './modify_history_buttons.dart';
 

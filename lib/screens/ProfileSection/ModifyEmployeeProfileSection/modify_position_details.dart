@@ -3,30 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:workify/components/button.dart';
+import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/controllers/update_profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
-import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
+import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/text_form_modify_profile_details.dart';
+
 import 'package:workify/utils/sizes.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
+int idx = -1;
 
 final profileDetailsController = Get.find<ProfileDetailsController>();
 final updateProfileDetailsController =
     Get.find<UpdateProfileDetailsController>();
 
 class ModifyPositionDetails extends StatelessWidget {
-  const ModifyPositionDetails({Key? key}) : super(key: key);
+  final index;
+  const ModifyPositionDetails({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    idx = index;
     return StatefulModifyPositionDetails();
   }
 }
 
 class StatefulModifyPositionDetails extends StatefulWidget {
-  const StatefulModifyPositionDetails({Key? key}) : super(key: key);
+  const StatefulModifyPositionDetails({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _StatefulModifyPositionDetailsState createState() =>
@@ -38,7 +48,7 @@ class _StatefulModifyPositionDetailsState
   var _userId, _designation, _grade, _jobPosition;
 
   void getBack() {
-    Get.offAndToNamed('/home');
+    Get.offAndToNamed('/all-employee-profile');
   }
 
   void callOnSubmitPositionDetails() {
@@ -58,6 +68,19 @@ class _StatefulModifyPositionDetailsState
 
     portrait = screenWidth < 1000;
 
+
+    print('\nData : ');
+    print(FetchAllEmployeesController.allEmployeeList.elementAt(idx).userId);
+    print(
+        FetchAllEmployeesController.allEmployeeList.elementAt(idx).designation);
+    print(FetchAllEmployeesController.allEmployeeList.elementAt(idx).grade);
+    print(
+        FetchAllEmployeesController.allEmployeeList.elementAt(idx).jobPosition);
+
+    print('\nProfileDetailsController :: ');
+    print(profileDetailsController.employeeInfoModelDetails?.designation.toString());
+    print(profileDetailsController.employeeInfoModelDetails?.grade.toString());
+
     var textFormList = [
       'User Position ID',
       'Designation',
@@ -66,25 +89,45 @@ class _StatefulModifyPositionDetailsState
     ];
 
     _userId = TextEditingController(
-      text: profileDetailsController.employeeInfoModelDetails?.userId
-              .toString() ??
-          'User Position ID Not Found',
-    );
+        // text: profileDetailsController.employeeInfoModelDetails?.userId
+        //         .toString() ??
+        // 'User Position ID Not Found',
+        text: idx == -1
+            ? 'User Position ID Not Found'
+            : FetchAllEmployeesController.allEmployeeList
+                .elementAt(idx)
+                .userId
+                .toString());
 
     _designation = TextEditingController(
-      text: profileDetailsController.employeeInfoModelDetails?.designation ??
-          'Designation Not Found',
-    );
+        // text: profileDetailsController.employeeInfoModelDetails?.designation ??
+        //     'Designation Not Found',
+        text: idx == -1
+            ? 'Designation  Not Found'
+            : FetchAllEmployeesController.allEmployeeList
+                .elementAt(idx)
+                .designation
+                .toString());
 
     _grade = TextEditingController(
-      text: profileDetailsController.employeeInfoModelDetails?.grade ??
-          'Grade Not Found',
-    );
+        // text: profileDetailsController.employeeInfoModelDetails?.grade ??
+        //     'Grade Not Found',
+        text: idx == -1
+            ? 'Grade  Not Found'
+            : FetchAllEmployeesController.allEmployeeList
+                .elementAt(idx)
+                .grade
+                .toString());
 
     _jobPosition = TextEditingController(
-      text: profileDetailsController.employeeInfoModelDetails?.jobPosition ??
-          'Job Position Not Found',
-    );
+        // text: profileDetailsController.employeeInfoModelDetails?.jobPosition ??
+        //     'Job Position Not Found',
+        text: idx == -1
+            ? 'Job Position  Not Found'
+            : FetchAllEmployeesController.allEmployeeList
+                .elementAt(idx)
+                .jobPosition
+                .toString());
 
     var textFormList_2_Controllers = {
       'User Position ID': _userId,

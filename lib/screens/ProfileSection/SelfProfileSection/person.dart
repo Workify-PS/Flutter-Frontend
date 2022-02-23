@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/controllers/profile_details_controller.dart';
 
 import 'package:workify/utils/sizes.dart';
-import '../../controllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
 
 double screenWidth = 0, screenHeight = 0;

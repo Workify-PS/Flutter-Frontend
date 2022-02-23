@@ -6,7 +6,7 @@ import 'package:workify/controllers/UserController.dart';
 
 // import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
-import 'package:workify/screens/ProfileSection/modify_basic_details.dart';
+import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_basic_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 

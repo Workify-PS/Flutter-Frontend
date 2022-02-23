@@ -7,7 +7,6 @@ import 'package:workify/utils/constants.dart';
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 // import 'package:workify/utils/extensions.dart';
-import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;

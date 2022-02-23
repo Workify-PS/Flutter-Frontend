@@ -53,6 +53,7 @@ class _StatefulModifyPositionDetailsState
 
   void callOnSubmitPositionDetails() {
     UpdateProfileDetailsController.onSubmitPositionDetails(
+        index : idx,
         userId: _userId.text,
         designation: _designation.text,
         grade: _grade.text,

@@ -52,6 +52,7 @@ class _StatefulModifyEmploymentDetailsState
 
   void callOnSubmitEmploymentDetails() {
     UpdateProfileDetailsController.onSubmitEmploymentDetails(
+        index: idx,
         workLocation: _workLocation.text,
         employementCategory: _employementCategory.text,
         employementStatus: _employementStatus.text,

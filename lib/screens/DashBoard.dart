@@ -9,10 +9,10 @@ import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
 class DashBoard extends StatefulWidget {
-  final GlobalKey<ScaffoldState> parentScaffoldkey;
+  final GlobalKey<ScaffoldState>? parentScaffoldkey;
   const DashBoard({
     Key? key,
-    required this.parentScaffoldkey,
+     this.parentScaffoldkey,
   }) : super(key: key);
 
   @override
@@ -35,7 +35,7 @@ class _DashBoardState extends State<DashBoard> {
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(bannerHeight),
           child: TopBar(
-            parentScaffoldkey: widget.parentScaffoldkey,
+           
           )),
       body: Container(
         color: Theme.of(context).scaffoldBackgroundColor,

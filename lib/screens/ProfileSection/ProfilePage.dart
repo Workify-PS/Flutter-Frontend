@@ -27,11 +27,12 @@ class ProfilePage extends StatelessWidget {
     'Modify Basic Details': ModifyBasicDetails(),
   };
 
-  final profileWidgetsController = Get.find<ProfileWidgetsController>();
   // final userController = Get.put(UserController());
+  
 
   @override
   Widget build(BuildContext context) {
+    final profileWidgetsController = Get.find<ProfileWidgetsController>();
     // print('JobRole');
     // print(userController.currentUser?.value.role);
     DeviceSize device = DeviceSize();

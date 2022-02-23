@@ -1,7 +1,9 @@
 // import 'package:flutter/foundation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:workify/components/side_menu_item.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 
 class SideMenu extends StatelessWidget {
@@ -11,7 +13,7 @@ class SideMenu extends StatelessWidget {
     "Profile",
     "Attendance",
     "Leave",
-    "Report",
+    //"Report",
     "Settings"
   ];
   final icons = [
@@ -19,10 +21,10 @@ class SideMenu extends StatelessWidget {
     CupertinoIcons.person,
     CupertinoIcons.square_favorites,
     Icons.time_to_leave_outlined,
-    Icons.flag_outlined,
+    //Icons.flag_outlined,
     CupertinoIcons.gear_alt
   ];
-
+  final pageController = Get.find<HomePageController>();
   @override
   Widget build(BuildContext context) {
     return Container(

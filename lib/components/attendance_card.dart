@@ -210,7 +210,7 @@ class _AttendanceCardState extends State<AttendanceCard> {
             buttonTextWidget: Text('Attendance Status'),
             onPressed: () {},
             primaryColor: kPrimaryColor,
-            icon: Icon(CupertinoIcons.calendar_circle),
+            icon: Icon(CupertinoIcons.calendar_today),
           ),
         ],
       ),

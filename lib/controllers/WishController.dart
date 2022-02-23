@@ -12,7 +12,9 @@ class WishController extends GetxController {
 
   @override
   void onInit() async {
+    print("Initialized for Wish Controller");
     getLists();
+    super.onInit();
   }
 
   Future<void> getLists() async {
@@ -29,5 +31,8 @@ class WishController extends GetxController {
     if (newJoiners != null) {
       newJoinersList = RxList<WishModel>(newJoiners);
     }
+    birthdayList!.value.forEach((element) {
+      print(element.fullName);
+    });
   }
 }

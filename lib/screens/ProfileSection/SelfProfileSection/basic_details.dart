@@ -15,7 +15,6 @@ import 'person.dart';
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
-final profileDetailsController = Get.find<ProfileDetailsController>();
 
 class BasicDetails extends StatelessWidget {
   const BasicDetails({Key? key}) : super(key: key);
@@ -235,6 +234,7 @@ class MobileNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text(
@@ -263,6 +263,7 @@ class MarriageStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text(
@@ -290,6 +291,7 @@ class DoB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text(
@@ -326,6 +328,7 @@ class City extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text(
@@ -353,6 +356,7 @@ class State extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text(
@@ -380,6 +384,7 @@ class Country extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text(

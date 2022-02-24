@@ -14,9 +14,6 @@ import 'package:workify/controllers/profile_details_controller.dart';
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
-final profileDetailsController = Get.find<ProfileDetailsController>();
-final updateProfileDetailsController =
-    Get.find<UpdateProfileDetailsController>();
 
 class ModifyBasicDetails extends StatelessWidget {
   const ModifyBasicDetails({Key? key}) : super(key: key);
@@ -59,6 +56,8 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
     screenHeight = device.size.height;
 
     portrait = screenWidth < 1000;
+
+    final profileDetailsController = Get.find<ProfileDetailsController>();
 
 
     var textFormList = [

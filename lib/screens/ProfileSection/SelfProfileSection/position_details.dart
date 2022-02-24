@@ -10,7 +10,6 @@ import 'package:workify/controllers/profile_details_controller.dart';
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
-final profileDetailsController = Get.find<ProfileDetailsController>();
 
 class WrapPositionDetails extends StatefulWidget {
   const WrapPositionDetails({Key? key}) : super(key: key);
@@ -298,6 +297,7 @@ class UserPosID extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('User Position ID Loading');
@@ -320,6 +320,7 @@ class Designation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('Designation Loading');
@@ -342,6 +343,7 @@ class Grade extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('Grade Loading');
@@ -365,6 +367,7 @@ class OrgID extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('Organization ID Loading');
@@ -410,6 +413,7 @@ class OfficialEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('Official Email Loading');
@@ -432,6 +436,7 @@ class DoJ extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text(
@@ -468,6 +473,7 @@ class JobPosition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('Job Position Loading');

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/controllers/UserController.dart';
 import 'package:workify/utils/constants.dart';
 // import 'package:workify/exceptions/print_log.dart';
 
@@ -9,13 +10,16 @@ class ProfileSubTiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userController = Get.find<UserController>();
+
     return Container(
         padding: const EdgeInsets.only(top: kDefaultPadding / 1.5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ProfileSubTile(profileOptions: 'My Profile'),
-            ProfileSubTile(profileOptions: 'All Employee Profile'),
+            if(userController.currentUser?.value.jobRole == 'ROLE_ADMIN')
+              ProfileSubTile(profileOptions: 'All Employee Profile'),
           ],
         ));
   }

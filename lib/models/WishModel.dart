@@ -1,27 +1,20 @@
 class WishModel {
-  String? dob;
-  String? doj;
-  String? fullName;
-  String? empCode;
+  late String fullName;
+  late String empCode;
 
   WishModel({
-    this.dob,
-    this.doj,
-    this.fullName,
-    this.empCode,
+    required this.fullName,
+   required this.empCode,
   });
 
   WishModel.fromJson(Map<String, dynamic> json) {
-    dob = json['dob'];
-    doj = json['doj'];
     fullName = json['fullName'];
     empCode = json['empCode'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
-    data['dob'] = dob;
-    data['doj'] = doj;
+
     data['fullName'] = fullName;
     data['empCode'] = empCode;
     return data;

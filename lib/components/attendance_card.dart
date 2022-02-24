@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,7 +25,7 @@ class AttendanceCard extends StatefulWidget {
 
 class _AttendanceCardState extends State<AttendanceCard> {
   bool isPunchedIn = false;
-  Color primaryColor = Colors.amber.shade600;
+  bool isPunchedOut = false;
   final daily = DailyAttendanceModel().obs;
 
   void newintime() {
@@ -46,194 +47,171 @@ class _AttendanceCardState extends State<AttendanceCard> {
   void punchIn() {
     setState(() {
       isPunchedIn = true;
+      isPunchedOut = false;
       newintime();
     });
   }
 
   void punchOut() {
     setState(() {
-      isPunchedIn = false;
+      isPunchedIn = true;
+      isPunchedOut = true;
       newouttime();
     });
   }
 
+  @override
   Widget build(BuildContext context) {
-    Color accentColor =
-        MyTheme().isDark(context) ? kDividerColor : Colors.black87;
+    Color primaryColor = Theme.of(context).scaffoldBackgroundColor;
+    Color secondaryColor = Theme.of(context).textSelectionColor;
+
     return Container(
-      margin: const EdgeInsets.only(right: kDefaultPadding * 3),
-      padding: EdgeInsets.only(top: kDefaultPadding * 1.5),
+      padding: EdgeInsets.symmetric(vertical: kDefaultPadding * 1.5),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-              width: double.infinity,
-              height: 160,
-              alignment: Alignment.centerRight,
-              padding: const EdgeInsets.all(kDefaultPadding),
-              decoration: BoxDecoration(
-                  color: primaryColor,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(16),
-                      bottomRight: Radius.circular(16))),
-              child: Row(
+          // Container(
+          //     width: double.infinity,
+          //     height: 160,
+          //     alignment: Alignment.center,
+          //     padding: const EdgeInsets.all(kDefaultPadding),
+          //     decoration: BoxDecoration(
+          //         color: primaryColor,
+          //         borderRadius: BorderRadius.only(
+          //             topRight: Radius.circular(16),
+          //             bottomRight: Radius.circular(16))),
+          //     child: Row(
+          //       crossAxisAlignment: CrossAxisAlignment.center,
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+
+          //         Spacer(),
+          //       ],
+          //     )),
+
+          InkWell(
+            onTap: () {},
+            child: NeumorphicButton(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: kDefaultPadding * 1.2,
+                  vertical: kDefaultPadding * 0.6),
+              onPressed: isPunchedIn ? punchOut : punchIn,
+              // splashColor: Colors.transparent,
+              // highlightColor: Colors.transparent,
+              // hoverColor: Colors.transparent,
+              child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            "Punch In",
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
-                          Obx(
-                            () => Text(
-                              daily.value.inTime,
-                              style: Theme.of(context).textTheme.subtitle1,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 40),
-                      Column(
-                        children: [
-                          Text(
-                            "Punch Out",
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
-                          Obx(
-                            () => Text(
-                              daily.value.outTime.last,
-                              style: Theme.of(context).textTheme.subtitle1,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
+                  SvgPicture.asset(
+                    isPunchedIn
+                        ? "assets/icons/punch_out.svg"
+                        : "assets/icons/punch_in.svg",
+                    height: 70,
+                    fit: BoxFit.fitHeight,
+                    color: secondaryColor,
+                    //width: 100,
                   ),
-                  Spacer(),
-                  Neumorphic(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        children: [
-                          FlatButton(
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            //color: Colors.black.withOpacity(0.02),
-                            onPressed: isPunchedIn ? punchOut : punchIn,
-                            padding: const EdgeInsets.all(kDefaultPadding),
-                            child: SvgPicture.asset(
-                              isPunchedIn
-                                  ? "assets/icons/punch_out.svg"
-                                  : "assets/icons/punch_in.svg",
-                              height: 70,
-                              fit: BoxFit.fitHeight,
-                              color: Colors.white,
-                              width: 5,
-                            ),
-                          ),
-                          !isPunchedIn
-                              ? Text(
-                                  "Punch In",
-                                  style: Theme.of(context).textTheme.subtitle1,
-                                )
-                              : Text(
-                                  "Punch Out",
-                                  style: Theme.of(context).textTheme.subtitle1,
-                                )
-                        ],
-                      ),
-                    ),
-                    style: NeumorphicStyle(
-                        shape: NeumorphicShape.flat,
-                        boxShape: NeumorphicBoxShape.roundRect(
-                            BorderRadius.circular(12)),
-                        depth: isPunchedIn ? -5 : 5,
-                        border: NeumorphicBorder(color: primaryColor),
-                        lightSource: LightSource.topLeft,
-                        shadowLightColor: Colors.white54,
-                        surfaceIntensity: 0.5,
-                        color: primaryColor),
-                  ),
+                  !isPunchedIn
+                      ? Text(
+                          "Punch In",
+                          style:
+                              Theme.of(context).textTheme.subtitle1!.copyWith(
+                                    color: secondaryColor,
+                                  ),
+                        )
+                      : Text(
+                          "Punch Out",
+                          style:
+                              Theme.of(context).textTheme.subtitle1!.copyWith(
+                                    color: secondaryColor,
+                                  ),
+                        )
                 ],
-              )
-
-              // : Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //     children: [
-              //       Column(
-              //         children: [
-              //           ElevatedButton(
-              //             style: ButtonStyle(
-              //               shape: MaterialStateProperty.all<
-              //                   RoundedRectangleBorder>(
-              //                 RoundedRectangleBorder(
-              //                     borderRadius: BorderRadius.circular(90.0)),
-              //               ),
-              //               // foregroundColor: getColor(Colors.black, Colors.grey),
-              //               // backgroundColor: getColor(kSecondaryColor, Colors.red),
-              //             ),
-              //             onPressed: isPunchedIn ? null : _dis,
-              //             // _ispressed == false ? _callback : null,
-              //             child: SvgPicture.asset(
-              //               "assets/icons/punch_in.svg",
-              //               height: 70,
-              //               color: accentColor,
-              //             ),
-              //           ),
-              //           Padding(
-              //             padding: const EdgeInsets.all(8.0),
-              //             child: Text('Punch IN Time'),
-              //           ),
-              //           Padding(
-              //               padding: const EdgeInsets.all(8.0),
-              //               child: Obx(
-              //                 () => Text(daily.value.inTime),
-              //               )),
-              //         ],
-              //       ),
-              //       Column(
-              //         children: [
-              //           ElevatedButton(
-              //             style: ButtonStyle(
-              //                 shape: MaterialStateProperty.all<
-              //                         RoundedRectangleBorder>(
-              //                     RoundedRectangleBorder(
-              //                         borderRadius:
-              //                             BorderRadius.circular(90.0)))),
-              //             onPressed: () {
-              //               newouttime();
-              //             },
-              //             child: SvgPicture.asset(
-              //               "assets/icons/punch_out.svg",
-              //               height: 70,
-              //               color: accentColor,
-              //             ),
-              //           ),
-              //           Padding(
-              //             padding: const EdgeInsets.all(8.0),
-              //             child: Text('Punch OUT Time'),
-              //           ),
-              //           Padding(
-              //               padding: const EdgeInsets.all(8.0),
-              //               child: Obx(
-              //                 () => Text(daily.value.outTime.last),
-              //               )),
-              //         ],
-              //       ),
-              //     ],
-              //   ),
-
-              // SizedBox(
-              //   height: 19,
-              // ),
               ),
+              pressed: isPunchedOut,
+              style: NeumorphicStyle(
+                  shape: NeumorphicShape.flat,
+                  boxShape:
+                      NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
+                  depth: isPunchedOut ? -5 : 2,
+                  // border: NeumorphicBorder(
+                  //     color: Theme.of(context).primaryColorDark, width: 1.5),
+                  lightSource: LightSource.topLeft,
+                  shadowLightColor: Theme.of(context).shadowColor,
+                  color: primaryColor),
+            ),
+          ).neuromorphism(context),
+          Padding(
+            padding: const EdgeInsets.only(top: kDefaultPadding * 1.5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Punch In Time",
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .copyWith(color: secondaryColor),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      daily.value.inTime,
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .copyWith(color: secondaryColor),
+                    ),
+                  ],
+                ),
+                SizedBox(width: 40),
+                SizedBox(
+                  height: 36,
+                  child: VerticalDivider(
+                    color: secondaryColor,
+                    thickness: 0.6,
+                    indent: 2,
+                    endIndent: 0,
+                    width: 20,
+                  ),
+                ),
+                SizedBox(width: 40),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Punch Out Time",
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .copyWith(color: secondaryColor),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      daily.value.outTime.last,
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .copyWith(color: secondaryColor),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
           Spacer(),
           Button(
-            buttonTextWidget: Text('ATTENDANCE STATUS'),
+            buttonTextWidget: Text('Attendance Status'),
             onPressed: () {},
+            primaryColor: kPrimaryColor,
+            icon: Icon(CupertinoIcons.calendar_today),
           ),
         ],
       ),

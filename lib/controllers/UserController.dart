@@ -46,6 +46,7 @@ class UserController extends GetxController with CacheManager {
           printStatement: 'NOT Logged In !!'
         );
     }
+    super.onInit();
   }
 
   Future<void> setUser(String token) async {

@@ -9,10 +9,10 @@ import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
 class DashBoard extends StatefulWidget {
-  final GlobalKey<ScaffoldState> parentScaffoldkey;
+  final GlobalKey<ScaffoldState>? parentScaffoldkey;
   const DashBoard({
     Key? key,
-    required this.parentScaffoldkey,
+    this.parentScaffoldkey,
   }) : super(key: key);
 
   @override
@@ -33,10 +33,7 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(bannerHeight),
-          child: TopBar(
-            parentScaffoldkey: widget.parentScaffoldkey,
-          )),
+          preferredSize: Size.fromHeight(bannerHeight), child: TopBar()),
       body: Container(
         color: Theme.of(context).scaffoldBackgroundColor,
         padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -46,7 +43,7 @@ class _DashBoardState extends State<DashBoard> {
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 550,
             crossAxisSpacing: kDefaultPadding * 4,
-            mainAxisSpacing: kDefaultPadding * 1,
+            mainAxisSpacing: kDefaultPadding * 2,
             childAspectRatio: 1.2,
             //mainAxisExtent: 400,
           ),

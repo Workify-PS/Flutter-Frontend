@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:workify/components/side_menu.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/DashBoard.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
+import 'package:workify/screens/ProfileSection/ProfilePage.dart';
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';
@@ -15,13 +17,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   RxBool isCollapsed = true.obs;
-  
+  final pageController = Get.find<HomePageController>();
+  final pages = [DashBoard(),ProfilePage()];
   @override
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
     final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
-    
+
     return Scaffold(
       key: _scaffoldkey,
       //backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
@@ -89,22 +92,4 @@ class _HomePageState extends State<HomePage> {
       // ),
     );
   }
-
-  buildHeader() {
-    return FlutterLogo(
-      size: 36,
-    );
-  }
-
-  // buildTiles() {
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.center,
-  //     children: List.generate(
-  //         titles.length,
-  //         (index) => DrawerItem(
-  //             isCollapsed: isCollapsed.value,
-  //             icon: icons[index],
-  //             title: titles[index])),
-  //   );
-  // }
 }

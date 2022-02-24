@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/screens/AuthPage/AuthPage.dart';
-import 'package:workify/screens/HomePage.dart';
+import 'package:workify/screens/HomePage/HomePage.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);

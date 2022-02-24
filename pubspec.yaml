@@ -30,6 +30,7 @@ dependencies:
   animated_text_kit: ^4.2.1
   cupertino_icons: ^1.0.2
   dio: ^4.0.4
+  fading_edge_scrollview: ^2.0.1
   flutter:
     sdk: flutter
   flutter_neumorphic: ^3.2.0
@@ -39,10 +40,10 @@ dependencies:
   get: ^4.6.1
   get_storage: ^2.0.3
   google_fonts: ^2.2.0
+  http: ^0.13.4
   intl: ^0.17.0
   percent_indicator: ^3.4.0
-  http: ^0.13.4
-  fading_edge_scrollview: ^2.0.1
+  url_launcher: ^6.0.20
 
 dev_dependencies:
   flutter_lints: ^1.0.0

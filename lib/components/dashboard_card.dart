@@ -17,7 +17,7 @@ class _DashBoardCardState extends State<DashBoardCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(vertical: kDefaultPadding * 1.5),
+        padding: EdgeInsets.only(top: kDefaultPadding),
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(15),

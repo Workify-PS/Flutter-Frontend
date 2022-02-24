@@ -27,7 +27,7 @@ class ProfileCompletionCard extends StatelessWidget {
     portrait = screenWidth < 1000;
 
     return Padding(
-        padding: const EdgeInsets.only(top: kDefaultPadding * 1.5),
+        padding: const EdgeInsets.symmetric(vertical: kDefaultPadding * 1.5),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -35,7 +35,6 @@ class ProfileCompletionCard extends StatelessWidget {
               style: NeumorphicStyle(
                   boxShape: NeumorphicBoxShape.circle(),
                   color: Theme.of(context).scaffoldBackgroundColor),
-                  
               child: CircularPercentIndicator(
                 radius: 150,
                 lineWidth: 10,

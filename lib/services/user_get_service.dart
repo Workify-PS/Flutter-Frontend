@@ -14,7 +14,7 @@ class UserGetService extends GetConnect {
       'Content-Type': 'application/json'
     };
     final response = await post(userGetURL, {}, headers: headers);
-    
+
     if (response.statusCode == HttpStatus.ok) {
       return UserModel.fromJson(response.body);
     } else {

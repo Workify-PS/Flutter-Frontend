@@ -60,12 +60,13 @@ class _AttendanceCardState extends State<AttendanceCard> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     Color primaryColor = Theme.of(context).scaffoldBackgroundColor;
     Color secondaryColor = Theme.of(context).textSelectionColor;
 
     return Container(
-      padding: EdgeInsets.only(top: kDefaultPadding * 1.5),
+      padding: EdgeInsets.symmetric(vertical: kDefaultPadding * 1.5),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,

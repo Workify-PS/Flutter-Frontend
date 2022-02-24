@@ -44,8 +44,6 @@ dependencies:
   intl: ^0.17.0
   percent_indicator: ^3.4.0
   url_launcher: ^6.0.20
-  http: ^0.13.4
-  fading_edge_scrollview: ^2.0.1
   country_code_picker: ^2.0.2
 
 dev_dependencies:

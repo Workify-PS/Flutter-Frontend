@@ -35,10 +35,12 @@ class WishCard extends GetView<WishController> {
                 currentIndex: controller.selectedIndex.value,
                 type: BottomNavigationBarType.fixed,
                 backgroundColor: kPrimaryColor,
-                unselectedItemColor: Colors.white60,
+                unselectedItemColor: Colors.white54,
                 selectedItemColor: Colors.white,
                 selectedFontSize: 15.8,
                 unselectedFontSize: 14,
+                elevation: 10,
+
                 unselectedIconTheme: IconThemeData(opacity: 0, size: 0),
                 selectedIconTheme: IconThemeData(opacity: 0, size: 0),
                 items: [

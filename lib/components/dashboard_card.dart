@@ -17,19 +17,22 @@ class _DashBoardCardState extends State<DashBoardCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(top: kDefaultPadding),
+        padding: EdgeInsets.only(top: kDefaultPadding ),
         decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Column(
-          children: [
-            if (widget.title != null)
-              Text(widget.title!, style: Theme.of(context).textTheme.headline5!
-                  //.copyWith(backgroundColor: Colors.amberAccent)),
-                  ),
-            Expanded(child: widget.child)
-          ],
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Column(
+            children: [
+              if (widget.title != null)
+                Text(widget.title!, style: Theme.of(context).textTheme.headline5!
+                    //.copyWith(backgroundColor: Colors.amberAccent)),
+                    ),
+              Expanded(child: widget.child)
+            ],
+          ),
         )).neuromorphism(
       context,
       blurRadius: 15,

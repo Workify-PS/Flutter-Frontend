@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +16,7 @@ class WishCard extends GetView<WishController> {
   Widget build(BuildContext context) {
     return Obx(() {
       final list = controller.getListAsPerIndex();
+
       if (list == null) {
         return Text('Loading...');
       } else {
@@ -26,7 +29,34 @@ class WishCard extends GetView<WishController> {
                 itemCount: list.length,
                 itemBuilder: (context, index) {
                   return Column(
-                    children: [Text(list[index].fullName)],
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(
+                                kDefaultPadding, 2, kDefaultPadding, 2),
+                            child: CircleAvatar(
+                                backgroundColor: Colors.primaries[
+                                    Random().nextInt(Colors.primaries.length)],
+                                child: Text(
+                                  list[index].fullName[0],
+                                )),
+                          ),
+                          Text(
+                            list[index].fullName +
+                                " (" +
+                                list[index].empCode +
+                                ")",
+                            style: Theme.of(context).textTheme.titleMedium,
+                          )
+                        ],
+                      ),
+                      Divider(
+                        indent: kDefaultPadding,
+                        endIndent: kDefaultPadding,
+                      )
+                    ],
                   );
                 },
               ),

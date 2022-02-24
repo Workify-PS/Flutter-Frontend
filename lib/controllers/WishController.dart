@@ -19,8 +19,8 @@ class WishController extends GetxController {
   Future<void> getAllEvents() async {
     final wishGetService = WishGetService();
     final birthdays = await wishGetService.getBirthday();
-    final anniversaries = await wishGetService.getBirthday();
-    final newJoiners = await wishGetService.getBirthday();
+    final anniversaries = await wishGetService.getAnniversary();
+    final newJoiners = await wishGetService.getNewjoiners();
     if (birthdays != null) {
       birthdayList.addAll(birthdays);
     }

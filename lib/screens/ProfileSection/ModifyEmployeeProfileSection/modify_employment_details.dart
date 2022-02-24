@@ -192,6 +192,7 @@ class _StatefulModifyEmploymentDetailsState
                     7,
                     (index) => TextFormModifyProfileDetails(
                           myFocusNode: FocusNode(),
+                          keyBoardType: TextInputType.text,
                           enabled: true,
                           text: textFormList[index],
                           controller:

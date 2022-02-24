@@ -15,6 +15,7 @@ import 'package:workify/screens/AuthPage/AuthPageController.dart';
 import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/HomePage/HomePage.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
+import 'package:workify/screens/LeavePage/LeavePage.dart';
 
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/all_employee_profile.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_profile_details.dart';
@@ -93,10 +94,6 @@ class _MyAppState extends State<MyApp> with CacheManager {
                   Get.put(ProfileDetailsController()),
                 }),
           ),
-        // GetPage(
-        //   name: "/forgot",
-        //   page: () => ForgotPass(),
-        // ),
         if (getToken() != null)
           GetPage(name: "/change-password", page: () => ChangePassword()),
 
@@ -112,13 +109,21 @@ class _MyAppState extends State<MyApp> with CacheManager {
           ),
           
         if(getToken() != null)
-        GetPage(
-          name: '/all-employee-profile',
-          page: () => AllEmployeeProfile(),
-          binding: BindingsBuilder(() => {
-            Get.put(FetchAllEmployeesController())
-          }),
-        ),
+          GetPage(
+            name: '/all-employee-profile',
+            page: () => AllEmployeeProfile(),
+            binding: BindingsBuilder(() => {
+              Get.put(FetchAllEmployeesController())
+            }),
+          ),
+        if(getToken()!=null)
+          GetPage(
+            name: '/leave',
+            page: () => LeavePage(),
+            binding: BindingsBuilder(() => {
+                  Get.put(ProfileDetailsController()),
+                }),
+          ),
       ],
     );
   }

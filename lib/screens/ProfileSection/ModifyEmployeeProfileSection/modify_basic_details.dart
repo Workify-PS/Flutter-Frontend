@@ -140,7 +140,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                     return Row(
                       children: [
                         Expanded(
-                          flex: 1,
+                          flex: 2,
                           child: CountryCodePicker(
                             showDropDownButton: true,
                             initialSelection: MobileNumber[0],
@@ -155,7 +155,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                           ),
                         ),
                         Expanded(
-                          flex: 6,
+                          flex: 8,
                           child: TextFormModifyProfileDetails(
                             myFocusNode: FocusNode(),
                             keyBoardType: TextInputType.number,

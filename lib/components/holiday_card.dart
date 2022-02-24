@@ -45,10 +45,7 @@ class _HolidayCardState extends State<HolidaysCard> {
             var items = data.data as List<HolidayModel>;
 
             return Padding(
-              padding: const EdgeInsets.only(
-                  top: kDefaultPadding,
-                  right: kDefaultPadding,
-                  left: kDefaultPadding),
+              padding: const EdgeInsets.all(kDefaultPadding),
               child: Scrollbar(
                 isAlwaysShown: true,
                 showTrackOnHover: true,

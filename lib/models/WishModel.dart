@@ -1,10 +1,10 @@
 class WishModel {
-  String? fullName;
-  String? empCode;
+  late String fullName;
+  late String empCode;
 
   WishModel({
-    this.fullName,
-    this.empCode,
+    required this.fullName,
+   required this.empCode,
   });
 
   WishModel.fromJson(Map<String, dynamic> json) {

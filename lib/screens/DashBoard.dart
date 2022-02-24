@@ -12,7 +12,7 @@ class DashBoard extends StatefulWidget {
   final GlobalKey<ScaffoldState>? parentScaffoldkey;
   const DashBoard({
     Key? key,
-     this.parentScaffoldkey,
+    this.parentScaffoldkey,
   }) : super(key: key);
 
   @override
@@ -33,10 +33,7 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(bannerHeight),
-          child: TopBar(
-           
-          )),
+          preferredSize: Size.fromHeight(bannerHeight), child: TopBar()),
       body: Container(
         color: Theme.of(context).scaffoldBackgroundColor,
         padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),

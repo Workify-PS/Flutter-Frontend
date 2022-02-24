@@ -5,33 +5,52 @@ import 'package:workify/models/WishModel.dart';
 import 'package:workify/services/wish_get_service.dart';
 
 class WishController extends GetxController {
-  RxList<WishModel>? birthdayList;
-  RxList<WishModel>? anniversariesList;
-  RxList<WishModel>? newJoinersList;
-
+  RxList<WishModel> birthdayList = <WishModel>[].obs;
+  RxList<WishModel> anniversariesList = <WishModel>[].obs;
+  RxList<WishModel> newJoinersList = <WishModel>[].obs;
+  RxInt selectedIndex = 0.obs;
   @override
   void onInit() async {
     print("Initialized for Wish Controller");
-    getLists();
+    getAllEvents();
     super.onInit();
   }
 
-  Future<void> getLists() async {
+  Future<void> getAllEvents() async {
     final wishGetService = WishGetService();
     final birthdays = await wishGetService.getBirthday();
     final anniversaries = await wishGetService.getBirthday();
     final newJoiners = await wishGetService.getBirthday();
     if (birthdays != null) {
-      birthdayList = RxList<WishModel>(birthdays);
+      birthdayList.addAll(birthdays);
     }
     if (anniversaries != null) {
-      anniversariesList = RxList<WishModel>(anniversaries);
+      anniversariesList.addAll(anniversaries);
     }
     if (newJoiners != null) {
-      newJoinersList = RxList<WishModel>(newJoiners);
+      newJoinersList.addAll(newJoiners);
     }
-    birthdayList!.value.forEach((element) {
+    birthdayList.forEach((element) {
       print(element.fullName);
     });
+  }
+
+  void switchTabTo(int index) {
+    selectedIndex.value = index;
+    update();
+  }
+
+  RxList<WishModel>? getListAsPerIndex() {
+    switch (selectedIndex.value) {
+      case 0:
+        return birthdayList;
+      case 1:
+        return anniversariesList;
+      case 2:
+        return birthdayList;
+
+      default:
+        return null;
+    }
   }
 }

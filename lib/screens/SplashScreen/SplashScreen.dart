@@ -38,7 +38,7 @@ class SplashScreen extends GetView<AuthController> {
     return FutureBuilder(
       future: initializeSettings(),
       builder: (context, snapshot) {
-        return SplashWidget();
+        return LoadingWidget();
       },
     );
   }

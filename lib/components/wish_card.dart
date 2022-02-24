@@ -40,7 +40,7 @@ class WishCard extends GetView<WishController> {
                 selectedFontSize: 15.8,
                 unselectedFontSize: 14,
                 elevation: 10,
-
+                enableFeedback: false,
                 unselectedIconTheme: IconThemeData(opacity: 0, size: 0),
                 selectedIconTheme: IconThemeData(opacity: 0, size: 0),
                 items: [

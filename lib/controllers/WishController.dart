@@ -5,9 +5,12 @@ import 'package:workify/models/WishModel.dart';
 import 'package:workify/services/wish_get_service.dart';
 
 class WishController extends GetxController {
-  RxList<WishModel> birthdayList = <WishModel>[].obs;
-  RxList<WishModel> anniversariesList = <WishModel>[].obs;
-  RxList<WishModel> newJoinersList = <WishModel>[].obs;
+  RxList<WishModel> birthdayList =
+      <WishModel>[WishModel(fullName: "Bday", empCode: "empCode")].obs;
+  RxList<WishModel> anniversariesList =
+      <WishModel>[WishModel(fullName: "anni", empCode: "empCode")].obs;
+  RxList<WishModel> newJoinersList =
+      <WishModel>[WishModel(fullName: "New Joiner", empCode: "empCode")].obs;
   RxInt selectedIndex = 0.obs;
   @override
   void onInit() async {
@@ -47,7 +50,7 @@ class WishController extends GetxController {
       case 1:
         return anniversariesList;
       case 2:
-        return birthdayList;
+        return newJoinersList;
 
       default:
         return null;

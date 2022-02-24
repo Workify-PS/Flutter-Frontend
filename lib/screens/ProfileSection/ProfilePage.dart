@@ -7,12 +7,13 @@ import 'package:workify/controllers/UserController.dart';
 // import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_basic_details.dart';
+import 'package:workify/screens/ProfileSection/SelfProfileSection/basic_details.dart';
+import 'package:workify/screens/ProfileSection/SelfProfileSection/employment_details.dart';
+import 'package:workify/screens/ProfileSection/SelfProfileSection/position_details.dart';
+
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
-import 'basic_details.dart';
-import 'position_details.dart';
-import 'employment_details.dart';
 
 double screenWidth = 0, screenHeight = 0;
 

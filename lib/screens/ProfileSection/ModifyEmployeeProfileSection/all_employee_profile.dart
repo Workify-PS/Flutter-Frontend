@@ -137,7 +137,7 @@ class EmployeeProfile extends StatelessWidget {
             ),
             Container(
                   height: 1,
-                  color: Colors.red,
+                  color: Colors.grey,
             ),
             
           ],

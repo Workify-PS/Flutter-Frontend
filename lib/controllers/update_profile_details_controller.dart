@@ -42,15 +42,13 @@ class UpdateProfileDetailsController extends GetxController {
       {index, userId, designation, grade, jobPosition}) async {
     try {
       var sendData = EmployeeInfoCombined().toJson(
-        employeeInfoCombined:
-            FetchAllEmployeesController.allEmployeeList.elementAt(index)
-      );
+          employeeInfoCombined:
+              FetchAllEmployeesController.allEmployeeList.elementAt(index));
       // sendData['userId'] = userId;
       sendData['designation'] = designation;
       sendData['grade'] = grade;
       sendData['jobPosition'] = jobPosition;
 
-      
       await UpdateProfileDetailsService.callEditUserApi(sendData);
     } catch (error) {
       PrintLog.printLog(
@@ -63,8 +61,7 @@ class UpdateProfileDetailsController extends GetxController {
   }
 
   static void onSubmitEmploymentDetails(
-      {
-      index,
+      {index,
       workLocation,
       employementCategory,
       employementStatus,
@@ -74,9 +71,8 @@ class UpdateProfileDetailsController extends GetxController {
       hrManagerId}) async {
     try {
       var sendData = EmployeeInfoCombined().toJson(
-        employeeInfoCombined:
-            FetchAllEmployeesController.allEmployeeList.elementAt(index)
-      );
+          employeeInfoCombined:
+              FetchAllEmployeesController.allEmployeeList.elementAt(index));
       sendData['workLocation'] = workLocation;
       sendData['employementCategory'] = employementCategory;
       sendData['employementStatus'] = employementStatus;

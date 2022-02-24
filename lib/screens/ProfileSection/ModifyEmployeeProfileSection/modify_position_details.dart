@@ -141,6 +141,7 @@ class _StatefulModifyPositionDetailsState
                     3,
                     (index) => TextFormModifyProfileDetails(
                           myFocusNode: FocusNode(),
+                          keyBoardType: TextInputType.text,
                           enabled: true,
                           text: textFormList[index],
                           controller:

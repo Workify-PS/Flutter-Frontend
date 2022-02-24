@@ -5,7 +5,33 @@ import 'package:workify/models/WishModel.dart';
 import 'package:workify/services/wish_get_service.dart';
 
 class WishController extends GetxController {
-  late List<WishModel> bdays;
-  late List<WishModel> anniversary;
-  late List<WishModel> newj;
+  RxList<WishModel>? birthdayList;
+  RxList<WishModel>? anniversariesList;
+  RxList<WishModel>? newJoinersList;
+
+  @override
+  void onInit() async {
+    print("Initialized for Wish Controller");
+    getLists();
+    super.onInit();
+  }
+
+  Future<void> getLists() async {
+    final wishGetService = WishGetService();
+    final birthdays = await wishGetService.getBirthday();
+    final anniversaries = await wishGetService.getBirthday();
+    final newJoiners = await wishGetService.getBirthday();
+    if (birthdays != null) {
+      birthdayList = RxList<WishModel>(birthdays);
+    }
+    if (anniversaries != null) {
+      anniversariesList = RxList<WishModel>(anniversaries);
+    }
+    if (newJoiners != null) {
+      newJoinersList = RxList<WishModel>(newJoiners);
+    }
+    birthdayList!.value.forEach((element) {
+      print(element.fullName);
+    });
+  }
 }

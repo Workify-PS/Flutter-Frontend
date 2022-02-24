@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:workify/models/HolidayModel.dart';
@@ -42,6 +43,7 @@ class _HolidayCardState extends State<HolidaysCard> {
             return Text("${data.error}");
           } else if (data.hasData) {
             var items = data.data as List<HolidayModel>;
+
             return Padding(
               padding: const EdgeInsets.only(
                   top: kDefaultPadding,
@@ -58,19 +60,22 @@ class _HolidayCardState extends State<HolidaysCard> {
                     itemCount: items.length,
                     // physics: FixedExtentScrollPhysics(),
                     itemBuilder: (context, index) {
+                      final bool shouldWish = index == 0;
                       return Column(
                         children: [
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: kDefaultPadding * 2,
-                                    vertical: kDefaultPadding * 1.2),
-                                child: SizedBox(
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: kDefaultPadding,
+                                vertical: kDefaultPadding * 0.8),
+                            child: Row(
+                              // mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
                                   height: 36,
                                   width: 36,
+                                  margin: const EdgeInsets.only(
+                                      right: kDefaultPadding),
                                   // child: Icon(IconData(int.parse('source',))
                                   // Image(
                                   //     image: NetworkImage(
@@ -85,33 +90,32 @@ class _HolidayCardState extends State<HolidaysCard> {
                                     // scale: 7.5,
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                  child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: kDefaultPadding, right: 10),
-                                    child: Text(
+                                Expanded(
+                                    child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
                                       items[index].holidayName.toString(),
                                       style:
-                                          Theme.of(context).textTheme.headline5,
+                                          Theme.of(context).textTheme.headline6,
                                     ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 18, right: 2),
-                                    child: Text(
+                                    Text(
                                       items[index].date.toString(),
                                       style:
-                                          Theme.of(context).textTheme.subtitle1,
-                                    ),
+                                          Theme.of(context).textTheme.subtitle2,
+                                    )
+                                  ],
+                                )),
+                                Spacer(),
+                                if (shouldWish)
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: kDefaultPadding),
+                                    child: WishText(),
                                   )
-                                ],
-                              ))
-                            ],
+                              ],
+                            ),
                           ),
                           Divider(
                             endIndent: kDefaultPadding,
@@ -139,4 +143,34 @@ class _HolidayCardState extends State<HolidaysCard> {
     final list = json.decode(jsondata) as List<dynamic>;
     return list.map((e) => HolidayModel.fromJson(e)).toList();
   }
+}
+
+class WishText extends StatelessWidget {
+  const WishText({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+      icon: Icon(
+        CupertinoIcons.arrowshape_turn_up_right,
+        size: 18,
+      ),
+      onPressed: wishEmailRedirect,
+      label: Text('Wish'),
+      style: ElevatedButton.styleFrom().copyWith(
+        foregroundColor: MaterialStateProperty.resolveWith<Color?>(
+          (states) {
+            if (states.contains(MaterialState.hovered)) {
+              return kPrimaryColor;
+            }
+            return Theme.of(context).textSelectionColor;
+          },
+        ),
+      ),
+    );
+  }
+
+  Future<void> wishEmailRedirect() async {}
 }

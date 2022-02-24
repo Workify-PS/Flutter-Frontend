@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/exceptions/print_log.dart';
-import 'package:workify/screens/ProfileSection/basic_details.dart';
+import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_basic_details.dart';
 
 class UpdateProfileDetailsService {
   static Future<void> callEditUserApi(Map<String, dynamic> editUserJson) async {

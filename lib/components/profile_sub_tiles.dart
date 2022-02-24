@@ -15,7 +15,7 @@ class ProfileSubTiles extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ProfileSubTile(profileOptions: 'My Profile'),
-            ProfileSubTile(profileOptions: 'Modify Employee Profile'),
+            ProfileSubTile(profileOptions: 'All Employee Profile'),
           ],
         ));
   }
@@ -35,7 +35,7 @@ class ProfileSubTile extends StatelessWidget {
             profileOptions == 'My Profile'
                 ? {Get.toNamed('/profile')}
                 : {
-                    Get.toNamed('/modify-employee-profile'),
+                    Get.toNamed('/all-employee-profile'),
                   };
           },
           onHover: (value) => isSelected.value = value,

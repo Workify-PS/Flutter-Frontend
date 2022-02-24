@@ -9,10 +9,10 @@ import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
 
 class TopBar extends StatefulWidget {
-  final GlobalKey<ScaffoldState> parentScaffoldkey;
+  final GlobalKey<ScaffoldState>? parentScaffoldkey;
   const TopBar({
     Key? key,
-    required this.parentScaffoldkey,
+     this.parentScaffoldkey,
   }) : super(key: key);
 
   @override
@@ -66,7 +66,8 @@ class _TopBarState extends State<TopBar> with CacheManager {
                   : Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () {
-                widget.parentScaffoldkey.currentState!.openEndDrawer();
+                widget.parentScaffoldkey!.currentState!.openEndDrawer();
+              
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(

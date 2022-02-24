@@ -4,24 +4,31 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:workify/components/button.dart';
+import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/controllers/update_profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
-import 'package:workify/screens/ProfileSection/text_form_modify_profile_details.dart';
+import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
+int idx = -1;
 
 final profileDetailsController = Get.find<ProfileDetailsController>();
 final updateProfileDetailsController =
     Get.find<UpdateProfileDetailsController>();
 
 class ModifyEmploymentDetails extends StatelessWidget {
-  const ModifyEmploymentDetails({Key? key}) : super(key: key);
+  final index;
+  const ModifyEmploymentDetails({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    idx = index;
     return StatefulModifyEmploymentDetails();
   }
 }
@@ -40,7 +47,7 @@ class _StatefulModifyEmploymentDetailsState
   var _employementType, _l1ManagerId, _l2ManagerId, _hrManagerId;
 
   void getBack() {
-    Get.offNamed('/home');
+    Get.offNamed('/all-employee-profile');
   }
 
   void callOnSubmitEmploymentDetails() {
@@ -63,6 +70,8 @@ class _StatefulModifyEmploymentDetailsState
 
     portrait = screenWidth < 1000;
 
+
+
     var textFormList = [
       'Work Location',
       'Employment Category',
@@ -73,44 +82,86 @@ class _StatefulModifyEmploymentDetailsState
       'HR Manager ID',
     ];
     _workLocation = TextEditingController(
-      text: profileDetailsController.employeeInfoModelDetails?.workLocation ??
-          'Work Location Not Found',
+      // text: profileDetailsController.employeeInfoModelDetails?.workLocation ??
+      //     'Work Location Not Found',
+      text: idx == -1
+            ? 'Work Location ID Not Found'
+            : FetchAllEmployeesController.allEmployeeList
+                .elementAt(idx)
+                .workLocation
+                .toString()
     );
 
     _employementCategory = TextEditingController(
-      text: profileDetailsController
-              .employeeInfoModelDetails?.employementCategory ??
-          'Employment Category Not Found',
+      // text: profileDetailsController
+      //         .employeeInfoModelDetails?.employementCategory ??
+      //     'Employment Category Not Found',
+      text: idx == -1
+            ? 'Employment Category Not Found'
+            : FetchAllEmployeesController.allEmployeeList
+                .elementAt(idx)
+                .employementCategory
+                .toString()
     );
 
     _employementStatus = TextEditingController(
-      text: profileDetailsController
-              .employeeInfoModelDetails?.employementStatus ??
-          'Employment Status Not Found',
+      // text: profileDetailsController
+      //         .employeeInfoModelDetails?.employementStatus ??
+      //     'Employment Status Not Found',
+      text: idx == -1
+            ? 'Employment Status Not Found'
+            : FetchAllEmployeesController.allEmployeeList
+                .elementAt(idx)
+                .employementStatus
+                .toString()
     );
 
     _employementType = TextEditingController(
-      text:
-          profileDetailsController.employeeInfoModelDetails?.employementType ??
-              'Employment Type Not Found',
+      // text:
+      //     profileDetailsController.employeeInfoModelDetails?.employementType ??
+      //         'Employment Type Not Found',
+      text: idx == -1
+            ? 'Employment Type Not Found'
+            : FetchAllEmployeesController.allEmployeeList
+                .elementAt(idx)
+                .employementType
+                .toString()
     );
 
     _l1ManagerId = TextEditingController(
-      text: profileDetailsController.employeeInfoModelDetails?.l1ManagerId
-              .toString() ??
-          'L1 Manager ID Not Found',
+      // text: profileDetailsController.employeeInfoModelDetails?.l1ManagerId
+      //         .toString() ??
+      //     'L1 Manager ID Not Found',
+      text: idx == -1
+            ? 'L1 Manager ID Not Found'
+            : FetchAllEmployeesController.allEmployeeList
+                .elementAt(idx)
+                .l1ManagerId
+                .toString()
     );
 
     _l2ManagerId = TextEditingController(
-      text: profileDetailsController.employeeInfoModelDetails?.l2ManagerId
-              .toString() ??
-          'L2 Manager ID Not Found',
+      // text: profileDetailsController.employeeInfoModelDetails?.l2ManagerId
+      //         .toString() ??
+      //     'L2 Manager ID Not Found',
+      text: idx == -1
+            ? 'L2 Manager ID Not Found'
+            : FetchAllEmployeesController.allEmployeeList
+                .elementAt(idx)
+                .l2ManagerId
+                .toString()
     );
 
     _hrManagerId = TextEditingController(
-      text: profileDetailsController.employeeInfoModelDetails?.hrManagerId
-              .toString() ??
-          'HR Manager ID Not Found',
+      // text: profileDetailsController.employeeInfoModelDetails?.hrManagerId
+      //         .toString() ??
+      //     'HR Manager ID Not Found',
+      text: idx == -1
+            ? 'HR Manager ID Not Found'
+            : FetchAllEmployeesController.allEmployeeList
+                .elementAt(idx)
+                .hrManagerId
+                .toString()
     );
 
     var textFormList_2_Controllers = {

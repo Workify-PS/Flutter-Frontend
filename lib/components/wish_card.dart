@@ -71,6 +71,6 @@ class _WishCardState extends State<WishCard> {
   }
 
   menu({required String label}) {
-    return BottomNavigationBarItem(label: label, icon: Icon(Icons.abc));
+    return BottomNavigationBarItem(label: label, icon: Icon(Icons.ac_unit));
   }
 }

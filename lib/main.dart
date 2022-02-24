@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
+import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/screens/AuthPage/AuthPage.dart';
@@ -12,16 +13,19 @@ import 'package:workify/screens/AuthPage/AuthPageController.dart';
 // import 'package:workify/screens/AuthPage/ForgotPass.dart';
 // import 'package:workify/screens/SettingsPage.dart';
 import 'package:workify/screens/ChangePassword.dart';
-import 'package:workify/screens/HomePage.dart';
-import 'package:workify/screens/ProfileSection/ProfilePage.dart';
-import 'package:workify/screens/ProfileSection/modify_profile_details.dart';
+import 'package:workify/screens/HomePage/HomePage.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
+
+import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/all_employee_profile.dart';
+import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_profile_details.dart';
+import 'package:workify/screens/ProfileSection/SelfProfileSection/ProfilePage.dart';
 import 'package:workify/screens/SplashScreen/SplashScreen.dart';
+import 'package:workify/services/fetch_all_employee_service.dart';
 import 'package:workify/utils/theme.dart';
 
 import 'controllers/modify_profile_widgets_controller.dart';
 import 'controllers/profile_details_controller.dart';
 import 'controllers/update_profile_details_controller.dart';
-
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
@@ -32,7 +36,7 @@ Future<void> main() async {
   // final res = box.read(CacheManagerKey.ACCESS_TOKEN.toString());
   // final boxt = GetStorage('APP_SETTINGS');
   // final rest = boxt.read(CacheManagerKey.THEME.toString());
-  
+
   // print(res);
   // print(rest);
 
@@ -74,41 +78,47 @@ class _MyAppState extends State<MyApp> with CacheManager {
             page: () => AuthPage(),
             binding: BindingsBuilder(() => {Get.put(AuthPageController())})),
 
-        if (getToken() != null) GetPage(name: "/home", page: () => HomePage()),
+        if (getToken() != null)
+          GetPage(
+              name: "/home",
+              page: () => HomePage(),
+              binding: BindingsBuilder(() => {Get.put(HomePageController())})),
 
-        if(getToken() != null)
-        GetPage(
-          name: '/profile',
-          page: () => ProfilePage(),
-          binding: BindingsBuilder(() => {
-            Get.put(ProfileWidgetsController()),
-            Get.put(ProfileDetailsController()),
-          }),
-        ),
+        if (getToken() != null)
+          GetPage(
+            name: '/profile',
+            page: () => ProfilePage(),
+            binding: BindingsBuilder(() => {
+                  Get.put(ProfileWidgetsController()),
+                  Get.put(ProfileDetailsController()),
+                }),
+          ),
         // GetPage(
         //   name: "/forgot",
         //   page: () => ForgotPass(),
         // ),
-        if(getToken() != null)
-          GetPage(name: "/change-password", 
-          page: () => ChangePassword()
-        ),
-        
-        if(getToken() != null)
+        if (getToken() != null)
+          GetPage(name: "/change-password", page: () => ChangePassword()),
+
+        if (getToken() != null)
           GetPage(
             name: "/modify-employee-profile",
             page: () => ModifyProfileDetails(),
             binding: BindingsBuilder(() => {
-              Get.put(ModifyProfileWidgetsController()),
-              Get.put(ProfileDetailsController()),
-              Get.put(UpdateProfileDetailsController())
-            }),
+                  Get.put(ModifyProfileWidgetsController()),
+                  Get.put(ProfileDetailsController()),
+                  Get.put(UpdateProfileDetailsController())
+                }),
           ),
           
-        // GetPage(
-        //   name: '/settings',
-        //   page: () => SettingsPage(),
-        // ),
+        if(getToken() != null)
+        GetPage(
+          name: '/all-employee-profile',
+          page: () => AllEmployeeProfile(),
+          binding: BindingsBuilder(() => {
+            Get.put(FetchAllEmployeesController())
+          }),
+        ),
       ],
     );
   }

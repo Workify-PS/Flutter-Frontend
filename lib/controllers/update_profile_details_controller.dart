@@ -45,7 +45,7 @@ class UpdateProfileDetailsController extends GetxController {
         employeeInfoCombined:
             FetchAllEmployeesController.allEmployeeList.elementAt(index)
       );
-      sendData['userId'] = userId;
+      // sendData['userId'] = userId;
       sendData['designation'] = designation;
       sendData['grade'] = grade;
       sendData['jobPosition'] = jobPosition;

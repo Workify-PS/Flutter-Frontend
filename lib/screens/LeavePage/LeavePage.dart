@@ -1,6 +1,11 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/controllers/leavePageController.dart';
 
 import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
@@ -8,7 +13,8 @@ import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
-var profileDetailsController;
+var datePicked;
+var profileDetailsController, leavePageController;
 
 class LeavePage extends StatelessWidget {
   const LeavePage({Key? key}) : super(key: key);
@@ -23,6 +29,7 @@ class LeavePage extends StatelessWidget {
     portrait = screenWidth < 1000;
 
     profileDetailsController = Get.find<ProfileDetailsController>();
+    leavePageController = Get.find<LeavePageController>();
 
     return Scaffold(
         appBar: AppBar(
@@ -76,7 +83,7 @@ class LeavePage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            PastAttendanceRelated(),
+                            WrapPastAttendanceRelated(),
                           ],
                         ),
                       ),
@@ -103,7 +110,7 @@ class LeavePagePortrait extends StatelessWidget {
           flex: 6,
           child: Row(
             children: [
-              PastAttendanceRelated(),
+              WrapPastAttendanceRelated(),
               Container(
                 width: 1,
                 color: Colors.grey,
@@ -148,7 +155,7 @@ class AttendanceRegularize extends StatelessWidget {
     return Expanded(
       flex: 2,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             'Attendance',
@@ -156,10 +163,10 @@ class AttendanceRegularize extends StatelessWidget {
               fontSize: 20,
             ),
           ),
-          Button(
-            buttonTextWidget: Text('Regularize'),
-            onPressed: () {},
-          ),
+          // Button(
+          //   buttonTextWidget: Text('Regularize'),
+          //   onPressed: () {},
+          // ),
         ],
       ),
     );
@@ -171,6 +178,8 @@ class AttendanceExtended extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    leavePageController = Get.find<LeavePageController>();
+
     return Expanded(
       flex: 8,
       child: Padding(
@@ -180,22 +189,31 @@ class AttendanceExtended extends StatelessWidget {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                LeavePageTextWidgets(leavePageTextWidgetString: 'MIS'),
                 LeavePageTextWidgets(leavePageTextWidgetString: 'Absent'),
-                LeavePageTextWidgets(leavePageTextWidgetString: 'Half Days'),
-                LeavePageTextWidgets(leavePageTextWidgetString: 'RR'),
+                LeavePageTextWidgets(
+                    leavePageTextWidgetString: 'Status(Half/Full Day)'),
               ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                LeavePageTextWidgets(leavePageTextWidgetString: '--'),
-                LeavePageTextWidgets(leavePageTextWidgetString: '--'),
-                LeavePageTextWidgets(leavePageTextWidgetString: '--'),
-                LeavePageTextWidgets(leavePageTextWidgetString: '--'),
+                SizedBox(
+                  width: portrait == true ? 90 : 100,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Present(),
+                  ),
+                ),
+                SizedBox(
+                  width: portrait == true ? 90 : 100,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Status(),
+                  ),
+                ),
               ],
             ),
           ],
@@ -205,9 +223,25 @@ class AttendanceExtended extends StatelessWidget {
   }
 }
 
-class PastAttendanceRelated extends StatelessWidget {
-  const PastAttendanceRelated({Key? key}) : super(key: key);
+class WrapPastAttendanceRelated extends StatelessWidget {
+  const WrapPastAttendanceRelated({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return StatefulPastAttendanceRelated();
+  }
+}
+
+class StatefulPastAttendanceRelated extends StatefulWidget {
+  const StatefulPastAttendanceRelated({Key? key}) : super(key: key);
+
+  @override
+  _StatefulPastAttendanceRelatedState createState() =>
+      _StatefulPastAttendanceRelatedState();
+}
+
+class _StatefulPastAttendanceRelatedState
+    extends State<StatefulPastAttendanceRelated> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -221,20 +255,37 @@ class PastAttendanceRelated extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Padding(
-                padding: portrait==true? const EdgeInsets.only(right: 16)
-                :const EdgeInsets.only(right: 0.001),
+                padding: portrait == true
+                    ? const EdgeInsets.only(right: 16)
+                    : const EdgeInsets.only(right: 0.001),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Past',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
+                    datePicked == null
+                        ? Text(
+                            'Past',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          )
+                        : Text(DateFormat.yMMMMd('en_US')
+                            .format(DateTime.parse(datePicked))),
                     Button(
                       buttonTextWidget: Text('Date'),
-                      onPressed: () {},
+                      onPressed: () {
+                        DatePicker.showDatePicker(context,
+                            theme: DatePickerTheme(
+                              backgroundColor: Colors.grey.shade200,
+                            ), onConfirm: (value) {
+                          var date = value.toString().split(' ');
+                          var onlyDate = date[0];
+                          setState(() {
+                            datePicked = onlyDate;
+                          });
+                          leavePageController.date = onlyDate;
+                          leavePageController.findDateSpecificAttendanceList();
+                        });
+                      },
                     ),
                   ],
                 ),
@@ -251,10 +302,10 @@ class PastAttendanceRelated extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        LeavePageTextWidgets(
-                            leavePageTextWidgetString: 'Leave'),
-                        LeavePageTextWidgets(
-                            leavePageTextWidgetString: 'Present hours'),
+                        // LeavePageTextWidgets(
+                        //     leavePageTextWidgetString: 'Leave'),
+                        // LeavePageTextWidgets(
+                        //     leavePageTextWidgetString: 'Present hours'),
                         LeavePageTextWidgets(
                             leavePageTextWidgetString: 'Shift'),
                         LeavePageTextWidgets(
@@ -267,11 +318,17 @@ class PastAttendanceRelated extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        LeavePageTextWidgets(leavePageTextWidgetString: '--'),
-                        LeavePageTextWidgets(leavePageTextWidgetString: '--'),
-                        LeavePageTextWidgets(leavePageTextWidgetString: '--'),
-                        LeavePageTextWidgets(leavePageTextWidgetString: '--'),
-                        LeavePageTextWidgets(leavePageTextWidgetString: '--'),
+                        // LeavePageTextWidgets(leavePageTextWidgetString: '--'),
+                        // PresentHours(),
+                        SizedBox(
+                          width: portrait == true? 100:200,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Shift(),
+                          ),
+                        ),
+                        InTime(),
+                        OutTime(),
                       ],
                     ),
                   ],
@@ -441,7 +498,102 @@ class LeavePageTextWidgets extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 100,
-      child: Text(leavePageTextWidgetString),
+      child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Text(leavePageTextWidgetString)),
     );
+  }
+}
+
+class Present extends StatelessWidget {
+  const Present({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      if (leavePageController.isLoading.value) {
+        return Text('Loading Data');
+      } else {
+        return leavePageController.index != '-1'
+            ? Text(leavePageController.absent == true ? 'No' : 'Yes')
+            : Text('Not Found');
+      }
+    });
+  }
+}
+
+class Status extends StatelessWidget {
+  const Status({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      if (leavePageController.isLoading.value) {
+        return Text('Loading Data');
+      } else {
+        return Text(leavePageController.index != '-1'
+            ? leavePageController
+                .attendanceList[int.parse(leavePageController.index.value)]
+                .status
+            : 'Not Found');
+      }
+    });
+  }
+}
+
+class Shift extends StatelessWidget {
+  const Shift({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      if (leavePageController.isLoading.value) {
+        return Text('Loading Data');
+      } else {
+        return Text(leavePageController.index != '-1'
+            ? leavePageController
+                .attendanceList[int.parse(leavePageController.index.value)]
+                .shift
+            : 'Not Found');
+      }
+    });
+  }
+}
+
+class InTime extends StatelessWidget {
+  const InTime({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      if (leavePageController.isLoading.value) {
+        return Text('Loading Data');
+      } else {
+        return Text(leavePageController.index != '-1'
+            ? leavePageController
+                .attendanceList[int.parse(leavePageController.index.value)]
+                .actualIn
+            : 'Not Found');
+      }
+    });
+  }
+}
+
+class OutTime extends StatelessWidget {
+  const OutTime({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      if (leavePageController.isLoading.value) {
+        return Text('Loading Data');
+      } else {
+        return Text(leavePageController.index != '-1'
+            ? leavePageController
+                .attendanceList[int.parse(leavePageController.index.value)]
+                .actualOut
+            : 'Not Found');
+      }
+    });
   }
 }

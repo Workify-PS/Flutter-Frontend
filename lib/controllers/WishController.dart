@@ -5,10 +5,18 @@ import 'package:workify/models/WishModel.dart';
 import 'package:workify/services/wish_get_service.dart';
 
 class WishController extends GetxController {
+
   RxList<WishModel> birthdayList = <WishModel>[].obs;
   RxList<WishModel> anniversariesList = <WishModel>[].obs;
   RxList<WishModel> newJoinersList = <WishModel>[].obs;
   RxList<WishModel> activeList = <WishModel>[].obs;
+//   RxList<WishModel> birthdayList =
+//       <WishModel>[WishModel(fullName: "Bday", empCode: "empCode")].obs;
+//   RxList<WishModel> anniversariesList =
+//       <WishModel>[WishModel(fullName: "anni", empCode: "empCode")].obs;
+//   RxList<WishModel> newJoinersList =
+//       <WishModel>[WishModel(fullName: "New Joiner", empCode: "empCode")].obs;
+// >>>>>>> main
   RxInt selectedIndex = 0.obs;
   
   @override
@@ -37,6 +45,7 @@ class WishController extends GetxController {
 
   void switchTabTo(int index) {
     selectedIndex.value = index;
+
     if (index == 0) {
       activeList = birthdayList;
     } else if (index == 1) {
@@ -45,5 +54,22 @@ class WishController extends GetxController {
       activeList = newJoinersList;
     } else {}
     // update();
+
+//     update();
+//   }
+
+//   RxList<WishModel>? getListAsPerIndex() {
+//     switch (selectedIndex.value) {
+//       case 0:
+//         return birthdayList;
+//       case 1:
+//         return anniversariesList;
+//       case 2:
+//         return newJoinersList;
+
+//       default:
+//         return null;
+//     }
+
   }
 }

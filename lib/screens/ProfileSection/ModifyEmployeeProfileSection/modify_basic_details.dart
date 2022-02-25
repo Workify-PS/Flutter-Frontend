@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -13,10 +15,6 @@ import 'package:workify/controllers/profile_details_controller.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
-
-final profileDetailsController = Get.find<ProfileDetailsController>();
-final updateProfileDetailsController =
-    Get.find<UpdateProfileDetailsController>();
 
 class ModifyBasicDetails extends StatelessWidget {
   const ModifyBasicDetails({Key? key}) : super(key: key);
@@ -35,7 +33,9 @@ class StatefulModifyBasicDetails extends StatefulWidget {
 }
 
 class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
-  var _mobileNumber, _doB, _marriageStatus, _city, _state, _country;
+  var _mobile, _doB, _marriageStatus, _city, _state, _country;
+  String code = '';
+  var MobileNumber = [];
 
   void getBack() {
     Get.offNamed('/home');
@@ -43,7 +43,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
 
   void callOnSubmitBasicDetails() {
     UpdateProfileDetailsController.onSubmitBasicDetails(
-        mobile: _mobileNumber.text,
+        mobile: code + ' ' + _mobile.text,
         dob: _doB.text,
         marriageStatus: _marriageStatus.text,
         city: _city.text,
@@ -60,6 +60,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
 
     portrait = screenWidth < 1000;
 
+    final profileDetailsController = Get.find<ProfileDetailsController>();
 
     var textFormList = [
       'Mobile Number',
@@ -70,9 +71,21 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
       'Country'
     ];
 
-    _mobileNumber = TextEditingController(
-      text: profileDetailsController.employeeInfoModelDetails?.mobile ??
-          'Mobile Number Not Found',
+    void onInitCountryCode(CountryCode countryCode) {
+      code = countryCode.toString();
+    }
+
+    void onChangeCountryCode(CountryCode countryCode) {
+      code = countryCode.toString();
+    }
+
+    String _tempMobileNumber =
+        profileDetailsController.employeeInfoModelDetails?.mobile ??
+            'Mobile Number Not Found';
+    MobileNumber = _tempMobileNumber.split(' ');
+
+    _mobile = TextEditingController(
+      text: MobileNumber[1]
     );
 
     _doB = TextEditingController(
@@ -100,7 +113,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
     );
 
     var textFormList_2_Controllers = {
-      'Mobile Number': _mobileNumber,
+      'Mobile Number': _mobile,
       'Date of Birth': _doB,
       'Marriage Status': _marriageStatus,
       'City': _city,
@@ -114,6 +127,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
           : const EdgeInsets.all(8),
       child: Container(
         color: Colors.transparent,
+        // color: Colors.red,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -121,15 +135,55 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
               flex: 9,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(
-                    5,
-                    (index) => TextFormModifyProfileDetails(
-                          myFocusNode: FocusNode(),
-                          enabled: index == 1 ? false : true,
-                          text: textFormList[index],
-                          controller:
-                              textFormList_2_Controllers[textFormList[index]],
-                        )),
+                children: List.generate(6, (index) {
+                  if (index == 0) {
+                    return Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: CountryCodePicker(
+                            showDropDownButton: true,
+                            initialSelection: MobileNumber[0],
+                            showFlag: false,
+                            onInit: (value) {
+                              onInitCountryCode(value!);
+                            },
+                            onChanged: onChangeCountryCode,
+                            favorite: ['+91', 'IN'],
+                            showCountryOnly: true,
+                            showOnlyCountryWhenClosed: false,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 8,
+                          child: TextFormModifyProfileDetails(
+                            myFocusNode: FocusNode(),
+                            keyBoardType: TextInputType.number,
+                            enabled: true,
+                            text: textFormList[index],
+                            controller:
+                                textFormList_2_Controllers[textFormList[index]],
+                          ),
+                        ),
+                      ],
+                    );
+
+                    // return SizedBox(
+                    //   width: 500,
+
+                    // );
+
+                  } else {
+                    return TextFormModifyProfileDetails(
+                      myFocusNode: FocusNode(),
+                      keyBoardType: TextInputType.text,
+                      enabled: index == 1 ? false : true,
+                      text: textFormList[index],
+                      controller:
+                          textFormList_2_Controllers[textFormList[index]],
+                    );
+                  }
+                }),
               ),
             ),
             Expanded(

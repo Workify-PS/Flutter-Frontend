@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 
 import 'package:workify/exceptions/print_log.dart';
@@ -38,19 +39,16 @@ class UpdateProfileDetailsController extends GetxController {
   }
 
   static void onSubmitPositionDetails(
-      {userId, designation, grade, jobPosition}) async {
+      {index, userId, designation, grade, jobPosition}) async {
     try {
       var sendData = EmployeeInfoCombined().toJson(
-        employeeInfoCombined:
-            ProfileDetailsController.employeeInfoCombinedEveryWhere,
-      );
-      sendData['userId'] = userId;
+          employeeInfoCombined:
+              FetchAllEmployeesController.allEmployeeList.elementAt(index));
+      // sendData['userId'] = userId;
       sendData['designation'] = designation;
       sendData['grade'] = grade;
       sendData['jobPosition'] = jobPosition;
 
-      // print('\n\n\npassword' + sendData['password']);
-      
       await UpdateProfileDetailsService.callEditUserApi(sendData);
     } catch (error) {
       PrintLog.printLog(
@@ -63,7 +61,8 @@ class UpdateProfileDetailsController extends GetxController {
   }
 
   static void onSubmitEmploymentDetails(
-      {workLocation,
+      {index,
+      workLocation,
       employementCategory,
       employementStatus,
       employementType,
@@ -72,9 +71,8 @@ class UpdateProfileDetailsController extends GetxController {
       hrManagerId}) async {
     try {
       var sendData = EmployeeInfoCombined().toJson(
-        employeeInfoCombined:
-            ProfileDetailsController.employeeInfoCombinedEveryWhere,
-      );
+          employeeInfoCombined:
+              FetchAllEmployeesController.allEmployeeList.elementAt(index));
       sendData['workLocation'] = workLocation;
       sendData['employementCategory'] = employementCategory;
       sendData['employementStatus'] = employementStatus;

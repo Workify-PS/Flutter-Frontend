@@ -63,9 +63,10 @@ class _BodyState extends State<Body> {
                       Text(
                         'Change Password:',
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: kTitleTextColor),
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          // color: kTitleTextColor
+                        ),
                       ),
                       SizedBox(
                         height: 14,
@@ -125,9 +126,10 @@ class _BodyState extends State<Body> {
                         Text(
                           'Password ',
                           style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: kTitleTextColor),
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            // color: kTitleTextColor
+                          ),
                         ),
                         SizedBox(
                           height: 14,

@@ -9,37 +9,30 @@ import 'package:workify/screens/SplashScreen/splash_widget.dart';
 class SplashScreen extends GetView<AuthController> {
   const SplashScreen({Key? key}) : super(key: key);
 
-  Future<void> initializeSettings() async {
-    //controller.checkLoginStatus();
-    if (controller.isSignedIn.value) {
-      final token = controller.getToken();
-      final _userController = Get.find<UserController>();
-      await _userController.setUser(token!);
-      Get.toNamed("/home");
-      PrintLog.printLog(
-        fileName:'SplashScreen',
-        functionName: 'initializeSettings',
-        blockNumber: 1,
-        printStatement: 'User is logged in with Token\n$token',
-      );
+  Future<bool> initializeSettings() async {
+    final userController = Get.find<UserController>();
+    if (controller.isSignedIn.value && userController.currentUser != null) {
+      return true;
     } else {
-      PrintLog.printLog(
-        fileName:'SplashScreen',
-        functionName: 'initializeSettings',
-        blockNumber: 2,
-        printStatement: 'User is not logged In !!',
-      );
-      Get.toNamed("/auth");
+      return false;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: initializeSettings(),
-      builder: (context, snapshot) {
-        return LoadingWidget();
-      },
-    );
+    initializeSettings().then((value) {
+      if (value) {
+        Get.toNamed("/home");
+      } else {
+        Get.toNamed("/auth");
+      }
+    });
+    return LoadingWidget();
+    // return FutureBuilder(
+    //   future: initializeSettings(),
+    //   builder: (context, snapshot) {
+    //     return LoadingWidget();
+    //   },
+    // );
   }
 }

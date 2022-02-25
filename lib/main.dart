@@ -68,6 +68,7 @@ class _MyAppState extends State<MyApp> with CacheManager {
             Get.put(AuthController()).checkLoginStatus(),
             Get.put(UserController())
           }),
+          
       getPages: [
         GetPage(
           name: "/",
@@ -78,13 +79,13 @@ class _MyAppState extends State<MyApp> with CacheManager {
             page: () => AuthPage(),
             binding: BindingsBuilder(() => {Get.put(AuthPageController())})),
 
-        if (getToken() != null)
+        // if (getToken() != null)
           GetPage(
               name: "/home",
               page: () => HomePage(),
               binding: BindingsBuilder(() => {Get.put(HomePageController())})),
 
-        if (getToken() != null)
+        //if (getToken() != null)
           GetPage(
             name: '/profile',
             page: () => ProfilePage(),

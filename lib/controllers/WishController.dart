@@ -33,9 +33,7 @@ class WishController extends GetxController {
     if (newJoiners != null) {
       newJoinersList.addAll(newJoiners);
     }
-    birthdayList.forEach((element) {
-      print(element.fullName);
-    });
+    
   }
 
   void switchTabTo(int index) {

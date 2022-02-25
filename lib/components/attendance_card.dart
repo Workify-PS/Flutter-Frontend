@@ -28,13 +28,15 @@ class _AttendanceCardState extends State<AttendanceCard> {
   bool isPunchedIn = false;
   bool isPunchedOut = false;
   final daily = DailyAttendanceModel().obs;
-  DateTime dateTime = DateTime.now();
+  // final dateinTime = DateTime.now();
+  // final dateoutTime = DateTime.now();
   void newintime() {
     daily.update((daily) {
       // daily!.inTime = DateTime.now().hour.toString() +
       //     ":" +
       //     DateTime.now().minute.toString();
-      daily!.inTime = dateTime.format('H:i');
+      // daily!.inTime = dateinTime.format('H:i');
+      daily!.inTime = DateTime.now().format('H:i');
     });
   }
 
@@ -43,7 +45,8 @@ class _AttendanceCardState extends State<AttendanceCard> {
       // daily!.outTime.last = DateTime.now().hour.toString() +
       //     ":" +
       //     DateTime.now().minute.toString();
-      daily!.outTime.last = dateTime.format('H:i');
+      // daily!.outTime.last = dateoutTime.format('H:i');
+      daily!.outTime.last = DateTime.now().format('H:i');
     });
   }
 

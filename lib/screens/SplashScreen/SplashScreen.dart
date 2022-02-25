@@ -3,13 +3,15 @@ import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/screens/HomePage/HomePage.dart';
 import 'package:workify/screens/SplashScreen/OnBoardingScreen.dart';
 import 'package:workify/screens/SplashScreen/splash_widget.dart';
 
-class SplashScreen extends GetView<AuthController> {
-  const SplashScreen({Key? key}) : super(key: key);
+class OnBoardingScreen extends GetView<AuthController> {
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
   Future<bool> initializeSettings() async {
+    //await Future.delayed(Duration(seconds: 5));
     final userController = Get.find<UserController>();
     if (controller.isSignedIn.value && userController.currentUser != null) {
       return true;
@@ -22,17 +24,23 @@ class SplashScreen extends GetView<AuthController> {
   Widget build(BuildContext context) {
     initializeSettings().then((value) {
       if (value) {
-        Get.toNamed("/home");
+        //Get.toNamed("/home");
       } else {
         Get.toNamed("/auth");
       }
     });
-    return LoadingWidget();
-    // return FutureBuilder(
-    //   future: initializeSettings(),
-    //   builder: (context, snapshot) {
-    //     return LoadingWidget();
-    //   },
-    // );
+    // return LoadingWidget();
+    return controller.isSignedIn.reactive.obx((state) {
+      print("STATE CHANGES IN IS SIGNED IN");
+      if (state != null) {
+        if (state.value) {
+          return HomePage();
+        } else {
+          //Get.toNamed("/auth");
+          return LoadingWidget(); // to be replaced by warning
+        }
+      }
+      return LoadingWidget();
+    }, onLoading: LoadingWidget());
   }
 }

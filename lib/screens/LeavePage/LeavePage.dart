@@ -515,7 +515,7 @@ class Present extends StatelessWidget {
         return Text('Loading Data');
       } else {
         return leavePageController.index != '-1'
-            ? Text(leavePageController.absent == true ? 'No' : 'Yes')
+            ? Text(leavePageController.absent == true ? 'Yes' : 'No')
             : Text('Not Found');
       }
     });

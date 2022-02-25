@@ -7,6 +7,7 @@ import 'package:workify/controllers/UserController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/mixins/cache.dart';
+import 'package:workify/screens/AttendancePage/AttendancePage.dart';
 import 'package:workify/screens/AuthPage/AuthPage.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
 
@@ -96,6 +97,8 @@ class _MyAppState extends State<MyApp> with CacheManager {
           ),
         if (getToken() != null)
           GetPage(name: "/change-password", page: () => ChangePassword()),
+        if (getToken() != null)
+          GetPage(name: "/attendance-detail", page: () => AttendancePage()),
 
         if (getToken() != null)
           GetPage(
@@ -107,16 +110,15 @@ class _MyAppState extends State<MyApp> with CacheManager {
                   Get.put(UpdateProfileDetailsController())
                 }),
           ),
-          
-        if(getToken() != null)
+
+        if (getToken() != null)
           GetPage(
             name: '/all-employee-profile',
             page: () => AllEmployeeProfile(),
-            binding: BindingsBuilder(() => {
-              Get.put(FetchAllEmployeesController())
-            }),
+            binding:
+                BindingsBuilder(() => {Get.put(FetchAllEmployeesController())}),
           ),
-        if(getToken()!=null)
+        if (getToken() != null)
           GetPage(
             name: '/leave',
             page: () => LeavePage(),

@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
+import 'package:workify/controllers/leavePageController.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/screens/AuthPage/AuthPage.dart';
@@ -26,7 +27,7 @@ import 'package:workify/utils/theme.dart';
 
 import 'controllers/modify_profile_widgets_controller.dart';
 import 'controllers/profile_details_controller.dart';
-import 'controllers/update_profile_details_controller.dart';
+import 'controllers/modify_profile_details_controller.dart';
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
@@ -122,6 +123,7 @@ class _MyAppState extends State<MyApp> with CacheManager {
             page: () => LeavePage(),
             binding: BindingsBuilder(() => {
                   Get.put(ProfileDetailsController()),
+                  Get.put(LeavePageController()),
                 }),
           ),
       ],

@@ -57,7 +57,7 @@ class _HolidayCardState extends State<HolidaysCard> {
                     itemCount: items.length,
                     // physics: FixedExtentScrollPhysics(),
                     itemBuilder: (context, index) {
-                      final bool shouldWish = index == 0;
+                     
                       return Column(
                         children: [
                           Padding(
@@ -104,13 +104,8 @@ class _HolidayCardState extends State<HolidaysCard> {
                                     )
                                   ],
                                 )),
-                                Spacer(),
-                                if (shouldWish)
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: kDefaultPadding),
-                                    child: WishText(),
-                                  )
+                                
+                                
                               ],
                             ),
                           ),

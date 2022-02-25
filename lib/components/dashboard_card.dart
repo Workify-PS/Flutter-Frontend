@@ -27,7 +27,9 @@ class _DashBoardCardState extends State<DashBoardCard> {
           child: Column(
             children: [
               if (widget.title != null)
+
                 Text(widget.title!, style: Theme.of(context).textTheme.headline5!
+
                     //.copyWith(backgroundColor: Colors.amberAccent)),
                     ),
               Expanded(child: widget.child)

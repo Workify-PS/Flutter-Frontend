@@ -5,25 +5,33 @@ import 'package:workify/models/WishModel.dart';
 import 'package:workify/services/wish_get_service.dart';
 
 class WishController extends GetxController {
-  RxList<WishModel> birthdayList =
-      <WishModel>[WishModel(fullName: "Bday", empCode: "empCode")].obs;
-  RxList<WishModel> anniversariesList =
-      <WishModel>[WishModel(fullName: "anni", empCode: "empCode")].obs;
-  RxList<WishModel> newJoinersList =
-      <WishModel>[WishModel(fullName: "New Joiner", empCode: "empCode")].obs;
+
+  RxList<WishModel> birthdayList = <WishModel>[].obs;
+  RxList<WishModel> anniversariesList = <WishModel>[].obs;
+  RxList<WishModel> newJoinersList = <WishModel>[].obs;
+  RxList<WishModel> activeList = <WishModel>[].obs;
+//   RxList<WishModel> birthdayList =
+//       <WishModel>[WishModel(fullName: "Bday", empCode: "empCode")].obs;
+//   RxList<WishModel> anniversariesList =
+//       <WishModel>[WishModel(fullName: "anni", empCode: "empCode")].obs;
+//   RxList<WishModel> newJoinersList =
+//       <WishModel>[WishModel(fullName: "New Joiner", empCode: "empCode")].obs;
+// >>>>>>> main
   RxInt selectedIndex = 0.obs;
+  
   @override
   void onInit() async {
     print("Initialized for Wish Controller");
     getAllEvents();
+    activeList = birthdayList;
     super.onInit();
   }
 
   Future<void> getAllEvents() async {
     final wishGetService = WishGetService();
     final birthdays = await wishGetService.getBirthday();
-    final anniversaries = await wishGetService.getBirthday();
-    final newJoiners = await wishGetService.getBirthday();
+    final anniversaries = await wishGetService.getAnniversary();
+    final newJoiners = await wishGetService.getNewjoiners();
     if (birthdays != null) {
       birthdayList.addAll(birthdays);
     }
@@ -33,25 +41,35 @@ class WishController extends GetxController {
     if (newJoiners != null) {
       newJoinersList.addAll(newJoiners);
     }
-    
   }
 
   void switchTabTo(int index) {
     selectedIndex.value = index;
-    update();
-  }
 
-  RxList<WishModel>? getListAsPerIndex() {
-    switch (selectedIndex.value) {
-      case 0:
-        return birthdayList;
-      case 1:
-        return anniversariesList;
-      case 2:
-        return newJoinersList;
+    if (index == 0) {
+      activeList = birthdayList;
+    } else if (index == 1) {
+      activeList = anniversariesList;
+    } else if (index == 2) {
+      activeList = newJoinersList;
+    } else {}
+    // update();
 
-      default:
-        return null;
-    }
+//     update();
+//   }
+
+//   RxList<WishModel>? getListAsPerIndex() {
+//     switch (selectedIndex.value) {
+//       case 0:
+//         return birthdayList;
+//       case 1:
+//         return anniversariesList;
+//       case 2:
+//         return newJoinersList;
+
+//       default:
+//         return null;
+//     }
+
   }
 }

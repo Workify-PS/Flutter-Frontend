@@ -53,6 +53,7 @@ class _StatefulModifyPositionDetailsState
 
   void callOnSubmitPositionDetails() {
     UpdateProfileDetailsController.onSubmitPositionDetails(
+        index : idx,
         userId: _userId.text,
         designation: _designation.text,
         grade: _grade.text,
@@ -69,7 +70,7 @@ class _StatefulModifyPositionDetailsState
     portrait = screenWidth < 1000;
 
     var textFormList = [
-      'User Position ID',
+      // 'User Position ID',
       'Designation',
       'Grade',
       'Job Position',
@@ -117,7 +118,7 @@ class _StatefulModifyPositionDetailsState
                 .toString());
 
     var textFormList_2_Controllers = {
-      'User Position ID': _userId,
+      // 'User Position ID': _userId,
       'Designation': _designation,
       'Grade': _grade,
       'Job Position': _jobPosition
@@ -137,10 +138,11 @@ class _StatefulModifyPositionDetailsState
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(
-                    4,
+                    3,
                     (index) => TextFormModifyProfileDetails(
                           myFocusNode: FocusNode(),
-                          enabled: index == 0 ? false : true,
+                          keyBoardType: TextInputType.text,
+                          enabled: true,
                           text: textFormList[index],
                           controller:
                               textFormList_2_Controllers[textFormList[index]],

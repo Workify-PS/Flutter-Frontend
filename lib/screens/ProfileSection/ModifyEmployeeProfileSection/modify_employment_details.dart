@@ -52,6 +52,7 @@ class _StatefulModifyEmploymentDetailsState
 
   void callOnSubmitEmploymentDetails() {
     UpdateProfileDetailsController.onSubmitEmploymentDetails(
+        index: idx,
         workLocation: _workLocation.text,
         employementCategory: _employementCategory.text,
         employementStatus: _employementStatus.text,
@@ -191,6 +192,7 @@ class _StatefulModifyEmploymentDetailsState
                     7,
                     (index) => TextFormModifyProfileDetails(
                           myFocusNode: FocusNode(),
+                          keyBoardType: TextInputType.text,
                           enabled: true,
                           text: textFormList[index],
                           controller:

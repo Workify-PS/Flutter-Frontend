@@ -5,6 +5,7 @@ class TextFormModifyProfileDetails extends StatelessWidget {
   final String text;
   final FocusNode myFocusNode;
   final bool enabled;
+  final keyBoardType;
   final controller;
 
   const TextFormModifyProfileDetails({
@@ -12,6 +13,7 @@ class TextFormModifyProfileDetails extends StatelessWidget {
     required this.myFocusNode,
     required this.enabled,
     required this.text,
+    required this.keyBoardType,
     required this.controller,
   }) : super(key: key);
 
@@ -19,6 +21,7 @@ class TextFormModifyProfileDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       focusNode: myFocusNode,
+      keyboardType: keyBoardType,
       enabled: enabled,
       cursorColor: kBottomShadowColor,
       controller: controller,

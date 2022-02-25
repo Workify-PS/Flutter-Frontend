@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
+import 'package:workify/mixins/cache.dart';
 import 'package:workify/models/WishModel.dart';
 
-class WishGetService extends GetConnect {
+class WishGetService extends GetConnect with CacheManager{
   final String bdayURL = "http://localhost:8080/workify/v1/wish/birthday";
   final String annURL = "http://localhost:8080/workify/v1/wish/anniversary";
   final String newJURL = "http://localhost:8080/workify/v1/wish/newjoiners";
@@ -18,7 +19,11 @@ class WishGetService extends GetConnect {
   }
 
   Future<List<WishModel>?> getAnniversary() async {
-    var headers = {'Content-Type': 'application/json'};
+    final token = getToken();
+    var headers = {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json'
+    };
     final response = await get(annURL, headers: headers);
     if (response.statusCode == HttpStatus.ok) {
       List<dynamic> ann = response.body;

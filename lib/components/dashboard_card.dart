@@ -22,14 +22,18 @@ class _DashBoardCardState extends State<DashBoardCard> {
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Column(
-          children: [
-            if (widget.title != null)
-              Text(widget.title!, style: Theme.of(context).textTheme.headline5!
-                  //.copyWith(backgroundColor: Colors.amberAccent)),
-                  ),
-            Expanded(child: widget.child)
-          ],
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Column(
+            children: [
+              if (widget.title != null)
+                Text(widget.title!,
+                    style: Theme.of(context).textTheme.headline5!
+                    //.copyWith(backgroundColor: Colors.amberAccent)),
+                    ),
+              Expanded(child: widget.child)
+            ],
+          ),
         )).neuromorphism(
       context,
       blurRadius: 15,

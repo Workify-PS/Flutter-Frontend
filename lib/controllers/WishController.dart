@@ -8,11 +8,13 @@ class WishController extends GetxController {
   RxList<WishModel> birthdayList = <WishModel>[].obs;
   RxList<WishModel> anniversariesList = <WishModel>[].obs;
   RxList<WishModel> newJoinersList = <WishModel>[].obs;
+  RxList<WishModel> activeList = <WishModel>[].obs;
   RxInt selectedIndex = 0.obs;
   @override
   void onInit() async {
     print("Initialized for Wish Controller");
     getAllEvents();
+    activeList = birthdayList;
     super.onInit();
   }
 
@@ -30,27 +32,17 @@ class WishController extends GetxController {
     if (newJoiners != null) {
       newJoinersList.addAll(newJoiners);
     }
-    birthdayList.forEach((element) {
-      print(element.fullName);
-    });
   }
 
   void switchTabTo(int index) {
     selectedIndex.value = index;
-    update();
-  }
-
-  RxList<WishModel>? getListAsPerIndex() {
-    switch (selectedIndex.value) {
-      case 0:
-        return birthdayList;
-      case 1:
-        return anniversariesList;
-      case 2:
-        return birthdayList;
-
-      default:
-        return null;
-    }
+    if (index == 0) {
+      activeList = birthdayList;
+    } else if (index == 1) {
+      activeList = anniversariesList;
+    } else if (index == 2) {
+      activeList = newJoinersList;
+    } else {}
+    // update();
   }
 }

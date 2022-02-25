@@ -15,51 +15,56 @@ class WishCard extends GetView<WishController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      final list = controller.getListAsPerIndex();
-
-      if (list == null) {
+      if (controller.activeList == null) {
         return Text('Loading...');
       } else {
         return Padding(
           padding: const EdgeInsets.only(top: kDefaultPadding),
           child: Column(
             children: [
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: list.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                kDefaultPadding, 2, kDefaultPadding, 2),
-                            child: CircleAvatar(
-                                backgroundColor: Colors.primaries[
-                                    Random().nextInt(Colors.primaries.length)],
-                                child: Text(
-                                  list[index].fullName[0],
-                                )),
-                          ),
-                          Text(
-                            list[index].fullName +
-                                " (" +
-                                list[index].empCode +
-                                ")",
-                            style: Theme.of(context).textTheme.titleMedium,
-                          )
-                        ],
-                      ),
-                      Divider(
-                        indent: kDefaultPadding,
-                        endIndent: kDefaultPadding,
-                      )
-                    ],
-                  );
-                },
-              ),
+              controller.activeList.isEmpty
+                  ? Center(
+                      child: Text("Pardon, This list seems to be empty"),
+                    )
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.activeList.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      kDefaultPadding, 2, kDefaultPadding, 2),
+                                  child: CircleAvatar(
+                                      backgroundColor: Colors.primaries[index +
+                                          ((controller.selectedIndex.value *
+                                                  4) %
+                                              Colors.primaries.length)],
+                                      child: Text(
+                                        controller
+                                            .activeList[index].fullName[0],
+                                      )),
+                                ),
+                                Text(
+                                  controller.activeList[index].fullName +
+                                      " (" +
+                                      controller.activeList[index].empCode +
+                                      ")",
+                                  style: Theme.of(context).textTheme.subtitle1,
+                                )
+                              ],
+                            ),
+                            Divider(
+                              indent: kDefaultPadding,
+                              endIndent: kDefaultPadding,
+                            )
+                          ],
+                        );
+                      },
+                    ),
               Spacer(),
               BottomNavigationBar(
                 currentIndex: controller.selectedIndex.value,

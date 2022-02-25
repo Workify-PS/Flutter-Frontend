@@ -204,7 +204,7 @@ class AttendanceExtended extends StatelessWidget {
                   width: portrait == true ? 90 : 100,
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-                    child: Present(),
+                    child: Absent(),
                   ),
                 ),
                 SizedBox(
@@ -505,8 +505,8 @@ class LeavePageTextWidgets extends StatelessWidget {
   }
 }
 
-class Present extends StatelessWidget {
-  const Present({Key? key}) : super(key: key);
+class Absent extends StatelessWidget {
+  const Absent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

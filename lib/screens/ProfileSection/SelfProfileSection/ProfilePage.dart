@@ -2,9 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/UserController.dart';
 
-// import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_basic_details.dart';
 import 'package:workify/utils/constants.dart';
@@ -27,14 +25,11 @@ class ProfilePage extends StatelessWidget {
     'Modify Basic Details': ModifyBasicDetails(),
   };
 
-  // final userController = Get.put(UserController());
   
 
   @override
   Widget build(BuildContext context) {
     final profileWidgetsController = Get.find<ProfileWidgetsController>();
-    // print('JobRole');
-    // print(userController.currentUser?.value.role);
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
     screenWidth = device.size.width;

@@ -3,7 +3,7 @@ import 'package:workify/components/side_menu.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/DashBoard.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
-import 'package:workify/screens/ProfileSection/ProfilePage.dart';
+import 'package:workify/screens/ProfileSection/SelfProfileSection/ProfilePage.dart';
 // import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:get/get.dart';

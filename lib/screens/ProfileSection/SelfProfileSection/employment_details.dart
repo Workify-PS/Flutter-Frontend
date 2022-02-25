@@ -9,7 +9,6 @@ double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 // bool fresher = false;
 
-final profileDetailsController = Get.find<ProfileDetailsController>();
 
 class WrapEmploymentDetails extends StatefulWidget {
   const WrapEmploymentDetails({Key? key}) : super(key: key);
@@ -286,6 +285,7 @@ class EmployeeCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('Employee Code Loading');
@@ -308,6 +308,7 @@ class Department extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('Department Loading');
@@ -330,6 +331,7 @@ class WorkLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('Work Location Loading');
@@ -354,6 +356,7 @@ class EmploymentCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('Employment Category Loading');
@@ -377,6 +380,7 @@ class EmploymentStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('Employment Status Loading');
@@ -400,6 +404,7 @@ class EmploymentType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('Employment Type Loading');
@@ -423,6 +428,7 @@ class L1ManagerID extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('L1 Manager ID Loading');
@@ -446,6 +452,7 @@ class L2ManagerID extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('L2 Manager ID Loading');
@@ -469,6 +476,7 @@ class HRManagerID extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
     return Obx(() {
       if (profileDetailsController.isLoading.value) {
         return Text('HR Manager ID Loading');

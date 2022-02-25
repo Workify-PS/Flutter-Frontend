@@ -10,6 +10,7 @@ class WishController extends GetxController {
   RxList<WishModel> newJoinersList = <WishModel>[].obs;
   RxList<WishModel> activeList = <WishModel>[].obs;
   RxInt selectedIndex = 0.obs;
+  
   @override
   void onInit() async {
     print("Initialized for Wish Controller");

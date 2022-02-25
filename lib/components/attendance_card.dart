@@ -8,6 +8,7 @@ import 'package:workify/components/button.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/theme.dart';
+import 'package:date_time_format/date_time_format.dart';
 
 class DailyAttendanceModel {
   String inTime;
@@ -27,20 +28,22 @@ class _AttendanceCardState extends State<AttendanceCard> {
   bool isPunchedIn = false;
   bool isPunchedOut = false;
   final daily = DailyAttendanceModel().obs;
-
+  DateTime dateTime = DateTime.now();
   void newintime() {
     daily.update((daily) {
-      daily!.inTime = DateTime.now().hour.toString() +
-          ":" +
-          DateTime.now().minute.toString();
+      // daily!.inTime = DateTime.now().hour.toString() +
+      //     ":" +
+      //     DateTime.now().minute.toString();
+      daily!.inTime = dateTime.format('H:i');
     });
   }
 
   void newouttime() {
     daily.update((daily) {
-      daily!.outTime.last = DateTime.now().hour.toString() +
-          ":" +
-          DateTime.now().minute.toString();
+      // daily!.outTime.last = DateTime.now().hour.toString() +
+      //     ":" +
+      //     DateTime.now().minute.toString();
+      daily!.outTime.last = dateTime.format('H:i');
     });
   }
 

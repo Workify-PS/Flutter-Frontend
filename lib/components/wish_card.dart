@@ -28,35 +28,38 @@ class WishCard extends GetView<WishController> {
                 shrinkWrap: true,
                 itemCount: list.length,
                 itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                kDefaultPadding, 2, kDefaultPadding, 2),
-                            child: CircleAvatar(
-                                backgroundColor: Colors.primaries[
-                                    Random().nextInt(Colors.primaries.length)],
-                                child: Text(
-                                  list[index].fullName[0],
-                                )),
-                          ),
-                          Text(
-                            list[index].fullName +
-                                " (" +
-                                list[index].empCode +
-                                ")",
-                            style: Theme.of(context).textTheme.titleMedium,
-                          )
-                        ],
-                      ),
-                      Divider(
-                        indent: kDefaultPadding,
-                        endIndent: kDefaultPadding,
-                      )
-                    ],
+                  return GestureDetector(
+                    onTap: () => print(list[index]),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  kDefaultPadding, 2, kDefaultPadding, 2),
+                              child: CircleAvatar(
+                                  backgroundColor: Colors.primaries[Random()
+                                      .nextInt(Colors.primaries.length)],
+                                  child: Text(
+                                    list[index].fullName[0],
+                                  )),
+                            ),
+                            Text(
+                              list[index].fullName +
+                                  " (" +
+                                  list[index].empCode +
+                                  ")",
+                              style: Theme.of(context).textTheme.titleMedium,
+                            )
+                          ],
+                        ),
+                        Divider(
+                          indent: kDefaultPadding,
+                          endIndent: kDefaultPadding,
+                        )
+                      ],
+                    ),
                   );
                 },
               ),

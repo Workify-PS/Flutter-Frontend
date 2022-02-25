@@ -7,6 +7,7 @@ import 'package:workify/controllers/UserController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/mixins/cache.dart';
+import 'package:workify/mixins/middleware.dart';
 import 'package:workify/screens/AuthPage/AuthPage.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
 
@@ -69,7 +70,6 @@ class _MyAppState extends State<MyApp> with CacheManager {
             Get.put(AuthController()).checkLoginStatus(),
             Get.put(UserController())
           }),
-          
       getPages: [
         GetPage(
           name: "/",
@@ -80,51 +80,44 @@ class _MyAppState extends State<MyApp> with CacheManager {
             page: () => AuthPage(),
             binding: BindingsBuilder(() => {Get.put(AuthPageController())})),
 
-        // if (getToken() != null)
-          GetPage(
-              name: "/home",
-              page: () => HomePage(),
-              binding: BindingsBuilder(() => {Get.put(HomePageController())})),
-
-        //if (getToken() != null)
-          GetPage(
-            name: '/profile',
-            page: () => ProfilePage(),
-            binding: BindingsBuilder(() => {
-                  Get.put(ProfileWidgetsController()),
-                  Get.put(ProfileDetailsController()),
-                }),
-          ),
-        if (getToken() != null)
-          GetPage(name: "/change-password", page: () => ChangePassword()),
-
-        if (getToken() != null)
-          GetPage(
-            name: "/modify-employee-profile",
-            page: () => ModifyProfileDetails(),
-            binding: BindingsBuilder(() => {
-                  Get.put(ModifyProfileWidgetsController()),
-                  Get.put(ProfileDetailsController()),
-                  Get.put(UpdateProfileDetailsController())
-                }),
-          ),
-          
-        if(getToken() != null)
-          GetPage(
-            name: '/all-employee-profile',
-            page: () => AllEmployeeProfile(),
-            binding: BindingsBuilder(() => {
-              Get.put(FetchAllEmployeesController())
-            }),
-          ),
-        if(getToken()!=null)
-          GetPage(
-            name: '/leave',
-            page: () => LeavePage(),
-            binding: BindingsBuilder(() => {
-                  Get.put(ProfileDetailsController()),
-                }),
-          ),
+        GetPage(
+            name: "/home",
+            page: () => HomePage(),
+            middlewares: [AuthMiddlware()],
+            children: [
+              GetPage(
+                name: '/profile',
+                page: () => ProfilePage(),
+                binding: BindingsBuilder(() => {
+                      Get.put(ProfileWidgetsController()),
+                      Get.put(ProfileDetailsController()),
+                    }),
+              ),
+              GetPage(name: "/change-password", page: () => ChangePassword()),
+              GetPage(
+                name: "/modify-employee-profile",
+                page: () => ModifyProfileDetails(),
+                binding: BindingsBuilder(() => {
+                      Get.put(ModifyProfileWidgetsController()),
+                      Get.put(ProfileDetailsController()),
+                      Get.put(UpdateProfileDetailsController())
+                    }),
+              ),
+              GetPage(
+                name: '/all-employee-profile',
+                page: () => AllEmployeeProfile(),
+                binding: BindingsBuilder(
+                    () => {Get.put(FetchAllEmployeesController())}),
+              ),
+              GetPage(
+                name: '/leave',
+                page: () => LeavePage(),
+                binding: BindingsBuilder(() => {
+                      Get.put(ProfileDetailsController()),
+                    }),
+              ),
+            ],
+            binding: BindingsBuilder(() => {Get.put(HomePageController())})),
       ],
     );
   }

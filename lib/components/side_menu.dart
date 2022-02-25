@@ -32,6 +32,8 @@ class SideMenu extends StatelessWidget {
       color: Theme.of(context).primaryColor,
       child: SafeArea(
         child: SingleChildScrollView(
+          controller: ScrollController(),
+          physics: ScrollPhysics(),
           child: Column(
             children: [
               Container(

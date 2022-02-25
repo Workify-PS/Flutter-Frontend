@@ -49,6 +49,7 @@ class _HolidayCardState extends State<HolidaysCard> {
               child: Scrollbar(
                 isAlwaysShown: true,
                 showTrackOnHover: true,
+                
                 controller: _scrollController,
                 child: FadingEdgeScrollView.fromScrollView(
                   gradientFractionOnStart: 0.6,

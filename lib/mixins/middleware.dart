@@ -5,7 +5,8 @@ import 'package:workify/mixins/cache.dart';
 
 class AuthMiddlware extends GetMiddleware with CacheManager {
   
-
   RouteSettings? redirect(String? route) =>
-      (getToken()==null) ? RouteSettings(name: "/auth") : null;
+      (getToken() != null || route == "/auth")
+          ? null
+          : RouteSettings(name: "/auth");
 }

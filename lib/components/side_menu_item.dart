@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:workify/components/profile_sub_tiles.dart';
 import 'package:workify/components/settings_sub_tiles.dart';
 import 'package:workify/components/sub_tiles.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
 
@@ -13,12 +14,11 @@ class SideMenuItem extends StatefulWidget {
   //final SubItemList subItems;
   final IconData icon;
   final String title;
+  final Widget? subTilesWidget;
 
-  const SideMenuItem({
-    Key? key,
-    required this.icon,
-    required this.title,
-  }) : super(key: key);
+  const SideMenuItem(
+      {Key? key, required this.icon, required this.title, this.subTilesWidget})
+      : super(key: key);
 
   @override
   State<SideMenuItem> createState() => _SideMenuItemState();
@@ -26,10 +26,17 @@ class SideMenuItem extends StatefulWidget {
 
 class _SideMenuItemState extends State<SideMenuItem> {
   bool isHover = false;
-  bool isSettingsExpanded = false;
-  bool isProfileExpanded = false;
-  bool isExpaned = false;
+  // bool isSettingsExpanded = false;
+  // bool isProfileExpanded = false;
+  bool isExpanded = false;
+  late bool isExpandable;
+  @override
+  void initState() {
+    isExpandable = widget.subTilesWidget != null;
+    super.initState();
+  }
 
+  final HomePageController _homePageController = Get.find<HomePageController>();
   @override
   Widget build(BuildContext context) {
     Color accentColor = MyTheme().isDark(context) ? kDividerColor : kGrayColor;
@@ -46,18 +53,13 @@ class _SideMenuItemState extends State<SideMenuItem> {
           const EdgeInsets.only(top: kDefaultPadding, bottom: kDefaultPadding),
       child: InkWell(
         onTap: () {
-          var widgetTitle = widget.title.toLowerCase();
-          setState(() {
-            // isExpaned = !isExpaned;
-            if (widgetTitle == 'settings') {
-              isSettingsExpanded = !isSettingsExpanded;
-            }
-            if (widgetTitle == 'profile') {
-              isProfileExpanded = !isProfileExpanded;
-            }
-          });
-          if (widgetTitle != 'settings' && widgetTitle!='profile') {
-            Get.toNamed("/${widget.title.toLowerCase()}");
+          if (isExpandable) {
+            setState(() {
+              isExpanded = !isExpanded;
+            });
+          } else {
+            _homePageController.gotoPage(widget.title);
+            //Get.toNamed("/${widget.title.toLowerCase()}");
           }
         },
         onHover: (value) {
@@ -80,7 +82,7 @@ class _SideMenuItemState extends State<SideMenuItem> {
                     width: kDefaultPadding / 2,
                   ),
                   Icon(widget.icon,
-                      color: (isHover || isExpaned) ? hoverColor : null),
+                      color: (isHover || isExpanded) ? hoverColor : null),
                   SizedBox(
                     width: kDefaultPadding * 0.75,
                   ),
@@ -92,13 +94,13 @@ class _SideMenuItemState extends State<SideMenuItem> {
                         ),
                   ),
                   Spacer(),
-                  if (isHover && !isSettingsExpanded && !isProfileExpanded)
+                  if (isHover && !isExpanded)
                     SvgPicture.asset(
                       "assets/icons/Angle right.svg",
                       width: 16,
                       color: accentColor,
                     ),
-                  if (isExpaned || isSettingsExpanded || isProfileExpanded)
+                  if (isExpanded)
                     SvgPicture.asset(
                       "assets/icons/Angle down.svg",
                       width: 16,
@@ -106,12 +108,8 @@ class _SideMenuItemState extends State<SideMenuItem> {
                     ),
                 ],
               ),
-              if (isExpaned)
-                SubTilesList()
-              else if (isSettingsExpanded)
-                SettingsSubTiles()
-              else if(isProfileExpanded)
-                ProfileSubTiles()
+              if (isExpanded && widget.subTilesWidget != null)
+                widget.subTilesWidget!
             ],
           ),
         ),

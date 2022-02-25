@@ -2,7 +2,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/components/profile_sub_tiles.dart';
+import 'package:workify/components/settings_sub_items.dart';
+import 'package:workify/components/settings_sub_tiles.dart';
 import 'package:workify/components/side_menu_item.dart';
+import 'package:workify/routes/router.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 
@@ -24,7 +28,7 @@ class SideMenu extends StatelessWidget {
     //Icons.flag_outlined,
     CupertinoIcons.gear_alt
   ];
-  final pageController = Get.find<HomePageController>();
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,6 +64,8 @@ class SideMenu extends StatelessWidget {
                       (index) => SideMenuItem(
                             icon: icons[index],
                             title: titles[index],
+                            
+                            subTilesWidget: generateSubTilesList(titles[index]),
                           )),
                 ),
               ),
@@ -69,5 +75,16 @@ class SideMenu extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget? generateSubTilesList(String title) {
+    switch (title.toLowerCase()) {
+      case "settings":
+        return SettingsSubTiles();
+      case "profile":
+        return ProfileSubTiles();
+      default:
+        return null;
+    }
   }
 }

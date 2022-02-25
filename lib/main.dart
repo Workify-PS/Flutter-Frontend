@@ -73,51 +73,51 @@ class _MyAppState extends State<MyApp> with CacheManager {
       getPages: [
         GetPage(
           name: "/",
+          middlewares: [AuthMiddlware()],
+          children: [
+            GetPage(
+                name: "/home",
+                page: () => HomePage(),
+                binding:
+                    BindingsBuilder(() => {Get.put(HomePageController())})),
+            GetPage(
+              name: '/profile',
+              page: () => ProfilePage(),
+              binding: BindingsBuilder(() => {
+                    Get.put(ProfileWidgetsController()),
+                    Get.put(ProfileDetailsController()),
+                  }),
+            ),
+            GetPage(name: "/change-password", page: () => ChangePassword()),
+            GetPage(
+              name: "/modify-employee-profile",
+              page: () => ModifyProfileDetails(),
+              binding: BindingsBuilder(() => {
+                    Get.put(ModifyProfileWidgetsController()),
+                    Get.put(ProfileDetailsController()),
+                    Get.put(UpdateProfileDetailsController())
+                  }),
+            ),
+            GetPage(
+              name: '/all-employee-profile',
+              page: () => AllEmployeeProfile(),
+              binding: BindingsBuilder(
+                  () => {Get.put(FetchAllEmployeesController())}),
+            ),
+            GetPage(
+              name: '/leave',
+              page: () => LeavePage(),
+              binding: BindingsBuilder(() => {
+                    Get.put(ProfileDetailsController()),
+                  }),
+            ),
+          ],
           page: () => SplashScreen(),
         ), //check for already signed in
         GetPage(
             name: "/auth",
             page: () => AuthPage(),
             binding: BindingsBuilder(() => {Get.put(AuthPageController())})),
-
-        GetPage(
-            name: "/home",
-            page: () => HomePage(),
-            middlewares: [AuthMiddlware()],
-            children: [
-              GetPage(
-                name: '/profile',
-                page: () => ProfilePage(),
-                binding: BindingsBuilder(() => {
-                      Get.put(ProfileWidgetsController()),
-                      Get.put(ProfileDetailsController()),
-                    }),
-              ),
-              GetPage(name: "/change-password", page: () => ChangePassword()),
-              GetPage(
-                name: "/modify-employee-profile",
-                page: () => ModifyProfileDetails(),
-                binding: BindingsBuilder(() => {
-                      Get.put(ModifyProfileWidgetsController()),
-                      Get.put(ProfileDetailsController()),
-                      Get.put(UpdateProfileDetailsController())
-                    }),
-              ),
-              GetPage(
-                name: '/all-employee-profile',
-                page: () => AllEmployeeProfile(),
-                binding: BindingsBuilder(
-                    () => {Get.put(FetchAllEmployeesController())}),
-              ),
-              GetPage(
-                name: '/leave',
-                page: () => LeavePage(),
-                binding: BindingsBuilder(() => {
-                      Get.put(ProfileDetailsController()),
-                    }),
-              ),
-            ],
-            binding: BindingsBuilder(() => {Get.put(HomePageController())})),
       ],
     );
   }

@@ -5,7 +5,7 @@ import 'package:workify/utils/theme.dart';
 
 import 'package:workify/controllers/AuthController.dart';
 
-final authController = Get.put(AuthController());
+
 
 class WrapSettingsSubItems extends StatelessWidget {
   const WrapSettingsSubItems({Key? key}) : super(key: key);
@@ -49,7 +49,7 @@ class SubTile extends StatelessWidget {
   }) : super(key: key);
 
   RxBool isSelected = false.obs;
-
+final authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Obx(() => InkWell(

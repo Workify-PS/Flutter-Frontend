@@ -62,7 +62,7 @@ class LeavePage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Button(
+                            PrimaryButton(
                               buttonTextWidget: Text('New Leave'),
                               onPressed: () {},
                             ),
@@ -117,7 +117,7 @@ class LeavePagePortrait extends StatelessWidget {
                 flex: 5,
                 child: Column(
                   children: [
-                    Button(
+                    PrimaryButton(
                       buttonTextWidget: Text('New Leave'),
                       onPressed: () {},
                     ),
@@ -268,7 +268,7 @@ class _StatefulPastAttendanceRelatedState
                           )
                         : Text(DateFormat.yMMMMd('en_US')
                             .format(DateTime.parse(datePicked))),
-                    Button(
+                    PrimaryButton(
                       buttonTextWidget: Text('Date'),
                       onPressed: () {
                         DatePicker.showDatePicker(context,

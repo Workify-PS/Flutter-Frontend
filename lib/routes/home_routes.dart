@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/WishController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
+import 'package:workify/controllers/leavePageController.dart';
 import 'package:workify/controllers/modify_profile_details_controller.dart';
 import 'package:workify/controllers/modify_profile_widgets_controller.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
@@ -111,6 +112,7 @@ class HomeRouter {
           page: () => LeavePage(),
           binding: BindingsBuilder(() => {
                 Get.lazyPut(() => ProfileDetailsController()),
+                Get.lazyPut(() => LeavePageController())
               }),
         );
       default:

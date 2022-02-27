@@ -19,9 +19,14 @@ class UpdateProfileDetailsController extends GetxController {
             ProfileDetailsController.employeeInfoCombinedEveryWhere,
       );
       sendData['mobile'] = mobile;
-      // var date = DateFormat('yyyy-MM-dd').format(DateTime.parse('2002-02-02'));
-      // print('\n\nDob\n\n' + date);
-      // sendData['dob'] = dob;
+
+      var date = dob.toString().substring(6)
+        +'-'+dob.toString().substring(3,5)
+        +'-'+dob.toString().substring(0,2);
+
+      // print('\n\n#Dob\n\n' + date);
+      sendData['dob'] = date;
+      
       sendData['marriageStatus'] = marriageStatus;
       sendData['city'] = city;
       sendData['state'] = state;

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/WishController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
+import 'package:workify/controllers/modify_profile_details_controller.dart';
 import 'package:workify/controllers/modify_profile_widgets_controller.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
-import 'package:workify/controllers/update_profile_details_controller.dart';
+
 import 'package:workify/screens/AttendancePage/AttendancePage.dart';
 import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/DashBoard.dart';

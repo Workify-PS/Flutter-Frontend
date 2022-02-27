@@ -37,7 +37,7 @@ class SettingsSubTile extends StatelessWidget {
             settingsOptions == 'Change Theme'
                 ? WrapChangeTheme()
                 : settingsOptions == 'Change Password'
-                    ? Get.toNamed('/change-password')
+                    ? Get.toNamed('/change-password',id: 1)
                     : authController.callLogOut();
           },
           onHover: (value) => isSelected.value = value,

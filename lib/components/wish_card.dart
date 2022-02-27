@@ -117,6 +117,7 @@ class _WishCardItemState extends State<WishCardItem> {
                 padding: const EdgeInsets.fromLTRB(
                     kDefaultPadding, 2, kDefaultPadding, 2),
                 child: CircleAvatar(
+                  radius: 16,
                     backgroundColor: Colors.primaries[widget.colorIndex],
                     child: Text(
                       widget.model.fullName[0],

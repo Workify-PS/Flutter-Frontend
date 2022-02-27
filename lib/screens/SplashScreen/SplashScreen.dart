@@ -3,43 +3,44 @@ import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/screens/HomePage/HomePage.dart';
 import 'package:workify/screens/SplashScreen/OnBoardingScreen.dart';
 import 'package:workify/screens/SplashScreen/splash_widget.dart';
 
-class SplashScreen extends GetView<AuthController> {
-  const SplashScreen({Key? key}) : super(key: key);
+class OnBoardingScreen extends GetView<AuthController> {
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
-  Future<void> initializeSettings() async {
-    //controller.checkLoginStatus();
-    if (controller.isSignedIn.value) {
-      final token = controller.getToken();
-      final _userController = Get.find<UserController>();
-      await _userController.setUser(token!);
-      Get.toNamed("/home");
-      PrintLog.printLog(
-        fileName:'SplashScreen',
-        functionName: 'initializeSettings',
-        blockNumber: 1,
-        printStatement: 'User is logged in with Token\n$token',
-      );
+  Future<bool> initializeSettings() async {
+    //await Future.delayed(Duration(seconds: 5));
+    final userController = Get.find<UserController>();
+    if (controller.isSignedIn.value && userController.currentUser != null) {
+      return true;
     } else {
-      PrintLog.printLog(
-        fileName:'SplashScreen',
-        functionName: 'initializeSettings',
-        blockNumber: 2,
-        printStatement: 'User is not logged In !!',
-      );
-      Get.toNamed("/auth");
+      return false;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: initializeSettings(),
-      builder: (context, snapshot) {
-        return LoadingWidget();
-      },
-    );
+    initializeSettings().then((value) {
+      if (value) {
+        //Get.toNamed("/home");
+      } else {
+        Get.toNamed("/auth");
+      }
+    });
+    // return LoadingWidget();
+    return controller.isSignedIn.reactive.obx((state) {
+      print("STATE CHANGES IN IS SIGNED IN");
+      if (state != null) {
+        if (state.value) {
+          return HomePage();
+        } else {
+          //Get.toNamed("/auth");
+          return LoadingWidget(); // to be replaced by warning
+        }
+      }
+      return LoadingWidget();
+    }, onLoading: LoadingWidget());
   }
 }

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import 'package:workify/components/button.dart';
-import 'package:workify/controllers/update_profile_details_controller.dart';
+import 'package:workify/controllers/modify_profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
@@ -142,6 +142,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                         Expanded(
                           flex: 2,
                           child: CountryCodePicker(
+                            dialogBackgroundColor: Colors.transparent,
                             showDropDownButton: true,
                             initialSelection: MobileNumber[0],
                             showFlag: false,
@@ -150,7 +151,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                             },
                             onChanged: onChangeCountryCode,
                             favorite: ['+91', 'IN'],
-                            showCountryOnly: true,
+                            showCountryOnly: false,
                             showOnlyCountryWhenClosed: false,
                           ),
                         ),
@@ -177,7 +178,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                     return TextFormModifyProfileDetails(
                       myFocusNode: FocusNode(),
                       keyBoardType: TextInputType.text,
-                      enabled: index == 1 ? false : true,
+                      enabled: true,
                       text: textFormList[index],
                       controller:
                           textFormList_2_Controllers[textFormList[index]],

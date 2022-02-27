@@ -1,15 +1,28 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/WishController.dart';
+import 'package:workify/routes/router.dart';
+import 'package:workify/screens/AttendancePage/AttendancePage.dart';
+import 'package:workify/screens/DashBoard.dart';
+import 'package:workify/screens/LeavePage/LeavePage.dart';
+import 'dart:html' as html;
 
 class HomePageController extends GetxController {
-  RxInt sideMenuIndex = 0.obs;
+  RxString pageName = ''.obs;
+  RxBool sideMenuCollapsed = false.obs;
   @override
   void onInit() {
-    Get.put(WishController());
+    pageName.value = Routes.home;
     super.onInit();
   }
 
-  void gotoPage(int index) {
-    sideMenuIndex.value = index;
+  void gotoPage(String page, BuildContext context) {
+    pageName.value = page;
+    //sideMenuCollapsed.value = page != Routes.home;
+    
+    print("Request to go to ${pageName.value}");
+    
+    Get.keys[1]!.currentState!.pushNamed(page);
+    html.window.history.pushState(null, "/", page);
   }
 }

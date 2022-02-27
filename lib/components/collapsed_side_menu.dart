@@ -1,49 +1,42 @@
-// import 'package:flutter/foundation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
+import 'package:flutter/cupertino.dart';
+
 import 'package:workify/components/profile_sub_tiles.dart';
 import 'package:workify/components/settings_sub_items.dart';
 import 'package:workify/components/settings_sub_tiles.dart';
 import 'package:workify/components/side_menu_item.dart';
 import 'package:workify/routes/router.dart';
-import 'package:workify/screens/HomePage/HomePageController.dart';
-import 'package:workify/utils/constants.dart';
 
-class SideMenu extends GetView<HomePageController> {
-  SideMenu({Key? key}) : super(key: key);
-  final titles = [
-    "Home",
-    "Profile",
-    "Attendance",
-    "Leave",
-    //"Report",
-    "Settings"
-  ];
+import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/theme.dart';
+
+class CollapsedSideMenu extends GetView<HomePageController> {
+  CollapsedSideMenu({Key? key}) : super(key: key);
   final icons = [
-    Icons.home_outlined,
-    CupertinoIcons.person,
-    CupertinoIcons.square_favorites,
-    Icons.time_to_leave_outlined,
+    Icons.home_filled,
+    CupertinoIcons.person_fill,
+    CupertinoIcons.square_list_fill,
+    Icons.time_to_leave_rounded,
     //Icons.flag_outlined,
-    CupertinoIcons.gear_alt
+    CupertinoIcons.gear_alt_fill
   ];
-  
   @override
   Widget build(BuildContext context) {
+    Color dividerColor =
+        !(MyTheme().isDark(context)) ? kDividerColor : kDividerDarkColor;
     return Container(
       height: double.infinity,
       color: Theme.of(context).primaryColor,
-      child: MouseRegion(
-        onExit: (event) {
-            if(controller.pageName.value!=Routes.home){
-              controller.sideMenuCollapsed.value = true;
-            }
+      child: SafeArea(
+        child: MouseRegion(
+          onEnter: (event) {
+            controller.sideMenuCollapsed.value = false;
           },
           // onExit: (event) {
           //   controller.sideMenuCollapsed.value = true;
           // },
-        child: SafeArea(
           child: SingleChildScrollView(
             //controller: ScrollController(),
             physics: ScrollPhysics(),
@@ -55,7 +48,7 @@ class SideMenu extends GetView<HomePageController> {
                   color: Theme.of(context).primaryColor,
                   padding: const EdgeInsets.all(16),
                   child: Image.asset(
-                    "assets/images/banner.png",
+                    "assets/images/logo.png",
                     fit: BoxFit.contain,
                     color: Theme.of(context).colorScheme.secondary,
                   ),
@@ -69,32 +62,33 @@ class SideMenu extends GetView<HomePageController> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
-                        titles.length,
-                        (index) => SideMenuItem(
-                              icon: icons[index],
-                              title: titles[index],
-                              
-                              subTilesWidget: generateSubTilesList(titles[index]),
-                            )),
+                      icons.length,
+                      (index) => Padding(
+                          padding: const EdgeInsets.only(
+                              top: kDefaultPadding, bottom: kDefaultPadding),
+                          
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                bottom: kDefaultPadding * 1.5, right: 5),
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(color: dividerColor),
+                              ),
+                            ),
+                            child: Icon(
+                              icons[index],
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                          )),
+                    ),
                   ),
                 ),
-                SizedBox(height: kDefaultPadding * 2),
+                SizedBox(height: kDefaultPadding),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  Widget? generateSubTilesList(String title) {
-    switch (title.toLowerCase()) {
-      case "settings":
-        return SettingsSubTiles();
-      case "profile":
-        return ProfileSubTiles();
-      default:
-        return null;
-    }
   }
 }

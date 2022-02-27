@@ -113,10 +113,19 @@ class HomeRouter {
                 Get.lazyPut(() => ProfileDetailsController()),
               }),
         );
-      default:
+
+        case "/attendance":
         return GetPageRoute(
           settings: settings,
-          page: () => LoadingWidget(),
+          routeName: '/attendance',
+          page: () => AttendancePage(),
+          
+        );
+      default:
+        print("UNKNOWN ROUTE RETURNING DEFAULT");
+        return GetPageRoute(
+          settings: settings,
+          page: () => LoadingWidget(), //TODO: THROW 404
         );
     }
   }

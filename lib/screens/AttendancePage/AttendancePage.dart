@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:workify/components/top_bar.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/generators.dart';
 
 import '../../utils/sizes.dart';
 
@@ -99,17 +101,11 @@ class _AttendancePageState extends State<AttendancePage> {
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Padding(
-          padding: const EdgeInsets.only(right: 1400),
-          child: Text('My Attendance Details :',
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: kSecondaryColor)),
-        ),
-        backgroundColor: kPrimaryColor,
-      ),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(bannerHeight),
+          child: generateTopBar(
+            title: "My Attendance",
+          )),
       body: Padding(
         padding:
             const EdgeInsets.fromLTRB(50, kDefaultPadding, 50, kDefaultPadding),

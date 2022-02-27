@@ -10,9 +10,13 @@ import 'package:workify/utils/theme.dart';
 
 class TopBar extends StatefulWidget {
   final GlobalKey<ScaffoldState>? parentScaffoldkey;
+  final Widget? customTopBar;
+  final String title;
   const TopBar({
     Key? key,
-     this.parentScaffoldkey,
+    this.customTopBar,
+    this.parentScaffoldkey,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -20,68 +24,21 @@ class TopBar extends StatefulWidget {
 }
 
 class _TopBarState extends State<TopBar> with CacheManager {
-  final user = Get.find<UserController>().currentUser;
-  late String fname;
-  String greeting() {
-    fname = user?.value.firstName ?? "Buddy";
-    var hour = DateTime.now().hour;
-    if (hour < 12) return 'Good Morning, $fname';
-    if (hour < 17) return 'Good Afternoon $fname';
-    return 'Good Evening $fname';
-  }
-
   @override
   Widget build(BuildContext context) {
-    double iconSize = 24;
     return Material(
       color: Theme.of(context).primaryColor,
       borderOnForeground: true,
       child: Container(
         height: bannerHeight,
         padding: const EdgeInsets.only(left: 36, right: 48),
-        child: Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // false
-            //     ? AnimatedTextKit(
-            //         animatedTexts: [
-            //           TyperAnimatedText(
-            //             greeting(),
-            //             speed: Duration(milliseconds: 80),
-            //             textStyle: Theme.of(context).primaryTextTheme.headline1,
-            //           ),
-            //         ],
-            //         totalRepeatCount: 1,
-            //         displayFullTextOnTap: true,
-            //         stopPauseOnTap: false,
-            //       )
-            //     :
-            Text(greeting(),
-                style: Theme.of(context).primaryTextTheme.headline1),
-            Spacer(),
-            InkWell(
-              borderRadius: BorderRadius.circular(100),
-              splashColor: Colors.transparent,
-              hoverColor: MyTheme().isDark(context)
-                  ? Colors.white30
-                  : Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () {
-                widget.parentScaffoldkey!.currentState!.openEndDrawer();
-              
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: kDefaultPadding, horizontal: kDefaultPadding * 2),
-                child: Icon(
-                  Icons.notifications_outlined,
-                  size: iconSize,
-                ),
-              ),
-            ),
-            CircleAvatar(
-              backgroundColor: kBadgeColor,
-              child: Text(fname[0]),
-            ),
+            widget.customTopBar ??
+                Text(widget.title,
+                    style: Theme.of(context).primaryTextTheme.headline1),
           ],
         ),
       ),

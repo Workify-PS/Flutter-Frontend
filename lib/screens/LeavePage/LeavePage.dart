@@ -5,10 +5,12 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/components/top_bar.dart';
 import 'package:workify/controllers/leavePageController.dart';
 
 import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -32,11 +34,7 @@ class LeavePage extends StatelessWidget {
     leavePageController = Get.find<LeavePageController>();
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Leave Page',
-          ),
-        ),
+        appBar:generateTopBar(title: "Leaves"),
         body: portrait == false
             ? Center(
                 child: Container(

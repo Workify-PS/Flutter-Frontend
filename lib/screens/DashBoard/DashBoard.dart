@@ -5,6 +5,7 @@ import 'package:workify/components/dashboard_card.dart';
 import 'package:workify/components/profile_completion_card.dart';
 import 'package:workify/components/top_bar.dart';
 import 'package:workify/components/attendance_card.dart';
+import 'package:workify/screens/DashBoard/components/dash_top_bar.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -33,7 +34,11 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(bannerHeight), child: TopBar()),
+          preferredSize: Size.fromHeight(bannerHeight),
+          child: TopBar(
+            customTopBar: DashTopBar(),
+            title: "Home",
+          )),
       body: Container(
         color: Theme.of(context).scaffoldBackgroundColor,
         padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),

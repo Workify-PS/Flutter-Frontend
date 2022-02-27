@@ -6,11 +6,48 @@ import 'package:get/get.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_basic_details.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
 
 import 'basic_details.dart';
 import 'position_details.dart';
 import 'employment_details.dart';
+
+class ProfileBar extends StatelessWidget {
+  const ProfileBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: Axis.horizontal,
+      children: [
+        Expanded(
+          flex: 1,
+          child: BasicDetailsButton(
+            profileDetails: "Basic Details",
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: PositionDetailsButton(
+            profileDetails: "Position Details",
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: EmploymentDetailsButton(
+            profileDetails: "Employment Details",
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child:
+              ModifyBasicDetailsButton(profileDetails: 'Modify Basic Details'),
+        ),
+      ],
+    );
+  }
+}
 
 double screenWidth = 0, screenHeight = 0;
 
@@ -25,8 +62,6 @@ class ProfilePage extends StatelessWidget {
     'Modify Basic Details': ModifyBasicDetails(),
   };
 
-  
-
   @override
   Widget build(BuildContext context) {
     final profileWidgetsController = Get.find<ProfileWidgetsController>();
@@ -36,6 +71,10 @@ class ProfilePage extends StatelessWidget {
     screenHeight = device.size.height;
 
     return Scaffold(
+      appBar: generateTopBar(
+        title: "Profile",
+        widget: ProfileBar()
+      ),
       // appBar: AppBar(
       //   title: Text(
       //     'Profile Page',
@@ -61,39 +100,12 @@ class ProfilePage extends StatelessWidget {
           child: Flex(
             direction: Axis.vertical,
             children: [
+              // Expanded(
+              //   flex: 1,
+              //   child:
+              // ),
               Expanded(
-                flex: 1,
-                child: Flex(
-                  direction: Axis.horizontal,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: BasicDetailsButton(
-                        profileDetails: "Basic Details",
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: PositionDetailsButton(
-                        profileDetails: "Position Details",
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: EmploymentDetailsButton(
-                        profileDetails: "Employment Details",
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: ModifyBasicDetailsButton(
-                          profileDetails: 'Modify Basic Details'),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 10,
+                //flex: 10,
                 child: Padding(
                   padding: const EdgeInsets.all(32.0),
                   child: Material(

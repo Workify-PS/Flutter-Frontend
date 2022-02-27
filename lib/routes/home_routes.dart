@@ -10,7 +10,7 @@ import 'package:workify/controllers/profile_widgets_controller.dart';
 
 import 'package:workify/screens/AttendancePage/AttendancePage.dart';
 import 'package:workify/screens/ChangePassword.dart';
-import 'package:workify/screens/DashBoard.dart';
+import 'package:workify/screens/DashBoard/DashBoard.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/all_employee_profile.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_profile_details.dart';

@@ -36,20 +36,20 @@ class ProfilePage extends StatelessWidget {
     screenHeight = device.size.height;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Profile Page',
-          // style: TextStyle(
-          //   color: kPrimaryColor,
-          //   fontWeight: FontWeight.bold,
-          // ),
-        ),
-        // flexibleSpace: Container(
-        //   decoration: BoxDecoration(
-        //     color: kPrimaryColor,
-        //   ),
-        // ),
-      ),
+      // appBar: AppBar(
+      //   title: Text(
+      //     'Profile Page',
+      //     // style: TextStyle(
+      //     //   color: kPrimaryColor,
+      //     //   fontWeight: FontWeight.bold,
+      //     // ),
+      //   ),
+      //   // flexibleSpace: Container(
+      //   //   decoration: BoxDecoration(
+      //   //     color: kPrimaryColor,
+      //   //   ),
+      //   // ),
+      // ),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,

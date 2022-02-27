@@ -14,6 +14,8 @@ import 'package:workify/utils/theme.dart';
 
 class CollapsedSideMenu extends GetView<HomePageController> {
   CollapsedSideMenu({Key? key}) : super(key: key);
+  bool? exited;
+  bool? entered;
   final icons = [
     Icons.home_filled,
     CupertinoIcons.person_fill,
@@ -26,16 +28,17 @@ class CollapsedSideMenu extends GetView<HomePageController> {
   Widget build(BuildContext context) {
     Color dividerColor =
         !(MyTheme().isDark(context)) ? kDividerColor : kDividerDarkColor;
-    return Container(
-      height: double.infinity,
-      color: Theme.of(context).primaryColor,
-      child: MouseRegion(
-        onEnter: (event) {
-          controller.sideMenuCollapsed.value = false;
-        },
-        // onExit: (event) {
-        //   controller.sideMenuCollapsed.value = true;
-        // },
+    return InkWell(
+      onTap: () {},
+      autofocus: false,
+
+      onHover: (value) {
+        
+        controller.sideMenuCollapsed.value = !value;
+      },
+      child: Container(
+        height: double.infinity,
+        color: Theme.of(context).primaryColor,
         child: SingleChildScrollView(
           //controller: ScrollController(),
           physics: ScrollPhysics(),
@@ -45,7 +48,8 @@ class CollapsedSideMenu extends GetView<HomePageController> {
                 height: bannerHeight,
                 width: double.infinity,
                 color: Theme.of(context).primaryColor,
-                padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 8),
+                padding: const EdgeInsets.symmetric(
+                    vertical: kDefaultPadding, horizontal: 12),
                 child: Image.asset(
                   "assets/images/logo.png",
                   fit: BoxFit.fitWidth,

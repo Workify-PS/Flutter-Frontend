@@ -58,7 +58,7 @@ class _SideMenuItemState extends State<SideMenuItem> {
               isExpanded = !isExpanded;
             });
           } else {
-            _homePageController.gotoPage(widget.title);
+            _homePageController.gotoPage("/"+widget.title.toLowerCase(),context);
             //Get.toNamed("/${widget.title.toLowerCase()}");
           }
         },

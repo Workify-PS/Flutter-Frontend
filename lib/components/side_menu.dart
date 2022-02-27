@@ -10,7 +10,7 @@ import 'package:workify/routes/router.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 
-class SideMenu extends StatelessWidget {
+class SideMenu extends GetView<HomePageController> {
   SideMenu({Key? key}) : super(key: key);
   final titles = [
     "Home",
@@ -34,43 +34,53 @@ class SideMenu extends StatelessWidget {
     return Container(
       height: double.infinity,
       color: Theme.of(context).primaryColor,
-      child: SafeArea(
-        child: SingleChildScrollView(
-          controller: ScrollController(),
-          physics: ScrollPhysics(),
-          child: Column(
-            children: [
-              Container(
-                height: bannerHeight,
-                width: double.infinity,
-                color: Theme.of(context).primaryColor,
-                padding: const EdgeInsets.all(16),
-                child: Image.asset(
-                  "assets/images/banner.png",
-                  fit: BoxFit.contain,
-                  color: Theme.of(context).colorScheme.secondary,
+      child: MouseRegion(
+        onExit: (event) {
+            if(controller.pageName.value!=Routes.home){
+              controller.sideMenuCollapsed.value = true;
+            }
+          },
+          // onExit: (event) {
+          //   controller.sideMenuCollapsed.value = true;
+          // },
+        child: SafeArea(
+          child: SingleChildScrollView(
+            //controller: ScrollController(),
+            physics: ScrollPhysics(),
+            child: Column(
+              children: [
+                Container(
+                  height: bannerHeight,
+                  width: double.infinity,
+                  color: Theme.of(context).primaryColor,
+                  padding: const EdgeInsets.all(16),
+                  child: Image.asset(
+                    "assets/images/banner.png",
+                    fit: BoxFit.contain,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                  // child: FlutterLogo(
+                  //   size: 64,
+                  // ),
                 ),
-                // child: FlutterLogo(
-                //   size: 64,
-                // ),
-              ),
-              SizedBox(height: kDefaultPadding),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                      titles.length,
-                      (index) => SideMenuItem(
-                            icon: icons[index],
-                            title: titles[index],
-                            
-                            subTilesWidget: generateSubTilesList(titles[index]),
-                          )),
+                SizedBox(height: kDefaultPadding),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                        titles.length,
+                        (index) => SideMenuItem(
+                              icon: icons[index],
+                              title: titles[index],
+                              
+                              subTilesWidget: generateSubTilesList(titles[index]),
+                            )),
+                  ),
                 ),
-              ),
-              SizedBox(height: kDefaultPadding * 2),
-            ],
+                SizedBox(height: kDefaultPadding * 2),
+              ],
+            ),
           ),
         ),
       ),

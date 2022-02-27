@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 // import 'package:workify/exceptions/print_log.dart';
 
@@ -26,7 +27,7 @@ class ProfileSubTiles extends StatelessWidget {
 }
 
 // ignore: must_be_immutable
-class ProfileSubTile extends StatelessWidget {
+class ProfileSubTile extends GetView<HomePageController> {
   final authController = Get.find<AuthController>();
 
   String profileOptions;
@@ -37,9 +38,9 @@ class ProfileSubTile extends StatelessWidget {
     return Obx(() => InkWell(
           onTap: () {
             profileOptions == 'My Profile'
-                ? {Get.toNamed('/profile')}
+                ? {controller.gotoPage('/profile', context)}
                 : {
-                    Get.toNamed('/all-employee-profile'),
+                    controller.gotoPage('/all-employee-profile',context),
                   };
           },
           onHover: (value) => isSelected.value = value,

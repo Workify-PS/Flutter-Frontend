@@ -5,31 +5,24 @@ import 'package:workify/routes/router.dart';
 import 'package:workify/screens/AttendancePage/AttendancePage.dart';
 import 'package:workify/screens/DashBoard.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
+import 'dart:html' as html;
 
 class HomePageController extends GetxController {
   RxString pageName = ''.obs;
+  RxBool sideMenuCollapsed = false.obs;
   @override
   void onInit() {
-    Get.put(WishController());
     pageName.value = Routes.home;
     super.onInit();
   }
 
-  void gotoPage(String page) {
-    pageName.value = page.toLowerCase();
-    print("PAGE CHANGED TO $page");
-  }
-
-  Widget getScreen() {
-    switch (pageName.value) {
-      case "home":
-        return DashBoard();
-      case "attendance":
-        return AttendancePage();
-      case "leave":
-        return LeavePage();
-      default:
-        return DashBoard();
-    }
+  void gotoPage(String page, BuildContext context) {
+    pageName.value = page;
+    //sideMenuCollapsed.value = page != Routes.home;
+    
+    print("Request to go to ${pageName.value}");
+    
+    Get.keys[1]!.currentState!.pushNamed(page);
+    html.window.history.pushState(null, "/", page);
   }
 }

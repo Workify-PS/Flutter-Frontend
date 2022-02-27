@@ -12,7 +12,7 @@ class HomePageController extends GetxController {
   RxBool sideMenuCollapsed = false.obs;
   @override
   void onInit() {
-    pageName.value = Routes.home;
+    pageName.value = "/home";
     super.onInit();
   }
 

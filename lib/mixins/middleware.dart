@@ -10,9 +10,11 @@ class AuthMiddlware extends GetMiddleware with CacheManager {
     if (true) //TODO: ADD LOGIC FOR CHECKING UNKNOWN ROUTE
     {
       if ((getToken() != null || route == "/auth")) {
-       final homeController = Get.put(HomePageController());
-         
+        final homeController = Get.put(HomePageController());
+
         homeController.pageName.value = route ?? "/home";
+        homeController.sideMenuCollapsed.value =
+            homeController.pageName.value != "/home";
         return null;
       } else {
         return RouteSettings(name: "/auth");

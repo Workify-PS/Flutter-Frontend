@@ -97,8 +97,10 @@ class _AttendanceCardState extends State<AttendanceCard> {
           //     )),
 
           InkWell(
-            onTap: () {},
+            onTap: (){},
+
             child: NeumorphicButton(
+              
               padding: const EdgeInsets.symmetric(
                   horizontal: kDefaultPadding * 1.2,
                   vertical: kDefaultPadding * 0.6),
@@ -120,17 +122,15 @@ class _AttendanceCardState extends State<AttendanceCard> {
                   !isPunchedIn
                       ? Text(
                           "Punch In",
-                          style:
-                              Theme.of(context).textTheme.subtitle1!.copyWith(
-                                    color: secondaryColor,
-                                  ),
+                          style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                                color: secondaryColor,
+                              ),
                         )
                       : Text(
                           "Punch Out",
-                          style:
-                              Theme.of(context).textTheme.subtitle1!.copyWith(
-                                    color: secondaryColor,
-                                  ),
+                          style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                                color: secondaryColor,
+                              ),
                         )
                 ],
               ),
@@ -139,14 +139,17 @@ class _AttendanceCardState extends State<AttendanceCard> {
                   shape: NeumorphicShape.flat,
                   boxShape:
                       NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
-                  depth: isPunchedOut ? -5 : 2,
+                  depth: 8,
                   // border: NeumorphicBorder(
                   //     color: Theme.of(context).primaryColorDark, width: 1.5),
-                  lightSource: LightSource.topLeft,
-                  shadowLightColor: Theme.of(context).shadowColor,
+                  lightSource: LightSource.right,
+                  //shadowDarkColor: kTopShadowColorDark,
+
+                  shadowLightColor:
+                       Theme.of(context).shadowColor,
                   color: primaryColor),
             ),
-          ).neuromorphism(context),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: kDefaultPadding * 1.5),
             child: Row(

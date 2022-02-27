@@ -14,6 +14,8 @@ import 'package:workify/utils/theme.dart';
 
 class CollapsedSideMenu extends GetView<HomePageController> {
   CollapsedSideMenu({Key? key}) : super(key: key);
+  bool? exited;
+  bool? entered;
   final icons = [
     Icons.home_filled,
     CupertinoIcons.person_fill,
@@ -26,66 +28,65 @@ class CollapsedSideMenu extends GetView<HomePageController> {
   Widget build(BuildContext context) {
     Color dividerColor =
         !(MyTheme().isDark(context)) ? kDividerColor : kDividerDarkColor;
-    return Container(
-      height: double.infinity,
-      color: Theme.of(context).primaryColor,
-      child: SafeArea(
-        child: MouseRegion(
-          onEnter: (event) {
-            controller.sideMenuCollapsed.value = false;
-          },
-          // onExit: (event) {
-          //   controller.sideMenuCollapsed.value = true;
-          // },
-          child: SingleChildScrollView(
-            //controller: ScrollController(),
-            physics: ScrollPhysics(),
-            child: Column(
-              children: [
-                Container(
-                  height: bannerHeight,
-                  width: double.infinity,
-                  color: Theme.of(context).primaryColor,
-                  padding: const EdgeInsets.all(16),
-                  child: Image.asset(
-                    "assets/images/logo.png",
-                    fit: BoxFit.contain,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
-                  // child: FlutterLogo(
-                  //   size: 64,
-                  // ),
+    return InkWell(
+      onTap: () {},
+      autofocus: false,
+
+      onHover: (value) {
+        
+        controller.sideMenuCollapsed.value = !value;
+      },
+      child: Container(
+        height: double.infinity,
+        color: Theme.of(context).primaryColor,
+        child: SingleChildScrollView(
+          //controller: ScrollController(),
+          physics: ScrollPhysics(),
+          child: Column(
+            children: [
+              Container(
+                height: bannerHeight,
+                width: double.infinity,
+                color: Theme.of(context).primaryColor,
+                padding: const EdgeInsets.symmetric(
+                    vertical: kDefaultPadding, horizontal: 12),
+                child: Image.asset(
+                  "assets/images/logo.png",
+                  fit: BoxFit.fitWidth,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
-                SizedBox(height: kDefaultPadding),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      icons.length,
-                      (index) => Padding(
-                          padding: const EdgeInsets.only(
-                              top: kDefaultPadding, bottom: kDefaultPadding),
-                          
-                          child: Container(
-                            padding: EdgeInsets.only(
-                                bottom: kDefaultPadding * 1.5, right: 5),
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(color: dividerColor),
-                              ),
+                // child: FlutterLogo(
+                //   size: 64,
+                // ),
+              ),
+              SizedBox(height: kDefaultPadding),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    icons.length,
+                    (index) => Padding(
+                        padding: const EdgeInsets.only(
+                            top: kDefaultPadding, bottom: kDefaultPadding),
+                        child: Container(
+                          padding: EdgeInsets.only(
+                              bottom: kDefaultPadding * 1.5, right: 5),
+                          decoration: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(color: dividerColor),
                             ),
-                            child: Icon(
-                              icons[index],
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                          )),
-                    ),
+                          ),
+                          child: Icon(
+                            icons[index],
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                        )),
                   ),
                 ),
-                SizedBox(height: kDefaultPadding),
-              ],
-            ),
+              ),
+              SizedBox(height: kDefaultPadding),
+            ],
           ),
         ),
       ),

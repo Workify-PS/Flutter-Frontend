@@ -144,12 +144,6 @@ class Buttons extends StatelessWidget {
             ? modifyProfileWidgetsController.modifyPositionButton
             : modifyProfileWidgetsController.modifyEmploymentButton;
 
-    // var button = buttonIndex == 0
-    //     ? modifyProfileWidgetsController.employeeBasicDetailsButton
-    //     : buttonIndex == 1
-    //         ? modifyProfileWidgetsController.modifyPositionButton
-    //         : modifyProfileWidgetsController.modifyEmploymentButton;
-
     return Obx(() => ElevatedButton(
           onPressed: () {
             modifyProfileWidgetsController.resetModifyProfileButtons();
@@ -185,7 +179,6 @@ class EmployeeBasicDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Buttons(
       modifyProfileDetailsString: modifyProfileDetailsString,
-      // buttonIndex: 0,
     );
   }
 }
@@ -201,7 +194,6 @@ class PositionDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Buttons(
       modifyProfileDetailsString: modifyProfileDetailsString,
-      // buttonIndex: 1,
     );
   }
 }
@@ -217,7 +209,6 @@ class EmploymentDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Buttons(
       modifyProfileDetailsString: modifyProfileDetailsString,
-      // buttonIndex: 2,
     );
   }
 }

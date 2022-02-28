@@ -3,9 +3,12 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
+import 'package:workify/controllers/LeavePage/applyLeaveController.dart';
+import 'package:workify/controllers/LeavePage/leaveBalanceController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
-import 'package:workify/controllers/leavePageController.dart';
+import 'package:workify/controllers/LeavePage/leavePageController.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/screens/AuthPage/AuthPage.dart';
@@ -16,6 +19,8 @@ import 'package:workify/screens/AuthPage/AuthPageController.dart';
 import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/HomePage/HomePage.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
+import 'package:workify/screens/LeavePage/AllEmployeeLeaves.dart';
+import 'package:workify/screens/LeavePage/ApplyLeave.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
 
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/all_employee_profile.dart';
@@ -126,6 +131,25 @@ class _MyAppState extends State<MyApp> with CacheManager {
                   Get.put(LeavePageController()),
                 }),
           ),
+        if(getToken()!=null)
+        GetPage(
+          name: '/apply-leave',
+          page: () => ApplyLeave(),
+          binding: BindingsBuilder(() => {
+            Get.put(LeaveBalanceController()),
+            Get.put(ApplyLeaveController()),
+            Get.put(ProfileDetailsController()),
+
+          }),
+        ),
+        if(getToken()!=null)
+        GetPage(
+          name: '/all-employee-leaves',
+          page: () => AllEmployeeLeaves(),
+          binding: BindingsBuilder(() => {
+            Get.put(AllEmployeeLeavesController()),
+          }),
+        ),
       ],
     );
   }

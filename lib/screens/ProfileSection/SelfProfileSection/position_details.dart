@@ -133,10 +133,10 @@ class PositionDetails extends StatelessWidget {
             ),
           ),
           // History Table and Modify Button
-          Expanded(
-            flex: 3,
-            child: PositionDetailsFooter(),
-          ),
+          // Expanded(
+          //   flex: 3,
+          //   child: PositionDetailsFooter(),
+          // ),
         ],
       );
     } else {
@@ -208,10 +208,10 @@ class PositionDetailsPortraitView extends StatelessWidget {
             ],
           ),
         ),
-        Expanded(
-          flex: 3,
-          child: PositionDetailsFooter(),
-        ),
+        // Expanded(
+        //   flex: 3,
+        //   child: PositionDetailsFooter(),
+        // ),
       ],
     );
   }
@@ -491,334 +491,76 @@ class JobPosition extends StatelessWidget {
   }
 }
 
-class PositionDetailsFooter extends StatelessWidget {
-  const PositionDetailsFooter({Key? key}) : super(key: key);
+// class PositionDetailsFooter extends StatelessWidget {
+//   const PositionDetailsFooter({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          flex: 1,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'History',
-                    style: TextStyle(
-                      // color: kSecondaryColor,
-                      fontSize: 15,
-                    ),
-                  ),
-                ],
-              ),
-              Table(
-                border: TableBorder.all(
-                  // color: kPrimaryColor,
-                  color: kTextColor,
-                ),
-                children: [
-                  TableRow(
-                    children: [
-                      Text(
-                        'Heading 1',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          // color: kSecondaryColor,
-                        ),
-                      ),
-                      Text(
-                        'Heading 2',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          // color: kSecondaryColor,
-                        ),
-                      ),
-                      Text(
-                        'Heading 3',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          // color: kSecondaryColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Expanded(
-                flex: 2,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: PositionHistory(),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Expanded(
+//           flex: 1,
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     'History',
+//                     style: TextStyle(
+//                       // color: kSecondaryColor,
+//                       fontSize: 15,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//               Table(
+//                 border: TableBorder.all(
+//                   // color: kPrimaryColor,
+//                   color: kTextColor,
+//                 ),
+//                 children: [
+//                   TableRow(
+//                     children: [
+//                       Text(
+//                         'Heading 1',
+//                         style: TextStyle(
+//                           fontWeight: FontWeight.bold,
+//                           // color: kSecondaryColor,
+//                         ),
+//                       ),
+//                       Text(
+//                         'Heading 2',
+//                         style: TextStyle(
+//                           fontWeight: FontWeight.bold,
+//                           // color: kSecondaryColor,
+//                         ),
+//                       ),
+//                       Text(
+//                         'Heading 3',
+//                         style: TextStyle(
+//                           fontWeight: FontWeight.bold,
+//                           // color: kSecondaryColor,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//               Expanded(
+//                 flex: 2,
+//                 child: SingleChildScrollView(
+//                   scrollDirection: Axis.vertical,
+//                   child: PositionHistory(),
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
 
-class PositionHistory extends StatelessWidget {
-  const PositionHistory({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Table(
-      border: TableBorder.all(
-        // color: kPrimaryColor,
-        color: kTextColor,
-      ),
-      children: [
-        TableRow(
-          children: [
-            Text(
-              'Cell 1',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 2',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 3',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
-              'Cell 1',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 2',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 3',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
-              'Cell 1',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 2',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 3',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
-              'Cell 1',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 2',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 3',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
-              'Cell 1',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 2',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 3',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
-              'Cell 1',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 2',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 3',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
-              'Cell 1',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 2',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 3',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
-              'Cell 1',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 2',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 3',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
-              'Cell 1',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 2',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 3',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
-              'Cell 1',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 2',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 3',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-          ],
-        ),
-        TableRow(
-          children: [
-            Text(
-              'Cell 1',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 2',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-            Text(
-              'Cell 3',
-              // style: TextStyle(
-              //   color: kSecondaryColor,
-              // ),
-            ),
-          ],
-        ),
-        
-      ],
-    );
-  }
-}

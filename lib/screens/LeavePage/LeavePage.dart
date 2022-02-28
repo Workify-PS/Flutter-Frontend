@@ -5,7 +5,8 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
-import 'package:workify/controllers/leavePageController.dart';
+import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
+import 'package:workify/controllers/LeavePage/leavePageController.dart';
 
 import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/utils/constants.dart';
@@ -30,6 +31,11 @@ class LeavePage extends StatelessWidget {
 
     profileDetailsController = Get.find<ProfileDetailsController>();
     leavePageController = Get.find<LeavePageController>();
+
+    void newLeave() {
+      Get.toNamed('/apply-leave');
+    }
+
 
     return Scaffold(
         appBar: AppBar(
@@ -66,22 +72,7 @@ class LeavePage extends StatelessWidget {
                           children: [
                             Button(
                               buttonTextWidget: Text('New Leave'),
-                              onPressed: () {},
-                            ),
-                            Expanded(
-                              flex: 4,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 16, left: 16),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    AttendanceRegularize(),
-                                    AttendanceExtended(),
-                                  ],
-                                ),
-                              ),
+                              onPressed: newLeave,
                             ),
                             WrapPastAttendanceRelated(),
                           ],
@@ -108,117 +99,17 @@ class LeavePagePortrait extends StatelessWidget {
         ),
         Expanded(
           flex: 6,
-          child: Row(
+          child: Column(
             children: [
+              Button(
+                buttonTextWidget: Text('New Leave'),
+                onPressed: () {},
+              ),
               WrapPastAttendanceRelated(),
-              Container(
-                width: 1,
-                color: Colors.grey,
-              ),
-              Expanded(
-                flex: 5,
-                child: Column(
-                  children: [
-                    Button(
-                      buttonTextWidget: Text('New Leave'),
-                      onPressed: () {},
-                    ),
-                    Expanded(
-                      flex: 4,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            AttendanceRegularize(),
-                            AttendanceExtended(),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
         ),
       ],
-    );
-  }
-}
-
-class AttendanceRegularize extends StatelessWidget {
-  const AttendanceRegularize({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      flex: 2,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Attendance',
-            style: TextStyle(
-              fontSize: 20,
-            ),
-          ),
-          // Button(
-          //   buttonTextWidget: Text('Regularize'),
-          //   onPressed: () {},
-          // ),
-        ],
-      ),
-    );
-  }
-}
-
-class AttendanceExtended extends StatelessWidget {
-  const AttendanceExtended({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    leavePageController = Get.find<LeavePageController>();
-
-    return Expanded(
-      flex: 8,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                LeavePageTextWidgets(leavePageTextWidgetString: 'Absent'),
-                LeavePageTextWidgets(
-                    leavePageTextWidgetString: 'Status(Half/Full Day)'),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  width: portrait == true ? 90 : 100,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Absent(),
-                  ),
-                ),
-                SizedBox(
-                  width: portrait == true ? 90 : 100,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Status(),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
@@ -302,10 +193,8 @@ class _StatefulPastAttendanceRelatedState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // LeavePageTextWidgets(
-                        //     leavePageTextWidgetString: 'Leave'),
-                        // LeavePageTextWidgets(
-                        //     leavePageTextWidgetString: 'Present hours'),
+                        LeavePageTextWidgets(
+                            leavePageTextWidgetString: 'Status(Half/Full Day)'),
                         LeavePageTextWidgets(
                             leavePageTextWidgetString: 'Shift'),
                         LeavePageTextWidgets(
@@ -318,17 +207,34 @@ class _StatefulPastAttendanceRelatedState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // LeavePageTextWidgets(leavePageTextWidgetString: '--'),
-                        // PresentHours(),
                         SizedBox(
-                          width: portrait == true? 100:200,
+                          width: portrait == true ? 100 : 200,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Status(),
+                          ),
+                        ),
+                        SizedBox(
+                          width: portrait == true ? 100 : 200,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Shift(),
                           ),
                         ),
-                        InTime(),
-                        OutTime(),
+                        SizedBox(
+                          width: portrait == true ? 100 : 200,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: InTime(),
+                          ),
+                        ),
+                        SizedBox(
+                          width: portrait == true ? 100 : 200,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: OutTime(),
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -497,28 +403,11 @@ class LeavePageTextWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100,
+      width: portrait ? 90 : 200,
       child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Text(leavePageTextWidgetString)),
     );
-  }
-}
-
-class Absent extends StatelessWidget {
-  const Absent({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Obx(() {
-      if (leavePageController.isLoading.value) {
-        return Text('Loading Data');
-      } else {
-        return leavePageController.index != '-1'
-            ? Text(leavePageController.absent == true ? 'Yes' : 'No')
-            : Text('Not Found');
-      }
-    });
   }
 }
 

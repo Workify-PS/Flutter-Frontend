@@ -1,13 +1,11 @@
 import 'package:workify/exceptions/print_log.dart';
-import 'package:workify/mixins/cache.dart';
 
 import 'package:get/get.dart';
 import 'package:workify/models/EmployeeInfoCombined.dart';
 import 'package:workify/services/fetch_all_employee_service.dart';
 
-class FetchAllEmployeesController extends GetxController with CacheManager {
+class FetchAllEmployeesController extends GetxController  {
   var isLoading = true.obs;
-  // List<FetchAllEmployees>? allEmployeeList = [];
   static List<EmployeeInfoCombined> allEmployeeList = [];
 
   @override
@@ -44,7 +42,7 @@ class FetchAllEmployeesController extends GetxController with CacheManager {
         PrintLog.printLog(
           fileName: 'Fetch All Employees Controller file',
           functionName: 'callFetchAllEmployeesDetails(){}',
-          blockNumber: 1,
+          blockNumber: 2,
           printStatement: 'Error :: ' + error.toString(),
         );
       }

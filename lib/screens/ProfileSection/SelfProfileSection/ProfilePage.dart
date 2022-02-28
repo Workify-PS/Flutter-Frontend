@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:workify/controllers/profile_widgets_controller.dart';
-import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_basic_details.dart';
+import 'package:workify/screens/ProfileSection/SelfProfileSection/modify_basic_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -39,16 +39,7 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Profile Page',
-          // style: TextStyle(
-          //   color: kPrimaryColor,
-          //   fontWeight: FontWeight.bold,
-          // ),
         ),
-        // flexibleSpace: Container(
-        //   decoration: BoxDecoration(
-        //     color: kPrimaryColor,
-        //   ),
-        // ),
       ),
       body: Center(
         child: Container(
@@ -127,20 +118,21 @@ class Buttons extends StatelessWidget {
   // onpressed: () => profileWidgetHandler(profileDetails);
 
   final String profileDetails;
-  final int buttonIndex;
 
-  Buttons({Key? key, required this.profileDetails, required this.buttonIndex})
+  Buttons({
+    Key? key, required this.profileDetails 
+  })
       : super(key: key);
 
   final profileWidgetsController = Get.find<ProfileWidgetsController>();
 
   @override
   Widget build(BuildContext context) {
-    var button = buttonIndex == 0
+    var button = profileDetails == 'Basic Details'
         ? profileWidgetsController.basicButton
-        : buttonIndex == 1
+        : profileDetails == 'Position Details'
             ? profileWidgetsController.positionButton
-            : buttonIndex == 2
+            : profileDetails == 'Employment Details'
                 ? profileWidgetsController.employmentButton
                 : profileWidgetsController.modifyBasicButton;
 
@@ -178,7 +170,6 @@ class BasicDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Buttons(
       profileDetails: profileDetails,
-      buttonIndex: 0,
     );
   }
 }
@@ -194,7 +185,6 @@ class PositionDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Buttons(
       profileDetails: profileDetails,
-      buttonIndex: 1,
     );
   }
 }
@@ -210,7 +200,6 @@ class EmploymentDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Buttons(
       profileDetails: profileDetails,
-      buttonIndex: 2,
     );
   }
 }
@@ -226,7 +215,6 @@ class ModifyBasicDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Buttons(
       profileDetails: profileDetails,
-      buttonIndex: 3,
     );
   }
 }

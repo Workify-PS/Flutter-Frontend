@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:workify/components/leave_sub_tiles.dart';
 import 'package:workify/components/profile_sub_tiles.dart';
 import 'package:workify/components/settings_sub_tiles.dart';
 import 'package:workify/components/sub_tiles.dart';
@@ -28,6 +29,7 @@ class _SideMenuItemState extends State<SideMenuItem> {
   bool isHover = false;
   bool isSettingsExpanded = false;
   bool isProfileExpanded = false;
+  bool isLeaveExpanded = false;
   bool isExpaned = false;
 
   @override
@@ -55,8 +57,11 @@ class _SideMenuItemState extends State<SideMenuItem> {
             if (widgetTitle == 'profile') {
               isProfileExpanded = !isProfileExpanded;
             }
+            if (widgetTitle == 'leave') {
+              isLeaveExpanded = !isLeaveExpanded;
+            }
           });
-          if (widgetTitle != 'settings' && widgetTitle!='profile') {
+          if (widgetTitle != 'settings' && widgetTitle != 'profile' && widgetTitle!='leave') {
             Get.toNamed("/${widget.title.toLowerCase()}");
           }
         },
@@ -92,13 +97,13 @@ class _SideMenuItemState extends State<SideMenuItem> {
                         ),
                   ),
                   Spacer(),
-                  if (isHover && !isSettingsExpanded && !isProfileExpanded)
+                  if (isHover && !isSettingsExpanded && !isProfileExpanded && !isLeaveExpanded)
                     SvgPicture.asset(
                       "assets/icons/Angle right.svg",
                       width: 16,
                       color: accentColor,
                     ),
-                  if (isExpaned || isSettingsExpanded || isProfileExpanded)
+                  if (isExpaned || isSettingsExpanded || isProfileExpanded || isLeaveExpanded)
                     SvgPicture.asset(
                       "assets/icons/Angle down.svg",
                       width: 16,
@@ -110,8 +115,10 @@ class _SideMenuItemState extends State<SideMenuItem> {
                 SubTilesList()
               else if (isSettingsExpanded)
                 SettingsSubTiles()
-              else if(isProfileExpanded)
+              else if (isProfileExpanded)
                 ProfileSubTiles()
+              else if(isLeaveExpanded)
+                LeaveSubTiles()
             ],
           ),
         ),

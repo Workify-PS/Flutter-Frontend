@@ -2,8 +2,8 @@
 
 import 'package:get/get.dart';
 import 'package:workify/exceptions/print_log.dart';
-import 'package:workify/models/LeavePageAttendanceListModel.dart';
-import 'package:workify/services/leave_page_service.dart';
+import 'package:workify/models/LeavePage/LeavePageAttendanceListModel.dart';
+import 'package:workify/services/LeavePage/leave_page_service.dart';
 
 class LeavePageController extends GetxController {
   var isLoading = true.obs;

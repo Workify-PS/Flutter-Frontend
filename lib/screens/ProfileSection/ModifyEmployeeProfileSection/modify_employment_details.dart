@@ -190,7 +190,7 @@ class _StatefulModifyEmploymentDetailsState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(
                     7,
-                    (index) => TextFormModifyProfileDetails(
+                    (index) => TextFormModifyDetails(
                           myFocusNode: FocusNode(),
                           keyBoardType: TextInputType.text,
                           enabled: true,

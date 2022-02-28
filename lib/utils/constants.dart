@@ -19,4 +19,5 @@ const kBottomShadowColorDark = Color(0xff485063);
 const kTopShadowColorDark = Color(0xff262C37);
 const kTopShadowColor = Colors.white60;
 const kBottomShadowColor = Color(0x26234395);
-double get bannerHeight => 92;
+const kWhaleColor = Color(0xff190e8f);
+double get bannerHeight => 84;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
+import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -19,11 +20,7 @@ class AllEmployeeProfile extends StatelessWidget {
     final fetchAllEmployeesController = Get.find<FetchAllEmployeesController>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'All Employee',
-        ),
-      ),
+      appBar:generateTopBar(title: "All Employees"),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,
@@ -161,7 +158,7 @@ class EmployeeProfile extends StatelessWidget {
                       if (fetchAllEmployeesController.isLoading.value) {
                         return Text('Still Loading Data in Employee Profile');
                       } else {
-                        return Button(
+                        return PrimaryButton(
                           buttonTextWidget: Text('Modify Details'),
                           onPressed: () {
                             Get.toNamed(

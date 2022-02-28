@@ -82,7 +82,7 @@ class ApplyLeave extends StatelessWidget {
                               children: [
                                 StartEndDates(),
                                 LeaveTypeReason(),
-                                Button(
+                                PrimaryButton(
                                   buttonTextWidget: Text('Apply Leave'),
                                   onPressed: callonClickApplyLeaveButton,
                                 )
@@ -179,7 +179,7 @@ class ApplyLeavePortraitView extends StatelessWidget {
                   children: [
                     StartEndDates(),
                     LeaveTypeReason(),
-                    Button(
+                    PrimaryButton(
                       buttonTextWidget: Text('Apply Leave'),
                       onPressed: callonClickApplyLeaveButton,
                     )
@@ -322,7 +322,7 @@ class _StartEndDatesState extends State<StartEndDates> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Button(
+              PrimaryButton(
                 buttonTextWidget: Text('Start Date'),
                 onPressed: pickStartDate,
               ),
@@ -340,7 +340,7 @@ class _StartEndDatesState extends State<StartEndDates> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Button(
+              PrimaryButton(
                 buttonTextWidget: Text('End Date'),
                 onPressed: pickEndDate,
               ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/controllers/LeavePage/leavePageController.dart';
 import 'package:workify/controllers/WishController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
-import 'package:workify/controllers/leavePageController.dart';
+
 import 'package:workify/controllers/modify_profile_details_controller.dart';
 import 'package:workify/controllers/modify_profile_widgets_controller.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
@@ -10,7 +11,8 @@ import 'package:workify/controllers/profile_widgets_controller.dart';
 
 import 'package:workify/screens/AttendancePage/AttendancePage.dart';
 import 'package:workify/screens/ChangePassword.dart';
-import 'package:workify/screens/DashBoard.dart';
+import 'package:workify/screens/DashBoard/DashBoard.dart';
+import 'package:workify/screens/Error404.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/all_employee_profile.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_profile_details.dart';
@@ -127,7 +129,7 @@ class HomeRouter {
         print("UNKNOWN ROUTE RETURNING DEFAULT");
         return GetPageRoute(
           settings: settings,
-          page: () => LoadingWidget(), //TODO: THROW 404
+          page: () => Error404(), //TODO: THROW 404
         );
     }
   }

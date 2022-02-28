@@ -4,7 +4,7 @@ import 'package:workify/components/side_menu.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/routes/home_routes.dart';
 import 'package:workify/screens/AttendancePage/AttendancePage.dart';
-import 'package:workify/screens/DashBoard.dart';
+import 'package:workify/screens/DashBoard/DashBoard.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
 import 'package:workify/screens/ProfileSection/SelfProfileSection/ProfilePage.dart';

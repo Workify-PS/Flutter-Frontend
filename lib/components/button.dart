@@ -9,12 +9,12 @@ import 'package:workify/utils/theme.dart';
 
 // Changed buttonTextString to buttonTextWidget for customized text styling
 
-class Button extends StatelessWidget {
+class PrimaryButton extends StatelessWidget {
   final Widget buttonTextWidget;
   final void Function() onPressed;
   final Color? primaryColor;
   final Icon? icon;
-  const Button(
+  const PrimaryButton(
       {Key? key,
       required this.buttonTextWidget,
       required this.onPressed,

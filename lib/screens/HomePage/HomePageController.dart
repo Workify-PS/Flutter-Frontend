@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:workify/controllers/WishController.dart';
 import 'package:workify/routes/router.dart';
 import 'package:workify/screens/AttendancePage/AttendancePage.dart';
-import 'package:workify/screens/DashBoard.dart';
+import 'package:workify/screens/DashBoard/DashBoard.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
 import 'dart:html' as html;
 
@@ -12,7 +12,7 @@ class HomePageController extends GetxController {
   RxBool sideMenuCollapsed = false.obs;
   @override
   void onInit() {
-    pageName.value = Routes.home;
+    pageName.value = "/home";
     super.onInit();
   }
 

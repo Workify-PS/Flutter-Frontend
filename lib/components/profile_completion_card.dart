@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -60,9 +61,11 @@ class ProfileCompletionCard extends StatelessWidget {
               ),
             ),
             Spacer(),
-            Button(
+            PrimaryButton(
               buttonTextWidget: Text("Complete Now"),
-              onPressed: () {},
+              onPressed: () {
+                Get.find<HomePageController>().gotoPage("/profile", context);
+              },
               primaryColor: kPrimaryColor,
               icon: Icon(CupertinoIcons.square_arrow_up),
             ),

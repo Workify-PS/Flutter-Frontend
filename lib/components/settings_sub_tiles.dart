@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/mixins/cache.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
 
 class SettingsSubTiles extends StatelessWidget {
   SettingsSubTiles({Key? key}) : super(key: key);
   final authController = Get.find<AuthController>();
+  final homePageController=Get.find<HomePageController>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +25,7 @@ class SettingsSubTiles extends StatelessWidget {
             ),
             SettingsSubTile(
               settingsOptions: 'Change Password',
-              onTap: () => Get.toNamed('/change-password', id: 1),
+              onTap: () => homePageController.gotoPage("/change-password", context),
             ),
             SettingsSubTile(
               settingsOptions: 'Log Out',

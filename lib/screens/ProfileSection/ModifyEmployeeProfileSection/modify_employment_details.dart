@@ -205,11 +205,11 @@ class _StatefulModifyEmploymentDetailsState
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Button(
+                  PrimaryButton(
                     buttonTextWidget: Text('Get Back'),
                     onPressed: getBack,
                   ),
-                  Button(
+                  PrimaryButton(
                     buttonTextWidget: Text('Submit'),
                     onPressed: callOnSubmitEmploymentDetails,
                   ),

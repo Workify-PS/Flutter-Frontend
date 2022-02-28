@@ -179,7 +179,7 @@ class EmployeeLeave extends StatelessWidget {
                       if (allEmployeeLeavesController.isLoading.value) {
                         return Text('Still Loading Employee Leaves Data');
                       } else {
-                        return Button(
+                        return PrimaryButton(
                           buttonTextWidget: Text('Approve'),
                           onPressed: () {},
                         );
@@ -192,7 +192,7 @@ class EmployeeLeave extends StatelessWidget {
                       if (allEmployeeLeavesController.isLoading.value) {
                         return Text('Still Loading Employee Leaves Data');
                       } else {
-                        return Button(
+                        return PrimaryButton(
                           buttonTextWidget: Text('Reject'),
                           onPressed: () {},
                         );

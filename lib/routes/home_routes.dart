@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
+import 'package:workify/controllers/LeavePage/applyLeaveController.dart';
+import 'package:workify/controllers/LeavePage/leaveBalanceController.dart';
+import 'package:workify/controllers/LeavePage/leavePageController.dart';
 import 'package:workify/controllers/WishController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
-import 'package:workify/controllers/leavePageController.dart';
+// import 'package:workify/controllers/leavePageController.dart';
 import 'package:workify/controllers/modify_profile_details_controller.dart';
 import 'package:workify/controllers/modify_profile_widgets_controller.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
@@ -11,6 +15,8 @@ import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/screens/AttendancePage/AttendancePage.dart';
 import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/DashBoard.dart';
+import 'package:workify/screens/LeavePage/AllEmployeeLeaves.dart';
+import 'package:workify/screens/LeavePage/ApplyLeave.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/all_employee_profile.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_profile_details.dart';
@@ -39,22 +45,46 @@ class HomeRouter {
           name: "/modify-employee-profile",
           page: () => ModifyProfileDetails(),
           binding: BindingsBuilder(() => {
-                Get.lazyPut(() => ModifyProfileWidgetsController()),
-                Get.lazyPut(() => ProfileDetailsController()),
-                Get.lazyPut(() => UpdateProfileDetailsController())
+                // Get.lazyPut(() => ModifyProfileWidgetsController()),
+                // Get.lazyPut(() => ProfileDetailsController()),
+                // Get.lazyPut(() => UpdateProfileDetailsController())
+                Get.put(ModifyProfileWidgetsController()),
+                Get.put(ProfileDetailsController()),
+                Get.put(UpdateProfileDetailsController())
               }),
         ),
         GetPage(
           name: '/all-employee-profile',
           page: () => AllEmployeeProfile(),
           binding: BindingsBuilder(
-              () => {Get.lazyPut(() => FetchAllEmployeesController())}),
+              () => {
+                // Get.lazyPut(() => FetchAllEmployeesController())
+                Get.put(FetchAllEmployeesController())
+              }),
         ),
         GetPage(
           name: '/leave',
           page: () => LeavePage(),
           binding: BindingsBuilder(() => {
                 Get.lazyPut(() => ProfileDetailsController()),
+                Get.lazyPut(() => LeavePageController()),
+              }),
+        ),
+
+        GetPage(
+          name: '/apply-leave',
+          page: () => ApplyLeave(),
+          binding: BindingsBuilder(() => {
+                Get.lazyPut(() => ProfileDetailsController()),
+                Get.lazyPut(() => ApplyLeaveController()),
+                Get.lazyPut(() => LeaveBalanceController()),
+              }),
+        ),
+        GetPage(
+          name: '/all-employee-leaves',
+          page: () => AllEmployeeLeaves(),
+          binding: BindingsBuilder(() => {
+                Get.lazyPut(() => AllEmployeeLeavesController()),
               }),
         ),
       ];
@@ -92,9 +122,12 @@ class HomeRouter {
           routeName: "/modify-employee-profile",
           page: () => ModifyProfileDetails(),
           binding: BindingsBuilder(() => {
-                Get.lazyPut(() => ModifyProfileWidgetsController()),
-                Get.lazyPut(() => ProfileDetailsController()),
-                Get.lazyPut(() => UpdateProfileDetailsController())
+                // Get.lazyPut(() => ModifyProfileWidgetsController()),
+                // Get.lazyPut(() => ProfileDetailsController()),
+                // Get.lazyPut(() => UpdateProfileDetailsController())
+                Get.put(ModifyProfileWidgetsController()),
+                Get.put(ProfileDetailsController()),
+                Get.put(UpdateProfileDetailsController())
               }),
         );
       case '/all-employee-profile':
@@ -103,7 +136,10 @@ class HomeRouter {
           routeName: '/all-employee-profile',
           page: () => AllEmployeeProfile(),
           binding: BindingsBuilder(
-              () => {Get.lazyPut(() => FetchAllEmployeesController())}),
+              () => {
+                // Get.lazyPut(() => FetchAllEmployeesController())
+                Get.put(FetchAllEmployeesController()),
+          }),
         );
       case "/leave":
         return GetPageRoute(
@@ -113,6 +149,26 @@ class HomeRouter {
           binding: BindingsBuilder(() => {
                 Get.lazyPut(() => ProfileDetailsController()),
                 Get.lazyPut(() => LeavePageController())
+              }),
+        );
+        case "/apply-leave":
+        return GetPageRoute(
+          settings: settings,
+          routeName: '/apply-leave',
+          page: () => ApplyLeave(),
+          binding: BindingsBuilder(() => {
+                Get.lazyPut(() => ProfileDetailsController()),
+                Get.lazyPut(() => ApplyLeaveController()),
+                Get.lazyPut(() => LeaveBalanceController()),
+              }),
+        );
+        case "/all-employee-leaves":
+        return GetPageRoute(
+          settings: settings,
+          routeName: '/all-employee-leaves',
+          page: () => AllEmployeeLeaves(),
+          binding: BindingsBuilder(() => {
+                Get.lazyPut(() => AllEmployeeLeavesController()),
               }),
         );
 

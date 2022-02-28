@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
-import 'package:workify/controllers/fetch_all_employees_controller.dart';
+// import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -54,7 +54,7 @@ class AllEmployeeLeaves extends StatelessWidget {
                                 //   flex: 1,
                                 //   child: SizedBox(),
                                 // ),
-                                Expanded(flex: 3, child: Text('Employee Code')),
+                                Expanded(flex: 3, child: Text('Employee [Name : Code]')),
                                 Expanded(
                                   flex: 3,
                                   child: Text('Leave Type'),
@@ -127,10 +127,18 @@ class EmployeeLeave extends StatelessWidget {
                       if (allEmployeeLeavesController.isLoading.value) {
                         return Text('Still Loading Employee Leaves Data');
                       } else {
-                        return Text(AllEmployeeLeavesController.leaveList
+                        return Text(
+                          AllEmployeeLeavesController.leaveList
+                            .elementAt(index)
+                            .userName
+                            .toString()
+                            +' : '
+                            + AllEmployeeLeavesController.leaveList
                             .elementAt(index)
                             .empCode
-                            .toString());
+                            .toString()
+                            
+                        );
                       }
                     }),
                   ),

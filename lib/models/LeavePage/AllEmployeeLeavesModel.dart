@@ -1,6 +1,7 @@
 class AllEmployeeLeavesModel {
   int? leaveInfoId;
   int? userId;
+  String? userName;
   String? empCode;
   String? leaveType;
   String? leaveReason;
@@ -17,6 +18,7 @@ class AllEmployeeLeavesModel {
   AllEmployeeLeavesModel({
     this.leaveInfoId,
     this.userId,
+    this.userName,
     this.empCode,
     this.leaveType,
     this.leaveReason,
@@ -34,6 +36,7 @@ class AllEmployeeLeavesModel {
   AllEmployeeLeavesModel.fromJson(Map<String, dynamic> json) {
     leaveInfoId = json['leaveInfoId'];
     userId = json['userId'];
+    userName = json['userName'];
     empCode = json['empCode'];
     leaveType = json['leaveType'];
     leaveReason = json['leaveReason'];
@@ -46,5 +49,4 @@ class AllEmployeeLeavesModel {
     createdBy = json['createdBy'];
     modifiedBy = json['modifiedBy'];
   }
-  
 }

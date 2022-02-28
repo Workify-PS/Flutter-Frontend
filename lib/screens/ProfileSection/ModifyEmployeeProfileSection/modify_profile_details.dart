@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/modify_profile_widgets_controller.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/user_specific_basic_details.dart';
-import 'package:workify/screens/ProfileSection/SelfProfileSection/basic_details.dart';
+// import 'package:workify/screens/ProfileSection/SelfProfileSection/basic_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -15,10 +15,8 @@ double screenWidth = 0, screenHeight = 0;
 
 // ignore: must_be_immutable
 class ModifyProfileDetails extends StatelessWidget {
-  ModifyProfileDetails({Key? key}) : super(key: key);
+  const ModifyProfileDetails({Key? key}) : super(key: key);
 
-  final modifyProfileWidgetsController =
-      Get.find<ModifyProfileWidgetsController>();
   @override
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();
@@ -26,16 +24,23 @@ class ModifyProfileDetails extends StatelessWidget {
     screenWidth = device.size.width;
     screenHeight = device.size.height;
 
-    var dataFromParentScreen = Get.arguments;
-    var data = dataFromParentScreen.elementAt(0);
-    // print('Data : ' + data.runtimeType.toString());
+    final modifyProfileWidgetsController =
+        Get.find<ModifyProfileWidgetsController>();
+
+    // var dataFromParentScreen = Get.arguments;
+    // var data = dataFromParentScreen.elementAt(0);
+    // print('Get Arguments '+ Get.arguments);
+
+    return Text('Modify Individual Profile');
 
     Map<String, Widget> profileWidgets = {
-      'Employee Basic Details': UserSpecificBasicDetails(index: data,),
-      'Modify Position Details': ModifyPositionDetails(
-        index: data,
+      'Employee Basic Details': UserSpecificBasicDetails(
+        index: 0,
       ),
-      'Modify Employment Details': ModifyEmploymentDetails( index: data),
+      'Modify Position Details': ModifyPositionDetails(
+        index: 0,
+      ),
+      'Modify Employment Details': ModifyEmploymentDetails(index: 0),
     };
 
     return Scaffold(
@@ -133,11 +138,11 @@ class Buttons extends StatelessWidget {
     // required this.buttonIndex
   }) : super(key: key);
 
-  final modifyProfileWidgetsController =
-      Get.find<ModifyProfileWidgetsController>();
-
   @override
   Widget build(BuildContext context) {
+    final modifyProfileWidgetsController =
+        Get.find<ModifyProfileWidgetsController>();
+
     var button = modifyProfileDetailsString == 'Employee Basic Details'
         ? modifyProfileWidgetsController.employeeBasicDetailsButton
         : modifyProfileDetailsString == 'Modify Position Details'

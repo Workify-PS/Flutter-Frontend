@@ -53,7 +53,7 @@ class FetchAllEmployeeService {
     return responseData;
   }
 
-  static Future<List> fetchAllEmployeesDetails() async {
+  static Future<dynamic> fetchAllEmployeesDetails() async {
     var data = await callAllEmployeesApi();
     PrintLog.printLog(
         fileName: 'Fetch All Employee Service File',

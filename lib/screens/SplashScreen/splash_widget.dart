@@ -14,7 +14,9 @@ class LoadingWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: CircularProgressIndicator(color: kPrimaryColor,),
+            child: CircularProgressIndicator(
+              color: kPrimaryColor,
+            ),
           ),
           Text('Loading...'),
         ],

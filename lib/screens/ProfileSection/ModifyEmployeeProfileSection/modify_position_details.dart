@@ -139,7 +139,7 @@ class _StatefulModifyPositionDetailsState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(
                     3,
-                    (index) => TextFormModifyProfileDetails(
+                    (index) => TextFormModifyDetails(
                           myFocusNode: FocusNode(),
                           keyBoardType: TextInputType.text,
                           enabled: true,

@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/modify_profile_details_controller.dart';
-import 'package:workify/exceptions/print_log.dart';
+// import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
@@ -60,6 +60,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
 
     portrait = screenWidth < 1000;
 
+
     final profileDetailsController = Get.find<ProfileDetailsController>();
 
     var textFormList = [
@@ -84,9 +85,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
             'Mobile Number Not Found';
     MobileNumber = _tempMobileNumber.split(' ');
 
-    _mobile = TextEditingController(
-      text: MobileNumber[1]
-    );
+    _mobile = TextEditingController(text: MobileNumber[1]);
 
     _doB = TextEditingController(
         text: DateFormat('dd-MM-yyyy').format(DateTime.parse(
@@ -157,7 +156,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                         ),
                         Expanded(
                           flex: 8,
-                          child: TextFormModifyProfileDetails(
+                          child: TextFormModifyDetails(
                             myFocusNode: FocusNode(),
                             keyBoardType: TextInputType.number,
                             enabled: true,
@@ -168,14 +167,8 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                         ),
                       ],
                     );
-
-                    // return SizedBox(
-                    //   width: 500,
-
-                    // );
-
                   } else {
-                    return TextFormModifyProfileDetails(
+                    return TextFormModifyDetails(
                       myFocusNode: FocusNode(),
                       keyBoardType: TextInputType.text,
                       enabled: true,

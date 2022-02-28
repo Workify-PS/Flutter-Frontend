@@ -1,14 +1,14 @@
-import 'dart:convert';
+// import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/models/EmployeeInfoCombined.dart';
 
-import 'package:workify/services/update_profile_details_service.dart';
+import 'package:workify/services/modify_profile_details_service.dart';
 
 class UpdateProfileDetailsController extends GetxController {
   static void onSubmitBasicDetails(

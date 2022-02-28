@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/controllers/LeavePage/leavePageController.dart';
 import 'package:workify/controllers/WishController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
-import 'package:workify/controllers/leavePageController.dart';
 import 'package:workify/controllers/modify_profile_details_controller.dart';
 import 'package:workify/controllers/modify_profile_widgets_controller.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
@@ -116,12 +116,11 @@ class HomeRouter {
               }),
         );
 
-        case "/attendance":
+      case "/attendance":
         return GetPageRoute(
           settings: settings,
           routeName: '/attendance',
           page: () => AttendancePage(),
-          
         );
       default:
         print("UNKNOWN ROUTE RETURNING DEFAULT");

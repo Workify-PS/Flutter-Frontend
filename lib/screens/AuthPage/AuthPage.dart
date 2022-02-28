@@ -40,7 +40,7 @@ class AuthPage extends GetView<AuthPageController> {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: MyTheme().isDark(context)
-                  ? false
+                  ? true
                       ? [Colors.indigo.shade700, Colors.teal.shade700]
                       : [kTopShadowColorDark, kWhaleColor]
                   : [Colors.indigo, Colors.teal],

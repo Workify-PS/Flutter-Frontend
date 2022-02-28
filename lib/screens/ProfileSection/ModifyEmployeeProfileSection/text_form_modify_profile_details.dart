@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:workify/utils/constants.dart';
 
-class TextFormModifyProfileDetails extends StatelessWidget {
+class TextFormModifyDetails extends StatelessWidget {
   final String text;
   final FocusNode myFocusNode;
   final bool enabled;
   final keyBoardType;
   final controller;
 
-  const TextFormModifyProfileDetails({
+  const TextFormModifyDetails({
     Key? key,
     required this.myFocusNode,
     required this.enabled,
@@ -25,6 +25,12 @@ class TextFormModifyProfileDetails extends StatelessWidget {
       enabled: enabled,
       cursorColor: kBottomShadowColor,
       controller: controller,
+      onTap: () {
+        controller.selection = TextSelection(
+            baseOffset: 0, 
+            extentOffset: controller.value.text.length
+        );
+      },
       decoration: InputDecoration(
         labelText: text,
         labelStyle: TextStyle(color: kPrimaryColor),

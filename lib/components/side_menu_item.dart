@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:workify/components/leave_sub_tiles.dart';
 import 'package:workify/components/profile_sub_tiles.dart';
 import 'package:workify/components/settings_sub_tiles.dart';
 import 'package:workify/components/sub_tiles.dart';
@@ -26,15 +27,10 @@ class SideMenuItem extends StatefulWidget {
 
 class _SideMenuItemState extends State<SideMenuItem> {
   bool isHover = false;
-  // bool isSettingsExpanded = false;
-  // bool isProfileExpanded = false;
+  bool isSettingsExpanded = false;
+  bool isProfileExpanded = false;
+  bool isLeaveExpanded = false;
   bool isExpanded = false;
-  late bool isExpandable;
-  @override
-  void initState() {
-    isExpandable = widget.subTilesWidget != null;
-    super.initState();
-  }
 
   final HomePageController _homePageController = Get.find<HomePageController>();
   @override
@@ -53,13 +49,21 @@ class _SideMenuItemState extends State<SideMenuItem> {
           const EdgeInsets.only(top: kDefaultPadding, bottom: kDefaultPadding),
       child: InkWell(
         onTap: () {
-          if (isExpandable) {
-            setState(() {
-              isExpanded = !isExpanded;
-            });
-          } else {
-            _homePageController.gotoPage("/"+widget.title.toLowerCase(),context);
-            //Get.toNamed("/${widget.title.toLowerCase()}");
+          var widgetTitle = widget.title.toLowerCase();
+          setState(() {
+            // isExpaned = !isExpaned;
+            if (widgetTitle == 'settings') {
+              isSettingsExpanded = !isSettingsExpanded;
+            }
+            if (widgetTitle == 'profile') {
+              isProfileExpanded = !isProfileExpanded;
+            }
+            if (widgetTitle == 'leave') {
+              isLeaveExpanded = !isLeaveExpanded;
+            }
+          });
+          if (widgetTitle != 'settings' && widgetTitle != 'profile' && widgetTitle!='leave') {
+            Get.toNamed("/${widget.title.toLowerCase()}");
           }
         },
         onHover: (value) {
@@ -94,13 +98,13 @@ class _SideMenuItemState extends State<SideMenuItem> {
                         ),
                   ),
                   Spacer(),
-                  if (isHover && !isExpanded)
+                  if (isHover && !isSettingsExpanded && !isProfileExpanded && !isLeaveExpanded)
                     SvgPicture.asset(
                       "assets/icons/Angle right.svg",
                       width: 16,
                       color: accentColor,
                     ),
-                  if (isExpanded)
+                  if (isExpanded || isSettingsExpanded || isProfileExpanded || isLeaveExpanded)
                     SvgPicture.asset(
                       "assets/icons/Angle down.svg",
                       width: 16,
@@ -108,8 +112,14 @@ class _SideMenuItemState extends State<SideMenuItem> {
                     ),
                 ],
               ),
-              if (isExpanded && widget.subTilesWidget != null)
-                widget.subTilesWidget!
+              if (isExpanded)
+                SubTilesList()
+              else if (isSettingsExpanded)
+                SettingsSubTiles()
+              else if (isProfileExpanded)
+                ProfileSubTiles()
+              else if(isLeaveExpanded)
+                LeaveSubTiles()
             ],
           ),
         ),

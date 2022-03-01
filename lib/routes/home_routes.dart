@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 import 'package:workify/controllers/LeavePage/applyLeaveController.dart';
-import 'package:workify/controllers/LeavePage/leaveBalanceController.dart';
 import 'package:workify/controllers/LeavePage/leavePageController.dart';
+import 'package:workify/controllers/LeavePage/leaveStatusController.dart';
+import 'package:workify/controllers/LeavePage/yourBalanceLeavesController.dart';
 import 'package:workify/controllers/WishController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
 
@@ -67,8 +68,10 @@ class HomeRouter {
           name: '/leave',
           page: () => LeavePage(),
           binding: BindingsBuilder(() => {
-                Get.lazyPut(() => ProfileDetailsController()),
-                Get.lazyPut(() => LeavePageController()),
+                // Get.lazyPut(() => ProfileDetailsController()),
+                // Get.lazyPut(() => LeavePageController()),
+                Get.put(LeaveStatusController()),
+                Get.put(ProfileDetailsController())
               }),
         ),
 
@@ -76,16 +79,21 @@ class HomeRouter {
           name: '/apply-leave',
           page: () => ApplyLeave(),
           binding: BindingsBuilder(() => {
-                Get.lazyPut(() => ProfileDetailsController()),
-                Get.lazyPut(() => ApplyLeaveController()),
-                Get.lazyPut(() => LeaveBalanceController()),
+                // Get.lazyPut(() => ProfileDetailsController()),
+                // Get.lazyPut(() => ApplyLeaveController()),
+                // Get.lazyPut(() => LeaveStatusController()),
+                Get.put(ProfileDetailsController()),
+                Get.put(ApplyLeaveController()),
+                Get.put(YourBalanceLeavesController()),
+                Get.put(LeaveStatusController())
               }),
         ),
         GetPage(
           name: '/all-employee-leaves',
           page: () => AllEmployeeLeaves(),
           binding: BindingsBuilder(() => {
-                Get.lazyPut(() => AllEmployeeLeavesController()),
+                // Get.lazyPut(() => AllEmployeeLeavesController()),
+                Get.put(AllEmployeeLeavesController())
               }),
         ),
       ];
@@ -148,8 +156,10 @@ class HomeRouter {
           routeName: '/leave',
           page: () => LeavePage(),
           binding: BindingsBuilder(() => {
-                Get.lazyPut(() => ProfileDetailsController()),
-                Get.lazyPut(() => LeavePageController())
+                // Get.lazyPut(() => ProfileDetailsController()),
+                // Get.lazyPut(() => LeavePageController())
+                Get.put(ProfileDetailsController()),
+                Get.put(LeavePageController())
               }),
         );
         case "/apply-leave":
@@ -158,9 +168,13 @@ class HomeRouter {
           routeName: '/apply-leave',
           page: () => ApplyLeave(),
           binding: BindingsBuilder(() => {
-                Get.lazyPut(() => ProfileDetailsController()),
-                Get.lazyPut(() => ApplyLeaveController()),
-                Get.lazyPut(() => LeaveBalanceController()),
+                // Get.lazyPut(() => ProfileDetailsController()),
+                // Get.lazyPut(() => ApplyLeaveController()),
+                // Get.lazyPut(() => LeaveStatusController()),
+                Get.put(ProfileDetailsController()),
+                Get.put(ApplyLeaveController()),
+                Get.put(YourBalanceLeavesController()),
+                Get.put(LeaveStatusController())
               }),
         );
         case "/all-employee-leaves":
@@ -169,7 +183,8 @@ class HomeRouter {
           routeName: '/all-employee-leaves',
           page: () => AllEmployeeLeaves(),
           binding: BindingsBuilder(() => {
-                Get.lazyPut(() => AllEmployeeLeavesController()),
+                // Get.lazyPut(() => AllEmployeeLeavesController()),
+                Get.put(AllEmployeeLeavesController())
               }),
         );
 

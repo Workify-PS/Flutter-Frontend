@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/controllers/LeavePage/AllEmployeeLeavesApproveRejectController.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
-// import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -22,13 +22,14 @@ class AllEmployeeLeaves extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'All Employee',
+          'All Employee Leaves',
         ),
       ),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,
           height: device.size.height / 1.1,
+          color: Colors.transparent,
           child: Material(
             elevation: 20,
             // color: Colors.black,
@@ -54,7 +55,9 @@ class AllEmployeeLeaves extends StatelessWidget {
                                 //   flex: 1,
                                 //   child: SizedBox(),
                                 // ),
-                                Expanded(flex: 3, child: Text('Employee [Name : Code]')),
+                                Expanded(
+                                    flex: 3,
+                                    child: Text('Employee [Name : Code]')),
                                 Expanded(
                                   flex: 3,
                                   child: Text('Leave Type'),
@@ -104,6 +107,20 @@ class EmployeeLeave extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final allEmployeeLeavesController = Get.find<AllEmployeeLeavesController>();
+    final allEmployeeLeavesApproveRejcectController =
+        Get.put(AllEmployeeLeavesApproveRejcectController());
+
+    void onPressedApproveButton() {
+      allEmployeeLeavesApproveRejcectController.callCallApproveApi(
+          leaveInfoId:
+              AllEmployeeLeavesController.leaveList[index].leaveInfoId);
+    }
+
+    void onPressedRejectButton() {
+      allEmployeeLeavesApproveRejcectController.callCallRejectApi(
+          leaveInfoId:
+              AllEmployeeLeavesController.leaveList[index].leaveInfoId);
+    }
 
     return SizedBox(
       height: 70,
@@ -127,18 +144,15 @@ class EmployeeLeave extends StatelessWidget {
                       if (allEmployeeLeavesController.isLoading.value) {
                         return Text('Still Loading Employee Leaves Data');
                       } else {
-                        return Text(
-                          AllEmployeeLeavesController.leaveList
-                            .elementAt(index)
-                            .userName
-                            .toString()
-                            +' : '
-                            + AllEmployeeLeavesController.leaveList
-                            .elementAt(index)
-                            .empCode
-                            .toString()
-                            
-                        );
+                        return Text(AllEmployeeLeavesController.leaveList
+                                .elementAt(index)
+                                .userName
+                                .toString() +
+                            ' : ' +
+                            AllEmployeeLeavesController.leaveList
+                                .elementAt(index)
+                                .empCode
+                                .toString());
                       }
                     }),
                   ),
@@ -181,32 +195,35 @@ class EmployeeLeave extends StatelessWidget {
                       }
                     }),
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: Obx(() {
-                      if (allEmployeeLeavesController.isLoading.value) {
-                        return Text('Still Loading Employee Leaves Data');
-                      } else {
-                        return PrimaryButton(
+                  Obx(() {
+                    if (allEmployeeLeavesController.isLoading.value) {
+                      return Text('Still Loading Employee Leaves Data');
+                    } else {
+                      return SizedBox(
+                        width: 100,
+                        child: PrimaryButton(
                           buttonTextWidget: Text('Approve'),
-                          onPressed: () {},
-                        );
-                      }
-                    }),
+                          onPressed: onPressedApproveButton,
+                        ),
+                      );
+                    }
+                  }),
+                  SizedBox(
+                    width: 5,
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: Obx(() {
-                      if (allEmployeeLeavesController.isLoading.value) {
-                        return Text('Still Loading Employee Leaves Data');
-                      } else {
-                        return PrimaryButton(
+                  Obx(() {
+                    if (allEmployeeLeavesController.isLoading.value) {
+                      return Text('Still Loading Employee Leaves Data');
+                    } else {
+                      return SizedBox(
+                        width: 100,
+                        child: PrimaryButton(
                           buttonTextWidget: Text('Reject'),
-                          onPressed: () {},
-                        );
-                      }
-                    }),
-                  ),
+                          onPressed: onPressedRejectButton,
+                        ),
+                      );
+                    }
+                  }),
                 ],
               ),
             ),

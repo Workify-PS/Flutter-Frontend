@@ -1,17 +1,17 @@
-class LeaveBalanceModel {
+class LeaveStatusModel {
   String? leaveType;
   dynamic startDate;
   dynamic endDate;
   String? leaveStatus;
 
-  LeaveBalanceModel({
+  LeaveStatusModel({
     this.leaveType,
     this.startDate,
     this.endDate,
     this.leaveStatus
   });
 
-  LeaveBalanceModel.fromJson(Map<String, dynamic> json) {
+  LeaveStatusModel.fromJson(Map<String, dynamic> json) {
    leaveType = json['leaveType'];
    startDate = json['startDate'];
    endDate = json['endDate'];

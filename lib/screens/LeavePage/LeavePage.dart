@@ -5,12 +5,12 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
-// import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
-import 'package:workify/components/top_bar.dart';
 import 'package:workify/controllers/LeavePage/leavePageController.dart';
 
 
 import 'package:workify/controllers/profile_details_controller.dart';
+import 'package:workify/routes/router.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
@@ -36,7 +36,7 @@ class LeavePage extends StatelessWidget {
     leavePageController = Get.find<LeavePageController>();
 
     void newLeave() {
-      Get.toNamed('/apply-leave');
+      Get.find<HomePageController>().gotoPage(Routes.applyLeave, context);
     }
 
 
@@ -90,6 +90,9 @@ class LeavePagePortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void newLeave() {
+      Get.find<HomePageController>().gotoPage(Routes.applyLeave, context);
+    }
     return Column(
       children: [
         Expanded(
@@ -102,7 +105,7 @@ class LeavePagePortrait extends StatelessWidget {
             children: [
               PrimaryButton(
                 buttonTextWidget: Text('New Leave'),
-                onPressed: () {},
+                onPressed: newLeave,
               ),
               WrapPastAttendanceRelated(),
             ],
@@ -163,10 +166,11 @@ class _StatefulPastAttendanceRelatedState
                     PrimaryButton(
                       buttonTextWidget: Text('Date'),
                       onPressed: () {
-                        DatePicker.showDatePicker(context,
-                            theme: DatePickerTheme(
+                        DatePicker.showDatePicker(
+                          context,
+                          theme: DatePickerTheme(
                               backgroundColor: Colors.grey.shade200,
-                            ), onConfirm: (value) {
+                          ), onConfirm: (value) {
                           var date = value.toString().split(' ');
                           var onlyDate = date[0];
                           setState(() {

@@ -8,6 +8,11 @@ class Routes {
   static const String modifyEmployeeProfile = "/modify-employee-profile";
   static const String allEmployeeProfile = "/all-employee-profile";
   static const String leave = "/leave";
+  static const String applyLeave = "/apply-leave";
+  static const String allEmployeeLeaves = "/all-employee-leaves";
+
+
+
   static Set<String> routes = {
     init,
     home,

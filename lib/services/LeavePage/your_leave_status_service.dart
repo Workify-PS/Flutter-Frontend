@@ -2,12 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/exceptions/print_log.dart';
-import 'dart:convert';
 
-
-class FetchAllEmployeeService {
-  static Future<dynamic> callAllEmployeesApi() async {
-    String profileUrl = 'http://localhost:8080/workify/v1/allemployees';
+class YourLeaveStatusService {
+  static Future<dynamic> callYourLeavesApi() async {
+    String yourLeavesUrl = 'http://localhost:8080/workify/v1/leave/yourleaves';
     // ignore: prefer_typing_uninitialized_variables
     var responseData;
 
@@ -22,30 +20,29 @@ class FetchAllEmployeeService {
       final Dio dio = Dio();
       dio.options.headers = headers;
       var response = await dio.post(
-        profileUrl,
+        yourLeavesUrl,
       );
       if (response.statusCode == 200) {
         responseData = response.data;
         PrintLog.printLog(
-            fileName: 'Fetch All Employee Service File',
-            functionName: 'callAllEmployeesApi(){}',
+            fileName: 'your_leave_status_service File',
+            functionName: 'callYourLeavesApi(){}',
             blockNumber: 1,
             printStatement: 'Everything OK !!\n' +
-                response.data.toString() +
-                '\nDataType :: ' +
+                response.data.toString() + '\nDataType :: \n'+
                 response.data.runtimeType.toString());
       } else {
         PrintLog.printLog(
-          fileName: 'Fetch All Employee Service File',
-          functionName: 'callAllEmployeesApi(){}',
+          fileName: 'your_leave_status_service File',
+          functionName: 'callYourLeavesApi(){}',
           blockNumber: 2,
           printStatement: 'Status Code :: ' + response.statusCode.toString(),
         );
       }
     } on DioError catch (error) {
       PrintLog.printLog(
-        fileName: 'Fetch All Employee Service File',
-        functionName: 'callAllEmployeesApi(){}',
+        fileName: 'your_leave_status_service File',
+        functionName: 'callYourLeavesApi(){}',
         blockNumber: 3,
         printStatement: 'Error :: ' + error.message.toString(),
       );
@@ -53,14 +50,15 @@ class FetchAllEmployeeService {
     return responseData;
   }
 
-  static Future<dynamic> fetchAllEmployeesDetails() async {
-    var data = await callAllEmployeesApi();
+  static Future<dynamic> fetchLeaveStatus() async {
+    var yourLeavesApiResponse = await callYourLeavesApi();
     PrintLog.printLog(
-        fileName: 'Fetch All Employee Service File',
-        functionName: 'fetchAllEmployeesDetails(){}',
+        fileName: 'your_leave_status_service File',
+        functionName: 'callYourLeavesApi(){}',
         blockNumber: 1,
-        printStatement:
-            'AllEmployees Api Response : ' + data.runtimeType.toString());
-    return data;
+        printStatement: 'yourLeaves Api Response :\n'
+        + yourLeavesApiResponse.runtimeType.toString()
+        );
+    return yourLeavesApiResponse;
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/routes/router.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 // import 'package:workify/exceptions/print_log.dart';
 
@@ -34,9 +36,11 @@ class LeaveSubTile extends StatelessWidget {
     return Obx(() => InkWell(
           onTap: () {
             leaveOptions == 'My Leaves'
-                ? {Get.toNamed('/leave')}
+                ? {
+                    Get.find<HomePageController>().gotoPage(Routes.leave, context)
+                  }
                 : {
-                    Get.toNamed('/all-employee-leaves'),
+                    Get.find<HomePageController>().gotoPage(Routes.allEmployeeLeaves, context)
                   };
           },
           onHover: (value) => isSelected.value = value,

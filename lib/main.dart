@@ -5,7 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:workify/controllers/AuthController.dart';
 // import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 // import 'package:workify/controllers/LeavePage/applyLeaveController.dart';
-// import 'package:workify/controllers/LeavePage/leaveBalanceController.dart';
+// import 'package:workify/controllers/LeavePage/LeaveStatusController.dart';
 import 'package:workify/controllers/UserController.dart';
 // import 'package:workify/controllers/fetch_all_employees_controller.dart';
 // import 'package:workify/controllers/LeavePage/leavePageController.dart';

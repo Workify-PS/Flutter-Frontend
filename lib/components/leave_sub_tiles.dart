@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/routes/router.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
@@ -11,14 +10,21 @@ class LeaveSubTiles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homePageController=Get.find<HomePageController>();
 
     return Container(
         padding: const EdgeInsets.only(top: kDefaultPadding / 1.5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LeaveSubTile(leaveOptions: 'My Leaves'),
-            LeaveSubTile(leaveOptions: 'All Employee Leaves'),
+            LeaveSubTile(
+              leaveOptions: 'My Leaves',
+              onTap: () => homePageController.gotoPage(Routes.leave, context)
+            ),
+            LeaveSubTile(
+              leaveOptions: 'All Employee Leaves',
+              onTap: () => homePageController.gotoPage(Routes.allEmployeeLeaves, context)
+            ),
           ],
         ));
   }
@@ -26,23 +32,22 @@ class LeaveSubTiles extends StatelessWidget {
 
 // ignore: must_be_immutable
 class LeaveSubTile extends StatelessWidget {
-  final authController = Get.find<AuthController>();
-
+  VoidCallback? onTap;
   String leaveOptions;
-  LeaveSubTile({Key? key, required this.leaveOptions}) : super(key: key);
+  // Widget? trailingwidget;
+
+  LeaveSubTile({
+    Key? key,
+    required this.leaveOptions,
+    required this.onTap,
+  // this.trailingwidget
+  })
+      : super(key: key);
   RxBool isSelected = false.obs;
   @override
   Widget build(BuildContext context) {
     return Obx(() => InkWell(
-          onTap: () {
-            leaveOptions == 'My Leaves'
-                ? {
-                    Get.find<HomePageController>().gotoPage(Routes.leave, context)
-                  }
-                : {
-                    Get.find<HomePageController>().gotoPage(Routes.allEmployeeLeaves, context)
-                  };
-          },
+          onTap: onTap,
           onHover: (value) => isSelected.value = value,
           child: Padding(
             padding: const EdgeInsets.symmetric(

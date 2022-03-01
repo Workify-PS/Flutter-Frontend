@@ -38,56 +38,68 @@ class AllEmployeeLeaves extends StatelessWidget {
               width: screenWidth,
               child: Obx(() {
                 if (allEmployeeLeavesController.isLoading.value) {
-                  return Text('Still Loading Data');
+                  return Center(
+                    child : Text('Still Loading Data'
+                    )
+                  );
                 } else {
-                  return SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 70,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                // Expanded(
-                                //   flex: 1,
-                                //   child: SizedBox(),
-                                // ),
-                                Expanded(
+                  if (AllEmployeeLeavesController.leaveList.isEmpty) {
+                    return Center(
+                      child: Text('No Records Found !')
+                    );
+                  }
+                  else{
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 70,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  // Expanded(
+                                  //   flex: 1,
+                                  //   child: SizedBox(),
+                                  // ),
+                                  Expanded(
+                                      flex: 3,
+                                      child: Text('Employee [Name : Code]')),
+                                  Expanded(
                                     flex: 3,
-                                    child: Text('Employee [Name : Code]')),
-                                Expanded(
-                                  flex: 3,
-                                  child: Text('Leave Type'),
-                                ),
-                                Expanded(flex: 3, child: Text('Start Date')),
-                                Expanded(flex: 3, child: Text('End Date')),
-                                Expanded(
-                                  flex: 2,
-                                  child: SizedBox(),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: SizedBox(),
-                                ),
-                              ],
+                                    child: Text('Leave Type'),
+                                  ),
+                                  Expanded(flex: 3, child: Text('Start Date')),
+                                  Expanded(flex: 3, child: Text('End Date')),
+                                  Expanded(
+                                    flex: 2,
+                                    child: SizedBox(),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          height: 3,
-                          color: Colors.grey,
-                        ),
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List.generate(
-                                AllEmployeeLeavesController.leaveList.length,
-                                (index) => EmployeeLeave(index: index))),
-                      ],
-                    ),
-                  );
+                          Container(
+                            height: 3,
+                            color: Colors.grey,
+                          ),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: List.generate(
+                                  AllEmployeeLeavesController.leaveList.length,
+                                  (index) => EmployeeLeave(index: index))),
+                        ],
+                      ),
+                    );
+
+                  }
+                  
                 }
               }),
             ),

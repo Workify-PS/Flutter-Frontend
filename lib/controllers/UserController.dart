@@ -15,36 +15,33 @@ class UserController extends GetxController with CacheManager {
   void onInit() async {
     if (_authController.isSignedIn.value) {
       final token = _authController.getToken();
+      final user = getUser();
       PrintLog.printLog(
           fileName: 'UserController',
           functionName: 'onInit',
           blockNumber: 1,
           printStatement: 'User is signed in with token\n$token');
-      final user = getUser();
       if (user != null) {
         currentUser = Rx<UserModel>(user);
         PrintLog.printLog(
-          fileName: 'UserController',
-          functionName: 'onInit',
-          blockNumber: 2,
-          printStatement: 'User found in local Storage !!'
-        );
+            fileName: 'UserController',
+            functionName: 'onInit',
+            blockNumber: 2,
+            printStatement: 'User found in local Storage !!');
       } else {
         PrintLog.printLog(
-          fileName: 'UserController',
-          functionName: 'onInit',
-          blockNumber: 3,
-          printStatement: 'User NOT found in local Storage !!'
-        );
+            fileName: 'UserController',
+            functionName: 'onInit',
+            blockNumber: 3,
+            printStatement: 'User NOT found in local Storage !!');
         _authController.logOut();
       }
     } else {
-        PrintLog.printLog(
+      PrintLog.printLog(
           fileName: 'UserController',
           functionName: 'onInit',
           blockNumber: 4,
-          printStatement: 'NOT Logged In !!'
-        );
+          printStatement: 'NOT Logged In !!');
     }
     super.onInit();
   }

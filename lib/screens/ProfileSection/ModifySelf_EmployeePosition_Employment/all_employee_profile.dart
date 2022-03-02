@@ -27,6 +27,7 @@ class AllEmployeeProfile extends StatelessWidget {
         child: Container(
           width: device.size.width / 1.1,
           height: device.size.height / 1.1,
+          color: Colors.transparent,
           child: Material(
             elevation: 20,
             // color: Colors.black,
@@ -157,7 +158,7 @@ class EmployeeProfile extends StatelessWidget {
                           buttonTextWidget: Text('Modify Details'),
                           onPressed: () {
                             Get.find<HomePageController>().gotoPage(
-                                Routes.modifyEmployeeProfile, context);
+                                Routes.modifyEmployeeProfile, context,arguments: index);
                           },
                         );
                       }

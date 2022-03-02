@@ -26,20 +26,19 @@ class ModifyEmployeeProfileDetails extends StatelessWidget {
     final modifyProfileWidgetsController =
         Get.find<ModifyProfileWidgetsController>();
 
-    // var dataFromParentScreen = Get.arguments;
-    // var data = dataFromParentScreen.elementAt(0);
-    print('Get Arguments '+ Get.arguments);
+    final index =
+        (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{});
 
-    return Text('Modify Individual Profile');
+
 
     Map<String, Widget> profileWidgets = {
       'Employee Basic Details': UserSpecificBasicDetails(
-        index: 0,
+        index: index,
       ),
       'Modify Position Details': ModifyPositionDetails(
-        index: 0,
+        index: index,
       ),
-      'Modify Employment Details': ModifyEmploymentDetails(index: 0),
+      'Modify Employment Details': ModifyEmploymentDetails(index: index),
     };
 
     return Scaffold(
@@ -76,19 +75,22 @@ class ModifyEmployeeProfileDetails extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: PositionDetailsButton(
-                        ModifyEmployeeProfileDetailsString: "Employee Basic Details",
+                        ModifyEmployeeProfileDetailsString:
+                            "Employee Basic Details",
                       ),
                     ),
                     Expanded(
                       flex: 1,
                       child: PositionDetailsButton(
-                        ModifyEmployeeProfileDetailsString: "Modify Position Details",
+                        ModifyEmployeeProfileDetailsString:
+                            "Modify Position Details",
                       ),
                     ),
                     Expanded(
                       flex: 1,
                       child: EmploymentDetailsButton(
-                        ModifyEmployeeProfileDetailsString: "Modify Employment Details",
+                        ModifyEmployeeProfileDetailsString:
+                            "Modify Employment Details",
                       ),
                     ),
                   ],
@@ -151,8 +153,8 @@ class Buttons extends StatelessWidget {
     return Obx(() => ElevatedButton(
           onPressed: () {
             modifyProfileWidgetsController.resetModifyProfileButtons();
-            modifyProfileWidgetsController
-                .updateModifyProfileWidgetString(ModifyEmployeeProfileDetailsString);
+            modifyProfileWidgetsController.updateModifyProfileWidgetString(
+                ModifyEmployeeProfileDetailsString);
             modifyProfileWidgetsController.setModifyProfileButton(
                 str: ModifyEmployeeProfileDetailsString);
           },

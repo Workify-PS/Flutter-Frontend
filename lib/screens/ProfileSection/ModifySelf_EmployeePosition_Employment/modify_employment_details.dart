@@ -7,8 +7,8 @@ import 'package:workify/components/button.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/controllers/modify_profile_details_controller.dart';
-import 'package:workify/exceptions/print_log.dart';
-import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/text_form_modify_profile_details.dart';
+import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/text_form_modify_profile_details.dart';
+// import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -205,11 +205,11 @@ class _StatefulModifyEmploymentDetailsState
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Button(
+                  PrimaryButton(
                     buttonTextWidget: Text('Get Back'),
                     onPressed: getBack,
                   ),
-                  Button(
+                  PrimaryButton(
                     buttonTextWidget: Text('Submit'),
                     onPressed: callOnSubmitEmploymentDetails,
                   ),

@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/LeavePage/applyLeaveController.dart';
-import 'package:workify/controllers/LeavePage/leaveBalanceController.dart';
+import 'package:workify/controllers/LeavePage/leaveStatusController.dart';
+import 'package:workify/controllers/LeavePage/yourBalanceLeavesController.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
-import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/text_form_modify_profile_details.dart';
+import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -27,7 +28,6 @@ class ApplyLeave extends StatelessWidget {
     portrait = screenWidth < 1000;
     final profileDetailsController = Get.find<ProfileDetailsController>();
     final applyLeaveController = Get.find<ApplyLeaveController>();
-    final leaveBalanceController = Get.find<LeaveBalanceController>();
 
     void callonClickApplyLeaveButton() {
       applyLeaveController.onClickApplyLeaveButton(
@@ -61,7 +61,23 @@ class ApplyLeave extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                      flex: 6,
+                      flex: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Leave Balance',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          LeaveBalanceInfo(),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 4,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -82,7 +98,7 @@ class ApplyLeave extends StatelessWidget {
                               children: [
                                 StartEndDates(),
                                 LeaveTypeReason(),
-                                Button(
+                                PrimaryButton(
                                   buttonTextWidget: Text('Apply Leave'),
                                   onPressed: callonClickApplyLeaveButton,
                                 )
@@ -137,10 +153,8 @@ class ApplyLeavePortraitView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final profileDetailsController = Get.find<ProfileDetailsController>();
     final applyLeaveController = Get.find<ApplyLeaveController>();
-    final leaveBalanceController = Get.find<LeaveBalanceController>();
 
     void callonClickApplyLeaveButton() {
       applyLeaveController.onClickApplyLeaveButton(
@@ -179,7 +193,7 @@ class ApplyLeavePortraitView extends StatelessWidget {
                   children: [
                     StartEndDates(),
                     LeaveTypeReason(),
-                    Button(
+                    PrimaryButton(
                       buttonTextWidget: Text('Apply Leave'),
                       onPressed: callonClickApplyLeaveButton,
                     )
@@ -225,6 +239,81 @@ class ApplyLeavePortraitView extends StatelessWidget {
   }
 }
 
+class LeaveBalanceInfo extends StatelessWidget {
+  const LeaveBalanceInfo({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ClLeft(),
+        PlLeft(),
+      ],
+    );
+  }
+}
+
+class ClLeft extends StatelessWidget {
+  const ClLeft({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final yourLeaveBalanceController = Get.find<YourBalanceLeavesController>();
+
+    return SizedBox(
+      width: 200,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text('CL Count'),
+          Text(':'),
+          Obx(() {
+            if (yourLeaveBalanceController.isLoading.value) {
+              return Text('Still Loading Data');
+            } else {
+              return Text(YourBalanceLeavesController
+                      .yourBalanceLeavesData?.clLeft
+                      .toString() ??
+                  'CL Left Found Null in Database');
+            }
+          }),
+        ],
+      ),
+    );
+  }
+}
+
+class PlLeft extends StatelessWidget {
+  const PlLeft({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final yourLeaveBalanceController = Get.find<YourBalanceLeavesController>();
+
+    return SizedBox(
+      width: 200,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text('PL Count'),
+          Text(':'),
+          Obx(() {
+            if (yourLeaveBalanceController.isLoading.value) {
+              return Text('Still Loading Data');
+            } else {
+              return Text(YourBalanceLeavesController
+                      .yourBalanceLeavesData?.plLeft
+                      .toString() ??
+                  'PL Left Found Null in Database');
+            }
+          }),
+        ],
+      ),
+    );
+  }
+}
+
 class LeaveTypeReason extends StatefulWidget {
   const LeaveTypeReason({Key? key}) : super(key: key);
 
@@ -237,12 +326,7 @@ class _LeaveTypeDropDownState extends State<LeaveTypeReason> {
 
   final _leaveReasonController = TextEditingController();
 
-  final _leaveTypeList = [
-    'Anniversary',
-    'Birthday',
-    'CL',
-    'PL'
-  ];
+  final _leaveTypeList = ['Anniversary', 'Birthday', 'CL', 'PL'];
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -300,9 +384,18 @@ class _StartEndDatesState extends State<StartEndDates> {
           ), onConfirm: (value) {
         var date = value.toString().split(' ');
         var onlyDate = date[0];
-        setState(() {
-          choice == 's' ? startDate = onlyDate : endDate = onlyDate;
-        });
+        date = DateTime.now().toString().split(' ');
+        var today = date[0];
+        if (DateTime.parse(onlyDate).isBefore(DateTime.parse(today))) {
+          Get.defaultDialog(
+            title: 'Choose today or beyond !',
+            middleText: "Can't go in past",
+          );
+        } else {
+          setState(() {
+            choice == 's' ? startDate = onlyDate : endDate = onlyDate;
+          });
+        }
       });
     }
 
@@ -322,7 +415,7 @@ class _StartEndDatesState extends State<StartEndDates> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Button(
+              PrimaryButton(
                 buttonTextWidget: Text('Start Date'),
                 onPressed: pickStartDate,
               ),
@@ -340,7 +433,7 @@ class _StartEndDatesState extends State<StartEndDates> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Button(
+              PrimaryButton(
                 buttonTextWidget: Text('End Date'),
                 onPressed: pickEndDate,
               ),
@@ -369,10 +462,10 @@ class LeaveStatusInfo extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(width: portrait? 90:200, child: Text('Leave Type')),
-            SizedBox(width: portrait? 90:200, child: Text('Start Date')),
-            SizedBox(width: portrait? 90:200, child: Text('End Date')),
-            SizedBox(width: portrait? 90:200, child: Text('Status')),
+            SizedBox(width: portrait ? 90 : 200, child: Text('Leave Type')),
+            SizedBox(width: portrait ? 90 : 200, child: Text('Start Date')),
+            SizedBox(width: portrait ? 90 : 200, child: Text('End Date')),
+            SizedBox(width: portrait ? 90 : 200, child: Text('Status')),
           ],
         ),
         Container(
@@ -389,21 +482,20 @@ class LeaveStatusData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final leaveBalanceController = Get.find<LeaveBalanceController>();
-
+    final leaveStatusController = Get.find<LeaveStatusController>();
     return Obx(() {
-      if (leaveBalanceController.isLoading.value) {
+      if (leaveStatusController.isLoading.value) {
         return Text('Data loading');
       } else {
         return Container(
           // color: Colors.red,
           color: Colors.transparent,
-          height: portrait ? 150:200,
+          height: portrait ? 150 : 200,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               children: List.generate(
-                  LeaveBalanceController.leaveBalanceList.length,
+                  LeaveStatusController.leaveBalanceList.length,
                   (index) => LeaveStatusDataLoaded(idx: index)),
             ),
           ),
@@ -422,9 +514,9 @@ class LeaveStatusDataLoaded extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final leaveBalanceController = Get.put(LeaveBalanceController());
+    final leaveStatusController = Get.put(LeaveStatusController());
     return Obx(() {
-      if (leaveBalanceController.isLoading.value) {
+      if (leaveStatusController.isLoading.value) {
         return Text('Data Loading');
       } else {
         return Column(
@@ -433,23 +525,23 @@ class LeaveStatusDataLoaded extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                    width: portrait? 90:200,
-                    child: Text(LeaveBalanceController
+                    width: portrait ? 90 : 200,
+                    child: Text(LeaveStatusController
                         .leaveBalanceList[idx].leaveType
                         .toString())),
                 SizedBox(
-                    width: portrait? 90:200,
-                    child: Text(LeaveBalanceController
+                    width: portrait ? 90 : 200,
+                    child: Text(LeaveStatusController
                         .leaveBalanceList[idx].startDate
                         .toString())),
                 SizedBox(
-                    width: portrait? 90:200,
-                    child: Text(LeaveBalanceController
+                    width: portrait ? 90 : 200,
+                    child: Text(LeaveStatusController
                         .leaveBalanceList[idx].endDate
                         .toString())),
                 SizedBox(
-                    width: portrait? 90:200,
-                    child: Text(LeaveBalanceController
+                    width: portrait ? 90 : 200,
+                    child: Text(LeaveStatusController
                         .leaveBalanceList[idx].leaveStatus
                         .toString())),
               ],
@@ -462,39 +554,5 @@ class LeaveStatusDataLoaded extends StatelessWidget {
         );
       }
     });
-  }
-}
-
-class PlLeave extends StatelessWidget {
-  const PlLeave({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: 200,
-          child: Text('Paternity Leave'),
-        ),
-        SizedBox(width: 200, child: Text('Will Fetch')),
-      ],
-    );
-  }
-}
-
-class ClLeave extends StatelessWidget {
-  const ClLeave({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: 200,
-          child: Text('Casual Leave'),
-        ),
-        SizedBox(width: 200, child: Text('Will Fetch')),
-      ],
-    );
   }
 }

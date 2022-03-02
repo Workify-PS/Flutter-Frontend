@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/theme.dart';
@@ -97,10 +98,8 @@ class _AttendanceCardState extends State<AttendanceCard> {
           //     )),
 
           InkWell(
-            onTap: (){},
-
+            onTap: () {},
             child: NeumorphicButton(
-              
               padding: const EdgeInsets.symmetric(
                   horizontal: kDefaultPadding * 1.2,
                   vertical: kDefaultPadding * 0.6),
@@ -122,15 +121,17 @@ class _AttendanceCardState extends State<AttendanceCard> {
                   !isPunchedIn
                       ? Text(
                           "Punch In",
-                          style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                                color: secondaryColor,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.subtitle1!.copyWith(
+                                    color: secondaryColor,
+                                  ),
                         )
                       : Text(
                           "Punch Out",
-                          style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                                color: secondaryColor,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.subtitle1!.copyWith(
+                                    color: secondaryColor,
+                                  ),
                         )
                 ],
               ),
@@ -145,8 +146,7 @@ class _AttendanceCardState extends State<AttendanceCard> {
                   lightSource: LightSource.right,
                   //shadowDarkColor: kTopShadowColorDark,
 
-                  shadowLightColor:
-                       Theme.of(context).shadowColor,
+                  shadowLightColor: Theme.of(context).shadowColor,
                   color: primaryColor),
             ),
           ),
@@ -216,9 +216,11 @@ class _AttendanceCardState extends State<AttendanceCard> {
             ),
           ),
           Spacer(),
-          Button(
+          PrimaryButton(
             buttonTextWidget: Text('Attendance Status'),
-            onPressed: () {},
+            onPressed: () {
+              Get.find<HomePageController>().gotoPage("/attendance", context);
+            },
             primaryColor: kPrimaryColor,
             icon: Icon(CupertinoIcons.calendar_today),
           ),

@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
-import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/user_specific_person.dart';
+import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/user_specific_person.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;

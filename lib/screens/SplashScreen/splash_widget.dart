@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/screens/SplashScreen/splash_widget.dart';
 
-class Splashscreen extends StatelessWidget {
-  const Splashscreen({Key? key}) : super(key: key);
+class SplashWidget extends StatelessWidget {
+  const SplashWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

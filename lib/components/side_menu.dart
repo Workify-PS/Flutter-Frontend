@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/components/leave_sub_tiles.dart';
 import 'package:workify/components/profile_sub_tiles.dart';
 import 'package:workify/components/settings_sub_items.dart';
 import 'package:workify/components/settings_sub_tiles.dart';
@@ -28,7 +29,7 @@ class SideMenu extends GetView<HomePageController> {
     //Icons.flag_outlined,
     CupertinoIcons.gear_alt
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,13 +37,13 @@ class SideMenu extends GetView<HomePageController> {
       color: Theme.of(context).primaryColor,
       child: MouseRegion(
         onExit: (event) {
-            if(controller.pageName.value!=Routes.home){
-              controller.sideMenuCollapsed.value = true;
-            }
-          },
-          // onExit: (event) {
-          //   controller.sideMenuCollapsed.value = true;
-          // },
+          if (controller.pageName.value != Routes.home) {
+            controller.sideMenuCollapsed.value = true;
+          }
+        },
+        // onExit: (event) {
+        //   controller.sideMenuCollapsed.value = true;
+        // },
         child: SafeArea(
           child: SingleChildScrollView(
             //controller: ScrollController(),
@@ -73,8 +74,8 @@ class SideMenu extends GetView<HomePageController> {
                         (index) => SideMenuItem(
                               icon: icons[index],
                               title: titles[index],
-                              
-                              subTilesWidget: generateSubTilesList(titles[index]),
+                              subTilesWidget:
+                                  generateSubTilesList(titles[index]),
                             )),
                   ),
                 ),
@@ -93,6 +94,8 @@ class SideMenu extends GetView<HomePageController> {
         return SettingsSubTiles();
       case "profile":
         return ProfileSubTiles();
+      case "leave":
+        return LeaveSubTiles();
       default:
         return null;
     }

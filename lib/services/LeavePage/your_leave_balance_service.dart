@@ -4,8 +4,8 @@ import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/exceptions/print_log.dart';
 
 class YourLeaveBalanceService {
-  static Future<dynamic> callYourLeavesApi() async {
-    String yourLeavesUrl = 'http://localhost:8080/workify/v1/leave/yourleaves';
+  static Future<dynamic> callYourBalanceLeavesApi() async {
+    String yourBalanceLeavesUrl = 'http://localhost:8080/workify/v1/leave/yourbalanceleaves';
     // ignore: prefer_typing_uninitialized_variables
     var responseData;
 
@@ -20,13 +20,13 @@ class YourLeaveBalanceService {
       final Dio dio = Dio();
       dio.options.headers = headers;
       var response = await dio.post(
-        yourLeavesUrl,
+        yourBalanceLeavesUrl,
       );
       if (response.statusCode == 200) {
         responseData = response.data;
         PrintLog.printLog(
             fileName: 'your_leave_balance_service File',
-            functionName: 'callYourLeavesApi(){}',
+            functionName: 'callYourBalanceLeavesApi(){}',
             blockNumber: 1,
             printStatement: 'Everything OK !!\n' +
                 response.data.toString() + '\nDataType :: \n'+
@@ -34,7 +34,7 @@ class YourLeaveBalanceService {
       } else {
         PrintLog.printLog(
           fileName: 'your_leave_balance_service File',
-          functionName: 'callYourLeavesApi(){}',
+          functionName: 'callYourBalanceLeavesApi(){}',
           blockNumber: 2,
           printStatement: 'Status Code :: ' + response.statusCode.toString(),
         );
@@ -42,7 +42,7 @@ class YourLeaveBalanceService {
     } on DioError catch (error) {
       PrintLog.printLog(
         fileName: 'your_leave_balance_service File',
-        functionName: 'callYourLeavesApi(){}',
+        functionName: 'callYourBalanceLeavesApi(){}',
         blockNumber: 3,
         printStatement: 'Error :: ' + error.message.toString(),
       );
@@ -50,15 +50,15 @@ class YourLeaveBalanceService {
     return responseData;
   }
 
-  static Future<dynamic> fetchProfileDetails() async {
-    var yourLeavesApiResponse = await callYourLeavesApi();
+  static Future<dynamic> fetchLeaveBalance() async {
+    var yourBalanceLeavesApiResponse = await callYourBalanceLeavesApi();
     PrintLog.printLog(
         fileName: 'your_leave_balance_service File',
-        functionName: 'callYourLeavesApi(){}',
+        functionName: 'callYourBalanceLeavesApi(){}',
         blockNumber: 1,
         printStatement: 'yourLeaves Api Response :\n'
-        + yourLeavesApiResponse.runtimeType.toString()
+        + yourBalanceLeavesApiResponse.runtimeType.toString()
         );
-    return yourLeavesApiResponse;
+    return yourBalanceLeavesApiResponse;
   }
 }

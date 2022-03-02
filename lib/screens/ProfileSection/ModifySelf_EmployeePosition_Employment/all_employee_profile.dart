@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
+import 'package:workify/routes/router.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
+import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -19,11 +22,7 @@ class AllEmployeeProfile extends StatelessWidget {
     final fetchAllEmployeesController = Get.find<FetchAllEmployeesController>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'All Employee',
-        ),
-      ),
+      appBar:generateTopBar(title: "All Employees"),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,
@@ -49,37 +48,34 @@ class AllEmployeeProfile extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-
                                 Expanded(
                                   flex: 1,
                                   child: SizedBox(),
                                 ),
                                 Expanded(
-                                  flex: 3,
-                                  child: Text('Employee [ Name : Code ]')
-                                ),
+                                    flex: 3,
+                                    child: Text('Employee [ Name : Code ]')),
                                 Expanded(
                                   flex: 3,
-                                  child : Text('Designation'),
+                                  child: Text('Designation'),
                                 ),
                                 Expanded(
                                   flex: 1,
                                   child: SizedBox(),
                                 ),
                               ],
-                              
                             ),
                           ),
                         ),
-
                         Container(
-                              height: 3,
-                              color: Colors.grey,
+                          height: 3,
+                          color: Colors.grey,
                         ),
                         Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: List.generate(
-                                FetchAllEmployeesController.allEmployeeList.length,
+                                FetchAllEmployeesController
+                                    .allEmployeeList.length,
                                 (index) => EmployeeProfile(index: index))),
                       ],
                     ),
@@ -126,53 +122,46 @@ class EmployeeProfile extends StatelessWidget {
                       if (fetchAllEmployeesController.isLoading.value) {
                         return Text('Still Loading Data in Employee Profile');
                       } else {
-                        return Text(
-                          FetchAllEmployeesController.allEmployeeList
-                              .elementAt(index)
-                              .fullName
-                              .toString()
-                              + ' : '
-                              + FetchAllEmployeesController.allEmployeeList
-                              .elementAt(index)
-                              .empCode
-                              .toString()
-                        );
+                        return Text(FetchAllEmployeesController.allEmployeeList
+                                .elementAt(index)
+                                .fullName
+                                .toString() +
+                            ' : ' +
+                            FetchAllEmployeesController.allEmployeeList
+                                .elementAt(index)
+                                .empCode
+                                .toString());
                       }
                     }),
                   ),
                   Expanded(
                     flex: 3,
-                    child:Obx(() {
+                    child: Obx(() {
                       if (fetchAllEmployeesController.isLoading.value) {
                         return Text('Still Loading Data in Employee Profile');
                       } else {
-                        return Text(
-                          FetchAllEmployeesController.allEmployeeList
-                              .elementAt(index)
-                              .designation
-                              .toString()
-                        );
+                        return Text(FetchAllEmployeesController.allEmployeeList
+                            .elementAt(index)
+                            .designation
+                            .toString());
                       }
-                    }), 
+                    }),
                   ),
                   Expanded(
                     flex: 1,
-                    child:Obx(() {
+                    child: Obx(() {
                       if (fetchAllEmployeesController.isLoading.value) {
                         return Text('Still Loading Data in Employee Profile');
                       } else {
-                        return Button(
+                        return PrimaryButton(
                           buttonTextWidget: Text('Modify Details'),
                           onPressed: () {
-                            Get.toNamed(
-                              "/modify-employee-profile",
-                              arguments: 
-                              [index]  
-                            );
+                            Get.find<HomePageController>().gotoPage(
+                                Routes.modifyEmployeeProfile, context);
                           },
                         );
                       }
-                    }), 
+                    }),
                   ),
                 ],
               ),
@@ -180,18 +169,16 @@ class EmployeeProfile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 2),
               child: Container(
-                    height: 1,
-                    color: Colors.grey,
+                height: 1,
+                color: Colors.grey,
               ),
             ),
-            
           ],
         ),
       ),
     );
   }
 }
-
 
 class Avatar extends StatelessWidget {
   const Avatar({Key? key}) : super(key: key);

@@ -2,14 +2,15 @@
 
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/modify_profile_details_controller.dart';
+import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/text_form_modify_profile_details.dart';
 // import 'package:workify/exceptions/print_log.dart';
-import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 
@@ -60,12 +61,11 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
 
     portrait = screenWidth < 1000;
 
-
     final profileDetailsController = Get.find<ProfileDetailsController>();
 
     var textFormList = [
       'Mobile Number',
-      'Date of Birth',
+      'Date of Birth (dd-mm-yyyy)',
       'Marriage Status',
       'City',
       'State',
@@ -80,12 +80,24 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
       code = countryCode.toString();
     }
 
+    String validateMobile(String value) {
+      if (value.contains(RegExp(r'[A-Za-z]'))) {
+        return 'Should Contain only number';
+      }
+      return 'Correct !';
+    }
+
     String _tempMobileNumber =
         profileDetailsController.employeeInfoModelDetails?.mobile ??
             'Mobile Number Not Found';
     MobileNumber = _tempMobileNumber.split(' ');
-
-    _mobile = TextEditingController(text: MobileNumber[1]);
+    if (MobileNumber.isEmpty) {
+      _mobile = TextEditingController(text:'NA');
+    } else if (MobileNumber.length == 1) {
+      _mobile = TextEditingController(text: MobileNumber[0]);
+    } else {
+      _mobile = TextEditingController(text:MobileNumber[1]);
+    }
 
     _doB = TextEditingController(
         text: DateFormat('dd-MM-yyyy').format(DateTime.parse(
@@ -113,7 +125,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
 
     var textFormList_2_Controllers = {
       'Mobile Number': _mobile,
-      'Date of Birth': _doB,
+      'Date of Birth (dd-mm-yyyy)': _doB,
       'Marriage Status': _marriageStatus,
       'City': _city,
       'State': _state,
@@ -158,7 +170,10 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                           flex: 8,
                           child: TextFormModifyDetails(
                             myFocusNode: FocusNode(),
-                            keyBoardType: TextInputType.number,
+                            keyBoardType: TextInputType.phone,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
                             enabled: true,
                             text: textFormList[index],
                             controller:
@@ -185,11 +200,11 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Button(
+                  PrimaryButton(
                     buttonTextWidget: Text('Get Back'),
                     onPressed: getBack,
                   ),
-                  Button(
+                  PrimaryButton(
                     buttonTextWidget: Text('Submit'),
                     onPressed: callOnSubmitBasicDetails,
                   )

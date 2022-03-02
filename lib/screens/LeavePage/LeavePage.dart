@@ -7,8 +7,11 @@ import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 import 'package:workify/controllers/LeavePage/leavePageController.dart';
+import 'package:workify/controllers/LeavePage/leavePageController.dart';
 
 import 'package:workify/controllers/profile_details_controller.dart';
+import 'package:workify/routes/router.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
@@ -34,7 +37,7 @@ class LeavePage extends StatelessWidget {
     leavePageController = Get.find<LeavePageController>();
 
     void newLeave() {
-      Get.toNamed('/apply-leave');
+      Get.find<HomePageController>().gotoPage(Routes.applyLeave, context);
     }
 
     return Scaffold(
@@ -66,7 +69,7 @@ class LeavePage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Button(
+                            PrimaryButton(
                               buttonTextWidget: Text('New Leave'),
                               onPressed: newLeave,
                             ),
@@ -87,6 +90,10 @@ class LeavePagePortrait extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void newLeave() {
+      Get.find<HomePageController>().gotoPage(Routes.applyLeave, context);
+    }
+
     return Column(
       children: [
         Expanded(
@@ -97,9 +104,9 @@ class LeavePagePortrait extends StatelessWidget {
           flex: 6,
           child: Column(
             children: [
-              Button(
+              PrimaryButton(
                 buttonTextWidget: Text('New Leave'),
-                onPressed: () {},
+                onPressed: newLeave,
               ),
               WrapPastAttendanceRelated(),
             ],
@@ -157,7 +164,7 @@ class _StatefulPastAttendanceRelatedState
                           )
                         : Text(DateFormat.yMMMMd('en_US')
                             .format(DateTime.parse(datePicked))),
-                    Button(
+                    PrimaryButton(
                       buttonTextWidget: Text('Date'),
                       onPressed: () {
                         DatePicker.showDatePicker(context,

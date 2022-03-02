@@ -16,13 +16,14 @@ class HomePageController extends GetxController {
     super.onInit();
   }
 
-  void gotoPage(String page, BuildContext context) {
+  void gotoPage(String page, BuildContext context, {Object? arguments}) {
     pageName.value = page;
+    
     //sideMenuCollapsed.value = page != Routes.home;
-    
+
     print("Request to go to ${pageName.value}");
-    
-    Get.keys[1]!.currentState!.pushNamed(page);
+
+    Get.keys[1]!.currentState!.pushNamed(page, arguments: arguments);
     html.window.history.pushState(null, "/", page);
   }
 }

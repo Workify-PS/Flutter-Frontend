@@ -6,6 +6,7 @@ import 'package:workify/components/settings_sub_tiles.dart';
 import 'package:workify/components/sub_tiles.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/responsive.dart';
 import 'package:workify/utils/theme.dart';
 
 class SideMenuItem extends StatefulWidget {
@@ -58,7 +59,12 @@ class _SideMenuItemState extends State<SideMenuItem> {
               isExpanded = !isExpanded;
             });
           } else {
-            _homePageController.gotoPage("/"+widget.title.toLowerCase(),context,arguments: {"args":"asgs"});
+            if (Responsive.isMobile(context)) {
+              Navigator.pop(context);
+            }
+            _homePageController.gotoPage(
+                "/" + widget.title.toLowerCase(), context,
+                arguments: {"args": "asgs"});
             //Get.toNamed("/${widget.title.toLowerCase()}");
           }
         },

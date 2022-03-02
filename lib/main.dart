@@ -15,7 +15,7 @@ import 'package:workify/mixins/middleware.dart';
 import 'package:workify/screens/AuthPage/AuthPage.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
 import 'package:workify/screens/Error404.dart';
-import 'package:workify/screens/SplashScreen/SplashScreen.dart';
+import 'package:workify/screens/SplashScreen/OnBoarding.dart';
 import 'package:workify/utils/theme.dart';
 
 Future<void> main() async {
@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> with CacheManager {
     final String theme =
         GetStorage("APP_SETTINGS").read(CacheManagerKey.THEME.toString()) ??
             ThemeMode.light.name;
-
+    
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: "/",

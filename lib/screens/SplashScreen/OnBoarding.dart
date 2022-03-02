@@ -4,7 +4,7 @@ import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/screens/HomePage/HomePage.dart';
-import 'package:workify/screens/SplashScreen/OnBoardingScreen.dart';
+
 import 'package:workify/screens/SplashScreen/splash_widget.dart';
 
 class OnBoardingScreen extends GetView<AuthController> {
@@ -37,10 +37,10 @@ class OnBoardingScreen extends GetView<AuthController> {
           return HomePage();
         } else {
           //Get.toNamed("/auth");
-          return LoadingWidget(); // to be replaced by warning
+          return SplashWidget(); // to be replaced by warning
         }
       }
-      return LoadingWidget();
-    }, onLoading: LoadingWidget());
+      return SplashWidget();
+    }, onLoading: SplashWidget());
   }
 }

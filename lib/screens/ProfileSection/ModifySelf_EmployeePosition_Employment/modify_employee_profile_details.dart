@@ -13,8 +13,8 @@ import 'modify_employment_details.dart';
 double screenWidth = 0, screenHeight = 0;
 
 // ignore: must_be_immutable
-class ModifyProfileDetails extends StatelessWidget {
-  const ModifyProfileDetails({Key? key}) : super(key: key);
+class ModifyEmployeeProfileDetails extends StatelessWidget {
+  const ModifyEmployeeProfileDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ModifyProfileDetails extends StatelessWidget {
 
     // var dataFromParentScreen = Get.arguments;
     // var data = dataFromParentScreen.elementAt(0);
-    // print('Get Arguments '+ Get.arguments);
+    print('Get Arguments '+ Get.arguments);
 
     return Text('Modify Individual Profile');
 
@@ -76,19 +76,19 @@ class ModifyProfileDetails extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: PositionDetailsButton(
-                        modifyProfileDetailsString: "Employee Basic Details",
+                        ModifyEmployeeProfileDetailsString: "Employee Basic Details",
                       ),
                     ),
                     Expanded(
                       flex: 1,
                       child: PositionDetailsButton(
-                        modifyProfileDetailsString: "Modify Position Details",
+                        ModifyEmployeeProfileDetailsString: "Modify Position Details",
                       ),
                     ),
                     Expanded(
                       flex: 1,
                       child: EmploymentDetailsButton(
-                        modifyProfileDetailsString: "Modify Employment Details",
+                        ModifyEmployeeProfileDetailsString: "Modify Employment Details",
                       ),
                     ),
                   ],
@@ -127,13 +127,13 @@ class Buttons extends StatelessWidget {
   // method with parameters in stateful widget
   // final void Function(String) profileWidgetHandler;
   // step to call such a method
-  // onpressed: () => profileWidgetHandler(modifyProfileDetailsString);
+  // onpressed: () => profileWidgetHandler(ModifyEmployeeProfileDetailsString);
 
-  final String modifyProfileDetailsString;
+  final String ModifyEmployeeProfileDetailsString;
   // final int buttonIndex;
   Buttons({
     Key? key,
-    required this.modifyProfileDetailsString,
+    required this.ModifyEmployeeProfileDetailsString,
     // required this.buttonIndex
   }) : super(key: key);
 
@@ -142,9 +142,9 @@ class Buttons extends StatelessWidget {
     final modifyProfileWidgetsController =
         Get.find<ModifyProfileWidgetsController>();
 
-    var button = modifyProfileDetailsString == 'Employee Basic Details'
+    var button = ModifyEmployeeProfileDetailsString == 'Employee Basic Details'
         ? modifyProfileWidgetsController.employeeBasicDetailsButton
-        : modifyProfileDetailsString == 'Modify Position Details'
+        : ModifyEmployeeProfileDetailsString == 'Modify Position Details'
             ? modifyProfileWidgetsController.modifyPositionButton
             : modifyProfileWidgetsController.modifyEmploymentButton;
 
@@ -152,16 +152,16 @@ class Buttons extends StatelessWidget {
           onPressed: () {
             modifyProfileWidgetsController.resetModifyProfileButtons();
             modifyProfileWidgetsController
-                .updateModifyProfileWidgetString(modifyProfileDetailsString);
+                .updateModifyProfileWidgetString(ModifyEmployeeProfileDetailsString);
             modifyProfileWidgetsController.setModifyProfileButton(
-                str: modifyProfileDetailsString);
+                str: ModifyEmployeeProfileDetailsString);
           },
           style: ElevatedButton.styleFrom(
             primary: button.value == true ? kPrimaryColor : kSecondaryColor,
           ),
           child: Center(
             child: Text(
-              modifyProfileDetailsString,
+              ModifyEmployeeProfileDetailsString,
               style: TextStyle(
                 fontSize: screenWidth * 0.015,
                 color: button.value == true ? kSecondaryColor : kPrimaryColor,
@@ -173,46 +173,46 @@ class Buttons extends StatelessWidget {
 }
 
 class EmployeeBasicDetailsButton extends StatelessWidget {
-  final String modifyProfileDetailsString;
+  final String ModifyEmployeeProfileDetailsString;
 
   const EmployeeBasicDetailsButton({
     Key? key,
-    required this.modifyProfileDetailsString,
+    required this.ModifyEmployeeProfileDetailsString,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Buttons(
-      modifyProfileDetailsString: modifyProfileDetailsString,
+      ModifyEmployeeProfileDetailsString: ModifyEmployeeProfileDetailsString,
     );
   }
 }
 
 class PositionDetailsButton extends StatelessWidget {
-  final String modifyProfileDetailsString;
+  final String ModifyEmployeeProfileDetailsString;
 
   const PositionDetailsButton({
     Key? key,
-    required this.modifyProfileDetailsString,
+    required this.ModifyEmployeeProfileDetailsString,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Buttons(
-      modifyProfileDetailsString: modifyProfileDetailsString,
+      ModifyEmployeeProfileDetailsString: ModifyEmployeeProfileDetailsString,
     );
   }
 }
 
 class EmploymentDetailsButton extends StatelessWidget {
-  final String modifyProfileDetailsString;
+  final String ModifyEmployeeProfileDetailsString;
 
   const EmploymentDetailsButton({
     Key? key,
-    required this.modifyProfileDetailsString,
+    required this.ModifyEmployeeProfileDetailsString,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Buttons(
-      modifyProfileDetailsString: modifyProfileDetailsString,
+      ModifyEmployeeProfileDetailsString: ModifyEmployeeProfileDetailsString,
     );
   }
 }

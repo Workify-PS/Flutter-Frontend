@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesApproveRejectController.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
@@ -73,14 +74,8 @@ class AllEmployeeLeaves extends StatelessWidget {
                                   ),
                                   Expanded(flex: 3, child: Text('Start Date')),
                                   Expanded(flex: 3, child: Text('End Date')),
-                                  Expanded(
-                                    flex: 2,
-                                    child: SizedBox(),
-                                  ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: SizedBox(),
-                                  ),
+                                  SizedBox(width: 100,),
+                                   SizedBox(width: 100,),
                                 ],
                               ),
                             ),
@@ -187,10 +182,10 @@ class EmployeeLeave extends StatelessWidget {
                       if (allEmployeeLeavesController.isLoading.value) {
                         return Text('Still Loading Employee Leaves Data');
                       } else {
-                        return Text(AllEmployeeLeavesController.leaveList
-                            .elementAt(index)
-                            .startDate
-                            .toString());
+                        return Text(DateFormat.yMMMMd('en_US')
+                            .format(DateTime.parse(AllEmployeeLeavesController
+                            .leaveList.elementAt(index).startDate
+                            .toString())));
                       }
                     }),
                   ),
@@ -200,10 +195,14 @@ class EmployeeLeave extends StatelessWidget {
                       if (allEmployeeLeavesController.isLoading.value) {
                         return Text('Still Loading Employee Leaves Data');
                       } else {
-                        return Text(AllEmployeeLeavesController.leaveList
-                            .elementAt(index)
-                            .endDate
-                            .toString());
+                        // return Text(AllEmployeeLeavesController.leaveList
+                        //     .elementAt(index)
+                        //     .endDate
+                        //     .toString());
+                        return Text(DateFormat.yMMMMd('en_US')
+                            .format(DateTime.parse(AllEmployeeLeavesController
+                            .leaveList.elementAt(index).endDate
+                            .toString())));
                       }
                     }),
                   ),

@@ -6,7 +6,7 @@ import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
 
-class UpdateProfileDetailsService {
+class ModifyEmployeeProfileDetailsService {
   static Future<void> callEditUserApi(Map<String, dynamic> editUserJson) async {
     String editUserUrl = 'http://localhost:8080/workify/v1/edituser';
     try {

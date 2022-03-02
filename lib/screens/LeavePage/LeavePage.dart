@@ -17,7 +17,6 @@ import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
-var datePicked;
 var profileDetailsController, leavePageController;
 
 class LeavePage extends StatelessWidget {
@@ -135,8 +134,10 @@ class StatefulPastAttendanceRelated extends StatefulWidget {
 
 class _StatefulPastAttendanceRelatedState
     extends State<StatefulPastAttendanceRelated> {
+      var datePicked;
   @override
   Widget build(BuildContext context) {
+    
     return Expanded(
       flex: 5,
       child: Padding(

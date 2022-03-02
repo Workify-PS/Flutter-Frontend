@@ -7,8 +7,8 @@ import 'package:workify/controllers/LeavePage/leaveStatusController.dart';
 import 'package:workify/controllers/LeavePage/yourBalanceLeavesController.dart';
 import 'package:workify/controllers/WishController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
+import 'package:workify/controllers/modify_employee_profile_details_controller.dart';
 
-import 'package:workify/controllers/modify_profile_details_controller.dart';
 import 'package:workify/controllers/modify_profile_widgets_controller.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
@@ -21,7 +21,7 @@ import 'package:workify/screens/LeavePage/AllEmployeeLeaves.dart';
 import 'package:workify/screens/LeavePage/ApplyLeave.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
 import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/all_employee_profile.dart';
-import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/modify_profile_details.dart';
+import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/modify_employee_profile_details.dart';
 import 'package:workify/screens/ProfileSection/SelfProfileSection/ProfilePage.dart';
 
 class HomeRouter {
@@ -44,14 +44,14 @@ class HomeRouter {
         GetPage(name: "/change-password", page: () => ChangePassword()),
         GetPage(
           name: "/modify-employee-profile",
-          page: () => ModifyProfileDetails(),
+          page: () => ModifyEmployeeProfileDetails(),
           binding: BindingsBuilder(() => {
                 // Get.lazyPut(() => ModifyProfileWidgetsController()),
                 // Get.lazyPut(() => ProfileDetailsController()),
-                // Get.lazyPut(() => UpdateProfileDetailsController())
+                // Get.lazyPut(() => ModifyEmployeeProfileDetailsController())
                 Get.put(ModifyProfileWidgetsController()),
                 Get.put(ProfileDetailsController()),
-                Get.put(UpdateProfileDetailsController())
+                Get.put(ModifyEmployeeProfileDetailsController())
               }),
         ),
         GetPage(
@@ -128,14 +128,14 @@ class HomeRouter {
         return GetPageRoute(
           settings: settings,
           routeName: "/modify-employee-profile",
-          page: () => ModifyProfileDetails(),
+          page: () => ModifyEmployeeProfileDetails(),
           binding: BindingsBuilder(() => {
                 // Get.lazyPut(() => ModifyProfileWidgetsController()),
                 // Get.lazyPut(() => ProfileDetailsController()),
-                // Get.lazyPut(() => UpdateProfileDetailsController())
+                // Get.lazyPut(() => ModifyEmployeeProfileDetailsController())
                 Get.put(ModifyProfileWidgetsController()),
                 Get.put(ProfileDetailsController()),
-                Get.put(UpdateProfileDetailsController())
+                Get.put(ModifyEmployeeProfileDetailsController())
               }),
         );
       case '/all-employee-profile':

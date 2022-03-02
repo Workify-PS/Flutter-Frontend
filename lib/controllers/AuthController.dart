@@ -67,27 +67,16 @@ class AuthController extends GetxController with CacheManager {
 
   Future<void> callLogOut() async {
     Get.defaultDialog(
-        title: 'Log Out',
-        middleText: 'Tussi Ja rhe ho :(',
+        title: 'Log Out?',
+        middleText: 'Hope to see you again 😃',
         textConfirm: 'Yes',
         textCancel: 'No',
+        contentPadding: const EdgeInsets.all(8),
+        titlePadding: const EdgeInsets.all(8),
         onConfirm: () async {
           logOut();
-          if (getToken() == null) {
-            isSignedIn.value = false;
-            Get.offAllNamed('/auth');
-            PrintLog.printLog(
-                fileName: 'AuthController.dart',
-                functionName: 'logOut(){}',
-                blockNumber: 1,
-                printStatement: 'User Logged Out Successfully !!');
-          } else {
-            PrintLog.printLog(
-                fileName: 'AuthController.dart',
-                functionName: 'logOut(){}',
-                blockNumber: 2,
-                printStatement: 'Token Is Still Alive !!');
-          }
+
+          Get.offAllNamed('/auth');
         });
   }
 

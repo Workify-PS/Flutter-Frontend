@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:workify/utils/constants.dart';
 
-class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({Key? key}) : super(key: key);
+class SplashWidget extends StatelessWidget {
+  const SplashWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -10,6 +10,7 @@ import 'dart:html' as html;
 class HomePageController extends GetxController {
   RxString pageName = ''.obs;
   RxBool sideMenuCollapsed = false.obs;
+  late GlobalKey<ScaffoldState> scaffoldKey;
   @override
   void onInit() {
     pageName.value = "/home";

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/responsive.dart';
 import 'package:workify/utils/theme.dart';
 
 class DashTopBar extends StatelessWidget {
@@ -12,8 +13,8 @@ class DashTopBar extends StatelessWidget {
     fname = user?.value.firstName ?? "Buddy";
     var hour = DateTime.now().hour;
     if (hour < 12) return 'Good Morning, $fname';
-    if (hour < 17) return 'Good Afternoon $fname';
-    return 'Good Evening $fname';
+    if (hour < 17) return 'Good Afternoon, $fname';
+    return 'Good Evening, $fname';
   }
 
   @override
@@ -35,7 +36,10 @@ class DashTopBar extends StatelessWidget {
         //         stopPauseOnTap: false,
         //       )
         //     :
-        Text(greeting(), style: Theme.of(context).primaryTextTheme.headline1),
+        Text(greeting(),
+            style: Responsive.isMobile(context)
+                ? Theme.of(context).primaryTextTheme.headline5
+                : Theme.of(context).primaryTextTheme.headline1),
         Spacer(),
         InkWell(
           borderRadius: BorderRadius.circular(100),

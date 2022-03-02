@@ -29,9 +29,13 @@ class _DashBoardState extends State<DashBoard> {
     WishCard(),
     HolidaysCard(),
   ];
+
   final titles = ["Profile", "Attendance", "Wish", "Holidays"];
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+    print("ARGUMENTS ARE" + arguments.toString());
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(bannerHeight),

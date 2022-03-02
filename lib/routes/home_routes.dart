@@ -126,7 +126,7 @@ class HomeRouter {
         print("UNKNOWN ROUTE RETURNING DEFAULT");
         return GetPageRoute(
           settings: settings,
-          page: () => LoadingWidget(), //TODO: THROW 404
+          page: () => Splashscreen(), //TODO: THROW 404
         );
     }
   }

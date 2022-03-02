@@ -37,10 +37,10 @@ class OnBoardingScreen extends GetView<AuthController> {
           return HomePage();
         } else {
           //Get.toNamed("/auth");
-          return LoadingWidget(); // to be replaced by warning
+          return Splashscreen(); // to be replaced by warning
         }
       }
-      return LoadingWidget();
-    }, onLoading: LoadingWidget());
+      return Splashscreen();
+    }, onLoading: Splashscreen());
   }
 }

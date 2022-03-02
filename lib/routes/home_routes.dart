@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/controllers/LeavePage/leavePageController.dart';
+import 'package:workify/controllers/WishController.dart';
+import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 import 'package:workify/controllers/LeavePage/applyLeaveController.dart';
 import 'package:workify/controllers/LeavePage/leavePageController.dart';
@@ -23,6 +26,7 @@ import 'package:workify/screens/LeavePage/LeavePage.dart';
 import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/all_employee_profile.dart';
 import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/modify_profile_details.dart';
 import 'package:workify/screens/ProfileSection/SelfProfileSection/ProfilePage.dart';
+import 'package:workify/screens/SplashScreen/splash_widget.dart';
 
 class HomeRouter {
   static List<GetPage> getHomePages() => [
@@ -57,8 +61,7 @@ class HomeRouter {
         GetPage(
           name: '/all-employee-profile',
           page: () => AllEmployeeProfile(),
-          binding: BindingsBuilder(
-              () => {
+          binding: BindingsBuilder(() => {
                 // Get.lazyPut(() => FetchAllEmployeesController())
                 Get.put(FetchAllEmployeesController())
               }),
@@ -73,7 +76,6 @@ class HomeRouter {
                 Get.put(ProfileDetailsController())
               }),
         ),
-
         GetPage(
           name: '/apply-leave',
           page: () => ApplyLeave(),
@@ -143,11 +145,10 @@ class HomeRouter {
           settings: settings,
           routeName: '/all-employee-profile',
           page: () => AllEmployeeProfile(),
-          binding: BindingsBuilder(
-              () => {
+          binding: BindingsBuilder(() => {
                 // Get.lazyPut(() => FetchAllEmployeesController())
                 Get.put(FetchAllEmployeesController()),
-          }),
+              }),
         );
       case "/leave":
         return GetPageRoute(
@@ -161,7 +162,7 @@ class HomeRouter {
                 Get.put(LeavePageController())
               }),
         );
-        case "/apply-leave":
+      case "/apply-leave":
         return GetPageRoute(
           settings: settings,
           routeName: '/apply-leave',
@@ -176,7 +177,7 @@ class HomeRouter {
                 Get.put(LeaveStatusController())
               }),
         );
-        case "/all-employee-leaves":
+      case "/all-employee-leaves":
         return GetPageRoute(
           settings: settings,
           routeName: '/all-employee-leaves',
@@ -187,13 +188,13 @@ class HomeRouter {
               }),
         );
 
-        case "/attendance":
+      case "/attendance":
         return GetPageRoute(
           settings: settings,
           routeName: '/attendance',
           page: () => AttendancePage(),
-          
         );
+
       default:
         print("UNKNOWN ROUTE RETURNING DEFAULT");
         return GetPageRoute(

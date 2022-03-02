@@ -11,8 +11,6 @@ class Routes {
   static const String applyLeave = "/apply-leave";
   static const String allEmployeeLeaves = "/all-employee-leaves";
 
-
-
   static Set<String> routes = {
     init,
     home,
@@ -22,7 +20,7 @@ class Routes {
     changePassword,
     modifyEmployeeProfile,
     allEmployeeProfile,
-    leave
+    leave,
   };
   static bool validateRoute(String? route) {
     if (route == null) {

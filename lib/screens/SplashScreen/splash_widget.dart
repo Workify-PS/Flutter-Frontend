@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/screens/SplashScreen/splash_widget.dart';
 
 class SplashWidget extends StatelessWidget {
   const SplashWidget({Key? key}) : super(key: key);
@@ -14,8 +15,13 @@ class SplashWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: CircularProgressIndicator(color: kPrimaryColor,),
+            // child: CircularProgressIndicator(
+            //   color: kPrimaryColor,
+            // ),
           ),
+          SizedBox(
+              height: 100,
+              child: Image.network("assets/images/loading_nobg.gif")),
           Text('Loading...'),
         ],
       ),

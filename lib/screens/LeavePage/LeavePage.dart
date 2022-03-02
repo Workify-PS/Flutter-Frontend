@@ -5,8 +5,9 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 import 'package:workify/controllers/LeavePage/leavePageController.dart';
-
+import 'package:workify/controllers/LeavePage/leavePageController.dart';
 
 import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/routes/router.dart';
@@ -39,9 +40,8 @@ class LeavePage extends StatelessWidget {
       Get.find<HomePageController>().gotoPage(Routes.applyLeave, context);
     }
 
-
     return Scaffold(
-        appBar:generateTopBar(title: "Leaves"),
+        appBar: generateTopBar(title: "Leaves"),
         body: portrait == false
             ? Center(
                 child: Container(
@@ -93,6 +93,7 @@ class LeavePagePortrait extends StatelessWidget {
     void newLeave() {
       Get.find<HomePageController>().gotoPage(Routes.applyLeave, context);
     }
+
     return Column(
       children: [
         Expanded(
@@ -166,11 +167,10 @@ class _StatefulPastAttendanceRelatedState
                     PrimaryButton(
                       buttonTextWidget: Text('Date'),
                       onPressed: () {
-                        DatePicker.showDatePicker(
-                          context,
-                          theme: DatePickerTheme(
+                        DatePicker.showDatePicker(context,
+                            theme: DatePickerTheme(
                               backgroundColor: Colors.grey.shade200,
-                          ), onConfirm: (value) {
+                            ), onConfirm: (value) {
                           var date = value.toString().split(' ');
                           var onlyDate = date[0];
                           setState(() {

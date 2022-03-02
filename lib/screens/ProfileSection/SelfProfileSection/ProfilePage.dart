@@ -71,10 +71,7 @@ class ProfilePage extends StatelessWidget {
     screenHeight = device.size.height;
 
     return Scaffold(
-      appBar: generateTopBar(
-        title: "Profile",
-        widget: ProfileBar()
-      ),
+      appBar: generateTopBar(title: "Profile", widget: ProfileBar()),
       // appBar: AppBar(
       //   title: Text(
       //     'Profile Page',
@@ -140,10 +137,7 @@ class Buttons extends StatelessWidget {
 
   final String profileDetails;
 
-  Buttons({
-    Key? key, required this.profileDetails 
-  })
-      : super(key: key);
+  Buttons({Key? key, required this.profileDetails}) : super(key: key);
 
   final profileWidgetsController = Get.find<ProfileWidgetsController>();
 

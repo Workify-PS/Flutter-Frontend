@@ -11,6 +11,10 @@ import 'package:workify/screens/SplashScreen/splash_widget.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'package:workify/utils/constants.dart';
 // import 'package:workify/utils/extensions.dart';
+import 'dart:math';
+
+Random random = Random();
+int randomnumber = random.nextInt(16);
 
 class WishCard extends GetView<WishController> {
   @override
@@ -118,10 +122,11 @@ class _WishCardItemState extends State<WishCardItem> {
                     kDefaultPadding, 2, kDefaultPadding, 2),
                 child: CircleAvatar(
                   radius: 16,
-                    backgroundColor: Colors.primaries[widget.colorIndex],
-                    child: Text(
-                      widget.model.fullName[0],
-                    )),
+                  // backgroundColor: Colors.primaries[widget.colorIndex],
+                  backgroundImage: AssetImage(
+                      'assets/avatars/avatar${(widget.index + 1) % 15}.png'),
+                  backgroundColor: Colors.transparent,
+                ),
               ),
               Text(
                 widget.model.fullName + " (" + widget.model.empCode + ")",

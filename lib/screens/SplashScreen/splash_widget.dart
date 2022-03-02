@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/screens/SplashScreen/splash_widget.dart';
 
 class LoadingWidget extends StatelessWidget {
   const LoadingWidget({Key? key}) : super(key: key);

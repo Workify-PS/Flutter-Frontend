@@ -20,10 +20,9 @@ import 'package:workify/screens/Error404.dart';
 import 'package:workify/screens/LeavePage/AllEmployeeLeaves.dart';
 import 'package:workify/screens/LeavePage/ApplyLeave.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
-import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/all_employee_profile.dart';
-import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/modify_profile_details.dart';
+import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/all_employee_profile.dart';
+import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/modify_profile_details.dart';
 import 'package:workify/screens/ProfileSection/SelfProfileSection/ProfilePage.dart';
-import 'package:workify/screens/SplashScreen/splash_widget.dart';
 
 class HomeRouter {
   static List<GetPage> getHomePages() => [

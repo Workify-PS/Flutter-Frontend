@@ -7,14 +7,16 @@ class TextFormModifyDetails extends StatelessWidget {
   final bool enabled;
   final keyBoardType;
   final controller;
+  var inputFormatters;
 
-  const TextFormModifyDetails({
+  TextFormModifyDetails({
     Key? key,
     required this.myFocusNode,
     required this.enabled,
     required this.text,
     required this.keyBoardType,
     required this.controller,
+    this.inputFormatters
   }) : super(key: key);
 
   @override
@@ -23,13 +25,12 @@ class TextFormModifyDetails extends StatelessWidget {
       focusNode: myFocusNode,
       keyboardType: keyBoardType,
       enabled: enabled,
+      inputFormatters: inputFormatters,
       cursorColor: kBottomShadowColor,
       controller: controller,
       onTap: () {
         controller.selection = TextSelection(
-            baseOffset: 0, 
-            extentOffset: controller.value.text.length
-        );
+            baseOffset: 0, extentOffset: controller.value.text.length);
       },
       decoration: InputDecoration(
         labelText: text,

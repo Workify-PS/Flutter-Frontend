@@ -3,8 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/modify_profile_widgets_controller.dart';
-import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/user_specific_basic_details.dart';
-// import 'package:workify/screens/ProfileSection/SelfProfileSection/basic_details.dart';
+import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/user_specific_basic_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 

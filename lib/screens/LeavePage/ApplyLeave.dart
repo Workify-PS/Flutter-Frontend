@@ -8,7 +8,7 @@ import 'package:workify/controllers/LeavePage/applyLeaveController.dart';
 import 'package:workify/controllers/LeavePage/leaveStatusController.dart';
 import 'package:workify/controllers/LeavePage/yourBalanceLeavesController.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
-import 'package:workify/screens/ProfileSection/ModifyEmployeeProfileSection/text_form_modify_profile_details.dart';
+import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/text_form_modify_profile_details.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;

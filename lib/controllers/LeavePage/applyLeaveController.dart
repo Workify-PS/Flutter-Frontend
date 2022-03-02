@@ -29,13 +29,16 @@ class ApplyLeaveController extends GetxController {
             leaveType: leaveType,
             leaveReason: leaveReason);
         PrintLog.printLog(
-          fileName: 'applyLeaveController',
-          functionName: 'onClickLeaveButton',
-          blockNumber: 1,
-          printStatement: data
-        );
+            fileName: 'applyLeaveController',
+            functionName: 'onClickLeaveButton',
+            blockNumber: 1,
+            printStatement: data);
         await ApplyLeaveService.callApplyLeaveApi(data);
       } else {
+        Get.defaultDialog(
+          title: 'All fields are required!',
+          middleText: 'Please choose dates and leave type, leave reason (Optional)'
+        );
         PrintLog.printLog(
           fileName: 'applyLeaveController',
           functionName: 'onClickApplyLeaveButton',

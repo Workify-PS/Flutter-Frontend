@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
-import 'package:workify/controllers/modify_profile_details_controller.dart';
+import 'package:workify/controllers/modify_employee_profile_details_controller.dart';
 import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/text_form_modify_profile_details.dart';
 // import 'package:workify/exceptions/print_log.dart';
 
@@ -16,8 +16,8 @@ bool portrait = false;
 int idx = -1;
 
 final profileDetailsController = Get.find<ProfileDetailsController>();
-final updateProfileDetailsController =
-    Get.find<UpdateProfileDetailsController>();
+final modifyEmployeeProfileDetailsController =
+    Get.find<ModifyEmployeeProfileDetailsController>();
 
 class ModifyPositionDetails extends StatelessWidget {
   final index;
@@ -52,7 +52,7 @@ class _StatefulModifyPositionDetailsState
   }
 
   void callOnSubmitPositionDetails() {
-    UpdateProfileDetailsController.onSubmitPositionDetails(
+    ModifyEmployeeProfileDetailsController.onSubmitPositionDetails(
         index : idx,
         userId: _userId.text,
         designation: _designation.text,

@@ -9,8 +9,12 @@ class AllEmployeeLeavesController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    leaveList.clear();
     callFetchAllLeaves();
+  }
+  @override
+  void onClose() {
+    super.onClose();
+    leaveList.clear();
   }
 
   void callFetchAllLeaves() async {

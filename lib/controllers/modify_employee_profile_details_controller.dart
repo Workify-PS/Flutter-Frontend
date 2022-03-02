@@ -7,10 +7,10 @@ import 'package:workify/controllers/profile_details_controller.dart';
 
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/models/EmployeeInfoCombined.dart';
+import 'package:workify/services/modify_employee_profile_details_service.dart';
 
-import 'package:workify/services/modify_profile_details_service.dart';
 
-class UpdateProfileDetailsController extends GetxController {
+class ModifyEmployeeProfileDetailsController extends GetxController {
   static void onSubmitBasicDetails(
       {mobile, dob, marriageStatus, city, state, country}) async {
     try {
@@ -32,7 +32,7 @@ class UpdateProfileDetailsController extends GetxController {
       sendData['state'] = state;
       sendData['country'] = country;
 
-      await UpdateProfileDetailsService.callEditUserApi(sendData);
+      await ModifyEmployeeProfileDetailsService.callEditUserApi(sendData);
     } catch (error) {
       PrintLog.printLog(
         fileName: 'update_profile_details_controller',
@@ -54,7 +54,7 @@ class UpdateProfileDetailsController extends GetxController {
       sendData['grade'] = grade;
       sendData['jobPosition'] = jobPosition;
 
-      await UpdateProfileDetailsService.callEditUserApi(sendData);
+      await ModifyEmployeeProfileDetailsService.callEditUserApi(sendData);
     } catch (error) {
       PrintLog.printLog(
         fileName: 'update_profile_details_controller',
@@ -86,7 +86,7 @@ class UpdateProfileDetailsController extends GetxController {
       sendData['l2ManagerId'] = l2ManagerId;
       sendData['hrManagerId'] = hrManagerId;
 
-      await UpdateProfileDetailsService.callEditUserApi(sendData);
+      await ModifyEmployeeProfileDetailsService.callEditUserApi(sendData);
     } catch (error) {
       PrintLog.printLog(
         fileName: 'update_profile_details_controller',

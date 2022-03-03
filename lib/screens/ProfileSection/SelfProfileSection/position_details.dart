@@ -87,28 +87,18 @@ class PositionDetails extends StatelessWidget {
                     ),
                   ),
                 ),
-                //Side padding before Column 2
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    // color: Colors.red,
-                    color: Colors.transparent,
+                Padding(
+                  padding: const EdgeInsets.only(left: 50),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      PositionInfoString(positionInfoString: 'Job Position'),
+                      PositionInfoString(positionInfoString: 'Official Email'),
+                      PositionInfoString(positionInfoString: 'Date of Joining'),
+                      
+                    ],
                   ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    PositionInfoString(positionInfoString: 'Job Position'),
-                    PositionInfoString(positionInfoString: 'Official Email'),
-                    PositionInfoString(positionInfoString: 'Date of Joining'),
-                    // Container(
-                    //   height: 30,
-                    //   width: 10,
-                    //   // color: Colors.red,
-                    //   color: Colors.transparent,
-                    // )
-                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 40),
@@ -120,13 +110,17 @@ class PositionDetails extends StatelessWidget {
                           positionInfoString: 'Official Email'),
                       FormattedPositionInfo(
                           positionInfoString: 'Date of Joining'),
-                      // Container(
-                      // height: 30,
-                      // width: 10,
-                      // // color: Colors.red,
-                      // color: Colors.transparent,
-                      // )
+                      
                     ],
+                  ),
+                ),
+
+                //Side padding after/before Column 2
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    // color: Colors.red,
+                    color: Colors.transparent,
                   ),
                 ),
               ],

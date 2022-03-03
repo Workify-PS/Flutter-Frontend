@@ -8,6 +8,7 @@ import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
+bool portrait = false;
 
 class AllEmployeeProfile extends StatelessWidget {
   const AllEmployeeProfile({Key? key}) : super(key: key);
@@ -18,11 +19,13 @@ class AllEmployeeProfile extends StatelessWidget {
     device.size = MediaQuery.of(context).size;
     screenWidth = device.size.width;
     screenHeight = device.size.height;
+    
+    portrait = screenWidth < 1000;
 
     final fetchAllEmployeesController = Get.find<FetchAllEmployeesController>();
 
     return Scaffold(
-      appBar:generateTopBar(title: "All Employees"),
+      appBar: generateTopBar(title: "All Employees"),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,
@@ -53,16 +56,17 @@ class AllEmployeeProfile extends StatelessWidget {
                                   flex: 1,
                                   child: SizedBox(),
                                 ),
+                                if (portrait) SizedBox(width: 10,),
                                 Expanded(
                                     flex: 3,
                                     child: Text('Employee [ Name : Code ]')),
+                                if (portrait) SizedBox(width: 10,),
                                 Expanded(
                                   flex: 3,
                                   child: Text('Designation'),
                                 ),
-                                Expanded(
-                                  flex: 1,
-                                  child: SizedBox(),
+                                SizedBox(
+                                  width: 140,
                                 ),
                               ],
                             ),
@@ -117,6 +121,7 @@ class EmployeeProfile extends StatelessWidget {
                     flex: 1,
                     child: Avatar(),
                   ),
+                  if (portrait) SizedBox(width: 10,),
                   Expanded(
                     flex: 3,
                     child: Obx(() {
@@ -135,6 +140,7 @@ class EmployeeProfile extends StatelessWidget {
                       }
                     }),
                   ),
+                  if (portrait) SizedBox(width: 10,),
                   Expanded(
                     flex: 3,
                     child: Obx(() {
@@ -148,8 +154,9 @@ class EmployeeProfile extends StatelessWidget {
                       }
                     }),
                   ),
-                  Expanded(
-                    flex: 1,
+                  if (portrait) SizedBox(width: 10,),
+                  SizedBox(
+                    width: 140,
                     child: Obx(() {
                       if (fetchAllEmployeesController.isLoading.value) {
                         return Text('Still Loading Data in Employee Profile');
@@ -158,7 +165,8 @@ class EmployeeProfile extends StatelessWidget {
                           buttonTextWidget: Text('Modify Details'),
                           onPressed: () {
                             Get.find<HomePageController>().gotoPage(
-                                Routes.modifyEmployeeProfile, context,arguments: index);
+                                Routes.modifyEmployeeProfile, context,
+                                arguments: index);
                           },
                         );
                       }

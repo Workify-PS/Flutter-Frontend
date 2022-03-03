@@ -7,6 +7,7 @@ import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
+bool portrait = false;
 
 class AllEmployeeLeaves extends StatelessWidget {
   const AllEmployeeLeaves({Key? key}) : super(key: key);
@@ -17,6 +18,8 @@ class AllEmployeeLeaves extends StatelessWidget {
     device.size = MediaQuery.of(context).size;
     screenWidth = device.size.width;
     screenHeight = device.size.height;
+
+    portrait = screenWidth < 1000;
 
     final allEmployeeLeavesController = Get.find<AllEmployeeLeavesController>();
 
@@ -39,17 +42,11 @@ class AllEmployeeLeaves extends StatelessWidget {
               width: screenWidth,
               child: Obx(() {
                 if (allEmployeeLeavesController.isLoading.value) {
-                  return Center(
-                    child : Text('Still Loading Data'
-                    )
-                  );
+                  return Center(child: Text('Still Loading Data'));
                 } else {
                   if (AllEmployeeLeavesController.leaveList.isEmpty) {
-                    return Center(
-                      child: Text('No Records Found !')
-                    );
-                  }
-                  else{
+                    return Center(child: Text('No Records Found !'));
+                  } else {
                     return SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Column(
@@ -59,23 +56,27 @@ class AllEmployeeLeaves extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  // Expanded(
-                                  //   flex: 1,
-                                  //   child: SizedBox(),
-                                  // ),
                                   Expanded(
                                       flex: 3,
                                       child: Text('Employee [Name : Code]')),
+                                  if (portrait) SizedBox(width: 10,),
                                   Expanded(
                                     flex: 3,
                                     child: Text('Leave Type'),
                                   ),
+                                  if(portrait) SizedBox(width: 10,),
                                   Expanded(flex: 3, child: Text('Start Date')),
+                                  if(portrait) SizedBox(width: 10,),
                                   Expanded(flex: 3, child: Text('End Date')),
-                                  SizedBox(width: 100,),
-                                   SizedBox(width: 100,),
+                                  SizedBox(
+                                    width: 100,
+                                  ),
+                                  SizedBox(
+                                    width: 100,
+                                  ),
                                 ],
                               ),
                             ),
@@ -92,9 +93,7 @@ class AllEmployeeLeaves extends StatelessWidget {
                         ],
                       ),
                     );
-
                   }
-                  
                 }
               }),
             ),
@@ -141,10 +140,6 @@ class EmployeeLeave extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Expanded(
-                  //   flex: 1,
-                  //   child: LeaveApproveCheckbox(),
-                  // ),
                   Expanded(
                     flex: 3,
                     child: Obx(() {
@@ -163,6 +158,7 @@ class EmployeeLeave extends StatelessWidget {
                       }
                     }),
                   ),
+                  if(portrait) SizedBox(width: 5,),
                   Expanded(
                     flex: 3,
                     child: Obx(() {
@@ -176,19 +172,22 @@ class EmployeeLeave extends StatelessWidget {
                       }
                     }),
                   ),
+                  if(portrait) SizedBox(width: 5,),
                   Expanded(
                     flex: 3,
                     child: Obx(() {
                       if (allEmployeeLeavesController.isLoading.value) {
                         return Text('Still Loading Employee Leaves Data');
                       } else {
-                        return Text(DateFormat.yMMMMd('en_US')
-                            .format(DateTime.parse(AllEmployeeLeavesController
-                            .leaveList.elementAt(index).startDate
-                            .toString())));
+                        return Text(DateFormat.yMMMMd('en_US').format(
+                            DateTime.parse(AllEmployeeLeavesController.leaveList
+                                .elementAt(index)
+                                .startDate
+                                .toString())));
                       }
                     }),
                   ),
+                  if(portrait) SizedBox(width: 5,),
                   Expanded(
                     flex: 3,
                     child: Obx(() {
@@ -199,13 +198,15 @@ class EmployeeLeave extends StatelessWidget {
                         //     .elementAt(index)
                         //     .endDate
                         //     .toString());
-                        return Text(DateFormat.yMMMMd('en_US')
-                            .format(DateTime.parse(AllEmployeeLeavesController
-                            .leaveList.elementAt(index).endDate
-                            .toString())));
+                        return Text(DateFormat.yMMMMd('en_US').format(
+                            DateTime.parse(AllEmployeeLeavesController.leaveList
+                                .elementAt(index)
+                                .endDate
+                                .toString())));
                       }
                     }),
                   ),
+                  if(portrait) SizedBox(width: 5,),
                   Obx(() {
                     if (allEmployeeLeavesController.isLoading.value) {
                       return Text('Still Loading Employee Leaves Data');

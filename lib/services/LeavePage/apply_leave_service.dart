@@ -28,6 +28,7 @@ class ApplyLeaveService {
 
       var response = await dio.post(leaveUrl, data: sendData);
 
+      print('!!Response' + response.toString());
       if (response.statusCode == 200) {
         if (response.toString() == '1') {
           Get.offAllNamed('/home');
@@ -38,36 +39,46 @@ class ApplyLeaveService {
               printStatement: 'Leave Applied Successfully !!\n\n');
         } else if (response.toString() == '-1') {
           Get.defaultDialog(
-            title: "Today is not your B'day",
-            middleText: "Please check your date of birth once!"
-          );
+              title: "Today is not your B'day",
+              middleText: "Please check your date of birth once!");
         } else if (response.toString() == '-2') {
           Get.defaultDialog(
-            title: "B'day leave for 1 day only",
-            middleText: "Please have 1 day off only !"
-          );
+              title: "B'day leave for 1 day only",
+              middleText: "Please have 1 day off only !");
         } else if (response.toString() == '-3') {
           Get.defaultDialog(
-            title: "Anniversary leave for 1 day only",
-            middleText: "Please have 1 day off only !"
-          );
+              title: "Anniversary leave for 1 day only",
+              middleText: "Please have 1 day off only !");
         } else if (response.toString() == '-4') {
           Get.defaultDialog(
-            title: "Today is not your anniversary",
-            middleText: "Please remember it precisely, your spouse gonna be very upset!"
-          );
+              title: "Today is not your anniversary",
+              middleText:
+                  "Please remember it precisely, your spouse gonna be very upset!");
         } else if (response.toString() == '-5') {
           Get.defaultDialog(
-            title: "Leave Quota Exhausted",
-            middleText: "Can't take leave(s) any more"
-          );
+              title: "Leave quota exhausted",
+              middleText: "Can't take leave(s) any more");
         } else if (response.toString() == '-6') {
           Get.defaultDialog(
-            title: "Anniversary Leave!",
-            middleText: "Either already taken or Unmarried :("
-          );
+              title: "Not eligible for anniversary leave!",
+              middleText: "Need to get married first :)");
+        } else if (response.toString() == '-7') {
+          Get.defaultDialog(
+              title: "Leave already taken :(",
+              middleText: "Birthday leave already taken");
+        } else if (response.toString() == '-8') {
+          Get.defaultDialog(
+              title: "Leave pending!",
+              middleText: 'Birthday leave already in queue');
+        } else if (response.toString() == '-9') {
+          Get.defaultDialog(
+              title: "Leave already taken :(",
+              middleText: "Anniversary leave already taken");
+        } else if (response.toString() == '-10') {
+          Get.defaultDialog(
+              title: "Leave pending!",
+              middleText: 'Anniversary leave already in queue');
         }
-
       } else {
         PrintLog.printLog(
             fileName: 'Apply Leave Service File',

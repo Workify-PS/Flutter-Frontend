@@ -28,7 +28,6 @@ class ApplyLeaveService {
 
       var response = await dio.post(leaveUrl, data: sendData);
 
-      // print('!!Response' + response.toString());
       if (response.statusCode == 200) {
         if (response.toString() == '1') {
           Get.offAllNamed('/home');

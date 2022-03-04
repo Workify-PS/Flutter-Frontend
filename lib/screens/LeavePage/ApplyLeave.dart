@@ -394,6 +394,12 @@ class _StartEndDatesState extends State<StartEndDates> {
         } else {
           setState(() {
             choice == 's' ? startDate = onlyDate : endDate = onlyDate;
+            if (startDate != null && endDate != null && DateTime.parse(endDate).isBefore(DateTime.parse(startDate))) {
+              Get.defaultDialog(
+                title: 'End date must be today onwards only',
+                middleText: "Can't go back in Time!!",
+              );
+            }
           });
         }
       });
@@ -530,20 +536,16 @@ class LeaveStatusDataLoaded extends StatelessWidget {
                         .leaveBalanceList[idx].leaveType
                         .toString())),
                 SizedBox(
-                    width: portrait ? 90 : 200,
-                    child: Text(DateFormat.yMMMMd('en_US')
-                            .format(DateTime.parse(LeaveStatusController
-                            .leaveBalanceList[idx].startDate
-                            .toString()))
-                    ),
+                  width: portrait ? 90 : 200,
+                  child: Text(DateFormat.yMMMMd('en_US').format(DateTime.parse(
+                      LeaveStatusController.leaveBalanceList[idx].startDate
+                          .toString()))),
                 ),
                 SizedBox(
-                    width: portrait ? 90 : 200,
-                    child: Text(DateFormat.yMMMMd('en_US')
-                            .format(DateTime.parse(LeaveStatusController
-                            .leaveBalanceList[idx].endDate
-                            .toString()))
-                    ),
+                  width: portrait ? 90 : 200,
+                  child: Text(DateFormat.yMMMMd('en_US').format(DateTime.parse(
+                      LeaveStatusController.leaveBalanceList[idx].endDate
+                          .toString()))),
                 ),
                 SizedBox(
                     width: portrait ? 90 : 200,

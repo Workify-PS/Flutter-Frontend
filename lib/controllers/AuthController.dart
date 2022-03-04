@@ -71,7 +71,7 @@ class AuthController extends GetxController with CacheManager {
   Future<void> callLogOut() async {
     Get.defaultDialog(
         title: 'Log Out?',
-        middleText: 'Hope to see you again 😃',
+        middleText: 'Hope to see you again!',
         textConfirm: 'Yes',
         textCancel: 'No',
         contentPadding: const EdgeInsets.all(8),

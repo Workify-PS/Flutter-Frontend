@@ -61,14 +61,12 @@ class AuthController extends GetxController with CacheManager {
   Future<void> logOut() async {
     final UserController _userController = Get.find<UserController>();
     _userController.currentUser = null;
-    try {
-      await removeToken();
-    } finally {
-      await removeUser();
-    }
+     await removeToken();
+     await removeUser();
+    
   }
 
-  Future<void> callLogOut() async {
+  Future<void> logOutDialog() async {
     Get.defaultDialog(
         title: 'Log Out?',
         middleText: 'Hope to see you again!',

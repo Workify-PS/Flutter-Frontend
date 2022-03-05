@@ -79,7 +79,7 @@ class HomeRouter {
           routeName: '/all-employee-profile',
           page: () => AllEmployeeProfile(),
           binding: BindingsBuilder(() => {
-                // Get.lazyPut(() => FetchAllEmployeesController())
+                
                 Get.put(FetchAllEmployeesController()),
               }),
         );

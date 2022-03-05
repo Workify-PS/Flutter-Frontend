@@ -3,7 +3,7 @@ import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:workify/mixins/cache.dart';
 
 class AttendancePunchService extends GetConnect with CacheManager {
-  final String punchInUrl = "http://localhost:8080/workify/v1/wish/birthday";
+  final String punchInUrl = "http://localhost:8080/workify/v1/attendance";
   final String punchOutUrl =
       "http://localhost:8080/workify/v1/wish/anniversary";
 

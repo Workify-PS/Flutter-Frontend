@@ -29,7 +29,7 @@ class SettingsSubTiles extends StatelessWidget {
             ),
             SettingsSubTile(
               settingsOptions: 'Log Out',
-              onTap: () => authController.callLogOut(),
+              onTap: () => authController.logOutDialog(),
             ),
           ],
         ));

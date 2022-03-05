@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/UserController.dart';
+import 'package:workify/screens/DashBoard/components/tasks_icon.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/responsive.dart';
 import 'package:workify/utils/theme.dart';
@@ -52,11 +53,8 @@ class DashTopBar extends StatelessWidget {
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(
-                vertical: kDefaultPadding, horizontal: kDefaultPadding * 2),
-            child: Icon(
-              Icons.notifications_outlined,
-              size: iconSize,
-            ),
+                vertical: kDefaultPadding, horizontal: kDefaultPadding *2),
+            child: TasksIconWidget(),
           ),
         ),
         CircleAvatar(
@@ -70,3 +68,5 @@ class DashTopBar extends StatelessWidget {
     );
   }
 }
+
+

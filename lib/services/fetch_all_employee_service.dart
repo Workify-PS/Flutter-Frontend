@@ -26,14 +26,14 @@ class FetchAllEmployeeService {
       );
       if (response.statusCode == 200) {
         responseData = response.data;
-        PrintLog.printLog(
-            fileName: 'Fetch All Employee Service File',
-            functionName: 'callAllEmployeesApi(){}',
-            blockNumber: 1,
-            printStatement: 'Everything OK !!\n' +
-                response.data.toString() +
-                '\nDataType :: ' +
-                response.data.runtimeType.toString());
+        // PrintLog.printLog(
+        //     fileName: 'Fetch All Employee Service File',
+        //     functionName: 'callAllEmployeesApi(){}',
+        //     blockNumber: 1,
+        //     printStatement: 'Everything OK !!\n' +
+        //         response.data.toString() +
+        //         '\nDataType :: ' +
+        //         response.data.runtimeType.toString());
       } else {
         PrintLog.printLog(
           fileName: 'Fetch All Employee Service File',

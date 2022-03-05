@@ -5,6 +5,7 @@ import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/routes/router.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/generators.dart';
+import 'package:workify/utils/responsive.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -22,7 +23,7 @@ class AllEmployeeProfile extends StatelessWidget {
     final fetchAllEmployeesController = Get.find<FetchAllEmployeesController>();
 
     return Scaffold(
-      appBar:generateTopBar(title: "All Employees"),
+      appBar: generateTopBar(title: "All Employees"),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,
@@ -39,45 +40,89 @@ class AllEmployeeProfile extends StatelessWidget {
                 } else {
                   return SingleChildScrollView(
                     scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 70,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: SizedBox(),
-                                ),
-                                Expanded(
+                    child: Responsivescreen(
+                      mobile: Column(
+                        children: [
+                          SizedBox(
+                            height: 70,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(),
+                                  ),
+                                  Expanded(
+                                      flex: 3,
+                                      child: Text('Employee [ Name : Code ]')),
+                                  Expanded(
                                     flex: 3,
-                                    child: Text('Employee [ Name : Code ]')),
-                                Expanded(
-                                  flex: 3,
-                                  child: Text('Designation'),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: SizedBox(),
-                                ),
-                              ],
+                                    child: Text('Designation'),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          height: 3,
-                          color: Colors.grey,
-                        ),
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: List.generate(
-                                FetchAllEmployeesController
-                                    .allEmployeeList.length,
-                                (index) => EmployeeProfile(index: index))),
-                      ],
+                          Container(
+                            height: 3,
+                            color: Colors.grey,
+                          ),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: List.generate(
+                                  FetchAllEmployeesController
+                                      .allEmployeeList.length,
+                                  (index) => EmployeeProfile(index: index))),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 70,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(),
+                                  ),
+                                  Expanded(
+                                      flex: 3,
+                                      child: Text('Employee [ Name : Code ]')),
+                                  Expanded(
+                                    flex: 3,
+                                    child: Text('Designation'),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: SizedBox(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: 3,
+                            color: Colors.grey,
+                          ),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: List.generate(
+                                  FetchAllEmployeesController
+                                      .allEmployeeList.length,
+                                  (index) => EmployeeProfile(index: index))),
+                        ],
+                      ),
                     ),
                   );
                 }

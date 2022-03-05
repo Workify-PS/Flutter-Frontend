@@ -49,9 +49,10 @@ class AuthPage extends GetView<AuthPageController> {
             child: Scaffold(
                 backgroundColor: Colors.transparent,
                 body: Center(
-                  child: Responsive(
+                  child: Responsivescreen(
                     mobile: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 100,horizontal: 28),
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 100, horizontal: 28),
                       decoration: BoxDecoration(
                           color: Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.circular(10)),

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:workify/components/top_bar.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/generators.dart';
+import 'package:workify/utils/responsive.dart';
 import '../../utils/sizes.dart';
+import 'package:responsive_ui/responsive_ui.dart';
 
 List<Map> _data = [
   {
@@ -111,169 +113,372 @@ class _AttendancePageState extends State<AttendancePage> {
         child: Scrollbar(
           isAlwaysShown: true,
           showTrackOnHover: true,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _AttendanceTable(),
-              SizedBox(height: 100),
-              Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("Present Days: ",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Text("3",
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                  SizedBox(
-                    width: kDefaultPadding,
+          child: Responsivescreen(
+            mobile: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(
+                  height: 170,
+                  width: 150,
+                  child: FittedBox(
+                    fit: BoxFit.cover,
+                    child: DataTable(
+                      columns: _columns(),
+                      rows: _rows(),
+                      columnSpacing:
+                          (MediaQuery.of(context).size.width / 10) * 0.5,
+                      dividerThickness: 2,
+                      border: TableBorder.all(),
+                      dataRowHeight: 40,
+                      showBottomBorder: true,
+                      headingTextStyle:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
                   ),
-                  Text("Absent Days: ",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Text("3",
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                  SizedBox(
-                    width: kDefaultPadding,
+                ),
+                SizedBox(height: 100),
+                Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text("Present Days: ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text("3",
+                        style: TextStyle(
+                          fontSize: 20,
+                        )),
+                    SizedBox(
+                      width: kDefaultPadding,
+                    ),
+                    Text("Absent Days: ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text("3",
+                        style: TextStyle(
+                          fontSize: 20,
+                        )),
+                    SizedBox(
+                      width: kDefaultPadding,
+                    ),
+                    Text("Half Days: ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text("3",
+                        style: TextStyle(
+                          fontSize: 20,
+                        )),
+                    SizedBox(
+                      width: kDefaultPadding,
+                    ),
+                    Text("Miss Punch Out: ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text("3",
+                        style: TextStyle(
+                          fontSize: 20,
+                        )),
+                    SizedBox(
+                      width: kDefaultPadding,
+                    ),
+                    Text("Non-Hourly Leave: ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text("3",
+                        style: TextStyle(
+                          fontSize: 20,
+                        )),
+                    SizedBox(
+                      width: kDefaultPadding,
+                    ),
+                    Text("Holiday: ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text("3",
+                        style: TextStyle(
+                          fontSize: 20,
+                        )),
+                    SizedBox(
+                      width: kDefaultPadding,
+                    ),
+                    Text("Half Day Leave: ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text("3",
+                        style: TextStyle(
+                          fontSize: 20,
+                        )),
+                    SizedBox(
+                      width: kDefaultPadding,
+                    ),
+                    Text("Hourly Leave: ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text("3",
+                        style: TextStyle(
+                          fontSize: 20,
+                        )),
+                    SizedBox(
+                      width: kDefaultPadding,
+                    ),
+                    Text("Suspended Days: ",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text("3",
+                        style: TextStyle(
+                          fontSize: 20,
+                        )),
+                  ],
+                ),
+                SizedBox(
+                  height: kDefaultPadding,
+                ),
+                Divider(
+                  height: 2,
+                ),
+                SizedBox(
+                  height: kDefaultPadding,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text("Present: P"),
+                    SizedBox(),
+                    Text("Absent: A"),
+                    SizedBox(),
+                    Text("Half Day: HD"),
+                    SizedBox(),
+                    Text("Weekly Off: WO"),
+                    SizedBox(),
+                    Text("Holiday: H"),
+                    SizedBox(),
+                    Text("Leave: L"),
+                    SizedBox(),
+                    Text("HalfDay Leave: HDL"),
+                    SizedBox(
+                      width: kDefaultPadding,
+                    ),
+                    Text("Late Arrival: LA"),
+                    SizedBox(),
+                    Text("Early Exit: EE"),
+                    SizedBox(),
+                    Text("Hour Leave: RR"),
+                    SizedBox(),
+                    Text("Reinstate: RI"),
+                    SizedBox(),
+                    Text("Absent after LWD: A-LWD"),
+                    SizedBox(),
+                    Text("Not Available: NA"),
+                    SizedBox(),
+                    Text("Suspended: SP"),
+                    SizedBox(),
+                    Text("Present: P"),
+                    SizedBox(),
+                  ],
+                )
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                InteractiveViewer(
+                  child: DataTable(
+                    columns: _columns(),
+                    rows: _rows(),
+                    columnSpacing:
+                        (MediaQuery.of(context).size.width / 20) * 0.5,
+                    border: TableBorder.all(),
+                    dividerThickness: 2,
+                    dataRowHeight: 40,
+                    showBottomBorder: true,
+                    headingTextStyle:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
-                  Text("Half Days: ",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Text("3",
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                  SizedBox(
-                    width: kDefaultPadding,
+                ),
+                SizedBox(height: 100),
+                Spacer(),
+                FittedBox(
+                  fit: BoxFit.contain,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Present Days: ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("3",
+                          style: TextStyle(
+                            fontSize: 20,
+                          )),
+                      SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      Text("Absent Days: ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("3",
+                          style: TextStyle(
+                            fontSize: 20,
+                          )),
+                      SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      Text("Half Days: ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("3",
+                          style: TextStyle(
+                            fontSize: 20,
+                          )),
+                      SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      Text("Miss Punch Out: ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("3",
+                          style: TextStyle(
+                            fontSize: 20,
+                          )),
+                      SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      Text("Non-Hourly Leave: ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("3",
+                          style: TextStyle(
+                            fontSize: 20,
+                          )),
+                      SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      Text("Holiday: ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("3",
+                          style: TextStyle(
+                            fontSize: 20,
+                          )),
+                      SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      Text("Half Day Leave: ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("3",
+                          style: TextStyle(
+                            fontSize: 20,
+                          )),
+                      SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      Text("Hourly Leave: ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("3",
+                          style: TextStyle(
+                            fontSize: 20,
+                          )),
+                      SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      Text("Suspended Days: ",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          )),
+                      Text("3",
+                          style: TextStyle(
+                            fontSize: 20,
+                          )),
+                    ],
                   ),
-                  Text("Miss Punch Out: ",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Text("3",
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                  SizedBox(
-                    width: kDefaultPadding,
+                ),
+                SizedBox(
+                  height: kDefaultPadding,
+                ),
+                Divider(
+                  height: 2,
+                ),
+                SizedBox(
+                  height: kDefaultPadding,
+                ),
+                FittedBox(
+                  fit: BoxFit.contain,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("Present: P"),
+                      SizedBox(),
+                      Text("Absent: A"),
+                      SizedBox(),
+                      Text("Half Day: HD"),
+                      SizedBox(),
+                      Text("Weekly Off: WO"),
+                      SizedBox(),
+                      Text("Holiday: H"),
+                      SizedBox(),
+                      Text("Leave: L"),
+                      SizedBox(),
+                      Text("HalfDay Leave: HDL"),
+                      SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      Text("Late Arrival: LA"),
+                      SizedBox(),
+                      Text("Early Exit: EE"),
+                      SizedBox(),
+                      Text("Hour Leave: RR"),
+                      SizedBox(),
+                      Text("Reinstate: RI"),
+                      SizedBox(),
+                      Text("Absent after LWD: A-LWD"),
+                      SizedBox(),
+                      Text("Not Available: NA"),
+                      SizedBox(),
+                      Text("Suspended: SP"),
+                      SizedBox(),
+                      Text("Present: P"),
+                      SizedBox(),
+                    ],
                   ),
-                  Text("Non-Hourly Leave: ",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Text("3",
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  Text("Holiday: ",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Text("3",
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  Text("Half Day Leave: ",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Text("3",
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  Text("Hourly Leave: ",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Text("3",
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  Text("Suspended Days: ",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      )),
-                  Text("3",
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                ],
-              ),
-              SizedBox(
-                height: kDefaultPadding,
-              ),
-              Divider(
-                height: 2,
-              ),
-              SizedBox(
-                height: kDefaultPadding,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text("Present: P"),
-                  SizedBox(),
-                  Text("Absent: A"),
-                  SizedBox(),
-                  Text("Half Day: HD"),
-                  SizedBox(),
-                  Text("Weekly Off: WO"),
-                  SizedBox(),
-                  Text("Holiday: H"),
-                  SizedBox(),
-                  Text("Leave: L"),
-                  SizedBox(),
-                  Text("HalfDay Leave: HDL"),
-                  SizedBox(
-                    width: kDefaultPadding,
-                  ),
-                  Text("Late Arrival: LA"),
-                  SizedBox(),
-                  Text("Early Exit: EE"),
-                  SizedBox(),
-                  Text("Hour Leave: RR"),
-                  SizedBox(),
-                  Text("Reinstate: RI"),
-                  SizedBox(),
-                  Text("Absent after LWD: A-LWD"),
-                  SizedBox(),
-                  Text("Not Available: NA"),
-                  SizedBox(),
-                  Text("Suspended: SP"),
-                  SizedBox(),
-                  Text("Present: P"),
-                  SizedBox(),
-                ],
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -281,50 +486,51 @@ class _AttendancePageState extends State<AttendancePage> {
   }
 }
 
-DataTable _AttendanceTable() {
-  return DataTable(
-    columns: _columns(),
-    rows: _rows(),
-    dividerThickness: 2,
-    dataRowHeight: 40,
-    showBottomBorder: true,
-    headingTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-  );
-}
+// DataTable _AttendanceTable() {
+//   return DataTable(
+//     columns: _columns(),
+//     rows: _rows(),
+//     //columnSpacing: (MediaQuery.of(context).size.width / 10) * 0.5,
+//     dividerThickness: 2,
+//     dataRowHeight: 40,
+//     showBottomBorder: true,
+//     headingTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+//   );
+// }
 
 List<DataColumn> _columns() {
   return [
     DataColumn(
-        label: Text(
-      'Date',
+        label: Expanded(
+      child: Text('Date', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Shift',
+        label: Expanded(
+      child: Text('Shift', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Expected-in',
+        label: Expanded(
+      child: Text('Expected-in', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Actual-in',
+        label: Expanded(
+      child: Text('Actual-in', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Expected-out',
+        label: Expanded(
+      child: Text('Expected-out', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Actual-out',
+        label: Expanded(
+      child: Text('Actual-out', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Work Hours',
+        label: Expanded(
+      child: Text('Work Hours', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Status',
+        label: Expanded(
+      child: Text('Status', textAlign: TextAlign.center),
     )),
   ];
 }
@@ -332,14 +538,14 @@ List<DataColumn> _columns() {
 List<DataRow> _rows() {
   return _data
       .map((data) => DataRow(cells: [
-            DataCell(Text(data['date'])),
-            DataCell(Text(data['shift'])),
-            DataCell(Text(data['exceptedin'])),
-            DataCell(Text(data['actualin'])),
-            DataCell(Text(data['exceptedout'])),
-            DataCell(Text(data['actualout'])),
-            DataCell(Text(data['workhours'])),
-            DataCell(Text(data['status'])),
+            DataCell(Center(child: Text(data['date']))),
+            DataCell(Center(child: Text(data['shift']))),
+            DataCell(Center(child: Text(data['exceptedin']))),
+            DataCell(Center(child: Text(data['actualin']))),
+            DataCell(Center(child: Text(data['exceptedout']))),
+            DataCell(Center(child: Text(data['actualout']))),
+            DataCell(Center(child: Text(data['workhours']))),
+            DataCell(Center(child: Text(data['status']))),
           ]))
       .toList();
 }

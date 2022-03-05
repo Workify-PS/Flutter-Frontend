@@ -9,7 +9,7 @@ import 'package:workify/utils/sizes.dart';
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
-class AllEmployeeLeaves extends StatelessWidget {
+class AllEmployeeLeaves extends GetView<AllEmployeeLeavesController> {
   const AllEmployeeLeaves({Key? key}) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class AllEmployeeLeaves extends StatelessWidget {
 
     portrait = screenWidth < 1000;
 
-    final allEmployeeLeavesController = Get.find<AllEmployeeLeavesController>();
+    //final allEmployeeLeavesController = Get.find<AllEmployeeLeavesController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -41,10 +41,10 @@ class AllEmployeeLeaves extends StatelessWidget {
             child: SizedBox(
               width: screenWidth,
               child: Obx(() {
-                if (allEmployeeLeavesController.isLoading.value) {
+                if (controller.isLoading.value) {
                   return Center(child: Text('Still Loading Data'));
                 } else {
-                  if (AllEmployeeLeavesController.leaveList.isEmpty) {
+                  if (controller.leaveList.isEmpty) {
                     return Center(child: Text('No Records Found !'));
                   } else {
                     return SingleChildScrollView(
@@ -88,7 +88,7 @@ class AllEmployeeLeaves extends StatelessWidget {
                           Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: List.generate(
-                                  AllEmployeeLeavesController.leaveList.length,
+                                  controller.leaveList.length,
                                   (index) => EmployeeLeave(index: index))),
                         ],
                       ),
@@ -104,7 +104,7 @@ class AllEmployeeLeaves extends StatelessWidget {
   }
 }
 
-class EmployeeLeave extends StatelessWidget {
+class EmployeeLeave extends GetView<AllEmployeeLeavesController> {
   final int index;
   const EmployeeLeave({
     Key? key,
@@ -119,13 +119,13 @@ class EmployeeLeave extends StatelessWidget {
     void onPressedApproveButton() {
       allEmployeeLeavesApproveRejcectController.callCallApproveApi(
           leaveInfoId:
-              AllEmployeeLeavesController.leaveList[index].leaveInfoId);
+              controller.leaveList[index].leaveInfoId);
     }
 
     void onPressedRejectButton() {
       allEmployeeLeavesApproveRejcectController.callCallRejectApi(
           leaveInfoId:
-              AllEmployeeLeavesController.leaveList[index].leaveInfoId);
+              controller.leaveList[index].leaveInfoId);
     }
 
     return SizedBox(
@@ -146,12 +146,12 @@ class EmployeeLeave extends StatelessWidget {
                       if (allEmployeeLeavesController.isLoading.value) {
                         return Text('Still Loading Employee Leaves Data');
                       } else {
-                        return Text(AllEmployeeLeavesController.leaveList
+                        return Text(controller.leaveList
                                 .elementAt(index)
                                 .userName
                                 .toString() +
                             ' : ' +
-                            AllEmployeeLeavesController.leaveList
+                            controller.leaveList
                                 .elementAt(index)
                                 .empCode
                                 .toString());
@@ -165,7 +165,7 @@ class EmployeeLeave extends StatelessWidget {
                       if (allEmployeeLeavesController.isLoading.value) {
                         return Text('Still Loading Employee Leaves Data');
                       } else {
-                        return Text(AllEmployeeLeavesController.leaveList
+                        return Text(controller.leaveList
                             .elementAt(index)
                             .leaveType
                             .toString());
@@ -180,7 +180,7 @@ class EmployeeLeave extends StatelessWidget {
                         return Text('Still Loading Employee Leaves Data');
                       } else {
                         return Text(DateFormat.yMMMMd('en_US').format(
-                            DateTime.parse(AllEmployeeLeavesController.leaveList
+                            DateTime.parse(controller.leaveList
                                 .elementAt(index)
                                 .startDate
                                 .toString())));
@@ -199,7 +199,7 @@ class EmployeeLeave extends StatelessWidget {
                         //     .endDate
                         //     .toString());
                         return Text(DateFormat.yMMMMd('en_US').format(
-                            DateTime.parse(AllEmployeeLeavesController.leaveList
+                            DateTime.parse(controller.leaveList
                                 .elementAt(index)
                                 .endDate
                                 .toString())));

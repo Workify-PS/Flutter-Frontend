@@ -34,6 +34,7 @@ class HomeRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     print("Route name is " + settings.name.toString());
     switch (settings.name) {
+       
       case "/home":
         return GetPageRoute(
           routeName: "/home",
@@ -42,6 +43,7 @@ class HomeRouter {
           binding: BindingsBuilder(() => {
                 Get.lazyPut(() => WishCardController()),
                 Get.put(AttendanceCardController()),
+                Get.put(AllEmployeeLeavesController())
               }),
         );
       case "/profile":
@@ -117,7 +119,7 @@ class HomeRouter {
           page: () => AllEmployeeLeaves(),
           binding: BindingsBuilder(() => {
                 // Get.lazyPut(() => AllEmployeeLeavesController()),
-                Get.put(AllEmployeeLeavesController())
+                // Get.put(AllEmployeeLeavesController())
               }),
         );
 

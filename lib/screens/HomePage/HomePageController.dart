@@ -18,8 +18,9 @@ class HomePageController extends GetxController {
   }
 
   void gotoPage(String page, BuildContext context, {Object? arguments}) {
+    //if (pageName.value == page) return;
     pageName.value = page;
-    
+
     //sideMenuCollapsed.value = page != Routes.home;
 
     print("Request to go to ${pageName.value}");

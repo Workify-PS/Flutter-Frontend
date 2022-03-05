@@ -16,7 +16,7 @@ import 'dart:math';
 Random random = Random();
 int randomnumber = random.nextInt(16);
 
-class WishCard extends GetView<WishController> {
+class WishCard extends GetView<WishCardController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {

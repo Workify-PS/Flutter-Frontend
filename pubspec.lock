@@ -121,10 +121,12 @@ packages:
   flutter_datetime_picker:
     dependency: "direct main"
     description:
-      name: flutter_datetime_picker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.5.1"
+      path: "."
+      ref: master
+      resolved-ref: "654aca41d5840fe31e55ddd0631f6fd3f1f0f710"
+      url: "https://github.com/AlexHartford/flutter_datetime_picker.git"
+    source: git
+    version: "1.4.0"
   flutter_lints:
     dependency: "direct dev"
     description:

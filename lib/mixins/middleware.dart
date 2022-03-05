@@ -12,7 +12,7 @@ class AuthMiddlware extends GetMiddleware with CacheManager {
       if ((getToken() != null || route == "/auth")) {
         final homeController = Get.put(HomePageController());
 
-        homeController.pageName.value = "/home";
+       homeController.pageName.value = route ?? "/home";
         homeController.sideMenuCollapsed.value =
             homeController.pageName.value != "/home";
         return null;

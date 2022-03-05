@@ -388,12 +388,18 @@ class _StartEndDatesState extends State<StartEndDates> {
         var today = date[0];
         if (DateTime.parse(onlyDate).isBefore(DateTime.parse(today))) {
           Get.defaultDialog(
-            title: 'Choose today or beyond !',
-            middleText: "Can't go in past",
+            title: 'Choose today or beyond!',
+            middleText: "Can't go back in Time!!",
           );
         } else {
           setState(() {
             choice == 's' ? startDate = onlyDate : endDate = onlyDate;
+            if (startDate != null && endDate != null && DateTime.parse(endDate).isBefore(DateTime.parse(startDate))) {
+              Get.defaultDialog(
+                title: 'End date must be today onwards only',
+                middleText: "Can't go back in Time!!",
+              );
+            }
           });
         }
       });
@@ -530,15 +536,17 @@ class LeaveStatusDataLoaded extends StatelessWidget {
                         .leaveBalanceList[idx].leaveType
                         .toString())),
                 SizedBox(
-                    width: portrait ? 90 : 200,
-                    child: Text(LeaveStatusController
-                        .leaveBalanceList[idx].startDate
-                        .toString())),
+                  width: portrait ? 90 : 200,
+                  child: Text(DateFormat.yMMMMd('en_US').format(DateTime.parse(
+                      LeaveStatusController.leaveBalanceList[idx].startDate
+                          .toString()))),
+                ),
                 SizedBox(
-                    width: portrait ? 90 : 200,
-                    child: Text(LeaveStatusController
-                        .leaveBalanceList[idx].endDate
-                        .toString())),
+                  width: portrait ? 90 : 200,
+                  child: Text(DateFormat.yMMMMd('en_US').format(DateTime.parse(
+                      LeaveStatusController.leaveBalanceList[idx].endDate
+                          .toString()))),
+                ),
                 SizedBox(
                     width: portrait ? 90 : 200,
                     child: Text(LeaveStatusController

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:workify/models/WishModel.dart';
 import 'package:workify/services/wish_get_service.dart';
 
-class WishController extends GetxController {
+class WishCardController extends GetxController {
 
   RxList<WishModel> birthdayList = <WishModel>[].obs;
   RxList<WishModel> anniversariesList = <WishModel>[].obs;

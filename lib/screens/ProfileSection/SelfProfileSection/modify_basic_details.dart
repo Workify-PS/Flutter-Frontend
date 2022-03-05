@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import 'package:workify/components/button.dart';
-import 'package:workify/controllers/modify_profile_details_controller.dart';
+import 'package:workify/controllers/modify_employee_profile_details_controller.dart';
 import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/text_form_modify_profile_details.dart';
 // import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/utils/sizes.dart';
@@ -43,7 +43,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
   }
 
   void callOnSubmitBasicDetails() {
-    UpdateProfileDetailsController.onSubmitBasicDetails(
+    ModifyEmployeeProfileDetailsController.onSubmitBasicDetails(
         mobile: code + ' ' + _mobile.text,
         dob: _doB.text,
         marriageStatus: _marriageStatus.text,

@@ -69,18 +69,7 @@ class ProfileCompletionCard extends StatelessWidget {
               primaryColor: kPrimaryColor,
               icon: Icon(CupertinoIcons.square_arrow_up),
             ),
-            // InkWell(
-            //   onTap: () {
-            //     Get.to(ChangeProfilePage());
-            //   },
-            //   child: Text(
-            //     'Complete Now',
-            //     style: TextStyle(
-            //       fontSize: 24,
-            //       //color: Colors.grey,
-            //     ),
-            //   ),
-            // )
+            
           ],
         ));
   }

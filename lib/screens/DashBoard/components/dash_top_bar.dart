@@ -10,7 +10,6 @@ class DashTopBar extends StatelessWidget {
   final user = Get.find<UserController>().currentUser;
   late String fname;
   String greeting() {
-    fname = user?.value.firstName ?? "Buddy";
     var hour = DateTime.now().hour;
     if (hour < 12) return 'Good Morning, $fname';
     if (hour < 17) return 'Good Afternoon, $fname';
@@ -19,6 +18,7 @@ class DashTopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    fname = user?.value.firstName ?? "Buddy";
     double iconSize = 24;
     return Row(
       children: [
@@ -60,8 +60,11 @@ class DashTopBar extends StatelessWidget {
           ),
         ),
         CircleAvatar(
-          backgroundColor: kBadgeColor,
-          child: Text(fname[0]),
+          backgroundColor: Colors.transparent,
+          //backgroundImage: AssetImage("assets/avatars/avatar${(fname.length)%15}.png"),
+          foregroundImage: AssetImage("assets/avatars/avatar${(fname.length)%15}.png"),
+          foregroundColor: Colors.black12,
+          //child: Text(fname[0]),
         ),
       ],
     );

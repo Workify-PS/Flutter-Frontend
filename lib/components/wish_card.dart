@@ -13,7 +13,10 @@ import 'package:workify/utils/constants.dart';
 // import 'package:workify/utils/extensions.dart';
 import 'dart:math';
 
-class WishCard extends GetView<WishController> {
+Random random = Random();
+int randomnumber = random.nextInt(16);
+
+class WishCard extends GetView<WishCardController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {

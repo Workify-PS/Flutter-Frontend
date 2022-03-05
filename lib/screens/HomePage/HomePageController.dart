@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/WishController.dart';
-import 'package:workify/routes/router.dart';
-import 'package:workify/screens/AttendancePage/AttendancePage.dart';
-import 'package:workify/screens/DashBoard/DashBoard.dart';
-import 'package:workify/screens/LeavePage/LeavePage.dart';
+// import 'package:workify/controllers/WishController.dart';
+// import 'package:workify/routes/router.dart';
+// import 'package:workify/screens/AttendancePage/AttendancePage.dart';
+// import 'package:workify/screens/DashBoard/DashBoard.dart';
+// import 'package:workify/screens/LeavePage/LeavePage.dart';
 import 'dart:html' as html;
 
 class HomePageController extends GetxController {
@@ -18,8 +18,9 @@ class HomePageController extends GetxController {
   }
 
   void gotoPage(String page, BuildContext context, {Object? arguments}) {
+    //if (pageName.value == page) return;
     pageName.value = page;
-    
+
     //sideMenuCollapsed.value = page != Routes.home;
 
     print("Request to go to ${pageName.value}");

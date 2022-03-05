@@ -63,9 +63,9 @@ class _SideMenuItemState extends State<SideMenuItem> {
               Navigator.pop(context);
             }
             _homePageController.gotoPage(
-                "/" + widget.title.toLowerCase(), context,
-                arguments: {"args": "asgs"});
-            //Get.toNamed("/${widget.title.toLowerCase()}");
+              "/" + widget.title.toLowerCase(),
+              context,
+            );
           }
         },
         onHover: (value) {

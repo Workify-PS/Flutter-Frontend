@@ -85,29 +85,24 @@ class EmploymentDetails extends StatelessWidget {
                   child: Center(
                     child: Container(
                       width: 1,
-                      height: 400,
+                      height: 500,
                       // color: kPrimaryColor,
                       color: kTextColor,
                     ),
                   ),
                 ),
-                //Side padding before Column 2
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    // color: Colors.red,
-                    color: Colors.transparent,
+                Padding(
+                  padding: const EdgeInsets.only(left: 80),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      EmploymentInfoString(employmentInfoString: 'Employment Type'),
+                      EmploymentInfoString(employmentInfoString: 'L1 Manager ID'),
+                      EmploymentInfoString(employmentInfoString: 'L2 Manager ID'),
+                      EmploymentInfoString(employmentInfoString: 'HR Manager ID'),
+                    ],
                   ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    EmploymentInfoString(employmentInfoString: 'Employment Type'),
-                    EmploymentInfoString(employmentInfoString: 'L1 Manager ID'),
-                    EmploymentInfoString(employmentInfoString: 'L2 Manager ID'),
-                    EmploymentInfoString(employmentInfoString: 'HR Manager ID'),
-                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 40),
@@ -119,6 +114,14 @@ class EmploymentDetails extends StatelessWidget {
                       FormattedEmploymentInfo(employmentInfoString: 'L2 Manager ID'),
                       FormattedEmploymentInfo(employmentInfoString: 'HR Manager ID'),
                     ],
+                  ),
+                ),
+                //Side padding after/before Column 2
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    // color: Colors.red,
+                    color: Colors.transparent,
                   ),
                 ),
               ],

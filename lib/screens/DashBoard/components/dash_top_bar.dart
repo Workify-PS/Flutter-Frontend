@@ -37,7 +37,7 @@ class DashTopBar extends StatelessWidget {
         //       )
         //     :
         Text(greeting(),
-            style: Responsive.isMobile(context)
+            style: Responsivescreen.isMobile(context)
                 ? Theme.of(context).primaryTextTheme.headline5
                 : Theme.of(context).primaryTextTheme.headline1),
         Spacer(),

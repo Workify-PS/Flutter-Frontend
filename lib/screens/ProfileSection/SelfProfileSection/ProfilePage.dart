@@ -7,6 +7,7 @@ import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/screens/ProfileSection/SelfProfileSection/modify_basic_details.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/generators.dart';
+import 'package:workify/utils/responsive.dart';
 import 'package:workify/utils/sizes.dart';
 
 import 'basic_details.dart';
@@ -114,9 +115,14 @@ class ProfilePage extends StatelessWidget {
                       //   borderRadius: BorderRadius.circular(20),
                       // ),
                       // Rendering All widgets here
-                      child: Obx(() => profileWidgets[profileWidgetsController
-                          .widgetString.value
-                          .toString()]!),
+                      child: Obx(() => Responsivescreen(
+                            mobile: profileWidgets[profileWidgetsController
+                                .widgetString.value
+                                .toString()]!,
+                            child: profileWidgets[profileWidgetsController
+                                .widgetString.value
+                                .toString()]!,
+                          )),
                     ),
                   ),
                 ),

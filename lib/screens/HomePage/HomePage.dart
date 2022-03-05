@@ -24,10 +24,12 @@ class HomePage extends GetView<HomePageController> {
     device.size = MediaQuery.of(context).size;
     final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
     controller.scaffoldKey = _scaffoldkey;
-    return Obx(() => Responsive(
+    return Obx(() => Responsivescreen(
           mobile: Scaffold(
               key: controller.scaffoldKey,
-              drawer: Drawer(child: SideMenu(),),
+              drawer: Drawer(
+                child: SideMenu(),
+              ),
               //backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
               endDrawer: Drawer(),
               body: Navigator(

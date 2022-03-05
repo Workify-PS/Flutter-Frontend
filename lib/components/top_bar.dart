@@ -22,7 +22,7 @@ class TopBar extends StatelessWidget with CacheManager {
   @override
   Widget build(BuildContext context) {
     final scaffoldKey = Get.find<HomePageController>().scaffoldKey;
-    return Responsive(
+    return Responsivescreen(
       mobile: AppBar(
         title: Text(title),
         leading: IconButton(
@@ -43,7 +43,7 @@ class TopBar extends StatelessWidget with CacheManager {
             children: [
               customTopBar ??
                   Text(title,
-                      style: Responsive.isMobile(context)
+                      style: Responsivescreen.isMobile(context)
                           ? Theme.of(context).primaryTextTheme.headline5
                           : Theme.of(context).primaryTextTheme.headline1),
             ],

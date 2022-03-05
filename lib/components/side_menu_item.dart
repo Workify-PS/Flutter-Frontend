@@ -59,7 +59,7 @@ class _SideMenuItemState extends State<SideMenuItem> {
               isExpanded = !isExpanded;
             });
           } else {
-            if (Responsive.isMobile(context)) {
+            if (Responsivescreen.isMobile(context)) {
               Navigator.pop(context);
             }
             _homePageController.gotoPage(

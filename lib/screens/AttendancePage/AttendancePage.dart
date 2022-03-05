@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:workify/components/top_bar.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/generators.dart';
+import 'package:workify/utils/responsive.dart';
 import '../../utils/sizes.dart';
+import 'package:responsive_ui/responsive_ui.dart';
 
 List<Map> _data = [
   {
@@ -113,7 +115,7 @@ class _AttendancePageState extends State<AttendancePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             attendanceTable(),
-            
+
             //Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -298,36 +300,36 @@ Widget attendanceTable() {
 List<DataColumn> _columns() {
   return [
     DataColumn(
-        label: Text(
-      'Date',
+        label: Expanded(
+      child: Text('Date', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Shift',
+        label: Expanded(
+      child: Text('Shift', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Expected-in',
+        label: Expanded(
+      child: Text('Expected-in', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Actual-in',
+        label: Expanded(
+      child: Text('Actual-in', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Expected-out',
+        label: Expanded(
+      child: Text('Expected-out', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Actual-out',
+        label: Expanded(
+      child: Text('Actual-out', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Work Hours',
+        label: Expanded(
+      child: Text('Work Hours', textAlign: TextAlign.center),
     )),
     DataColumn(
-        label: Text(
-      'Status',
+        label: Expanded(
+      child: Text('Status', textAlign: TextAlign.center),
     )),
   ];
 }
@@ -335,14 +337,14 @@ List<DataColumn> _columns() {
 List<DataRow> _rows() {
   return _data
       .map((data) => DataRow(cells: [
-            DataCell(Text(data['date'])),
-            DataCell(Text(data['shift'])),
-            DataCell(Text(data['exceptedin'])),
-            DataCell(Text(data['actualin'])),
-            DataCell(Text(data['exceptedout'])),
-            DataCell(Text(data['actualout'])),
-            DataCell(Text(data['workhours'])),
-            DataCell(Text(data['status'])),
+            DataCell(Center(child: Text(data['date']))),
+            DataCell(Center(child: Text(data['shift']))),
+            DataCell(Center(child: Text(data['exceptedin']))),
+            DataCell(Center(child: Text(data['actualin']))),
+            DataCell(Center(child: Text(data['exceptedout']))),
+            DataCell(Center(child: Text(data['actualout']))),
+            DataCell(Center(child: Text(data['workhours']))),
+            DataCell(Center(child: Text(data['status']))),
           ]))
       .toList();
 }

@@ -299,19 +299,16 @@ class _AttendancePageState extends State<AttendancePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                InteractiveViewer(
-                  child: DataTable(
-                    columns: _columns(),
-                    rows: _rows(),
-                    columnSpacing:
-                        (MediaQuery.of(context).size.width / 20) * 0.5,
-                    border: TableBorder.all(),
-                    dividerThickness: 2,
-                    dataRowHeight: 40,
-                    showBottomBorder: true,
-                    headingTextStyle:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
+                DataTable(
+                  columns: _columns(),
+                  rows: _rows(),
+                  columnSpacing: (MediaQuery.of(context).size.width / 20) * 0.5,
+                  //border: TableBorder.all(),
+                  dividerThickness: 2,
+                  dataRowHeight: 40,
+                  showBottomBorder: true,
+                  headingTextStyle:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 SizedBox(height: 100),
                 Spacer(),

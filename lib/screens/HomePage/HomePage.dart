@@ -5,6 +5,7 @@ import 'package:workify/controllers/UserController.dart';
 import 'package:workify/routes/home_routes.dart';
 import 'package:workify/screens/AttendancePage/AttendancePage.dart';
 import 'package:workify/screens/DashBoard/DashBoard.dart';
+import 'package:workify/screens/DashBoard/components/notification_drawer.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
 import 'package:workify/screens/ProfileSection/SelfProfileSection/ProfilePage.dart';
@@ -38,7 +39,7 @@ class HomePage extends GetView<HomePageController> {
           child: Scaffold(
             key: controller.scaffoldKey,
             //backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
-            endDrawer: Drawer(),
+            endDrawer: NotificationDrawer(),
             body: Row(
               children: [
                 AnimatedContainer(

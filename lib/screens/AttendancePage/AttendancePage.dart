@@ -115,164 +115,481 @@ class _AttendancePageState extends State<AttendancePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             attendanceTable(),
+            SingleChildScrollView(
+              child: Responsive(
+                  // crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Div(
+                      colM: 3,
+                      child: Card(
+                        elevation: 0,
 
-            //Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text("Present Days: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text("3",
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-                SizedBox(
-                  width: kDefaultPadding,
-                ),
-                Text("Absent Days: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text("3",
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-                SizedBox(
-                  width: kDefaultPadding,
-                ),
-                Text("Half Days: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text("3",
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-                SizedBox(
-                  width: kDefaultPadding,
-                ),
-                Text("Miss Punch Out: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text("3",
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-                SizedBox(
-                  width: kDefaultPadding,
-                ),
-                Text("Non-Hourly Leave: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text("3",
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-                SizedBox(
-                  width: kDefaultPadding,
-                ),
-                Text("Holiday: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text("3",
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-                SizedBox(
-                  width: kDefaultPadding,
-                ),
-                Text("Half Day Leave: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text("3",
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-                SizedBox(
-                  width: kDefaultPadding,
-                ),
-                Text("Hourly Leave: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text("3",
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-                SizedBox(
-                  width: kDefaultPadding,
-                ),
-                Text("Suspended Days: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Text("3",
-                    style: TextStyle(
-                      fontSize: 20,
-                    )),
-              ],
-            ),
-            SizedBox(
-              height: kDefaultPadding,
-            ),
-            Divider(
-              height: 2,
-            ),
-            SizedBox(
-              height: kDefaultPadding,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text("Present: P"),
-                SizedBox(),
-                Text("Absent: A"),
-                SizedBox(),
-                Text("Half Day: HD"),
-                SizedBox(),
-                Text("Weekly Off: WO"),
-                SizedBox(),
-                Text("Holiday: H"),
-                SizedBox(),
-                Text("Leave: L"),
-                SizedBox(),
-                Text("HalfDay Leave: HDL"),
-                SizedBox(
-                  width: kDefaultPadding,
-                ),
-                Text("Late Arrival: LA"),
-                SizedBox(),
-                Text("Early Exit: EE"),
-                SizedBox(),
-                Text("Hour Leave: RR"),
-                SizedBox(),
-                Text("Reinstate: RI"),
-                SizedBox(),
-                Text("Absent after LWD: A-LWD"),
-                SizedBox(),
-                Text("Not Available: NA"),
-                SizedBox(),
-                Text("Suspended: SP"),
-                SizedBox(),
-                Text("Present: P"),
-                SizedBox(),
-              ],
+                        // shape: RoundedRectangleBorder(
+                        //     side: BorderSide(
+                        //         color: Theme.of(context).scaffoldBackgroundColor,
+                        //         width: 0.1),
+                        //     borderRadius: BorderRadius.circular(10)),
+                        // margin: EdgeInsets.all(20),
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'My Attendance Status -',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Divider(),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Present Days: ',
+                                      style: TextStyle(
+                                        // fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      "3",
+                                      style: TextStyle(
+                                        fontSize: 15.8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Absent Days: ',
+                                      style: TextStyle(
+                                        //  fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      "3",
+                                      style: TextStyle(
+                                        fontSize: 15.8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Half Days: ',
+                                      style: TextStyle(
+                                        //  fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      "3",
+                                      style: TextStyle(
+                                        fontSize: 15.8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Miss Punch Out: ',
+                                      style: TextStyle(
+                                        //  fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      "3",
+                                      style: TextStyle(
+                                        fontSize: 15.8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Non-Hourly Leave: ',
+                                      style: TextStyle(
+                                        // fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      "3",
+                                      style: TextStyle(
+                                        fontSize: 15.8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Holiday: ',
+                                      style: TextStyle(
+                                        // fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      "3",
+                                      style: TextStyle(
+                                        fontSize: 15.8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Half Day Leave: ',
+                                      style: TextStyle(
+                                        // fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      "3",
+                                      style: TextStyle(
+                                        fontSize: 15.8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Hourly Leave: ',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      "3",
+                                      style: TextStyle(
+                                        fontSize: 15.8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Suspended Days: ',
+                                      style: TextStyle(
+                                        //fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text(
+                                      "3",
+                                      style: TextStyle(
+                                        fontSize: 15.8,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ]),
+                        ),
+                      ),
+                    ),
+                    Div(
+                      colL: 4,
+                      child: Padding(padding: const EdgeInsets.all(8)),
+                    ),
+                    Div(
+                      colM: 3,
+                      child: Card(
+                        elevation: 0,
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                              //mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Abbreviation-',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Divider(),
+                                Row(
+                                  children: [
+                                    Text('Present:'),
+                                    Text("P"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Absent:'),
+                                    Text("A"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Half Day:'),
+                                    Text("HD"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Miss Punch Out:'),
+                                    Text("MIS"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Weekly Off:'),
+                                    Text("WO"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Holiday:'),
+                                    Text("H"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Leave:'),
+                                    Text("L"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('HalfDay Leave:'),
+                                    Text("HDL"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Late Arrival:'),
+                                    Text("LA"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Early Exit:'),
+                                    Text("EE"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Hourly Leave:'),
+                                    Text("RR"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Late Arrival:'),
+                                    Text("LA"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Reinstate:'),
+                                    Text("RI"),
+                                  ],
+                                ),
+                                // Row(
+                                //   children: [
+                                //     Text('Absent afterLWD:'),
+                                //     Text("A-LWD"),
+                                //   ],
+                                // ),
+                                Row(
+                                  children: [
+                                    Text('Not Availabvle:'),
+                                    Text("NA"),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text('Suspended:'),
+                                    Text("SP"),
+                                  ],
+                                ),
+                              ]),
+                        ),
+                      ),
+                    )
+                  ]),
             )
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   children: [
+            //     Text("Present Days: ",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.bold,
+            //         )),
+            //     Text("3",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         )),
+            //     SizedBox(
+            //       width: kDefaultPadding,
+            //     ),
+            //     Text("Absent Days: ",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.bold,
+            //         )),
+            //     Text("3",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         )),
+            //     SizedBox(
+            //       width: kDefaultPadding,
+            //     ),
+            //     Text("Half Days: ",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.bold,
+            //         )),
+            //     Text("3",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         )),
+            //     SizedBox(
+            //       width: kDefaultPadding,
+            //     ),
+            //     Text("Miss Punch Out: ",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.bold,
+            //         )),
+            //     Text("3",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         )),
+            //     SizedBox(
+            //       width: kDefaultPadding,
+            //     ),
+            //     Text("Non-Hourly Leave: ",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.bold,
+            //         )),
+            //     Text("3",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         )),
+            //     SizedBox(
+            //       width: kDefaultPadding,
+            //     ),
+            //     Text("Holiday: ",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.bold,
+            //         )),
+            //     Text("3",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         )),
+            //     SizedBox(
+            //       width: kDefaultPadding,
+            //     ),
+            //     Text("Half Day Leave: ",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.bold,
+            //         )),
+            //     Text("3",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         )),
+            //     SizedBox(
+            //       width: kDefaultPadding,
+            //     ),
+            //     Text("Hourly Leave: ",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.bold,
+            //         )),
+            //     Text("3",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         )),
+            //     SizedBox(
+            //       width: kDefaultPadding,
+            //     ),
+            //     Text("Suspended Days: ",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.bold,
+            //         )),
+            //     Text("3",
+            //         style: TextStyle(
+            //           fontSize: 20,
+            //         )),
+            //   ],
+            // ),
+            // SizedBox(
+            //   height: kDefaultPadding,
+            // ),
+            // Divider(
+            //   height: 2,
+            // ),
+            // SizedBox(
+            //   height: kDefaultPadding,
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //   children: [
+            //     Text("Present: P"),
+            //     SizedBox(),
+            //     Text("Absent: A"),
+            //     SizedBox(),
+            //     Text("Half Day: HD"),
+            //     SizedBox(),
+            //     Text("Weekly Off: WO"),
+            //     SizedBox(),
+            //     Text("Holiday: H"),
+            //     SizedBox(),
+            //     Text("Leave: L"),
+            //     SizedBox(),
+            //     Text("HalfDay Leave: HDL"),
+            //     SizedBox(
+            //       width: kDefaultPadding,
+            //     ),
+            //     Text("Late Arrival: LA"),
+            //     SizedBox(),
+            //     Text("Early Exit: EE"),
+            //     SizedBox(),
+            //     Text("Hour Leave: RR"),
+            //     SizedBox(),
+            //     Text("Reinstate: RI"),
+            //     SizedBox(),
+            //     Text("Absent after LWD: A-LWD"),
+            //     SizedBox(),
+            //     Text("Not Available: NA"),
+            //     SizedBox(),
+            //     Text("Suspended: SP"),
+            //     SizedBox(),
+            //     Text("Present: P"),
+            //     SizedBox(),
+            //   ],
+            // )
           ],
         ),
       ),
@@ -281,17 +598,24 @@ class _AttendancePageState extends State<AttendancePage> {
 }
 
 Widget attendanceTable() {
+  final _scrollcontroller = ScrollController();
   return Expanded(
-    child: SingleChildScrollView(
-      physics: ScrollPhysics(),
-      controller: ScrollController(debugLabel: "Attendance"),
-      child: DataTable(
-        columns: _columns(),
-        rows: _rows(),
-        dividerThickness: 2,
-        dataRowHeight: 40,
-        showBottomBorder: true,
-        headingTextStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+    child: Scrollbar(
+      controller: _scrollcontroller,
+      isAlwaysShown: true,
+      child: SingleChildScrollView(
+        physics: ScrollPhysics(),
+        controller: _scrollcontroller,
+        //controller: ScrollController(debugLabel: "Attendance"),
+        child: DataTable(
+          columns: _columns(),
+          rows: _rows(),
+          dividerThickness: 2,
+          dataRowHeight: 40,
+          showBottomBorder: true,
+          headingTextStyle:
+              TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
       ),
     ),
   );

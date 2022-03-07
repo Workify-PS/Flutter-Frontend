@@ -6,6 +6,7 @@ import 'package:workify/controllers/UserController.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:workify/utils/constants.dart';
 
 class AttendancePunchService extends GetConnect with CacheManager {
 
@@ -15,7 +16,7 @@ class AttendancePunchService extends GetConnect with CacheManager {
       'Content-Type': 'application/json'
     };
     var request = http.Request('POST',
-        Uri.parse('http://localhost:8080/workify/v1/attendance/punchin'));
+        Uri.parse('http://$ip:$port/workify/v1/attendance/punchin'));
     final user = Get.find<UserController>().currentUser!.value;
     final time = DateFormat("HH:mm:ss").format(DateTime.now());
     request.body = json.encode({
@@ -46,7 +47,7 @@ class AttendancePunchService extends GetConnect with CacheManager {
       'Content-Type': 'application/json'
     };
     var request = http.Request('POST',
-        Uri.parse('http://localhost:8080/workify/v1/attendance/punchout'));
+        Uri.parse('http://$ip:$port/workify/v1/attendance/punchout'));
     final user = Get.find<UserController>().currentUser!.value;
     final time = DateFormat("HH:mm:ss").format(DateTime.now());
     request.body = json.encode({

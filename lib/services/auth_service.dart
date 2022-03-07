@@ -5,15 +5,17 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:workify/exceptions/BadCredentials.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/models/UserModel.dart';
+import 'package:workify/utils/constants.dart';
 
 class AuthService extends GetConnect {
-  final String authUrl = "http://localhost:8080/workify/v1/login/authenticate";
-  final String registerUrl = "http://localhost:8080/wokify/v1/login/register";
+  final String authUrl = "http://$ip:$port/workify/v1/login/authenticate";
+  final String registerUrl = "http://$ip:$port/wokify/v1/login/register";
   
 
   Future<String?> loginWithEmailAndPassword(
       {required String username, required String password}) async {
     var response;
+    
     try {
       response =
           await post(authUrl, {"username": username, "password": password});

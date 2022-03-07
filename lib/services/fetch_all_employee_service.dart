@@ -4,10 +4,11 @@ import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'dart:convert';
 
+import 'package:workify/utils/constants.dart';
 
 class FetchAllEmployeeService {
   static Future<dynamic> callAllEmployeesApi() async {
-    String profileUrl = 'http://localhost:8080/workify/v1/allemployees';
+    String profileUrl = 'http://$ip:$port/workify/v1/allemployees';
     // ignore: prefer_typing_uninitialized_variables
     var responseData;
 

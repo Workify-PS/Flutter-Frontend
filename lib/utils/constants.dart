@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:workify/utils/sizes.dart';
 
+late final ip;
+late final port;
 const kPrimaryColor = Color(0xFF1976d2);
 const kSecondaryColor = Color(0xFFF5F6FC);
 const kMenuColor = Color(0xFFF2F4FC);

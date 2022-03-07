@@ -18,7 +18,9 @@ import 'package:workify/screens/AuthPage/AuthPageController.dart';
 import 'package:workify/screens/Error404.dart';
 import 'package:workify/screens/SplashScreen/OnBoarding.dart';
 import 'package:workify/screens/SplashScreen/splash_widget.dart';
+import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
@@ -26,6 +28,9 @@ Future<void> main() async {
   await GetStorage.init('APP_SETTINGS');
   await GetStorage.init('USER');
   await Firebase.initializeApp();
+  await dotenv.load(fileName: ".env");
+  port = dotenv.env['PORT'];
+  ip = dotenv.env['IP'];
   runApp(MyApp());
 }
 

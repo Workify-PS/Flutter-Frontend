@@ -633,13 +633,13 @@ class AuthPage extends GetView<AuthPageController> {
                                                       ),
                                                     ),
                                                     ElevatedButton(
-                                                      onPressed: googleSignInButton,
+                                                      onPressed:
+                                                          googleSignInButton,
                                                       style: ElevatedButton
                                                           .styleFrom(
                                                               //primary: Colors.grey.shade50,
                                                               onPrimary:
-                                                                  Colors
-                                                                      .black,
+                                                                  Colors.black,
                                                               elevation: 6,
                                                               shadowColor:
                                                                   Colors.grey
@@ -656,8 +656,7 @@ class AuthPage extends GetView<AuthPageController> {
                                                             const EdgeInsets
                                                                     .symmetric(
                                                                 vertical: 2.0,
-                                                                horizontal:
-                                                                    40),
+                                                                horizontal: 40),
                                                         child: Wrap(
                                                           crossAxisAlignment:
                                                               WrapCrossAlignment
@@ -669,8 +668,7 @@ class AuthPage extends GetView<AuthPageController> {
                                                                   .greenAccent
                                                                   .shade700,
                                                             ),
-                                                            SizedBox(
-                                                                width: 12),
+                                                            SizedBox(width: 12),
                                                             Text(
                                                               'Sign in with Google',
                                                               style: Theme.of(
@@ -716,9 +714,10 @@ class AuthPage extends GetView<AuthPageController> {
           username: _usernameController.text, password: _passController.text);
       Get.toNamed("/home");
     }
+    
   }
 
   Future<void> googleSignInButton() async {
-   await _authController.signInWithGoogle();
+    await _authController.signInWithGoogle();
   }
 }

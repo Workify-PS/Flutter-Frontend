@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:workify/components/button.dart';
 import 'package:workify/models/HolidayModel.dart';
 // import 'package:workify/services/holiday_get_service.dart';
 import 'package:flutter/services.dart' as rootBundle;
@@ -37,7 +39,7 @@ class _HolidayCardState extends State<HolidaysCard> {
     final ScrollController _scrollController = ScrollController();
     return Scaffold(
       body: FutureBuilder(
-        future: ReadJsonData(),
+        future: readJsonData(),
         builder: (context, data) {
           if (data.hasError) {
             return Text("${data.error}");
@@ -49,7 +51,6 @@ class _HolidayCardState extends State<HolidaysCard> {
               child: Scrollbar(
                 isAlwaysShown: true,
                 showTrackOnHover: true,
-                
                 controller: _scrollController,
                 child: FadingEdgeScrollView.fromScrollView(
                   gradientFractionOnStart: 0.6,
@@ -58,7 +59,6 @@ class _HolidayCardState extends State<HolidaysCard> {
                     itemCount: items.length,
                     // physics: FixedExtentScrollPhysics(),
                     itemBuilder: (context, index) {
-                     
                       return Column(
                         children: [
                           Padding(
@@ -105,8 +105,6 @@ class _HolidayCardState extends State<HolidaysCard> {
                                     )
                                   ],
                                 )),
-                                
-                                
                               ],
                             ),
                           ),
@@ -130,7 +128,7 @@ class _HolidayCardState extends State<HolidaysCard> {
     );
   }
 
-  Future<List<HolidayModel>> ReadJsonData() async {
+  Future<List<HolidayModel>> readJsonData() async {
     final jsondata =
         await rootBundle.rootBundle.loadString('assets/holidays/holiday.json');
     final list = json.decode(jsondata) as List<dynamic>;
@@ -139,18 +137,58 @@ class _HolidayCardState extends State<HolidaysCard> {
 }
 
 class WishText extends StatelessWidget {
-  const WishText({
-    Key? key,
-  }) : super(key: key);
+  final String firstName;
+  final String email;
+  const WishText({Key? key, required this.email, required this.firstName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    FocusNode focusNode = FocusNode();
+    final ctr = TextEditingController(text: 'Congratulations $firstName');
+    Future openDialog() => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text(
+                'Wish',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              //TextFormField(initialValue: "I am smart")
+              content: TextFormField(
+                autofocus: true,
+                focusNode: focusNode,
+                cursorColor: kPrimaryColor,
+                controller: ctr,
+                decoration: InputDecoration(
+                  labelText: "",
+                  fillColor: Colors.white.withOpacity(0.1),
+                  filled: true,
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: kPrimaryColor, width: 1.5)),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: BorderSide(color: Colors.black, width: 2),
+                  ),
+                ),
+              ),
+              actions: [
+                PrimaryButton(
+                  buttonTextWidget: Text('Email'),
+                  onPressed: _email,
+                  primaryColor: kPrimaryColor,
+                  icon: Icon(Icons.email_outlined),
+                )
+              ],
+            ));
     return TextButton.icon(
       icon: Icon(
         CupertinoIcons.arrowshape_turn_up_right,
         size: 18,
       ),
-      onPressed: wishEmailRedirect,
+      // onPressed: wishEmailRedirect,
+      onPressed: () {
+        openDialog();
+      },
       label: Text('Wish'),
       style: ElevatedButton.styleFrom().copyWith(
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
@@ -165,5 +203,8 @@ class WishText extends StatelessWidget {
     );
   }
 
-  Future<void> wishEmailRedirect() async {}
+  void _email() {
+    
+    Get.back();
+  }
 }

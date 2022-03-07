@@ -19,7 +19,7 @@ class AllEmployeeProfile extends StatelessWidget {
     device.size = MediaQuery.of(context).size;
     screenWidth = device.size.width;
     screenHeight = device.size.height;
-    
+
     portrait = screenWidth < 1000;
 
     final fetchAllEmployeesController = Get.find<FetchAllEmployeesController>();
@@ -56,11 +56,17 @@ class AllEmployeeProfile extends StatelessWidget {
                                   flex: 1,
                                   child: SizedBox(),
                                 ),
-                                if (portrait) SizedBox(width: 10,),
+                                if (portrait)
+                                  SizedBox(
+                                    width: 10,
+                                  ),
                                 Expanded(
                                     flex: 3,
                                     child: Text('Employee [ Name : Code ]')),
-                                if (portrait) SizedBox(width: 10,),
+                                if (portrait)
+                                  SizedBox(
+                                    width: 10,
+                                  ),
                                 Expanded(
                                   flex: 3,
                                   child: Text('Designation'),
@@ -121,7 +127,10 @@ class EmployeeProfile extends StatelessWidget {
                     flex: 1,
                     child: Avatar(),
                   ),
-                  if (portrait) SizedBox(width: 10,),
+                  if (portrait)
+                    SizedBox(
+                      width: 10,
+                    ),
                   Expanded(
                     flex: 3,
                     child: Obx(() {
@@ -140,7 +149,10 @@ class EmployeeProfile extends StatelessWidget {
                       }
                     }),
                   ),
-                  if (portrait) SizedBox(width: 10,),
+                  if (portrait)
+                    SizedBox(
+                      width: 10,
+                    ),
                   Expanded(
                     flex: 3,
                     child: Obx(() {
@@ -154,7 +166,10 @@ class EmployeeProfile extends StatelessWidget {
                       }
                     }),
                   ),
-                  if (portrait) SizedBox(width: 10,),
+                  if (portrait)
+                    SizedBox(
+                      width: 10,
+                    ),
                   SizedBox(
                     width: 140,
                     child: Obx(() {

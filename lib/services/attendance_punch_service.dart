@@ -1,36 +1,68 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
+import 'package:workify/controllers/UserController.dart';
 import 'package:workify/mixins/cache.dart';
+import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
 
 class AttendancePunchService extends GetConnect with CacheManager {
-  final String punchInUrl = "http://localhost:8080/workify/v1/attendance";
-  final String punchOutUrl =
-      "http://localhost:8080/workify/v1/wish/anniversary";
 
   Future<void> punchInService() async {
-    final token = getToken();
     var headers = {
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer ${getToken()}',
       'Content-Type': 'application/json'
     };
-    final response = await get(punchInUrl, headers: headers);
-    if (response.statusCode == HttpStatus.ok) {
-      return;
+    var request = http.Request('POST',
+        Uri.parse('http://localhost:8080/workify/v1/attendance/punchin'));
+    final user = Get.find<UserController>().currentUser!.value;
+    final time = DateFormat("HH:mm:ss").format(DateTime.now());
+    request.body = json.encode({
+      "userId": user.userID,
+      "empcode": user.empCode,
+      "location Info": "Abcd",
+      "actualIn": time,
+      "creationDate": "2022-02-21",
+      "modifiedDate": "",
+      "createdBy": 123,
+      "modifiedBy": 345
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
     } else {
+      print(response.reasonPhrase);
       throw Error();
     }
   }
 
   Future<void> punchOutService() async {
-    final token = getToken();
-    var headers = {
-      'Authorization': 'Bearer $token',
+   var headers = {
+      'Authorization': 'Bearer ${getToken()}',
       'Content-Type': 'application/json'
     };
-    final response = await get(punchOutUrl, headers: headers);
-    if (response.statusCode == HttpStatus.ok) {
-      return  ;
+    var request = http.Request('POST',
+        Uri.parse('http://localhost:8080/workify/v1/attendance/punchout'));
+    final user = Get.find<UserController>().currentUser!.value;
+    final time = DateFormat("HH:mm:ss").format(DateTime.now());
+    request.body = json.encode({
+      "userId": user.userID,
+      "empcode": user.empCode,
+      "location Info": "Abcd",
+      "actualOut": time,
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
     } else {
+      print(response.reasonPhrase);
       throw Error();
     }
   }

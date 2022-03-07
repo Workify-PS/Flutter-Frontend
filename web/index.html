@@ -19,7 +19,7 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
-
+  <meta name="google-signin-client_id" content="886217194309-ig4bpdbmt00srh6s79h670p0ceeuf86k.apps.googleusercontent.com">
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -33,9 +33,22 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCloIrqeOgkD2xb7KcUGUy2IzLpaxsIceA",
+      authDomain: "dummy-45587.firebaseapp.com",
+      projectId: "dummy-45587",
+      storageBucket: "dummy-45587.appspot.com",
+      messagingSenderId: "549365807761",
+      appId: "1:549365807761:web:73dd803087994d6a0e5d30",
+      measurementId: "G-F6JKKQ93VG"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;

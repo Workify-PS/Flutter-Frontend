@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
 
-import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 
 
 

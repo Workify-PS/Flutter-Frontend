@@ -36,7 +36,7 @@ class AttendancePunchService extends GetConnect with CacheManager {
       print(await response.stream.bytesToString());
     } else {
       print(response.reasonPhrase);
-      throw Error();
+      throw Exception(response.reasonPhrase);
     }
   }
 
@@ -63,7 +63,8 @@ class AttendancePunchService extends GetConnect with CacheManager {
       print(await response.stream.bytesToString());
     } else {
       print(response.reasonPhrase);
-      throw Error();
+      throw Exception(response.reasonPhrase);
+    
     }
   }
 }

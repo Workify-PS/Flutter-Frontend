@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
 import 'package:workify/screens/AuthPage/ForgotPass.dart';
@@ -274,9 +274,9 @@ class AuthPage extends GetView<AuthPageController> {
                                         ),
                                       ),
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: googleSignInButton,
                                         child: ElevatedButton(
-                                          onPressed: () {},
+                                          onPressed: googleSignInButton,
                                           style: ElevatedButton.styleFrom(
                                               //primary: Colors.grey.shade50,
                                               onPrimary: Colors.black,
@@ -632,56 +632,53 @@ class AuthPage extends GetView<AuthPageController> {
                                                                     .bold),
                                                       ),
                                                     ),
-                                                    InkWell(
-                                                      onTap: () {},
-                                                      child: ElevatedButton(
-                                                        onPressed: () {},
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                                //primary: Colors.grey.shade50,
-                                                                onPrimary:
-                                                                    Colors
-                                                                        .black,
-                                                                elevation: 6,
-                                                                shadowColor:
-                                                                    Colors.grey
-                                                                        .shade800,
-                                                                shape:
-                                                                    RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8.0),
-                                                                )),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  vertical: 2.0,
-                                                                  horizontal:
-                                                                      40),
-                                                          child: Wrap(
-                                                            crossAxisAlignment:
-                                                                WrapCrossAlignment
-                                                                    .center,
-                                                            children: [
-                                                              Icon(
-                                                                Icons.android,
-                                                                color: Colors
-                                                                    .greenAccent
-                                                                    .shade700,
-                                                              ),
-                                                              SizedBox(
-                                                                  width: 12),
-                                                              Text(
-                                                                'Sign in with Google',
-                                                                style: Theme.of(
-                                                                        context)
-                                                                    .textTheme
-                                                                    .subtitle1,
-                                                              ),
-                                                            ],
-                                                          ),
+                                                    ElevatedButton(
+                                                      onPressed: googleSignInButton,
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                              //primary: Colors.grey.shade50,
+                                                              onPrimary:
+                                                                  Colors
+                                                                      .black,
+                                                              elevation: 6,
+                                                              shadowColor:
+                                                                  Colors.grey
+                                                                      .shade800,
+                                                              shape:
+                                                                  RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8.0),
+                                                              )),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                vertical: 2.0,
+                                                                horizontal:
+                                                                    40),
+                                                        child: Wrap(
+                                                          crossAxisAlignment:
+                                                              WrapCrossAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Icon(
+                                                              Icons.android,
+                                                              color: Colors
+                                                                  .greenAccent
+                                                                  .shade700,
+                                                            ),
+                                                            SizedBox(
+                                                                width: 12),
+                                                            Text(
+                                                              'Sign in with Google',
+                                                              style: Theme.of(
+                                                                      context)
+                                                                  .textTheme
+                                                                  .subtitle1,
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
                                                     ).neuromorphism(context)
@@ -719,5 +716,9 @@ class AuthPage extends GetView<AuthPageController> {
           username: _usernameController.text, password: _passController.text);
       Get.toNamed("/home");
     }
+  }
+
+  Future<void> googleSignInButton() async {
+   await _authController.signInWithGoogle();
   }
 }

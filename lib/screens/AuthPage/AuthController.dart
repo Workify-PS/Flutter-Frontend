@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/exceptions/BadCredentials.dart';
 import 'package:workify/exceptions/print_log.dart';
@@ -9,12 +10,15 @@ import 'package:workify/services/auth_service.dart';
 
 class AuthController extends GetxController with CacheManager {
   final RxBool isSignedIn = false.obs;
-
-  Future<void> loginUser(
-      {required String username, required String password}) async {
-    final AuthService _authService = AuthService();
+  final AuthService _authService = AuthService();
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: <String>[
+      'email',
+    ],
+  );
+  Future<void> loginUser({required String username, required String password}) async {
     final token =
-        await _authService.loginService(username: username, password: password);
+        await _authService.loginWithEmailAndPassword(username: username, password: password);
 
     if (token != null) {
       isSignedIn.value = true;
@@ -43,7 +47,6 @@ class AuthController extends GetxController with CacheManager {
   }
 
   Future<void> registerUser(UserModel user) async {
-    final AuthService _authService = AuthService();
     final response = await _authService.registerService(user);
 
     if (response != null) {
@@ -61,11 +64,23 @@ class AuthController extends GetxController with CacheManager {
   Future<void> logOut() async {
     final UserController _userController = Get.find<UserController>();
     _userController.currentUser = null;
-     await removeToken();
-     await removeUser();
-    
+    await removeToken();
+    await removeUser();
+    await googleSignOut();
+  }
+Future<void> signInWithGoogle() async {
+    try {
+      final account = await _googleSignIn.signIn();
+      assert(account != null);
+      print(account!.displayName.toString()+ " "+account.email.toString());
+      // sign in with only email service
+    } catch (error) {
+      print(error);
+      throw Exception(error.toString());
+    }
   }
 
+  Future<void> googleSignOut() => _googleSignIn.disconnect();
   Future<void> logOutDialog() async {
     Get.defaultDialog(
         title: 'Log Out?',

@@ -10,39 +10,24 @@ import 'package:workify/utils/constants.dart';
 class AuthService extends GetConnect {
   final String authUrl = "http://$ip:$port/workify/v1/login/authenticate";
   final String registerUrl = "http://$ip:$port/wokify/v1/login/register";
-  
-
-  Future<String?> loginWithEmailAndPassword(
-      {required String username, required String password}) async {
-    var response;
-    
-    try {
+  final String googleSignInUrl =
+      "http://$ip:$port/workify/v1/login/authenticate-with-email";
+  Future<String?> loginService(
+      {String? username, String? password, String? email}) async {
+    late Response response;
+    if (email == null) {
       response =
           await post(authUrl, {"username": username, "password": password});
-
-      if (response.statusCode == HttpStatus.ok) {
-        PrintLog.printLog(
-            fileName: 'auth_service',
-            functionName: 'loginService',
-            blockNumber: 1,
-            printStatement: 'logged In Successfully :: with Token :\n' +
-                response.body['token']);
-      } else {
-        PrintLog.printLog(
-            fileName: 'auth_service',
-            functionName: 'loginService',
-            blockNumber: 2,
-            printStatement: "ERROR : ${response.statusText}");
-        throw BadCredentials();
-      }
-    } catch (error) {
-      PrintLog.printLog(
-          fileName: 'auth_service',
-          functionName: 'loginService',
-          blockNumber: 3,
-          printStatement: 'Error :: ' + error.toString());
+    } else {
+      response = await post(googleSignInUrl, {"email": email});
     }
-    return response.body['token'];
+
+    if (response.statusCode == HttpStatus.ok) {
+      return response.body['token'];
+    } else {
+      print(response.statusCode.toString() + " : " + response.statusText.toString());
+      return null;
+    }
   }
 
   Future<String?> registerService(UserModel model) async {
@@ -73,6 +58,4 @@ class AuthService extends GetConnect {
     }
     return response.bodyString;
   }
-
-  
 }

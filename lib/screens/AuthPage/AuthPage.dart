@@ -719,5 +719,6 @@ class AuthPage extends GetView<AuthPageController> {
 
   Future<void> googleSignInButton() async {
     await _authController.signInWithGoogle();
+    Get.toNamed("/home");
   }
 }

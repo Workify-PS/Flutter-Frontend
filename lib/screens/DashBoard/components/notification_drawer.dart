@@ -18,6 +18,7 @@ class NotificationDrawer extends StatelessWidget {
             children: [
               Container(
                   height: bannerHeight,
+                  margin: const EdgeInsets.symmetric(vertical: kDefaultPadding),
                   width: double.infinity,
                   color: Theme.of(context).primaryColor,
                   padding: const EdgeInsets.all(16),

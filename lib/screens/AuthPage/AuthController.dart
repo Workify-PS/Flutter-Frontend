@@ -16,9 +16,10 @@ class AuthController extends GetxController with CacheManager {
       'email',
     ],
   );
-  Future<void> loginUser({required String username, required String password}) async {
+  Future<void> loginUser(
+      {required String username, required String password}) async {
     final token =
-        await _authService.loginWithEmailAndPassword(username: username, password: password);
+        await _authService.loginService(username: username, password: password);
 
     if (token != null) {
       isSignedIn.value = true;
@@ -68,12 +69,35 @@ class AuthController extends GetxController with CacheManager {
     await removeUser();
     await googleSignOut();
   }
-Future<void> signInWithGoogle() async {
+
+  Future<void> signInWithGoogle() async {
     try {
       final account = await _googleSignIn.signIn();
       assert(account != null);
-      print(account!.displayName.toString()+ " "+account.email.toString());
-      // sign in with only email service
+      final token = await _authService.loginService(email: account!.email);
+      if (token != null) {
+        isSignedIn.value = true;
+        await saveToken(token);
+
+        final UserController _userController = Get.find<UserController>();
+        await _userController.setUser(token);
+        PrintLog.printLog(
+          fileName: 'AuthController',
+          functionName: 'signInWithGoogle',
+          blockNumber: 1,
+          printStatement: '\nToken received Successfully !!\n$token',
+        );
+      } else {
+        Get.defaultDialog(
+            middleText: 'Incorrect Username or Password',
+            textConfirm: 'Dismiss',
+            confirmTextColor: Colors.white,
+            onConfirm: () {
+              Get.back();
+            });
+
+        throw BadCredentials();
+      }
     } catch (error) {
       print(error);
       throw Exception(error.toString());

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:workify/mixins/cache.dart';
-import 'package:workify/models/attendanceShiftModel.dart';
+import 'package:workify/models/AttendanceShiftModel.dart';
 
 class AttendanceShiftGetService extends GetConnect with CacheManager {
   final String attlistURL =
@@ -16,7 +16,7 @@ class AttendanceShiftGetService extends GetConnect with CacheManager {
     final response = await get(attlistURL, headers: headers);
     if (response.statusCode == HttpStatus.ok) {
       List<dynamic> attlist = response.body;
-      //return ann.map((e) => WishModel.fromJson(e)).toList();
+      return attlist.map((e) => AttendanceShiftModel.fromJson(e)).toList();
     } else {
       return null;
     }

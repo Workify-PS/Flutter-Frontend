@@ -5,12 +5,12 @@ import 'package:workify/services/attendance_list_service.dart';
 class AttendanceShiftController extends GetxController {
   RxList<AttendanceShiftModel> attendanceshiftList =
       <AttendanceShiftModel>[].obs;
-  RxList<AttendanceShiftModel> shiftList = <AttendanceShiftModel>[].obs;
+
   @override
   void onInit() async {
     print("Initialized for Attendance Shift Controller");
     getAllShifts();
-    shiftList = attendanceshiftList;
+    
     super.onInit();
   }
 

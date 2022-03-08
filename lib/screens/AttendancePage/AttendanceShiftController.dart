@@ -10,7 +10,7 @@ class AttendanceShiftController extends GetxController {
   void onInit() async {
     print("Initialized for Attendance Shift Controller");
     getAllShifts();
-    
+
     super.onInit();
   }
 

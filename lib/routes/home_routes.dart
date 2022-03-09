@@ -21,6 +21,7 @@ import 'package:workify/screens/AttendancePage/AttendancePage.dart';
 import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/DashBoard/DashBoard.dart';
 import 'package:workify/screens/Error404.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/screens/LeavePage/AllEmployeeLeaves.dart';
 import 'package:workify/screens/LeavePage/ApplyLeave.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
@@ -30,7 +31,6 @@ import 'package:workify/screens/ProfileSection/SelfProfileSection/ProfilePage.da
 import 'package:workify/screens/SplashScreen/splash_widget.dart';
 
 class HomeRouter {
-  
   static Route<dynamic> generateRoute(RouteSettings settings) {
     print("Route name is " + settings.name.toString());
     switch (settings.name) {
@@ -42,6 +42,7 @@ class HomeRouter {
           binding: BindingsBuilder(() => {
                 Get.lazyPut(() => WishCardController()),
                 Get.put(AttendanceCardController()),
+                Get.put(AllEmployeeLeavesController()),
               }),
         );
       case "/profile":
@@ -58,7 +59,12 @@ class HomeRouter {
         return GetPageRoute(
             settings: settings,
             routeName: "/change-password",
-            page: () => ChangePassword());
+            page: () => ChangePassword(),
+            binding: BindingsBuilder(() => {
+              Get.put(HomePageController()),
+
+            })
+        );
       case "/modify-employee-profile":
         return GetPageRoute(
           settings: settings,

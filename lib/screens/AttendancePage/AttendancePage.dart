@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:workify/components/top_bar.dart';
 import 'package:workify/screens/AttendancePage/AttendanceShiftController.dart';
 import 'package:workify/utils/constants.dart';
@@ -217,8 +218,14 @@ class AttendancePage extends GetView<AttendanceShiftController> {
                         ],
                         rows: List.generate(
                             controller.attendanceshiftList.length, (index) {
-                          final a = controller.attendanceshiftList[index].date
-                              .toString();
+                          DateTime dateTime = DateTime.parse(controller
+                              .attendanceshiftList[index].date
+                              .toString());
+                          String dateformat =
+                              DateFormat("dd MMM yyyy").format(dateTime);
+                          //final a = controller.attendanceshiftList[index].date
+                          //    .toString();
+                          final a = dateformat;
                           final b = controller.attendanceshiftList[index].shift
                               .toString();
                           final c = controller

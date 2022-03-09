@@ -18,6 +18,7 @@ import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 
 import 'package:workify/screens/AttendancePage/AttendancePage.dart';
+import 'package:workify/screens/AttendancePage/AttendanceShiftController.dart';
 import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/DashBoard/DashBoard.dart';
 import 'package:workify/screens/Error404.dart';
@@ -129,10 +130,11 @@ class HomeRouter {
 
       case "/attendance":
         return GetPageRoute(
-          settings: settings,
-          routeName: '/attendance',
-          page: () => AttendancePage(),
-        );
+            settings: settings,
+            routeName: '/attendance',
+            page: () => AttendancePage(),
+            binding:
+                BindingsBuilder(() => {Get.put(AttendanceShiftController())}));
 
       default:
         print("UNKNOWN ROUTE RETURNING DEFAULT");

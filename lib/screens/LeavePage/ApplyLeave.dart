@@ -275,7 +275,7 @@ class ClLeft extends StatelessWidget {
               return Text(YourBalanceLeavesController
                       .yourBalanceLeavesData?.clLeft
                       .toString() ??
-                  'CL Left Found Null in Database');
+                  'CL left not found');
             }
           }),
         ],
@@ -305,7 +305,7 @@ class PlLeft extends StatelessWidget {
               return Text(YourBalanceLeavesController
                       .yourBalanceLeavesData?.plLeft
                       .toString() ??
-                  'PL Left Found Null in Database');
+                  'PL left not found');
             }
           }),
         ],

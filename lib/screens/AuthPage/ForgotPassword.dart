@@ -3,15 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
+import 'package:workify/services/forgot_password_service.dart';
 import 'package:workify/utils/constants.dart';
 // import 'package:workify/screens/AuthPage.dart';
 
 class ForgotPass extends GetView<AuthPageController> {
   final GlobalKey<FormState> formKey;
   ForgotPass({Key? key, required this.formKey}) : super(key: key);
-  final _emailController = TextEditingController();
+  final _emailController = TextEditingController(text: "ajaygond.rlb@gmail.com");
   @override
   Widget build(BuildContext context) {
+    void callCallForgotPasswordApi() {
+      var data = {"offMail": _emailController.text};
+      ForgotPasswordService.callForgotPasswordApi(data : data);
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -96,7 +102,7 @@ class ForgotPass extends GetView<AuthPageController> {
           ),
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: callCallForgotPasswordApi,
           //onPressed: loginAction,
           style: ElevatedButton.styleFrom(
               primary: kPrimaryColor,
@@ -112,7 +118,7 @@ class ForgotPass extends GetView<AuthPageController> {
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 Text(
-                  'Request Reset Link ',
+                  'Request OTP',
                   textAlign: TextAlign.center,
                 ),
               ],

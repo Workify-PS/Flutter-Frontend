@@ -22,6 +22,7 @@ import 'package:workify/screens/AttendancePage/AttendanceShiftController.dart';
 import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/DashBoard/DashBoard.dart';
 import 'package:workify/screens/Error404.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/screens/LeavePage/AllEmployeeLeaves.dart';
 import 'package:workify/screens/LeavePage/ApplyLeave.dart';
 import 'package:workify/screens/LeavePage/LeavePage.dart';
@@ -42,6 +43,7 @@ class HomeRouter {
           binding: BindingsBuilder(() => {
                 Get.lazyPut(() => WishCardController()),
                 Get.put(AttendanceCardController()),
+                Get.put(AllEmployeeLeavesController()),
               }),
         );
       case "/profile":
@@ -58,7 +60,12 @@ class HomeRouter {
         return GetPageRoute(
             settings: settings,
             routeName: "/change-password",
-            page: () => ChangePassword());
+            page: () => ChangePassword(),
+            binding: BindingsBuilder(() => {
+              Get.put(HomePageController()),
+
+            })
+        );
       case "/modify-employee-profile":
         return GetPageRoute(
           settings: settings,

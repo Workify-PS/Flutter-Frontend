@@ -55,16 +55,16 @@ class HomeRouter {
                 Get.lazyPut(() => ProfileDetailsController()),
               }),
         );
-      case "/change-password":
-        return GetPageRoute(
-            settings: settings,
-            routeName: "/change-password",
-            page: () => ChangePassword(),
-            binding: BindingsBuilder(() => {
-              Get.put(HomePageController()),
+      // case "/change-password":
+      //   return GetPageRoute(
+      //       settings: settings,
+      //       routeName: "/change-password",
+      //       page: () => ChangePassword(),
+      //       binding: BindingsBuilder(() => {
+      //         Get.put(HomePageController()),
 
-            })
-        );
+      //       })
+      //   );
       case "/modify-employee-profile":
         return GetPageRoute(
           settings: settings,

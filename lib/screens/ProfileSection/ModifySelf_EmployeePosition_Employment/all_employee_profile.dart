@@ -4,6 +4,7 @@ import 'package:workify/components/button.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
 import 'package:workify/routes/router.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
+import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -178,6 +179,7 @@ class EmployeeProfile extends StatelessWidget {
                       } else {
                         return PrimaryButton(
                           buttonTextWidget: Text('Modify Details'),
+                          primaryColor: kPrimaryColor,
                           onPressed: () {
                             Get.find<HomePageController>().gotoPage(
                                 Routes.modifyEmployeeProfile, context,

@@ -26,6 +26,6 @@ class HomePageController extends GetxController {
     print("Request to go to ${pageName.value}");
 
     Get.keys[1]!.currentState!.pushNamed(page, arguments: arguments);
-    html.window.history.pushState(null, "/", page);
+    html.window.history.replaceState(null, "/", page);
   }
 }

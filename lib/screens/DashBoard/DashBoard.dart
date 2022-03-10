@@ -35,7 +35,7 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
-    
+
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(bannerHeight),
@@ -50,7 +50,7 @@ class _DashBoardState extends State<DashBoard> {
           itemCount: cards.length,
           controller: ScrollController(),
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 550,
+            maxCrossAxisExtent: 550 * device.heightMultiplier,
             crossAxisSpacing: kDefaultPadding * 4,
             mainAxisSpacing: kDefaultPadding * 2,
             childAspectRatio: 1.2,

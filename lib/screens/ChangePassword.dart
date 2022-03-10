@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:workify/components/text_form.dart';
+import 'package:get/get.dart';
+import 'package:workify/routes/router.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
+import 'package:workify/screens/ProfileSection/SelfProfileSection/ProfilePage.dart';
+import 'package:workify/services/change_password_service.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -36,12 +40,34 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   get icon => null;
-  FocusNode myFocusNode1 = FocusNode();
-  FocusNode myFocusNode2 = FocusNode();
-  FocusNode myFocusNode3 = FocusNode();
+
+  final _currentPasswordController = TextEditingController();
+  final _newPasswordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  bool _passwordConfirmPasswordMatched = false;
 
   @override
   Widget build(BuildContext context) {
+    void saveNewPassword() {
+      if (_newPasswordController.text != _confirmPasswordController.text) {
+        Get.defaultDialog(
+            title: "Passwords don't match",
+            middleText:
+                "New and confirm password fields should have same values");
+      } else {
+        var data = {
+          "oldPassword": _currentPasswordController.text,
+          "newPassword": _confirmPasswordController.text
+        };
+        ChangePasswordService.callChangePasswordApi(data, context);
+      }
+    }
+
+    void getBack() {
+      Get.find<HomePageController>().gotoPage(Routes.home, context);
+    }
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0.1, 0, 0),
       child: Row(
@@ -68,39 +94,102 @@ class _BodyState extends State<Body> {
                           // color: kTitleTextColor
                         ),
                       ),
-                      SizedBox(
-                        height: 14,
-                      ),
-                      Text(
-                        'Choose a unique Password to protect your Account',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.normal),
-                      ),
+                      // SizedBox(
+                      //   height: 14,
+                      // ),
+                      // Text(
+                      //   'Choose a unique Password to protect your Account',
+                      //   style: TextStyle(
+                      //       fontSize: 18, fontWeight: FontWeight.normal),
+                      // ),
                       SizedBox(height: 10),
                       SizedBox(
                         height: 40,
                         width: 238,
-                        child: TextForm(
-                          myFocusNode: myFocusNode1,
-                          text: 'Current Password',
+                        child: TextFormField(
+                          obscureText: true,
+                          focusNode: FocusNode(),
+                          controller: _currentPasswordController,
+                          decoration: InputDecoration(
+                            label: Text('Current Password'),
+                            labelStyle: TextStyle(color: kPrimaryColor),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: kPrimaryColor)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide:
+                                  BorderSide(color: kPrimaryColor, width: 2),
+                            ),
+                          ),
                         ),
                       ),
                       SizedBox(height: 6.2),
                       SizedBox(
                         height: 40,
                         width: 238,
-                        child: TextForm(
-                          myFocusNode: myFocusNode2,
-                          text: 'New Password',
+                        child: TextFormField(
+                          onChanged: (value) {
+                            setState(() {
+                              if (value == _confirmPasswordController.text) {
+                                _passwordConfirmPasswordMatched = true;
+                              } else {
+                                _passwordConfirmPasswordMatched = false;
+                              }
+                            });
+                          },
+                          obscureText: true,
+                          focusNode: FocusNode(),
+                          controller: _newPasswordController,
+                          decoration: InputDecoration(
+                            label: Text('New Password'),
+                            labelStyle: TextStyle(color: kPrimaryColor),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: kPrimaryColor)),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                              borderSide:
+                                  BorderSide(color: kPrimaryColor, width: 2),
+                            ),
+                          ),
                         ),
                       ),
                       SizedBox(height: 6.2),
                       SizedBox(
-                        height: 40,
+                        height: 62,
                         width: 238,
-                        child: TextForm(
-                          myFocusNode: myFocusNode3,
-                          text: 'Confirm Password',
+                        child: TextFormField(
+                          onChanged: (value) {
+                            setState(() {
+                              if (value == _newPasswordController.text) {
+                                _passwordConfirmPasswordMatched = true;
+                              } else {
+                                _passwordConfirmPasswordMatched = false;
+                              }
+                            });
+                          },
+                          focusNode: FocusNode(),
+                          controller: _confirmPasswordController,
+                          decoration: InputDecoration(
+                            label: Text('Confirm New Password'),
+                            labelStyle: TextStyle(color: kPrimaryColor),
+                            // errorText: passConfirmPassMatched.toString(),
+                            errorText: "",
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: _confirmPasswordController.text.isNotEmpty ?
+                                _passwordConfirmPasswordMatched
+                                    ? Colors.green
+                                    : Colors.red
+                                    : Colors.grey,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                 color: kPrimaryColor,
+                                ),
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -157,40 +246,36 @@ class _BodyState extends State<Body> {
                         SizedBox(
                           height: 18,
                         ),
-                        ElevatedButton.icon(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              primary: kPrimaryColor,
-                              onPrimary: Colors.white,
-                              elevation: 8,
-                              shadowColor: Colors.grey.shade800,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              )),
-                          icon: Icon(Icons.save),
-                          label: Text(
-                            'Save',
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 14,
-                        ),
-                        ElevatedButton.icon(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              primary: kPrimaryColor,
-                              onPrimary: Colors.white,
-                              elevation: 8,
-                              shadowColor: Colors.grey.shade800,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              )),
-                          icon: Icon(Icons.delete_outline_sharp),
-                          label: Text(
-                            'Cancel',
-                            textAlign: TextAlign.center,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            ElevatedButton.icon(
+                              onPressed: saveNewPassword,
+                              style: ElevatedButton.styleFrom(
+                                  primary: kPrimaryColor,
+                                  onPrimary: kSecondaryColor,
+                                  elevation: 8,
+                                  shadowColor: Colors.grey.shade800,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  )),
+                              icon: Icon(Icons.save),
+                              label: Text(
+                                'Save',
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            ElevatedButton(
+                              onPressed: getBack,
+                              child: Text('Get Back'),
+                              style: ElevatedButton.styleFrom(
+                                  primary: kPrimaryColor,
+                                  onPrimary: kSecondaryColor),
+                            )
+                          ],
                         ),
                       ],
                     ),

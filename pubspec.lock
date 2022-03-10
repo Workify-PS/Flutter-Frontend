@@ -417,6 +417,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+<<<<<<< HEAD
   quiver:
     dependency: transitive
     description:
@@ -431,6 +432,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+=======
+>>>>>>> 703362d80525125981a77a87c885e6d087e97feb
   sky_engine:
     dependency: transitive
     description: flutter

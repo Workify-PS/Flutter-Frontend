@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesApproveRejectController.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
+import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
 
 double screenWidth = 0, screenHeight = 0;
@@ -24,11 +25,7 @@ class AllEmployeeLeaves extends GetView<AllEmployeeLeavesController> {
     //final allEmployeeLeavesController = Get.find<AllEmployeeLeavesController>();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'All Employee Leaves',
-        ),
-      ),
+      appBar: generateTopBar(title: 'All Employee Leaves'),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,
@@ -214,6 +211,7 @@ class EmployeeLeave extends GetView<AllEmployeeLeavesController> {
                       return SizedBox(
                         width: 100,
                         child: PrimaryButton(
+                          primaryColor: Colors.green,
                           buttonTextWidget: Text('Approve'),
                           onPressed: onPressedApproveButton,
                         ),
@@ -230,6 +228,7 @@ class EmployeeLeave extends GetView<AllEmployeeLeavesController> {
                       return SizedBox(
                         width: 100,
                         child: PrimaryButton(
+                          primaryColor: Colors.red,
                           buttonTextWidget: Text('Reject'),
                           onPressed: onPressedRejectButton,
                         ),

@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
-import 'package:workify/screens/AuthPage/ForgotPass.dart';
+import 'package:workify/screens/AuthPage/ForgotPassword.dart';
 
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';

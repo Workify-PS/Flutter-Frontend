@@ -6,6 +6,7 @@ import 'package:workify/components/button.dart';
 import 'package:workify/models/HolidayModel.dart';
 // import 'package:workify/services/holiday_get_service.dart';
 import 'package:flutter/services.dart' as rootBundle;
+import 'package:workify/utils/assets.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
@@ -129,7 +130,7 @@ class _HolidayCardState extends State<HolidaysCard> {
 
   Future<List<HolidayModel>> ReadJsonData() async {
     final jsondata =
-        await rootBundle.rootBundle.loadString('assets/holidays/holiday.json');
+        await rootBundle.rootBundle.loadString(Assets.holidays);
     final list = json.decode(jsondata) as List<dynamic>;
     return list.map((e) => HolidayModel.fromJson(e)).toList();
   }

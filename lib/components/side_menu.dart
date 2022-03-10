@@ -9,6 +9,7 @@ import 'package:workify/components/settings_sub_tiles.dart';
 import 'package:workify/components/side_menu_item.dart';
 import 'package:workify/routes/router.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
+import 'package:workify/utils/assets.dart';
 import 'package:workify/utils/constants.dart';
 
 class SideMenu extends GetView<HomePageController> {
@@ -56,7 +57,7 @@ class SideMenu extends GetView<HomePageController> {
                   color: Theme.of(context).primaryColor,
                   padding: const EdgeInsets.all(16),
                   child: Image.asset(
-                    "assets/images/banner.png",
+                    Assets.banner,
                     fit: BoxFit.contain,
                     color: Theme.of(context).colorScheme.secondary,
                   ),

@@ -9,14 +9,11 @@ class AuthMiddlware extends GetMiddleware with CacheManager {
   @override
   RouteSettings? redirect(String? route) {
     if (Routes.validateRoute(route)) {
-      if ((getToken() != null || route == "/auth")) {
+      if ((getToken() != null && route != "/auth")) {
         final homeController = Get.put(HomePageController());
         
-       if(route!=null){
-         if(route=="/") return RouteSettings(name: "/home");
-       }else{
-         homeController.pageName.value = "/home";
-       }
+       if(route=="/") return RouteSettings(name: "/home");
+       homeController.pageName.value = route??"/home";
         homeController.sideMenuCollapsed.value =
             homeController.pageName.value != "/home";
         return null;
@@ -24,7 +21,7 @@ class AuthMiddlware extends GetMiddleware with CacheManager {
         return RouteSettings(name: "/auth");
       }
     } else {
-      return RouteSettings(name: "/page-not-found"); //TODO: RETURN 404
+      return RouteSettings(name: "/page-not-found"); 
     }
   }
 }

@@ -5,7 +5,8 @@ import 'package:workify/exceptions/print_log.dart';
 
 class LeavePageService {
   static Future<dynamic> callAttendanceListApi() async {
-    String profileUrl = 'http://localhost:8080/workify/v1/attendancelist';
+    String attendanceListUrl =
+        'http://localhost:8080/workify/v1/attendance/attendancelist';
     // ignore: prefer_typing_uninitialized_variables
     var responseData;
 
@@ -20,7 +21,7 @@ class LeavePageService {
       final Dio dio = Dio();
       dio.options.headers = headers;
       var response = await dio.post(
-        profileUrl,
+        attendanceListUrl,
       );
       if (response.statusCode == 200) {
         responseData = response.data;
@@ -51,14 +52,4 @@ class LeavePageService {
     return responseData;
   }
 
-  static Future<dynamic> fetchProfileDetails() async {
-    var attendanceListApiResponse = await callAttendanceListApi();
-    PrintLog.printLog(
-        fileName: 'Profile Service File',
-        functionName: 'fetchProfileDetails(){}',
-        blockNumber: 1,
-        printStatement: 'Profile Api Response :\n' +
-            attendanceListApiResponse.runtimeType.toString());
-    return attendanceListApiResponse;
-  }
 }

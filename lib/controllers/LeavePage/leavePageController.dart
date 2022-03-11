@@ -8,7 +8,6 @@ import 'package:workify/services/LeavePage/leave_page_service.dart';
 class LeavePageController extends GetxController {
   var isLoading = true.obs;
   var date;
-  var absent = false.obs;
   var index = '-1'.obs;
   List<LeavePageAttendaceListModel> attendanceList = [];
 
@@ -35,8 +34,8 @@ class LeavePageController extends GetxController {
             functionName: 'callLeavePageServiceAttendanceListApi',
             blockNumber: 1,
             printStatement: 'Attendace List Received :\n' +
-                data.toString() +
-                'Date type : \n' +
+                // data.toString() +
+                'Date type : ' +
                 data.runtimeType.toString(),
           );
         }
@@ -58,14 +57,12 @@ class LeavePageController extends GetxController {
       for (int i = 0; i < attendanceList.length; i++) {
         if (attendanceList[i].date.toString() == date) {
           index(i.toString());
-          absent(false);
           found = 1;
           break;
         }
       }
       if (found == 0) {
         index('-1');
-        absent(true);
         PrintLog.printLog(
             fileName: 'leavePageController',
             functionName: 'callLeavePageServiceAttendanceListApi',

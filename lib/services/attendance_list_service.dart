@@ -5,10 +5,11 @@ import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/models/AttendanceShiftModel.dart';
 import 'package:http/http.dart' as http;
+import 'package:workify/utils/constants.dart';
 
 class AttendanceShiftGetService extends GetConnect with CacheManager {
   final String attlistURL =
-      "http://localhost:8080/workify/attendance/attendancelist";
+      "http://$ip:8080/$port/attendance/attendancelist";
 
   Future<List<AttendanceShiftModel>?> getAttendanceShiftList() async {
     final token = getToken();
@@ -16,7 +17,7 @@ class AttendanceShiftGetService extends GetConnect with CacheManager {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'http://localhost:8080/workify/v1/attendance/attendancelist'));
+            'http://$ip:$port/workify/v1/attendance/attendancelist'));
     request.body = '''''';
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();

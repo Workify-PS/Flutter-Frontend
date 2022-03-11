@@ -58,9 +58,9 @@ class WishCard extends GetView<WishCardController> {
                 unselectedIconTheme: IconThemeData(opacity: 0, size: 0),
                 selectedIconTheme: IconThemeData(opacity: 0, size: 0),
                 items: [
-                  menu(label: 'Birthdays'),
-                  menu(label: 'Anniversaries'),
-                  menu(label: 'New Joiners'),
+                  menu(label: 'Birthdays', color: Colors.amber),
+                  menu(label: 'Anniversaries', color: Colors.red),
+                  menu(label: 'New Joiners', color: Colors.purple.shade900),
                 ],
                 onTap: (index) {
                   controller.switchTabTo(index);
@@ -73,8 +73,9 @@ class WishCard extends GetView<WishCardController> {
     });
   }
 
-  menu({required String label}) {
-    return BottomNavigationBarItem(label: label, icon: Icon(Icons.ac_unit));
+  menu({required String label, required Color color}) {
+    return BottomNavigationBarItem(
+        label: label, icon: Icon(Icons.ac_unit), backgroundColor: color);
   }
 }
 
@@ -136,7 +137,10 @@ class _WishCardItemState extends State<WishCardItem> {
               if (showWish)
                 Padding(
                   padding: const EdgeInsets.only(right: kDefaultPadding),
-                  child: WishText(),
+                  child: WishText(
+                    firstName: widget.model.firstName,
+                    email: widget.model.email,
+                  ),
                 )
             ],
           ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/models/HolidayModel.dart';
 // import 'package:workify/services/holiday_get_service.dart';
@@ -39,7 +40,7 @@ class _HolidayCardState extends State<HolidaysCard> {
     final ScrollController _scrollController = ScrollController();
     return Scaffold(
       body: FutureBuilder(
-        future: ReadJsonData(),
+        future: readJsonData(),
         builder: (context, data) {
           if (data.hasError) {
             return Text("${data.error}");
@@ -128,7 +129,7 @@ class _HolidayCardState extends State<HolidaysCard> {
     );
   }
 
-  Future<List<HolidayModel>> ReadJsonData() async {
+  Future<List<HolidayModel>> readJsonData() async {
     final jsondata =
         await rootBundle.rootBundle.loadString(Assets.holidays);
     final list = json.decode(jsondata) as List<dynamic>;
@@ -137,13 +138,15 @@ class _HolidayCardState extends State<HolidaysCard> {
 }
 
 class WishText extends StatelessWidget {
-  const WishText({
-    Key? key,
-  }) : super(key: key);
+  final String firstName;
+  final String email;
+  const WishText({Key? key, required this.email, required this.firstName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     FocusNode focusNode = FocusNode();
+    final ctr = TextEditingController(text: 'Congratulations $firstName');
     Future openDialog() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -155,10 +158,12 @@ class WishText extends StatelessWidget {
               content: TextFormField(
                 autofocus: true,
                 focusNode: focusNode,
-                controller: TextEditingController()
-                  ..text = 'Wishing you a very ',
+                cursorColor: kPrimaryColor,
+                controller: ctr,
                 decoration: InputDecoration(
                   labelText: "",
+                  fillColor: Colors.white.withOpacity(0.1),
+                  filled: true,
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor, width: 1.5)),
                   border: OutlineInputBorder(
@@ -168,14 +173,11 @@ class WishText extends StatelessWidget {
                 ),
               ),
               actions: [
-                TextButton(
-                  onPressed: () {},
-                  child: PrimaryButton(
-                    buttonTextWidget: Text('Send'),
-                    onPressed: () {},
-                    primaryColor: kPrimaryColor,
-                    icon: Icon(CupertinoIcons.arrowtriangle_right),
-                  ),
+                PrimaryButton(
+                  buttonTextWidget: Text('Email'),
+                  onPressed: _email,
+                  primaryColor: kPrimaryColor,
+                  icon: Icon(Icons.email_outlined),
                 )
               ],
             ));
@@ -200,5 +202,10 @@ class WishText extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _email() {
+    
+    Get.back();
   }
 }

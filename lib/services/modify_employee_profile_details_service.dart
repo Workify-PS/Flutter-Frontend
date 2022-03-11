@@ -2,13 +2,14 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/utils/constants.dart';
 
 class ModifyEmployeeProfileDetailsService {
   static Future<void> callEditUserApi(Map<String, dynamic> editUserJson) async {
-    String editUserUrl = 'http://localhost:8080/workify/v1/edituser';
+    String editUserUrl = 'http://$ip:$port/workify/v1/edituser';
     try {
       final _authController = Get.find<AuthController>();
       final token = _authController.getToken();
@@ -42,7 +43,8 @@ class ModifyEmployeeProfileDetailsService {
             fileName: 'Update Profile Details Service File',
             functionName: 'callEditUserApi(){}',
             blockNumber: 2,
-            printStatement: 'Response Status Code :\n'+response.statusCode.toString());
+            printStatement:
+                'Response Status Code :\n' + response.statusCode.toString());
       }
     } on DioError catch (error) {
       PrintLog.printLog(

@@ -20,6 +20,8 @@ class Routes {
     changePassword,
     modifyEmployeeProfile,
     allEmployeeProfile,
+    applyLeave,
+    allEmployeeLeaves,
     leave,
   };
   static bool validateRoute(String? route) {

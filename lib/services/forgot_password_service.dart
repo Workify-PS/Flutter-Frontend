@@ -10,7 +10,7 @@ import 'package:workify/utils/constants.dart';
 
 class ForgotPasswordService {
   static Future<void> callForgotPasswordApi({data}) async {
-    String forgotPasswordUrl = 'http://localhost:8080/workify/v1/login/forgot';
+    String forgotPasswordUrl = 'http://$ip:$port/workify/v1/login/forgot';
     try {
       var headers = {'Content-Type': 'application/json'};
 
@@ -78,8 +78,8 @@ class VerifyOtpWidget extends StatelessWidget {
 
   var _otpController = TextEditingController();
 
-   Future<void> callVerifyOtpApi({data}) async {
-      String verifyOtpUrl = 'http://localhost:8080/workify/v1/login/verifyotp';
+    Future<void> callVerifyOtpApi({data}) async {
+      String verifyOtpUrl = 'http://$ip:$port/workify/v1/login/verifyotp';
       try {
         var headers = {'Content-Type': 'application/json'};
 

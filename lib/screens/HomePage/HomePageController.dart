@@ -18,7 +18,7 @@ class HomePageController extends GetxController {
   }
 
   void gotoPage(String page, BuildContext context, {Object? arguments}) {
-    //if (pageName.value == page) return;
+    if (pageName.value == page) return;
     pageName.value = page;
 
     //sideMenuCollapsed.value = page != Routes.home;
@@ -26,6 +26,6 @@ class HomePageController extends GetxController {
     print("Request to go to ${pageName.value}");
 
     Get.keys[1]!.currentState!.pushNamed(page, arguments: arguments);
-    html.window.history.pushState(null, "/", page);
+    html.window.history.replaceState(null, "/", page);
   }
 }

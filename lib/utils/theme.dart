@@ -85,6 +85,12 @@ class MyTheme {
                       fontWeight: FontWeight.bold,
                       color: kTextDarkColor,
                     ),
+                    headline5:
+            CupertinoThemeData().textTheme.navLargeTitleTextStyle.copyWith(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: kTextDarkColor,
+                ),
           ),
           scaffoldBackgroundColor: kScaffoldDarkColor,
           iconTheme: IconThemeData(color: kTextDarkColor),

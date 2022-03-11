@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/routes/router.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
@@ -9,10 +9,11 @@ class AuthMiddlware extends GetMiddleware with CacheManager {
   @override
   RouteSettings? redirect(String? route) {
     if (Routes.validateRoute(route)) {
-      if ((getToken() != null || route == "/auth")) {
+      if ((getToken() != null && route != "/auth")) {
         final homeController = Get.put(HomePageController());
-
-       homeController.pageName.value = route ?? "/home";
+        
+       if(route=="/") return RouteSettings(name: "/home");
+       homeController.pageName.value = route??"/home";
         homeController.sideMenuCollapsed.value =
             homeController.pageName.value != "/home";
         return null;
@@ -20,7 +21,7 @@ class AuthMiddlware extends GetMiddleware with CacheManager {
         return RouteSettings(name: "/auth");
       }
     } else {
-      return RouteSettings(name: "/page-not-found"); //TODO: RETURN 404
+      return RouteSettings(name: "/page-not-found"); 
     }
   }
 }

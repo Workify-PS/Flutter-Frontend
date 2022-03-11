@@ -5,7 +5,7 @@ import 'package:workify/services/LeavePage/get_all_employee_leave_service.dart';
 
 class AllEmployeeLeavesController extends GetxController {
   var isLoading = true.obs;
-  static List<AllEmployeeLeavesModel> leaveList = [];
+   RxList<AllEmployeeLeavesModel> leaveList = <AllEmployeeLeavesModel>[].obs;
   @override
   void onInit() {
     super.onInit();

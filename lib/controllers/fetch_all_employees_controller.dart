@@ -9,7 +9,7 @@ import 'package:workify/services/fetch_all_employee_service.dart';
 
 class FetchAllEmployeesController extends GetxController with CacheManager {
   var isLoading = true.obs;
-  var user;
+
   static List<EmployeeInfoCombined> allEmployeeList = [];
 
   @override
@@ -28,7 +28,8 @@ class FetchAllEmployeesController extends GetxController with CacheManager {
     try {
       isLoading(true);
       try {
-        user = getUser();
+        final user = Get.find<UserController>().currentUser!.value;
+        print("NAME IS ${user.firstName}");
         var listOfEmployee =
             await FetchAllEmployeeService.fetchAllEmployeesDetails();
         if (listOfEmployee != null) {
@@ -44,12 +45,15 @@ class FetchAllEmployeesController extends GetxController with CacheManager {
             var data = EmployeeInfoCombined.fromJson(employee);
 
             // Insert logged in user at 0 index in list
-            if (user != null && user.empCode == data.empCode) {
+            if (user.empCode == data.empCode) {
               allEmployeeList.insert(0, data);
             } else {
               allEmployeeList.add(data);
             }
-            print(employee.toString() + '\n');
+            allEmployeeList.forEach((element) {
+              print(element.firstName);
+            });
+            // print(employee.toString() + '\n');
           }
         }
       } catch (error) {

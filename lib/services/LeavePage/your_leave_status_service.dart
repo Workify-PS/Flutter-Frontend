@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/utils/constants.dart';
 
 class YourLeaveStatusService {
   static Future<dynamic> callYourLeavesApi() async {
-    String yourLeavesUrl = 'http://localhost:8080/workify/v1/leave/yourleaves';
+    String yourLeavesUrl = 'http://$ip:$port/workify/v1/leave/yourleaves';
     // ignore: prefer_typing_uninitialized_variables
     var responseData;
 
@@ -29,7 +30,8 @@ class YourLeaveStatusService {
             functionName: 'callYourLeavesApi(){}',
             blockNumber: 1,
             printStatement: 'Everything OK !!\n' +
-                response.data.toString() + '\nDataType :: \n'+
+                response.data.toString() +
+                '\nDataType :: \n' +
                 response.data.runtimeType.toString());
       } else {
         PrintLog.printLog(
@@ -56,9 +58,8 @@ class YourLeaveStatusService {
         fileName: 'your_leave_status_service File',
         functionName: 'callYourLeavesApi(){}',
         blockNumber: 1,
-        printStatement: 'yourLeaves Api Response :\n'
-        + yourLeavesApiResponse.runtimeType.toString()
-        );
+        printStatement: 'yourLeaves Api Response :\n' +
+            yourLeavesApiResponse.runtimeType.toString());
     return yourLeavesApiResponse;
   }
 }

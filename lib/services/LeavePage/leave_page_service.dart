@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/utils/constants.dart';
 
 class LeavePageService {
   static Future<dynamic> callAttendanceListApi() async {
     String attendanceListUrl =
-        'http://localhost:8080/workify/v1/attendance/attendancelist';
+        'http://$ip:$port/workify/v1/attendance/attendancelist';
     // ignore: prefer_typing_uninitialized_variables
     var responseData;
 

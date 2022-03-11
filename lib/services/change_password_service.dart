@@ -3,17 +3,19 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 // import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/AuthController.dart';
+
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 // import 'package:workify/routes/router.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
+import 'package:workify/utils/constants.dart';
 // import 'package:workify/screens/HomePage/HomePageController.dart';
 
 class ChangePasswordService {
   static Future<void> callChangePasswordApi(
       Map<String, dynamic> changePasswordJson, dynamic context) async {
     String changePasswordUrl =
-        'http://localhost:8080/workify/v1/login/changepassword';
+        'http://$ip:$port/workify/v1/login/changepassword';
     try {
       final _authController = Get.find<AuthController>();
       final token = _authController.getToken();
@@ -69,7 +71,7 @@ class ChangePasswordService {
   static Future<void> callOverridePasswordApi(
       Map<String, dynamic> changePasswordJson, dynamic context) async {
     String overridePasswordUrl =
-        'http://localhost:8080/workify/v1/login/overridepassword';
+        'http://$ip:$port/workify/v1/login/overridepassword';
     try {
       var sendData = jsonEncode(changePasswordJson);
 

@@ -19,17 +19,30 @@ class ForgotPasswordService {
 
       data = json.encode(data);
       Get.defaultDialog(
-        radius: 8,
-        barrierDismissible: false,
-        backgroundColor: Colors.grey.shade200,
-        title: 'Sending OTP',
-        content: CircularProgressIndicator(
-          color: kPrimaryColor,
-        ));
+          radius: 8,
+          barrierDismissible: false,
+          backgroundColor: Colors.grey.shade200,
+          title: 'Sending OTP',
+          content: CircularProgressIndicator(
+            color: kPrimaryColor,
+          ));
       var response = await dio.post(forgotPasswordUrl, data: data);
       Get.back();
 
-      if (response.statusCode == 200) {
+      if (response.toString() == '-1') {
+        Get.defaultDialog(
+          radius: 8,
+          backgroundColor: Colors.grey.shade200,
+          title: 'Internet issue',
+          middleText: 'Please check your net connectivity.'
+        );
+      } else if (response.toString() == '0') {
+        Get.defaultDialog(
+          radius:8,
+          backgroundColor: Colors.grey.shade200,
+          title: 'Email id not found',
+          middleText: 'Given email id is not registered with us');
+      } else if (response.toString() == '1') {
         Get.defaultDialog(
           radius: 8,
           barrierDismissible: false,
@@ -49,7 +62,7 @@ class ForgotPasswordService {
             functionName: 'callForgotPasswordApi(){}',
             blockNumber: 2,
             printStatement:
-                'Response Status Code :\n' + response.statusCode.toString());
+                'Response Status Code : ' + response.statusCode.toString());
       }
     } on DioError catch (error) {
       PrintLog.printLog(
@@ -84,17 +97,18 @@ class VerifyOtpWidget extends StatelessWidget {
           if (response.toString() == 'true') {
             Get.back();
             Get.defaultDialog(
-            radius: 8,
-            barrierDismissible: false,
-            backgroundColor: Colors.grey.shade200,
-            title: 'Please change your password',
-            content: ForgotPasswordWidget(),
+              radius: 8,
+              barrierDismissible: false,
+              backgroundColor: Colors.grey.shade200,
+              title: 'Please change your password',
+              content: ForgotPasswordWidget(),
             );
           } else {
             Get.defaultDialog(
-              radius:8,
-              backgroundColor: Colors.grey.shade200,
-              title: 'Wrong OTP!', middleText: 'Please check for latest OTP');
+                radius: 8,
+                backgroundColor: Colors.grey.shade200,
+                title: 'Wrong OTP!',
+                middleText: 'Please check for latest OTP');
           }
         } else {
           PrintLog.printLog(
@@ -188,7 +202,6 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     void overridePasswordHandler() {
       var _newPasswordText = _newPasswordController.text;
       if (_newPasswordText.isEmpty) {
@@ -253,18 +266,18 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
             errorText: "",
             errorBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                color: _confirmPasswordController.text.isNotEmpty ?
-                _passwordConfirmPasswordMatched
-                    ? Colors.green
-                    : Colors.red
+                color: _confirmPasswordController.text.isNotEmpty
+                    ? _passwordConfirmPasswordMatched
+                        ? Colors.green
+                        : Colors.red
                     : Colors.grey,
               ),
               borderRadius: BorderRadius.circular(8.0),
             ),
             focusedErrorBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: kPrimaryColor,
-                ),
+              borderSide: BorderSide(
+                color: kPrimaryColor,
+              ),
             ),
           ),
         ),

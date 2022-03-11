@@ -5,6 +5,7 @@ import 'package:workify/components/profile_sub_tiles.dart';
 import 'package:workify/components/settings_sub_tiles.dart';
 import 'package:workify/components/sub_tiles.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
+import 'package:workify/utils/assets.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/responsive.dart';
 import 'package:workify/utils/theme.dart';
@@ -102,13 +103,13 @@ class _SideMenuItemState extends State<SideMenuItem> {
                   Spacer(),
                   if (isHover && !isExpanded)
                     SvgPicture.asset(
-                      "assets/icons/Angle right.svg",
+                      Assets.angleRight,
                       width: 16,
                       color: accentColor,
                     ),
                   if (isExpanded)
                     SvgPicture.asset(
-                      "assets/icons/Angle down.svg",
+                      Assets.angleDown,
                       width: 16,
                       color: accentColor,
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workify/utils/assets.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/screens/SplashScreen/splash_widget.dart';
 
@@ -21,7 +22,7 @@ class SplashWidget extends StatelessWidget {
           ),
           SizedBox(
               height: 100,
-              child: Image.network("assets/images/loading_nobg.gif")),
+              child: Image.network(Assets.loadingNoBg)),
           Text('Loading...'),
         ],
       ),

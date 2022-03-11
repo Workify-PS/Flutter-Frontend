@@ -7,6 +7,7 @@ import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
 import 'package:workify/screens/AuthPage/ForgotPassword.dart';
+import 'package:workify/utils/assets.dart';
 
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
@@ -33,8 +34,8 @@ class AuthPage extends GetView<AuthPageController> {
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
     filePath = MyTheme().isDark(context)
-        ? 'assets/images/banner512_nobgdark.png'
-        : 'assets/images/banner512_nobg.png';
+        ? Assets.banner512_noBgDark
+        : Assets.banner512_noBg;
 
     return Obx(() => WillPopScope(
           onWillPop: () async {

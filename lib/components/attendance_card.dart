@@ -8,6 +8,7 @@ import 'package:workify/components/button.dart';
 import 'package:workify/controllers/AttendanceCardController.dart';
 import 'package:workify/models/DailyAttendanceModel.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
+import 'package:workify/utils/assets.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/theme.dart';
@@ -43,8 +44,8 @@ class AttendanceCard extends GetView<AttendanceCardController> {
                     children: [
                       SvgPicture.asset(
                         controller.isPunchedIn.value
-                            ? "assets/icons/punch_out.svg"
-                            : "assets/icons/punch_in.svg",
+                            ? Assets.punchOut
+                            : Assets.punchIn,
                         height: 70,
                         fit: BoxFit.fitHeight,
                         color: secondaryColor,

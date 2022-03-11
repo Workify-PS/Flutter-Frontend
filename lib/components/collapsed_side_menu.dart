@@ -8,6 +8,7 @@ import 'package:workify/components/settings_sub_items.dart';
 import 'package:workify/components/settings_sub_tiles.dart';
 import 'package:workify/components/side_menu_item.dart';
 import 'package:workify/routes/router.dart';
+import 'package:workify/utils/assets.dart';
 
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/theme.dart';
@@ -51,7 +52,7 @@ class CollapsedSideMenu extends GetView<HomePageController> {
                 padding: const EdgeInsets.symmetric(
                     vertical: kDefaultPadding, horizontal: 12),
                 child: Image.asset(
-                  "assets/images/logo.png",
+                  Assets.logo,
                   fit: BoxFit.fitWidth,
                   color: Theme.of(context).colorScheme.secondary,
                 ),

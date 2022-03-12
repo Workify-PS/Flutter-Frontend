@@ -19,7 +19,6 @@ import 'package:workify/controllers/profile_widgets_controller.dart';
 
 import 'package:workify/screens/AttendancePage/AttendancePage.dart';
 import 'package:workify/screens/AttendancePage/AttendanceShiftController.dart';
-import 'package:workify/screens/ChangePassword.dart';
 import 'package:workify/screens/DashBoard/DashBoard.dart';
 import 'package:workify/screens/Error404.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
@@ -56,16 +55,6 @@ class HomeRouter {
                 Get.lazyPut(() => ProfileDetailsController()),
               }),
         );
-      // case "/change-password":
-      //   return GetPageRoute(
-      //       settings: settings,
-      //       routeName: "/change-password",
-      //       page: () => ChangePassword(),
-      //       binding: BindingsBuilder(() => {
-      //         Get.put(HomePageController()),
-
-      //       })
-      //   );
       case "/modify-employee-profile":
         return GetPageRoute(
           settings: settings,

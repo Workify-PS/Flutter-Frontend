@@ -3,10 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:workify/components/button.dart';
 import 'package:workify/controllers/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
-import 'package:workify/screens/AuthPage/ForgotPassword.dart';
+import 'package:workify/screens/AuthPage/PasswordRelated/ForgotPassword.dart';
+import 'package:workify/screens/AuthPage/PasswordRelated/RequestOTPWidget.dart';
+import 'package:workify/screens/AuthPage/PasswordRelated/VerifyOtpWidget.dart';
 import 'package:workify/utils/assets.dart';
 
 import 'package:workify/utils/constants.dart';
@@ -71,7 +74,7 @@ class AuthPage extends GetView<AuthPageController> {
                             color: Theme.of(context).scaffoldBackgroundColor,
                             borderRadius: BorderRadius.circular(10)),
                         child: controller.hasForgotPassword.value
-                            ? ForgotPass(formKey: _formKey)
+                            ? Text('Very Bad Code Whosoever wrote it')
                             : Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -212,7 +215,9 @@ class AuthPage extends GetView<AuthPageController> {
                                               MainAxisAlignment.end,
                                           children: [
                                             InkWell(
-                                              onTap: controller.forgotPassword,
+                                              onTap: () {
+                                                print('Written Twice');
+                                              },
                                               child: Padding(
                                                 padding: const EdgeInsets.only(
                                                     right: 8.0, top: 8),
@@ -345,7 +350,8 @@ class AuthPage extends GetView<AuthPageController> {
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: controller.hasForgotPassword.value
-                                          ? ForgotPass(formKey: _formKey)
+                                          ? Text(
+                                              'Very Bad Code Whosoever wrote it')
                                           : Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
@@ -540,8 +546,12 @@ class AuthPage extends GetView<AuthPageController> {
                                                                 .end,
                                                         children: [
                                                           InkWell(
-                                                            onTap: controller
-                                                                .forgotPassword,
+                                                            onTap: () {
+                                                              Get.defaultDialog(
+                                                                title:
+                                                                    'Not Working',
+                                                              );
+                                                            },
                                                             child: Padding(
                                                               padding:
                                                                   const EdgeInsets

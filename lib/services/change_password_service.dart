@@ -35,6 +35,7 @@ class ChangePasswordService {
 
       if (response.statusCode == 200) {
         if (response.toString() == '1') {
+          Get.back();
           Get.find<AuthController>().logOut();
           Get.toNamed('/auth');
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/DashBoard/components/tasks_icon.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
@@ -18,6 +19,7 @@ class DashTopBar extends StatelessWidget {
     return 'Good Evening, $fname';
   }
 
+ final allEmpLeaveController = Get.find<AllEmployeeLeavesController>();
   @override
   Widget build(BuildContext context) {
     fname = user?.value.firstName ?? "Buddy";

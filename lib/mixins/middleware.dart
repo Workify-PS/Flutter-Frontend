@@ -10,7 +10,7 @@ class AuthMiddlware extends GetMiddleware with CacheManager {
   RouteSettings? redirect(String? route) {
     if (Routes.validateRoute(route)) {
       if ((getToken() != null && route != "/auth")) {
-        final homeController = Get.put(HomePageController());
+        final homeController = Get.find<HomePageController>();
         
        if(route=="/") return RouteSettings(name: "/home");
        homeController.pageName.value = route??"/home";

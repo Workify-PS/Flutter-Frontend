@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/models/EmployeeInfoCombined.dart';
+import 'package:workify/utils/constants.dart';
 
 class ProfileService {
   static Future<Map<String, dynamic>> callProfileApi() async {
-    String profileUrl = 'http://localhost:8080/workify/v1/profile';
+    String profileUrl = 'http://$ip:$port/workify/v1/profile';
     // ignore: prefer_typing_uninitialized_variables
     var responseData;
 
@@ -30,7 +31,8 @@ class ProfileService {
             functionName: 'callProfileApi(){}',
             blockNumber: 1,
             printStatement: 'Everything OK !!\n' +
-                response.data.toString() + '\nDataType :: \n'+
+                response.data.toString() +
+                '\nDataType :: \n' +
                 response.data.runtimeType.toString());
       } else {
         PrintLog.printLog(
@@ -58,9 +60,8 @@ class ProfileService {
         fileName: 'Profile Service File',
         functionName: 'fetchProfileDetails(){}',
         blockNumber: 1,
-        printStatement: 'Profile Api Response :\n'
-        + profileApiResponse.runtimeType.toString()
-        );
+        printStatement: 'Profile Api Response :\n' +
+            profileApiResponse.runtimeType.toString());
     return data;
   }
 }

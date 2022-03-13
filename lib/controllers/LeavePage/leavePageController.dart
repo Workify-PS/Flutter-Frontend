@@ -67,7 +67,7 @@ class LeavePageController extends GetxController {
             fileName: 'leavePageController',
             functionName: 'callLeavePageServiceAttendanceListApi',
             blockNumber: 1,
-            printStatement: '#Not Found in Database');
+            printStatement: '#LeavePage Data Not Found in Database for date : $date');
       }
     }
   }

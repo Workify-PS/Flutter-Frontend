@@ -2,11 +2,12 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/models/WishModel.dart';
+import 'package:workify/utils/constants.dart';
 
 class WishGetService extends GetConnect with CacheManager {
-  final String bdayURL = "http://localhost:8080/workify/v1/wish/birthday";
-  final String annURL = "http://localhost:8080/workify/v1/wish/anniversary";
-  final String newJURL = "http://localhost:8080/workify/v1/wish/newjoiners";
+  final String bdayURL = "http://$ip:$port/workify/v1/wish/birthday";
+  final String annURL = "http://$ip:$port/workify/v1/wish/anniversary";
+  final String newJURL = "http://$ip:$port/workify/v1/wish/newjoiners";
 
   Future<List<WishModel>?> getBirthday() async {
     var headers = {'Content-Type': 'application/json'};

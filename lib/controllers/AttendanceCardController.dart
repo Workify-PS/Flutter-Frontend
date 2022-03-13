@@ -15,16 +15,17 @@ class AttendanceCardController extends GetxController {
     attendanceService.punchInService().catchError((error) {
       print("PUNCH IN ERROR: $error");
       isPunchedIn.value = false;
+      daily.value.inTime = "--:--";
     }).whenComplete(() => print("PUNCH IN SUCCESSFULL"));
   }
 
   void punchOut() {
     isPunchedIn.value = true;
     isPunchedOut.value = true;
-    daily.value.outTime.last = DateTime.now().format('H:i');
+    daily.value.outTime.add(DateTime.now().format('H:i'));
     attendanceService.punchOutService().catchError((error) {
       print("PUNCH OUT ERROR: $error");
-      
+      daily.value.outTime.removeLast();
     }).whenComplete(() => print("PUNCH OUT SUCCESSFULL"));
   }
 }

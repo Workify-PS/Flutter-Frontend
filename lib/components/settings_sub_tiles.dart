@@ -1,7 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/mixins/cache.dart';
 import 'package:workify/screens/AuthPage/PasswordRelated/ChangePasswordWidget.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
@@ -59,7 +59,7 @@ class SettingsSubTiles extends StatelessWidget {
             ),
             SettingsSubTile(
               settingsOptions: 'Log Out',
-              onTap: () => authController.callLogOut(),
+              onTap: () => authController.logOutDialog(),
             ),
           ],
         ));

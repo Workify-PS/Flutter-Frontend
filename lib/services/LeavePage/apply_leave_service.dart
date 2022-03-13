@@ -2,13 +2,14 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/utils/constants.dart';
 
 class ApplyLeaveService {
   static Future<void> callApplyLeaveApi(
       Map<String, dynamic> editUserJson) async {
-    String leaveUrl = 'http://localhost:8080/workify/v1/leave/apply';
+    String leaveUrl = 'http://$ip:$port/workify/v1/leave/apply';
     try {
       final _authController = Get.find<AuthController>();
       final token = _authController.getToken();

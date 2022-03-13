@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/screens/HomePage/HomePage.dart';

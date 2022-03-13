@@ -135,10 +135,16 @@ class StatefulPastAttendanceRelated extends StatefulWidget {
 
 class _StatefulPastAttendanceRelatedState
     extends State<StatefulPastAttendanceRelated> {
-      var datePicked;
+  var datePicked;
   @override
   Widget build(BuildContext context) {
     
+    // At initial build trying to get yesterday data
+    var date = DateTime.now().subtract(Duration(days:1)).toString().split(' ');
+    var onlyDate = date[0];
+    leavePageController.date = onlyDate;
+    leavePageController.findDateSpecificAttendanceList();
+
     return Expanded(
       flex: 5,
       child: Padding(
@@ -158,7 +164,7 @@ class _StatefulPastAttendanceRelatedState
                   children: [
                     datePicked == null
                         ? Text(
-                            'Past',
+                            'Yesterday',
                             style: TextStyle(
                               fontSize: 20,
                             ),

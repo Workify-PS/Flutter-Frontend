@@ -10,13 +10,7 @@ class WishCardController extends GetxController {
   RxList<WishModel> anniversariesList = <WishModel>[].obs;
   RxList<WishModel> newJoinersList = <WishModel>[].obs;
   RxList<WishModel> activeList = <WishModel>[].obs;
-//   RxList<WishModel> birthdayList =
-//       <WishModel>[WishModel(fullName: "Bday", empCode: "empCode")].obs;
-//   RxList<WishModel> anniversariesList =
-//       <WishModel>[WishModel(fullName: "anni", empCode: "empCode")].obs;
-//   RxList<WishModel> newJoinersList =
-//       <WishModel>[WishModel(fullName: "New Joiner", empCode: "empCode")].obs;
-// >>>>>>> main
+
   RxInt selectedIndex = 0.obs;
   
   @override

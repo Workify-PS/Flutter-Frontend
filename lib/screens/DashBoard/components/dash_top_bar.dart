@@ -19,7 +19,8 @@ class DashTopBar extends StatelessWidget {
     return 'Good Evening, $fname';
   }
 
- final allEmpLeaveController = Get.find<AllEmployeeLeavesController>();
+  final allEmpLeaveController = Get.find<AllEmployeeLeavesController>();
+  
   @override
   Widget build(BuildContext context) {
     fname = user?.value.firstName ?? "Buddy";
@@ -59,9 +60,11 @@ class DashTopBar extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(
                 vertical: kDefaultPadding, horizontal: kDefaultPadding * 2),
-            child: TasksIconWidget(
-              counter: 10,
-            ),
+            child: Obx(() {
+              return TasksIconWidget(
+                counter: allEmpLeaveController.leaveList.length,
+              );
+            }),
           ),
         ),
         CircleAvatar(

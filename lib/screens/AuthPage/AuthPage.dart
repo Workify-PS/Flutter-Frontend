@@ -77,7 +77,7 @@ class AuthPage extends GetView<AuthPageController> {
                               color: Theme.of(context).scaffoldBackgroundColor,
                               borderRadius: BorderRadius.circular(10)),
                           child: controller.hasForgotPassword.value
-                              ? ForgotPass(formKey: _formKey)
+                              ? ForgotPassword(formKey: _formKey)
                               : Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

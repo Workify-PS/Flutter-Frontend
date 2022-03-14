@@ -17,7 +17,6 @@ class AttendanceShiftController extends GetxController {
   Future<void> getAllShifts() async {
     final attShiftGetService = AttendanceShiftGetService();
     final attendanceshifts = await attShiftGetService.getAttendanceShiftList();
-
     if (attendanceshifts != null) {
       attendanceshiftList.addAll(attendanceshifts);
     }

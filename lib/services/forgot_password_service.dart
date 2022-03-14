@@ -10,10 +10,9 @@ import 'package:workify/screens/AuthPage/PasswordRelated/VerifyOtpWidget.dart';
 import 'package:workify/services/change_password_service.dart';
 import 'package:workify/utils/constants.dart';
 
-
 class ForgotPasswordService {
   static Future<void> callForgotPasswordApi({data}) async {
-    String forgotPasswordUrl = 'http://localhost:8080/workify/v1/login/forgot';
+    String forgotPasswordUrl = 'http://$ip:$port/workify/v1/login/forgot';
     try {
       var headers = {'Content-Type': 'application/json'};
 
@@ -45,24 +44,29 @@ class ForgotPasswordService {
             title: 'Email id not found',
             middleText: 'Given email id is not registered with us');
       } else if (response.toString() == '1') {
-        Get.defaultDialog(
-            radius: 8,
-            barrierDismissible: false,
-            backgroundColor: Colors.grey.shade200,
-            title: 'Please enter OTP received on mail',
-            content: VerifyOtpWidget());
+        // Get.defaultDialog(
+        //     radius: 8,
+        //     // navigatorKey: Get.nestedKey(1),
 
-        PrintLog.printLog(
+        //     barrierDismissible: false,
+        //     backgroundColor: Colors.grey.shade200,
+        //     title: 'Please enter OTP received on mail',
+           //  content: VerifyOtpWidget());
+         PrintLog.printLog(
             fileName: 'Forgot Password Service File',
             functionName: 'callForgotPasswordApi(){}',
             blockNumber: 1,
             printStatement: 'OTP sent Successfully !!\n\n');
+        return;
+
+       
       } else {
         PrintLog.printLog(
             fileName: 'Forgot Password Service File',
             functionName: 'callForgotPasswordApi(){}',
             blockNumber: 2,
-            printStatement: 'Response Status Code : ' + response.statusCode.toString());
+            printStatement:
+                'Response Status Code : ' + response.statusCode.toString());
       }
     } on DioError catch (error) {
       PrintLog.printLog(
@@ -73,9 +77,8 @@ class ForgotPasswordService {
     }
   }
 
-
   Future<void> callVerifyOtpApi({data}) async {
-    String verifyOtpUrl = 'http://localhost:8080/workify/v1/login/verifyotp';
+    String verifyOtpUrl = 'http://$ip:$port/workify/v1/login/verifyotp';
     try {
       var headers = {'Content-Type': 'application/json'};
 
@@ -119,6 +122,4 @@ class ForgotPasswordService {
           printStatement: error.message);
     }
   }
-
 }
-

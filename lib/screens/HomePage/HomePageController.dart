@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 // import 'package:workify/screens/LeavePage/LeavePage.dart';
 import 'dart:html' as html;
 
+import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
+
 class HomePageController extends GetxController {
   RxString pageName = ''.obs;
   RxBool sideMenuCollapsed = false.obs;
@@ -14,11 +16,12 @@ class HomePageController extends GetxController {
   @override
   void onInit() {
     pageName.value = "/home";
+    Get.put(AllEmployeeLeavesController());
     super.onInit();
   }
 
   void gotoPage(String page, BuildContext context, {Object? arguments}) {
-    //if (pageName.value == page) return;
+    if (pageName.value == page) return;
     pageName.value = page;
 
     //sideMenuCollapsed.value = page != Routes.home;
@@ -26,6 +29,6 @@ class HomePageController extends GetxController {
     print("Request to go to ${pageName.value}");
 
     Get.keys[1]!.currentState!.pushNamed(page, arguments: arguments);
-    html.window.history.pushState(null, "/", page);
+    html.window.history.replaceState(null, "/", page);
   }
 }

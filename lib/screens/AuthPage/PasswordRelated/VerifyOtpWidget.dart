@@ -4,11 +4,15 @@ import 'package:get/get.dart';
 import 'package:workify/services/forgot_password_service.dart';
 import 'package:workify/utils/constants.dart';
 
-class VerifyOtpWidget extends StatelessWidget {
+class VerifyOtpWidget extends StatefulWidget {
   VerifyOtpWidget({Key? key}) : super(key: key);
 
-  var _otpController = TextEditingController();
+  @override
+  State<VerifyOtpWidget> createState() => _VerifyOtpWidgetState();
+}
 
+class _VerifyOtpWidgetState extends State<VerifyOtpWidget> {
+  final _otpController = TextEditingController();
 
   void callVerifyOtpApiHandler() {
     var _otpText = _otpController.text;
@@ -23,20 +27,21 @@ class VerifyOtpWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("reb");
     return Column(
       children: [
-        TextFormField(
-            controller: _otpController,
-            decoration: InputDecoration(
-              label: Text('Enter OTP'),
-              labelStyle: TextStyle(color: kPrimaryColor),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: kPrimaryColor)),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: kPrimaryColor, width: 2),
-              ),
+        TextField(
+          controller: _otpController,
+          decoration: InputDecoration(
+            label: Text('Enter OTP'),
+            labelStyle: TextStyle(color: kPrimaryColor),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: kPrimaryColor)),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide(color: kPrimaryColor, width: 2),
             ),
+          ),
         ),
         SizedBox(height: 5),
         Row(

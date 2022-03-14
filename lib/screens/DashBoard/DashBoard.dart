@@ -35,7 +35,7 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
-    
+
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(bannerHeight),

@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:workify/controllers/AuthController.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/exceptions/print_log.dart';
 import 'dart:convert';
 
+import 'package:workify/utils/constants.dart';
 
 class FetchAllEmployeeService {
   static Future<dynamic> callAllEmployeesApi() async {
-    String profileUrl = 'http://localhost:8080/workify/v1/allemployees';
+    String profileUrl = 'http://$ip:$port/workify/v1/allemployees';
     // ignore: prefer_typing_uninitialized_variables
     var responseData;
 
@@ -26,14 +27,14 @@ class FetchAllEmployeeService {
       );
       if (response.statusCode == 200) {
         responseData = response.data;
-        PrintLog.printLog(
-            fileName: 'Fetch All Employee Service File',
-            functionName: 'callAllEmployeesApi(){}',
-            blockNumber: 1,
-            printStatement: 'Everything OK !!\n' +
-                response.data.toString() +
-                '\nDataType :: ' +
-                response.data.runtimeType.toString());
+        // PrintLog.printLog(
+        //     fileName: 'Fetch All Employee Service File',
+        //     functionName: 'callAllEmployeesApi(){}',
+        //     blockNumber: 1,
+        //     printStatement: 'Everything OK !!\n' +
+        //         response.data.toString() +
+        //         '\nDataType :: ' +
+        //         response.data.runtimeType.toString());
       } else {
         PrintLog.printLog(
           fileName: 'Fetch All Employee Service File',

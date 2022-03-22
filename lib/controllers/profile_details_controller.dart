@@ -41,7 +41,6 @@ class ProfileDetailsController extends GetxController with CacheManager {
         );
       }
       if (employeeInfoModelDetails != null) {
-
         var data = employeeInfoModelDetails;
         var profileFieldsIncompleteCount = 0;
 
@@ -49,38 +48,48 @@ class ProfileDetailsController extends GetxController with CacheManager {
           profileFieldsIncompleteCount++;
         }
         if (data?.city == '-1') {
+          employeeInfoModelDetails?.city = 'Need to update.';
           profileFieldsIncompleteCount++;
         }
         if (data?.state == '-1') {
+          employeeInfoModelDetails?.state = 'Need to update.';
           profileFieldsIncompleteCount++;
         }
         if (data?.country == '-1') {
+          employeeInfoModelDetails?.country = 'Need to update.';
           profileFieldsIncompleteCount++;
         }
         if (data?.grade == '-1') {
+          employeeInfoModelDetails?.grade = 'Need to update.';
           profileFieldsIncompleteCount++;
-        } 
+        }
         if (data?.designation == '-1') {
+          employeeInfoModelDetails?.designation = 'Need to update.';
           profileFieldsIncompleteCount++;
         }
         if (data?.jobPosition == '-1') {
+          employeeInfoModelDetails?.jobPosition = 'Need to update.';
           profileFieldsIncompleteCount++;
         }
         if (data?.workLocation == '-1') {
+          employeeInfoModelDetails?.workLocation = 'Need to update.';
           profileFieldsIncompleteCount++;
         }
         if (data?.employementCategory == '-1') {
+          employeeInfoModelDetails?.employementCategory = 'Need to update.';
           profileFieldsIncompleteCount++;
         }
         if (data?.employementStatus == '-1') {
+          employeeInfoModelDetails?.employementStatus= 'Need to update.';
           profileFieldsIncompleteCount++;
         }
         if (data?.employementType == '-1') {
+          employeeInfoModelDetails?.employementType = 'Need to update.';
           profileFieldsIncompleteCount++;
         }
 
         double tempPercent = (10 - profileFieldsIncompleteCount) / 10;
-        profileIncompletePercentage.value = tempPercent * 100 ;
+        profileIncompletePercentage.value = tempPercent * 100;
         // print('tempPercent : ' + tempPercent.toString() + ' > ' + profileIncompletePercentage.toString());
         // print('count ' + profileFieldsIncompleteCount.toString());
 

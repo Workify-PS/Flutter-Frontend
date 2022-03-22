@@ -73,20 +73,6 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       appBar: generateTopBar(title: "Profile", widget: ProfileBar()),
-      // appBar: AppBar(
-      //   title: Text(
-      //     'Profile Page',
-      //     // style: TextStyle(
-      //     //   color: kPrimaryColor,
-      //     //   fontWeight: FontWeight.bold,
-      //     // ),
-      //   ),
-      //   // flexibleSpace: Container(
-      //   //   decoration: BoxDecoration(
-      //   //     color: kPrimaryColor,
-      //   //   ),
-      //   // ),
-      // ),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,
@@ -98,10 +84,6 @@ class ProfilePage extends StatelessWidget {
           child: Flex(
             direction: Axis.vertical,
             children: [
-              // Expanded(
-              //   flex: 1,
-              //   child:
-              // ),
               Expanded(
                 //flex: 10,
                 child: Padding(
@@ -143,12 +125,12 @@ class Buttons extends StatelessWidget {
 
   final String profileDetails;
 
-  Buttons({Key? key, required this.profileDetails}) : super(key: key);
-
-  final profileWidgetsController = Get.find<ProfileWidgetsController>();
+  const Buttons({Key? key, required this.profileDetails}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final profileWidgetsController = Get.find<ProfileWidgetsController>();
+    
     var button = profileDetails == 'Basic Details'
         ? profileWidgetsController.basicButton
         : profileDetails == 'Position Details'

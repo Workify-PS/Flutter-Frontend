@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 // import 'package:workify/screens/LeavePage/LeavePage.dart';
 import 'dart:html' as html;
 
+import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
+
 class HomePageController extends GetxController {
   RxString pageName = ''.obs;
   RxBool sideMenuCollapsed = false.obs;
@@ -14,6 +16,7 @@ class HomePageController extends GetxController {
   @override
   void onInit() {
     pageName.value = "/home";
+    Get.put(AllEmployeeLeavesController());
     super.onInit();
   }
 

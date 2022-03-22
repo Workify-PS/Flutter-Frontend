@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/modify_employee_profile_details_controller.dart';
@@ -34,7 +33,14 @@ class StatefulModifyBasicDetails extends StatefulWidget {
 }
 
 class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
-  var _mobile, _doB, _marriageStatus, _city, _state, _country;
+  var _mobileController,
+      _marriageStatusController,
+      _marriageStatusSelectedValue,
+      _cityController,
+      _stateController,
+      _countryController;
+
+  var marriageStatus = 'Single';
   String code = '';
   var MobileNumber = [];
 
@@ -43,14 +49,15 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
   }
 
   void callOnSubmitBasicDetails() {
-    ModifyEmployeeProfileDetailsController.onSubmitBasicDetails(
-        mobile: code + ' ' + _mobile.text,
-        dob: _doB.text,
-        marriageStatus: _marriageStatus.text,
-        city: _city.text,
-        state: _state.text,
-        country: _country.text);
+      ModifyEmployeeProfileDetailsController.onSubmitBasicDetails(
+          mobile: code + ' ' + _mobileController.text,
+          marriageStatus: _marriageStatusSelectedValue,
+          city: _cityController.text,
+          state: _stateController.text,
+          country: _countryController.text);
   }
+
+  final profileDetailsController = Get.find<ProfileDetailsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -61,11 +68,9 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
 
     portrait = screenWidth < 1000;
 
-    final profileDetailsController = Get.find<ProfileDetailsController>();
 
     var textFormList = [
       'Mobile Number',
-      'Date of Birth (dd-mm-yyyy)',
       'Marriage Status',
       'City',
       'State',
@@ -92,44 +97,40 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
             'Mobile Number Not Found';
     MobileNumber = _tempMobileNumber.split(' ');
     if (MobileNumber.isEmpty) {
-      _mobile = TextEditingController(text:'NA');
+      _mobileController = TextEditingController(text: 'NA');
     } else if (MobileNumber.length == 1) {
-      _mobile = TextEditingController(text: MobileNumber[0]);
+      _mobileController = TextEditingController(text: MobileNumber[0]);
     } else {
-      _mobile = TextEditingController(text:MobileNumber[1]);
+      _mobileController = TextEditingController(text: MobileNumber[1]);
     }
 
-    _doB = TextEditingController(
-        text: DateFormat('dd-MM-yyyy').format(DateTime.parse(
-            profileDetailsController.employeeInfoModelDetails?.dob)));
 
-    _marriageStatus = TextEditingController(
-      text: profileDetailsController.employeeInfoModelDetails?.marriageStatus ??
-          'Marriage Status Not Found',
-    );
+    _marriageStatusController = TextEditingController(
+        text:
+            profileDetailsController.employeeInfoModelDetails?.marriageStatus ??
+                'Marriage Status Not Found');
 
-    _city = TextEditingController(
+    _cityController = TextEditingController(
       text: profileDetailsController.employeeInfoModelDetails?.city ??
           'City Not Found',
     );
 
-    _state = TextEditingController(
+    _stateController = TextEditingController(
       text: profileDetailsController.employeeInfoModelDetails?.state ??
           'State Not Found',
     );
 
-    _country = TextEditingController(
+    _countryController = TextEditingController(
       text: profileDetailsController.employeeInfoModelDetails?.country ??
           'Country Not Found',
     );
 
     var textFormList_2_Controllers = {
-      'Mobile Number': _mobile,
-      'Date of Birth (dd-mm-yyyy)': _doB,
-      'Marriage Status': _marriageStatus,
-      'City': _city,
-      'State': _state,
-      'Country': _country
+      'Mobile Number': _mobileController,
+      'Marriage Status': _marriageStatusController,
+      'City': _cityController,
+      'State': _stateController,
+      'Country': _countryController
     };
 
     return Padding(
@@ -146,12 +147,12 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
               flex: 9,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(6, (index) {
+                children: List.generate(5, (index) {
                   if (index == 0) {
                     return Row(
                       children: [
                         Expanded(
-                          flex: 2,
+                          flex: portrait ? 3 : 2,
                           child: CountryCodePicker(
                             dialogBackgroundColor: Colors.transparent,
                             showDropDownButton: true,
@@ -167,7 +168,11 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                           ),
                         ),
                         Expanded(
-                          flex: 8,
+                          flex: 1,
+                          child: SizedBox(),
+                        ),
+                        Expanded(
+                          flex: portrait ? 6 : 7,
                           child: TextFormModifyDetails(
                             myFocusNode: FocusNode(),
                             keyBoardType: TextInputType.phone,
@@ -175,6 +180,44 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                               FilteringTextInputFormatter.digitsOnly
                             ],
                             enabled: true,
+                            text: textFormList[index],
+                            controller:
+                                textFormList_2_Controllers[textFormList[index]],
+                          ),
+                        ),
+                      ],
+                    );
+                  } else if (index == 1) {
+                    return Row(
+                      children: [
+                        Expanded(
+                          flex: portrait ? 3:2,
+                          child: DropdownButton(
+                              value: marriageStatus,
+                              items: ['Single', 'Married'].map((item) {
+                                return DropdownMenuItem(
+                                    value: item, child: Text(item));
+                              }).toList(),
+                              onChanged: (selectedItem) {
+                                setState(() {
+                                  marriageStatus = selectedItem.toString();
+                                  _marriageStatusSelectedValue = marriageStatus;
+                                  print(marriageStatus);
+                                  print(_marriageStatusController.text);
+                                  print(_marriageStatusSelectedValue);
+                                });
+                              }),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: SizedBox(),
+                        ),
+                        Expanded(
+                          flex: portrait ? 6:7,
+                          child: TextFormModifyDetails(
+                            myFocusNode: FocusNode(),
+                            keyBoardType: TextInputType.text,
+                            enabled: false,
                             text: textFormList[index],
                             controller:
                                 textFormList_2_Controllers[textFormList[index]],

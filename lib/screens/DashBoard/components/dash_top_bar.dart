@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/DashBoard/components/tasks_icon.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
@@ -19,6 +20,8 @@ class DashTopBar extends StatelessWidget {
     return 'Good Evening, $fname';
   }
 
+  final allEmpLeaveController = Get.find<AllEmployeeLeavesController>();
+  
   @override
   Widget build(BuildContext context) {
     fname = user?.value.firstName ?? "Buddy";
@@ -58,9 +61,11 @@ class DashTopBar extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(
                 vertical: kDefaultPadding, horizontal: kDefaultPadding * 2),
-            child: TasksIconWidget(
-              counter: 10,
-            ),
+            child: Obx(() {
+              return TasksIconWidget(
+                counter: allEmpLeaveController.leaveList.length,
+              );
+            }),
           ),
         ),
         CircleAvatar(

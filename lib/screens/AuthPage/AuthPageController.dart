@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/controllers/UserController.dart';
@@ -5,6 +6,8 @@ import 'package:workify/controllers/UserController.dart';
 class AuthPageController extends GetxController {
   RxBool hasForgotPassword = false.obs;
   RxBool passwordIsVisible = false.obs;
+  RxBool otp = false.obs;
+  final TextEditingController otpController = TextEditingController();
   // @override
   // void onInit() {
   //   final _userController = Get.find<UserController>();
@@ -20,11 +23,10 @@ class AuthPageController extends GetxController {
 
   void forgotPassword() {
     hasForgotPassword.value = true;
-    
   }
 
   void backToLogin() {
     hasForgotPassword.value = false;
-    
+    otp.value = false;
   }
 }

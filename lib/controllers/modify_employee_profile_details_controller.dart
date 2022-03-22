@@ -12,7 +12,7 @@ import 'package:workify/services/modify_employee_profile_details_service.dart';
 
 class ModifyEmployeeProfileDetailsController extends GetxController {
   static void onSubmitBasicDetails(
-      {mobile, dob, marriageStatus, city, state, country}) async {
+      {mobile, marriageStatus, city, state, country}) async {
     try {
       var sendData = EmployeeInfoCombined().toJson(
         employeeInfoCombined:
@@ -20,12 +20,12 @@ class ModifyEmployeeProfileDetailsController extends GetxController {
       );
       sendData['mobile'] = mobile;
 
-      var date = dob.toString().substring(6)
-        +'-'+dob.toString().substring(3,5)
-        +'-'+dob.toString().substring(0,2);
+      // var date = dob.toString().substring(6)
+      //   +'-'+dob.toString().substring(3,5)
+      //   +'-'+dob.toString().substring(0,2);
 
       // print('\n\n#Dob\n\n' + date);
-      sendData['dob'] = date;
+      // sendData['dob'] = date;
       
       sendData['marriageStatus'] = marriageStatus;
       sendData['city'] = city;

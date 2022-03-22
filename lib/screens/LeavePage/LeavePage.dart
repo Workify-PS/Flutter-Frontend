@@ -5,6 +5,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/components/date.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 import 'package:workify/controllers/LeavePage/leavePageController.dart';
 import 'package:workify/controllers/LeavePage/leavePageController.dart';
@@ -135,10 +136,15 @@ class StatefulPastAttendanceRelated extends StatefulWidget {
 
 class _StatefulPastAttendanceRelatedState
     extends State<StatefulPastAttendanceRelated> {
-      var datePicked;
+  var datePicked;
   @override
   Widget build(BuildContext context) {
     
+    // leavePageController.date = '2022-03-11';
+
+    // At initial build trying to get yesterday data
+    leavePageController.findDateSpecificAttendanceList();
+
     return Expanded(
       flex: 5,
       child: Padding(
@@ -158,7 +164,7 @@ class _StatefulPastAttendanceRelatedState
                   children: [
                     datePicked == null
                         ? Text(
-                            'Past',
+                            'Yesterday',
                             style: TextStyle(
                               fontSize: 20,
                             ),

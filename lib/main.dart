@@ -16,6 +16,7 @@ import 'package:workify/mixins/middleware.dart';
 import 'package:workify/screens/AuthPage/AuthPage.dart';
 import 'package:workify/screens/AuthPage/AuthPageController.dart';
 import 'package:workify/screens/Error404.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/screens/SplashScreen/OnBoarding.dart';
 import 'package:workify/screens/SplashScreen/splash_widget.dart';
 import 'package:workify/utils/constants.dart';
@@ -57,7 +58,8 @@ class _MyAppState extends State<MyApp> with CacheManager {
           theme == ThemeMode.light.name ? ThemeMode.light : ThemeMode.dark,
       initialBinding: BindingsBuilder(() => {
             Get.put(AuthController()).checkLoginStatus(),
-            Get.put(UserController())
+            Get.put(UserController()),
+            Get.put(HomePageController())
           }),
       getPages: [
         GetPage(

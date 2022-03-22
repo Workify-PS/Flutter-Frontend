@@ -1,8 +1,5 @@
 [
-    {   "hname":"Holi",
-        "date":"Fri, 18 March 2022",
-        "imagepath":"assets/holidays/holi.png"
-    },
+   
     {   "hname":"Gudi Padwa",
         "date":"Sat, 02 April 2022",
         "imagepath":"assets/holidays/gudi.png"

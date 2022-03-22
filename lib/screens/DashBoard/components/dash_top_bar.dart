@@ -21,7 +21,7 @@ class DashTopBar extends StatelessWidget {
   }
 
   final allEmpLeaveController = Get.find<AllEmployeeLeavesController>();
-  
+
   @override
   Widget build(BuildContext context) {
     fname = user?.value.firstName ?? "Buddy";
@@ -30,22 +30,28 @@ class DashTopBar extends StatelessWidget {
       children: [
         true
             ? AnimatedTextKit(
+                key: ValueKey<bool>(MyTheme().isDark(context)),
                 animatedTexts: [
                   TyperAnimatedText(
                     greeting(),
-                    speed: Duration(milliseconds: 80),
-                    textStyle: Theme.of(context).primaryTextTheme.headline1,
+                    speed: Duration(milliseconds: 50),
+                    textStyle: Theme.of(context)
+                        .primaryTextTheme
+                        .headline1!
+                        .copyWith(
+                            color: MyTheme().isDark(context)
+                                ? kTextDarkColor
+                                : kTextColor),
                   ),
                 ],
                 totalRepeatCount: 1,
                 displayFullTextOnTap: true,
                 stopPauseOnTap: false,
               )
-            :
-        Text(greeting(),
-            style: Responsivescreen.isMobile(context)
-                ? Theme.of(context).primaryTextTheme.headline5
-                : Theme.of(context).primaryTextTheme.headline1),
+            : Text(greeting(),
+                style: Responsivescreen.isMobile(context)
+                    ? Theme.of(context).primaryTextTheme.headline5
+                    : Theme.of(context).primaryTextTheme.headline1),
         Spacer(),
         InkWell(
           borderRadius: BorderRadius.circular(100),

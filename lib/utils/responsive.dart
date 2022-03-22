@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
 
+class Yuo extends StatelessWidget {
+  const Yuo({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Responsivescreen(
+      child: Card(
+        child: Text("yuo"),
+      ),
+    );
+  }
+}
+
 class Responsivescreen extends StatelessWidget {
   final Widget? mobile;
   final Widget? tablet;

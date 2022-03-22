@@ -66,7 +66,7 @@ class LeaveRelated extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: 8),
+          padding: const EdgeInsets.only(bottom: 8,left: 20),
           child: Text(
             'Leave Related',
             style: TextStyle(

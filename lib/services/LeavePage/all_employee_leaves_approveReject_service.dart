@@ -2,14 +2,16 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:workify/routes/router.dart';
 import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/exceptions/print_log.dart';
+import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 
 class AllEmployeLeavesApproveRejectService {
   static Future<void> callApproveApi(
-      Map<String, dynamic> leaveInfoIdJson) async {
+      dynamic leaveInfoIdJson, dynamic context) async {
     String approveLeaveUrl = 'http://$ip:$port/workify/v1/leave/approveleave';
     try {
       final _authController = Get.find<AuthController>();
@@ -31,7 +33,7 @@ class AllEmployeLeavesApproveRejectService {
       var response = await dio.post(approveLeaveUrl, data: sendData);
 
       if (response.statusCode == 200) {
-        Get.offAllNamed('/home');
+        Get.offAndToNamed(Routes.home);
         PrintLog.printLog(
             fileName: 'All Employee Leaves Approve Reject Service  File',
             functionName: 'callApproveApi(){}',
@@ -55,7 +57,7 @@ class AllEmployeLeavesApproveRejectService {
   }
 
   static Future<void> callRejectApi(
-      Map<String, dynamic> leaveInfoIdJson) async {
+      dynamic leaveInfoIdJson, dynamic context) async {
     String rejectLeaveUrl = 'http://$ip:$port/workify/v1/leave/rejectleave';
     try {
       final _authController = Get.find<AuthController>();
@@ -77,7 +79,7 @@ class AllEmployeLeavesApproveRejectService {
       var response = await dio.post(rejectLeaveUrl, data: sendData);
 
       if (response.statusCode == 200) {
-        Get.offAllNamed('/home');
+        Get.offAndToNamed(Routes.home);
         PrintLog.printLog(
             fileName: 'All Employee Leaves Approve Reject Service  File',
             functionName: 'callRejectApi(){}',

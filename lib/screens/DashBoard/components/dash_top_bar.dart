@@ -7,6 +7,7 @@ import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/responsive.dart';
 import 'package:workify/utils/theme.dart';
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 
 class DashTopBar extends StatelessWidget {
   DashTopBar({Key? key}) : super(key: key);
@@ -14,13 +15,14 @@ class DashTopBar extends StatelessWidget {
   late String fname;
   String greeting() {
     var hour = DateTime.now().hour;
+    fname = toBeginningOfSentenceCase(fname)!;
     if (hour < 12) return 'Good Morning, $fname';
     if (hour < 17) return 'Good Afternoon, $fname';
     return 'Good Evening, $fname';
   }
 
   final allEmpLeaveController = Get.find<AllEmployeeLeavesController>();
-  
+
   @override
   Widget build(BuildContext context) {
     fname = user?.value.firstName ?? "Buddy";

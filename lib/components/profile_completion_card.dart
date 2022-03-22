@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 // import 'package:workify/utils/extensions.dart';
@@ -15,12 +16,18 @@ double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
 // ignore: must_be_immutable
-class ProfileCompletionCard extends StatelessWidget {
+class ProfileCompletionCard extends StatefulWidget {
   ProfileCompletionCard({Key? key}) : super(key: key);
-  double percent = 0.12;
 
   @override
+  State<ProfileCompletionCard> createState() => _ProfileCompletionCardState();
+}
+
+class _ProfileCompletionCardState extends State<ProfileCompletionCard> {
+  @override
   Widget build(BuildContext context) {
+    final profileDetailsController = Get.find<ProfileDetailsController>();
+
     DeviceSize device = DeviceSize();
     device.size = MediaQuery.of(context).size;
     screenWidth = device.size.width;
@@ -36,29 +43,48 @@ class ProfileCompletionCard extends StatelessWidget {
               style: NeumorphicStyle(
                   boxShape: NeumorphicBoxShape.circle(),
                   color: Theme.of(context).scaffoldBackgroundColor),
-              child: CircularPercentIndicator(
-                radius: 150,
-                lineWidth: 10,
-                percent: percent,
-                animation: true,
-                reverse: true,
-                center: Avatar(),
-                progressColor: ((percent * 100) >= 0 && (percent * 100) <= 30)
-                    ? Colors.red
-                    : ((percent * 100) > 30 && (percent * 100) <= 70)
-                        ? Colors.yellow
-                        : Colors.green,
-                backgroundColor: Colors.grey,
-              ),
+              child: Obx(() {
+                if (profileDetailsController.isLoading.value) {
+                  return Text('Loading');
+                } else {
+                  var profileIncompletePercentage =
+                      profileDetailsController.profileIncompletePercentage;
+                  // return Text(profileIncompletePercentage.toString());
+                  return CircularPercentIndicator(
+                    radius: 150,
+                    lineWidth: 10,
+                    percent: profileIncompletePercentage.value / 100,
+                    animation: true,
+                    reverse: true,
+                    center: Avatar(),
+                    progressColor: ((profileIncompletePercentage) >= 0 &&
+                            (profileIncompletePercentage) <= 30)
+                        ? Colors.red
+                        : ((profileIncompletePercentage) > 30 &&
+                                (profileIncompletePercentage ) <= 70)
+                            ? Colors.yellow
+                            : Colors.green,
+                    backgroundColor: Colors.grey,
+                  );
+                }
+              }),
             ),
             Padding(
               padding: const EdgeInsets.only(top: kDefaultPadding),
-              child: Text(
-                (percent * 100).toString() + ' % Complete',
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
+              child: Obx(() {
+                if (profileDetailsController.isLoading.value) {
+                  return Text('Loading');
+                } else {
+                  var profileIncompletePercentage =
+                      profileDetailsController.profileIncompletePercentage;
+                  return Text(
+                    profileIncompletePercentage.toString() + ' % Complete',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  );
+                }
+              }),
             ),
             Spacer(),
             PrimaryButton(
@@ -69,7 +95,6 @@ class ProfileCompletionCard extends StatelessWidget {
               primaryColor: kPrimaryColor,
               icon: Icon(CupertinoIcons.square_arrow_up),
             ),
-            
           ],
         ));
   }

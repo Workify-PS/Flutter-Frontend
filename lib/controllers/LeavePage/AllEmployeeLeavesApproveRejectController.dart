@@ -3,10 +3,10 @@ import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/services/LeavePage/all_employee_leaves_approveReject_service.dart';
 
 class AllEmployeeLeavesApproveRejcectController extends GetxController {
-  void callCallApproveApi({leaveInfoId}) async {
+  void callCallApproveApi({leaveInfoId,context}) async {
     try {
       var data = {'leaveId' : leaveInfoId};
-      await AllEmployeLeavesApproveRejectService.callApproveApi(data);
+      await AllEmployeLeavesApproveRejectService.callApproveApi(data,context);
     } catch (error) {
       PrintLog.printLog(
           fileName: 'All Employee Leaves Approve Reject COntroller',
@@ -16,10 +16,10 @@ class AllEmployeeLeavesApproveRejcectController extends GetxController {
     }
   }
 
-  void callCallRejectApi({leaveInfoId}) async{
+  void callCallRejectApi({leaveInfoId,context}) async{
     try {
       var data = {'leaveId' : leaveInfoId};
-      await AllEmployeLeavesApproveRejectService.callRejectApi(data);
+      await AllEmployeLeavesApproveRejectService.callRejectApi(data,context);
     } catch (error) {
       PrintLog.printLog(
           fileName: 'All Employee Leaves Approve Reject COntroller',

@@ -8,6 +8,7 @@ generateTopBar(
     }) {
   return PreferredSize(
       preferredSize: Size.fromHeight(bannerHeight),
+      
       child: TopBar(
         title: title,
         customTopBar: widget,

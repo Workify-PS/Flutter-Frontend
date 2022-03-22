@@ -53,7 +53,19 @@ class LeavePageController extends GetxController {
 
   void findDateSpecificAttendanceList() {
     int found = 0;
-    if (date != null) {
+    // this block will always fetch yesterday data
+    if (date == null) {
+      var date =
+          DateTime.now().subtract(Duration(days: 1)).toString().split(' ');
+      var onlyDate = date[0];
+      for (int i = 0; i < attendanceList.length; i++) {
+        if (attendanceList[i].date.toString() == onlyDate) {
+          index(i.toString());
+          found = 1;
+          break;
+        }
+      }
+    } else {
       for (int i = 0; i < attendanceList.length; i++) {
         if (attendanceList[i].date.toString() == date) {
           index(i.toString());
@@ -67,7 +79,8 @@ class LeavePageController extends GetxController {
             fileName: 'leavePageController',
             functionName: 'callLeavePageServiceAttendanceListApi',
             blockNumber: 1,
-            printStatement: '#LeavePage Data Not Found in Database for date : $date');
+            printStatement:
+                '#LeavePage Data Not Found in Database for date : $date');
       }
     }
   }

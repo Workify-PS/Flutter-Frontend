@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/UserController.dart';
@@ -24,20 +25,20 @@ class DashTopBar extends StatelessWidget {
 
     return Row(
       children: [
-        // false
-        //     ? AnimatedTextKit(
-        //         animatedTexts: [
-        //           TyperAnimatedText(
-        //             greeting(),
-        //             speed: Duration(milliseconds: 80),
-        //             textStyle: Theme.of(context).primaryTextTheme.headline1,
-        //           ),
-        //         ],
-        //         totalRepeatCount: 1,
-        //         displayFullTextOnTap: true,
-        //         stopPauseOnTap: false,
-        //       )
-        //     :
+        true
+            ? AnimatedTextKit(
+                animatedTexts: [
+                  TyperAnimatedText(
+                    greeting(),
+                    speed: Duration(milliseconds: 80),
+                    textStyle: Theme.of(context).primaryTextTheme.headline1,
+                  ),
+                ],
+                totalRepeatCount: 1,
+                displayFullTextOnTap: true,
+                stopPauseOnTap: false,
+              )
+            :
         Text(greeting(),
             style: Responsivescreen.isMobile(context)
                 ? Theme.of(context).primaryTextTheme.headline5

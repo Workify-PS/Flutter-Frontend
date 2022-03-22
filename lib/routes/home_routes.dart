@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/AttendanceCardController.dart';
+import 'package:workify/controllers/LeavePage/AllEmployeeLeavesApproveRejectController.dart';
 import 'package:workify/controllers/LeavePage/leavePageController.dart';
 import 'package:workify/controllers/WishController.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
@@ -44,6 +45,8 @@ class HomeRouter {
                 Get.lazyPut(() => WishCardController()),
                 Get.put(AttendanceCardController()),
                 Get.put(AllEmployeeLeavesController()),
+                Get.put(ProfileDetailsController()),
+                Get.put(AllEmployeeLeavesApproveRejcectController())
               }),
         );
       case "/profile":

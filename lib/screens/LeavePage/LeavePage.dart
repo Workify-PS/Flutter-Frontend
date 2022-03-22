@@ -5,6 +5,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/components/date.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 import 'package:workify/controllers/LeavePage/leavePageController.dart';
 import 'package:workify/controllers/LeavePage/leavePageController.dart';
@@ -139,10 +140,9 @@ class _StatefulPastAttendanceRelatedState
   @override
   Widget build(BuildContext context) {
     
+    // leavePageController.date = '2022-03-11';
+
     // At initial build trying to get yesterday data
-    var date = DateTime.now().subtract(Duration(days:1)).toString().split(' ');
-    var onlyDate = date[0];
-    leavePageController.date = onlyDate;
     leavePageController.findDateSpecificAttendanceList();
 
     return Expanded(

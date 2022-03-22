@@ -52,6 +52,11 @@ class UserController extends GetxController with CacheManager {
     if (user != null) {
       currentUser = Rx<UserModel>(user);
       await saveUser(currentUser!.value);
+      PrintLog.printLog(
+          fileName: 'UserController', functionName: 'setUser(){}',
+          blockNumber: 1,
+          printStatement: 'Saved user successfully!!'
+          );
     } else {
       Get.defaultDialog(
           middleText: 'Please Contact the Admin',
@@ -61,10 +66,12 @@ class UserController extends GetxController with CacheManager {
           onConfirm: () {
             Get.back();
           });
-      print('\n-- In UserController file :: setUser(){} : Block 1\n');
-      print("User Not found ");
-      print('-------------- End Block 1 ---------------');
-      throw Exception();
+      PrintLog.printLog(
+          fileName: 'UserController',
+          blockNumber: 1,
+          functionName: 'setUser(){}',
+          printStatement: 'User found null');
+      // throw Exception();
     }
   }
 }

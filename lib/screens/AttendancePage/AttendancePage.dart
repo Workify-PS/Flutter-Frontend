@@ -95,6 +95,15 @@ import 'package:responsive_ui/responsive_ui.dart';
 class AttendancePage extends GetView<AttendanceShiftController> {
   @override
   Widget build(BuildContext context) {
+    var present = 0;
+    var absent = 0;
+    var halfdays = 0;
+    var misspunchout = 0;
+    var weeklyoff = 0;
+    var holiday = 0;
+    var halfdayLeave = 0;
+    var hourlyLeave = 0;
+    var suspended = 0;
     Color primaryColor = Theme.of(context).scaffoldBackgroundColor;
     Color secondaryColor = Theme.of(context).textSelectionColor;
     final _scrollcontroller = ScrollController();
@@ -245,6 +254,26 @@ class AttendancePage extends GetView<AttendanceShiftController> {
                               .toString();
                           final h = controller.attendanceshiftList[index].status
                               .toString();
+
+                          if (controller.attendanceshiftList[index].status ==
+                              'P') present = present + 1;
+                          if (controller.attendanceshiftList[index].status ==
+                              'A') absent = absent + 1;
+                          if (controller.attendanceshiftList[index].status ==
+                              'HD') halfdays = halfdays + 1;
+                          if (controller.attendanceshiftList[index].status ==
+                              'MIS') misspunchout = misspunchout + 1;
+                          if (controller.attendanceshiftList[index].status ==
+                              'WO') weeklyoff = weeklyoff + 1;
+                          if (controller.attendanceshiftList[index].status ==
+                              'holiday') holiday = holiday + 1;
+                          if (controller.attendanceshiftList[index].status ==
+                              'halfdayLeave') halfdayLeave = halfdayLeave + 1;
+                          if (controller.attendanceshiftList[index].status ==
+                              'hourlyLeave') hourlyLeave = hourlyLeave + 1;
+                          if (controller.attendanceshiftList[index].status ==
+                              'suspended') suspended = suspended + 1;
+
                           return DataRow(cells: [
                             DataCell(Center(child: Text(a))),
                             DataCell(Center(child: Text(b))),
@@ -309,7 +338,7 @@ class AttendancePage extends GetView<AttendanceShiftController> {
                                           ),
                                         ),
                                         Text(
-                                          "3",
+                                          present.toString(),
                                           style: TextStyle(
                                             fontSize: 15.8,
                                           ),
@@ -326,7 +355,7 @@ class AttendancePage extends GetView<AttendanceShiftController> {
                                           ),
                                         ),
                                         Text(
-                                          "3",
+                                          absent.toString(),
                                           style: TextStyle(
                                             fontSize: 15.8,
                                           ),
@@ -343,7 +372,7 @@ class AttendancePage extends GetView<AttendanceShiftController> {
                                           ),
                                         ),
                                         Text(
-                                          "3",
+                                          halfdays.toString(),
                                           style: TextStyle(
                                             fontSize: 15.8,
                                           ),
@@ -360,7 +389,7 @@ class AttendancePage extends GetView<AttendanceShiftController> {
                                           ),
                                         ),
                                         Text(
-                                          "3",
+                                          misspunchout.toString(),
                                           style: TextStyle(
                                             fontSize: 15.8,
                                           ),
@@ -370,14 +399,14 @@ class AttendancePage extends GetView<AttendanceShiftController> {
                                     Row(
                                       children: [
                                         Text(
-                                          'Non-Hourly Leave: ',
+                                          'Weekly-Off: ',
                                           style: TextStyle(
                                             // fontWeight: FontWeight.bold,
                                             fontSize: 16,
                                           ),
                                         ),
                                         Text(
-                                          "3",
+                                          weeklyoff.toString(),
                                           style: TextStyle(
                                             fontSize: 15.8,
                                           ),
@@ -394,7 +423,7 @@ class AttendancePage extends GetView<AttendanceShiftController> {
                                           ),
                                         ),
                                         Text(
-                                          "3",
+                                          holiday.toString(),
                                           style: TextStyle(
                                             fontSize: 15.8,
                                           ),
@@ -411,7 +440,7 @@ class AttendancePage extends GetView<AttendanceShiftController> {
                                           ),
                                         ),
                                         Text(
-                                          "3",
+                                          halfdayLeave.toString(),
                                           style: TextStyle(
                                             fontSize: 15.8,
                                           ),
@@ -428,7 +457,7 @@ class AttendancePage extends GetView<AttendanceShiftController> {
                                           ),
                                         ),
                                         Text(
-                                          "3",
+                                          hourlyLeave.toString(),
                                           style: TextStyle(
                                             fontSize: 15.8,
                                           ),
@@ -445,7 +474,7 @@ class AttendancePage extends GetView<AttendanceShiftController> {
                                           ),
                                         ),
                                         Text(
-                                          "3",
+                                          suspended.toString(),
                                           style: TextStyle(
                                             fontSize: 15.8,
                                           ),

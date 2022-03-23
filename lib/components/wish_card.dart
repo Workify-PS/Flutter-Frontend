@@ -125,7 +125,7 @@ class _WishCardItemState extends State<WishCardItem> {
                   radius: 16,
                   // backgroundColor: Colors.primaries[widget.colorIndex],
                   backgroundImage: AssetImage(
-                      'assets/avatars/avatar${(widget.index + 1) % 15}.png'),
+                      'assets/avatars/avatar${(widget.hashCode + 1) % 15}.png'),
                   backgroundColor: Colors.transparent,
                 ),
               ),

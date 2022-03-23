@@ -14,6 +14,7 @@ import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/routes/router.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -72,6 +73,7 @@ class LeavePage extends StatelessWidget {
                             PrimaryButton(
                               buttonTextWidget: Text('New Leave'),
                               onPressed: newLeave,
+                              primaryColor: kPrimaryColor,
                             ),
                             WrapPastAttendanceRelated(),
                           ],
@@ -139,41 +141,57 @@ class _StatefulPastAttendanceRelatedState
   var datePicked;
   @override
   Widget build(BuildContext context) {
-    
     // leavePageController.date = '2022-03-11';
 
     // At initial build trying to get yesterday data
     leavePageController.findDateSpecificAttendanceList();
 
-    return Expanded(
-      flex: 5,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16, left: 16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: portrait == true
-                    ? const EdgeInsets.only(right: 16)
-                    : const EdgeInsets.only(right: 0.001),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    datePicked == null
-                        ? Text(
+    return Padding(
+      padding: const EdgeInsets.only(top: 16, left: 16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Material(
+            elevation: 50,
+            color: kPrimaryColor,
+            child: Padding(
+              padding: portrait == true
+                  ? const EdgeInsets.only(right: 16)
+                  : const EdgeInsets.only(right: 0.001),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  datePicked == null
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 8),
+                          child: Text(
                             'Yesterday',
-                            style: TextStyle(
-                              fontSize: 20,
+                            style:
+                                TextStyle(fontSize: 20, color: kTextDarkColor),
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 8),
+                          child: Text(
+                            DateFormat.yMMMMd('en_US').format(
+                              DateTime.parse(datePicked),
                             ),
-                          )
-                        : Text(DateFormat.yMMMMd('en_US')
-                            .format(DateTime.parse(datePicked))),
-                    PrimaryButton(
-                      buttonTextWidget: Text('Date'),
-                      onPressed: () {
+                            style:
+                                TextStyle(fontSize: 20, color: kTextDarkColor),
+                          ),
+                        ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 18),
+                    child: InkWell(
+                      child: Text(
+                        'Choose Date',
+                        style: TextStyle(color: kTextDarkColor),
+                      ),
+                      //primaryColor: kPrimaryColor,
+                      onTap: () {
                         DatePicker.showDatePicker(context,
                             theme: DatePickerTheme(
                               backgroundColor: Colors.grey.shade200,
@@ -188,71 +206,65 @@ class _StatefulPastAttendanceRelatedState
                         });
                       },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            Expanded(
-              flex: 8,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ).neuromorphism(context),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        LeavePageTextWidgets(
-                            leavePageTextWidgetString: 'Status(Half/Full Day)'),
-                        LeavePageTextWidgets(
-                            leavePageTextWidgetString: 'Shift'),
-                        LeavePageTextWidgets(
-                            leavePageTextWidgetString: 'In time'),
-                        LeavePageTextWidgets(
-                            leavePageTextWidgetString: 'Out time'),
-                      ],
+                    LeavePageTextWidgets(
+                        leavePageTextWidgetString: 'Status(Half/Full Day)'),
+                    LeavePageTextWidgets(leavePageTextWidgetString: 'Shift'),
+                    LeavePageTextWidgets(leavePageTextWidgetString: 'In time'),
+                    LeavePageTextWidgets(leavePageTextWidgetString: 'Out time'),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: portrait == true ? 100 : 200,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Status(),
+                      ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: portrait == true ? 100 : 200,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Status(),
-                          ),
-                        ),
-                        SizedBox(
-                          width: portrait == true ? 100 : 200,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Shift(),
-                          ),
-                        ),
-                        SizedBox(
-                          width: portrait == true ? 100 : 200,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: InTime(),
-                          ),
-                        ),
-                        SizedBox(
-                          width: portrait == true ? 100 : 200,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: OutTime(),
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      width: portrait == true ? 100 : 200,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Shift(),
+                      ),
+                    ),
+                    SizedBox(
+                      width: portrait == true ? 100 : 200,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: InTime(),
+                      ),
+                    ),
+                    SizedBox(
+                      width: portrait == true ? 100 : 200,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: OutTime(),
+                      ),
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -265,41 +277,35 @@ class LeavePageBasicInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
-          flex: 6,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Avatar(),
-              Name(),
-            ],
-          ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Avatar(),
+            Name(),
+          ],
         ),
-        Expanded(
-          flex: 4,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Employee Code'),
-                    Text('Employment Type'),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    EmployeeCode(),
-                    EmploymentType(),
-                  ],
-                ),
-              ],
-            ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Employee Code'),
+                  Text('Employment Type'),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  EmployeeCode(),
+                  EmploymentType(),
+                ],
+              ),
+            ],
           ),
         ),
       ],

@@ -4,6 +4,7 @@ import 'package:workify/utils/sizes.dart';
 import 'package:workify/utils/constants.dart';
 
 import 'package:workify/controllers/profile_details_controller.dart';
+import 'package:workify/utils/theme.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -78,18 +79,13 @@ class EmploymentDetails extends StatelessWidget {
                   ),
                 ),
                 // Border between Column 1 and Column 2
-                Container(
-                  width: 20,
-                  color: Colors.transparent,
-                  // color:Colors.black,
-                  child: Center(
-                    child: Container(
-                      width: 1,
-                      height: 500,
-                      // color: kPrimaryColor,
-                      color: kTextColor,
-                    ),
-                  ),
+                VerticalDivider(
+                  thickness: 2,
+                  color: MyTheme().isDark(context)
+                      ? kDividerDarkColor
+                      : kDividerColor,
+                  indent: kDefaultPadding,
+                  endIndent: kDefaultPadding,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 80),

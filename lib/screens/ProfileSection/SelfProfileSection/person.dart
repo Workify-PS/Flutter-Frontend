@@ -24,7 +24,7 @@ class Person extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: screenWidth,
+        //width: screenWidth,
         height: screenHeight,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -77,15 +77,19 @@ class Name extends StatelessWidget {
           style: TextStyle(
             color: kSecondaryColor,
           ),
-          );
+        );
       } else {
-        return Text(
-          // 'Avatar Name',
-          profileDetailsController.employeeInfoModelDetails?.fullName ?? 'Got Null',
-          style: TextStyle(
-            // fontSize: screenWidth * 0.017,
-            fontWeight: FontWeight.bold,
-            // color: kSecondaryColor,
+        return Padding(
+          padding: const EdgeInsets.only(top: kDefaultPadding),
+          child: Text(
+            // 'Avatar Name',
+            profileDetailsController.employeeInfoModelDetails?.fullName ??
+                'Got Null',
+            style: TextStyle(
+              // fontSize: screenWidth * 0.017,
+              fontWeight: FontWeight.bold,
+              // color: kSecondaryColor,
+            ),
           ),
         );
       }

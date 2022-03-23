@@ -9,6 +9,7 @@ import 'package:workify/routes/router.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/screens/LeavePage/AllEmployeeLeaves.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/theme.dart';
 
 class NotificationDrawer extends StatefulWidget {
   const NotificationDrawer({Key? key}) : super(key: key);
@@ -211,13 +212,11 @@ class EmployeeLeaveResponse extends StatelessWidget {
                 }),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 8, bottom: 8),
-          child: Container(
-            height: 3,
-            color: Colors.grey,
-          ),
-        ),
+        Divider(
+          endIndent: kDefaultPadding/2,
+          indent: kDefaultPadding/2,
+          color: MyTheme().isDark(context)?kDividerDarkColor:kDividerColor,
+        )
       ],
     );
   }

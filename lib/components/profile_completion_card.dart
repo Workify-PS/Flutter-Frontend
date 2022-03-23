@@ -87,7 +87,7 @@ class _ProfileCompletionCardState extends State<ProfileCompletionCard> {
               }),
             ),
             Spacer(),
-            PrimaryButton(
+            Obx((() => PrimaryButton(
               buttonTextWidget:
                   profileDetailsController.profileIncompletePercentage.value ==
                           100
@@ -98,7 +98,7 @@ class _ProfileCompletionCardState extends State<ProfileCompletionCard> {
               },
               primaryColor: kPrimaryColor,
               icon: Icon(CupertinoIcons.square_arrow_up),
-            ),
+            )))
           ],
         ));
   }

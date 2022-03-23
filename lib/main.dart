@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:workify/screens/AuthPage/AuthController.dart';
 // import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 // import 'package:workify/controllers/LeavePage/applyLeaveController.dart';
@@ -26,13 +27,20 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 Future<void> main() async {
   setUrlStrategy(PathUrlStrategy());
   WidgetsFlutterBinding.ensureInitialized();
+   await translator.init(
+    localeType: LocalizationDefaultType.device,
+    languagesList: <String>['ar', 'en'],
+    assetsDirectory: 'assets/lang/',
+    
+  );
   await GetStorage.init('APP_SETTINGS');
+  
   await GetStorage.init('USER');
   await Firebase.initializeApp();
   await dotenv.load(fileName: ".env");
   port = dotenv.env['PORT'];
   ip = dotenv.env['IP'];
-  runApp(MyApp());
+  runApp(LocalizedApp(child:MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -50,6 +58,9 @@ class _MyAppState extends State<MyApp> with CacheManager {
             ThemeMode.light.name;
 
     return GetMaterialApp(
+      localizationsDelegates: translator.delegates, 
+      locale: translator.activeLocale, 
+      supportedLocales: translator.locals(), 
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       theme: MyTheme.lightTheme,

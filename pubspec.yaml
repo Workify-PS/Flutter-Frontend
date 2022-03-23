@@ -54,6 +54,7 @@ dependencies:
   http: ^0.13.4
   percent_indicator: ^3.4.0
   responsive_ui: ^2.1.0
+  localize_and_translate: ^4.1.1
   url_launcher: ^6.0.20
 
 dev_dependencies:
@@ -77,6 +78,7 @@ flutter:
     - assets/icons/
     - assets/holidays/
     - assets/avatars/
+    - assets/lang/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

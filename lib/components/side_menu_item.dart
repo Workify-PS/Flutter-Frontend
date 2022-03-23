@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:workify/components/profile_sub_tiles.dart';
-import 'package:workify/components/settings_sub_tiles.dart';
-import 'package:workify/components/sub_tiles.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/assets.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/responsive.dart';
 import 'package:workify/utils/theme.dart';
-
+import 'package:localize_and_translate/localize_and_translate.dart' as ok;
 class SideMenuItem extends StatefulWidget {
   // final bool isHover;
   // final bool isSelected;
@@ -94,7 +91,7 @@ class _SideMenuItemState extends State<SideMenuItem> {
                     width: kDefaultPadding * 0.75,
                   ),
                   Text(
-                    widget.title,
+                   ok.translator.translate(widget.title),
                     style: Theme.of(context).textTheme.button!.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,

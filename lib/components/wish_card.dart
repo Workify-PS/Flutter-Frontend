@@ -11,6 +11,7 @@ import 'package:workify/screens/SplashScreen/splash_widget.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'package:workify/utils/constants.dart';
 // import 'package:workify/utils/extensions.dart';
+import 'package:localize_and_translate/localize_and_translate.dart' as ok;
 import 'dart:math';
 
 Random random = Random();
@@ -58,9 +59,9 @@ class WishCard extends GetView<WishCardController> {
                 unselectedIconTheme: IconThemeData(opacity: 0, size: 0),
                 selectedIconTheme: IconThemeData(opacity: 0, size: 0),
                 items: [
-                  menu(label: 'Birthdays', color: Colors.amber),
-                  menu(label: 'Anniversaries', color: Colors.red),
-                  menu(label: 'New Joiners', color: Colors.purple.shade900),
+                  menu(label: ok.translator.translate('Birthdays'), color: Colors.amber),
+                  menu(label: ok.translator.translate('Anniversaries'), color: Colors.red),
+                  menu(label: ok.translator.translate('New Joiners'), color: Colors.purple.shade900),
                 ],
                 onTap: (index) {
                   controller.switchTabTo(index);

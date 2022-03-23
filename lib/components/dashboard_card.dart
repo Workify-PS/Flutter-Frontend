@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/theme.dart';
@@ -28,7 +29,7 @@ class _DashBoardCardState extends State<DashBoardCard> {
             children: [
               if (widget.title != null)
 
-                Text(widget.title!, style: Theme.of(context).textTheme.headline5!
+                Text(widget.title!.tr(), style: Theme.of(context).textTheme.headline5!
 
                     //.copyWith(backgroundColor: Colors.amberAccent)),
                     ),

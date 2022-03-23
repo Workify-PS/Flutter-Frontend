@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
 import 'package:workify/controllers/UserController.dart';
 import 'package:workify/screens/DashBoard/components/tasks_icon.dart';
@@ -9,7 +10,7 @@ import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/responsive.dart';
 import 'package:workify/utils/theme.dart';
 import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
-
+import 'package:localize_and_translate/localize_and_translate.dart' as ok;
 class DashTopBar extends StatelessWidget {
   DashTopBar({Key? key}) : super(key: key);
   final user = Get.find<UserController>().currentUser;
@@ -18,7 +19,7 @@ class DashTopBar extends StatelessWidget {
     var hour = DateTime.now().hour;
     fname = toBeginningOfSentenceCase(fname)!;
     if (hour < 12) return 'Good Morning, $fname';
-    if (hour < 17) return 'Good Afternoon, $fname';
+    if (hour < 17) return '${ok.translator.translate('Good Afternoon')}, $fname';
     return 'Good Evening, $fname';
   }
 
@@ -61,14 +62,33 @@ class DashTopBar extends StatelessWidget {
           hoverColor: Colors.transparent,
           highlightColor: Colors.transparent,
           onTap: () {
+           translator.setNewLanguage(
+                  context,
+                  newLanguage: translator.activeLanguageCode == 'ar' ? 'en' : 'ar',
+                  remember: true,
+                  restart: true,
+                );
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                vertical: kDefaultPadding, horizontal: kDefaultPadding ),
+            child:Icon(Icons.language_outlined)),
+          ),
+        
+        InkWell(
+          borderRadius: BorderRadius.circular(100),
+          splashColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          onTap: () {
             Get.find<HomePageController>()
                 .scaffoldKey
                 .currentState
                 ?.openEndDrawer();
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-                vertical: kDefaultPadding, horizontal: kDefaultPadding * 2),
+            padding: const EdgeInsets.only(
+                top: kDefaultPadding,bottom: kDefaultPadding, right: kDefaultPadding * 2),
             child: Obx(() {
               return TasksIconWidget(
                 counter: allEmpLeaveController.leaveList.length,

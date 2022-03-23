@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:workify/components/top_bar.dart';
 import 'package:workify/utils/constants.dart';
 
@@ -11,7 +12,7 @@ generateTopBar({
   return PreferredSize(
       preferredSize: Size.fromHeight(height),
       child: TopBar(
-          title: title,
+          title: translator.translate(title),
           customTopBar: widget,
           extendedWidget: extendedWidget,
           height: height));

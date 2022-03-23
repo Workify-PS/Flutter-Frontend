@@ -6,7 +6,7 @@ import 'package:workify/models/EmployeeInfoCombined.dart';
 import 'package:workify/utils/constants.dart';
 
 class ProfileService {
-  static Future<Map<String, dynamic>> callProfileApi() async {
+  static Future<dynamic> callProfileApi() async {
     String profileUrl = 'http://$ip:$port/workify/v1/profile';
     // ignore: prefer_typing_uninitialized_variables
     var responseData;
@@ -53,7 +53,7 @@ class ProfileService {
     return responseData;
   }
 
-  static Future<EmployeeInfoCombined> fetchProfileDetails() async {
+  static Future<dynamic> fetchProfileDetails() async {
     var profileApiResponse = await callProfileApi();
     var data = EmployeeInfoCombined.fromJson(profileApiResponse);
     PrintLog.printLog(

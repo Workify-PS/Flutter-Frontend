@@ -8,6 +8,7 @@ import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/responsive.dart';
 import 'package:workify/utils/theme.dart';
+import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 
 class DashTopBar extends StatelessWidget {
   DashTopBar({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class DashTopBar extends StatelessWidget {
   late String fname;
   String greeting() {
     var hour = DateTime.now().hour;
+    fname = toBeginningOfSentenceCase(fname)!;
     if (hour < 12) return 'Good Morning, $fname';
     if (hour < 17) return 'Good Afternoon, $fname';
     return 'Good Evening, $fname';
@@ -78,7 +80,7 @@ class DashTopBar extends StatelessWidget {
           backgroundColor: Colors.transparent,
           //backgroundImage: AssetImage("assets/avatars/avatar${(fname.length)%15}.png"),
           foregroundImage:
-              AssetImage("assets/avatars/avatar${(fname.length) % 15}.png"),
+              AssetImage("assets/avatars/avatar${(fname.hashCode) % 15}.png"),
           foregroundColor: Colors.black12,
           //child: Text(fname[0]),
         ),

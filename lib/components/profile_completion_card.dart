@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:get/get.dart';
 import 'package:workify/components/button.dart';
+import 'package:workify/controllers/UserController.dart';
+import 'package:workify/controllers/profile_details_controller.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 // import 'package:workify/utils/extensions.dart';
@@ -15,10 +17,16 @@ double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
 // ignore: must_be_immutable
-class ProfileCompletionCard extends StatelessWidget {
+class ProfileCompletionCard extends StatefulWidget {
   ProfileCompletionCard({Key? key}) : super(key: key);
-  double percent = 0.12;
 
+  @override
+  State<ProfileCompletionCard> createState() => _ProfileCompletionCardState();
+}
+
+class _ProfileCompletionCardState extends State<ProfileCompletionCard> {
+  final profileDetailsController = Get.find<ProfileDetailsController>();
+  final user = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
     DeviceSize device = DeviceSize();
@@ -32,53 +40,76 @@ class ProfileCompletionCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Neumorphic(
-              style: NeumorphicStyle(
-                  boxShape: NeumorphicBoxShape.circle(),
-                  color: Theme.of(context).scaffoldBackgroundColor),
-              child: CircularPercentIndicator(
-                radius: 150,
-                lineWidth: 10,
-                percent: percent,
-                animation: true,
-                reverse: true,
-                center: Avatar(),
-                progressColor: ((percent * 100) >= 0 && (percent * 100) <= 30)
-                    ? Colors.red
-                    : ((percent * 100) > 30 && (percent * 100) <= 70)
-                        ? Colors.yellow
-                        : Colors.green,
-                backgroundColor: Colors.grey,
-              ),
-            ),
+            Obx(() {
+              if (profileDetailsController.isLoading.value) {
+                return Text('Loading');
+              } else {
+                var profileIncompletePercentage =
+                    profileDetailsController.profileIncompletePercentage;
+                // return Text(profileIncompletePercentage.toString());
+                return CircularPercentIndicator(
+                  radius: 150,
+                  lineWidth: 36,
+                  percent: profileIncompletePercentage.value / 100,
+                  animation: true,
+                  reverse: true,
+                  center: Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Avatar(
+                        name: user.currentUser?.value.firstName ?? "Buddy"),
+                  ),
+                  progressColor: ((profileIncompletePercentage) >= 0 &&
+                          (profileIncompletePercentage) <= 30)
+                      ? Colors.red
+                      : ((profileIncompletePercentage) > 30 &&
+                              (profileIncompletePercentage) <= 70)
+                          ? Colors.yellow
+                          : Colors.green,
+                  backgroundColor: Colors.grey,
+                );
+              }
+            }),
             Padding(
               padding: const EdgeInsets.only(top: kDefaultPadding),
-              child: Text(
-                (percent * 100).toString() + ' % Complete',
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
+              child: Obx(() {
+                if (profileDetailsController.isLoading.value) {
+                  return Text('Loading');
+                } else {
+                  var profileIncompletePercentage =
+                      profileDetailsController.profileIncompletePercentage;
+                  return Text(
+                    profileIncompletePercentage.toString() + ' % Complete',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  );
+                }
+              }),
             ),
             Spacer(),
             PrimaryButton(
-              buttonTextWidget: Text("Complete Now"),
+              buttonTextWidget:
+                  profileDetailsController.profileIncompletePercentage.value ==
+                          100
+                      ? Text("My Profile")
+                      : Text("Complete Now"),
               onPressed: () {
                 Get.find<HomePageController>().gotoPage("/profile", context);
               },
               primaryColor: kPrimaryColor,
               icon: Icon(CupertinoIcons.square_arrow_up),
             ),
-            
           ],
         ));
   }
 }
 
 class Avatar extends StatelessWidget {
-  const Avatar({Key? key}) : super(key: key);
+  const Avatar({Key? key, required this.name}) : super(key: key);
+  final String name;
   @override
   Widget build(BuildContext context) {
+    final path = "assets/avatars/avatar${(name.hashCode) % 15}.png";
     return Material(
       shape: CircleBorder(),
       clipBehavior: Clip.hardEdge,
@@ -88,10 +119,10 @@ class Avatar extends StatelessWidget {
           // print('\n\n\n Will change avatar Later \n\n\n');
         },
         child: Ink.image(
-          image: AssetImage('images/avatar.png'),
+          image: AssetImage(path),
           fit: BoxFit.contain,
-          width: portrait == true ? screenWidth * 0.2 : screenWidth * 0.15,
-          height: portrait == true ? screenHeight * 0.2 : screenHeight * 0.15,
+          width: 220,
+          height: 220,
         ),
       ),
     );

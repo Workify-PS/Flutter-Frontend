@@ -9,6 +9,7 @@ import 'package:workify/exceptions/print_log.dart';
 import 'package:workify/models/EmployeeInfoCombined.dart';
 import 'package:workify/services/modify_employee_profile_details_service.dart';
 
+final fetchAllEmployeesController = Get.find<FetchAllEmployeesController>();
 
 class ModifyEmployeeProfileDetailsController extends GetxController {
   static void onSubmitBasicDetails(
@@ -26,7 +27,7 @@ class ModifyEmployeeProfileDetailsController extends GetxController {
 
       // print('\n\n#Dob\n\n' + date);
       // sendData['dob'] = date;
-      
+
       sendData['marriageStatus'] = marriageStatus;
       sendData['city'] = city;
       sendData['state'] = state;
@@ -48,7 +49,7 @@ class ModifyEmployeeProfileDetailsController extends GetxController {
     try {
       var sendData = EmployeeInfoCombined().toJson(
           employeeInfoCombined:
-              FetchAllEmployeesController.allEmployeeList.elementAt(index));
+              fetchAllEmployeesController.allEmployeeList.elementAt(index));
       // sendData['userId'] = userId;
       sendData['designation'] = designation;
       sendData['grade'] = grade;
@@ -77,7 +78,7 @@ class ModifyEmployeeProfileDetailsController extends GetxController {
     try {
       var sendData = EmployeeInfoCombined().toJson(
           employeeInfoCombined:
-              FetchAllEmployeesController.allEmployeeList.elementAt(index));
+              fetchAllEmployeesController.allEmployeeList.elementAt(index));
       sendData['workLocation'] = workLocation;
       sendData['employementCategory'] = employementCategory;
       sendData['employementStatus'] = employementStatus;

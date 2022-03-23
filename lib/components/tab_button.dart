@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/profile_widgets_controller.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/sizes.dart';
 import 'package:workify/utils/theme.dart';
 
 class TabButton extends StatefulWidget {
@@ -23,6 +24,11 @@ class _TabButtonState extends State<TabButton> {
   RxBool isHover = false.obs;
   @override
   Widget build(BuildContext context) {
+    DeviceSize device = DeviceSize();
+    device.size = MediaQuery.of(context).size;
+    final screenWidth = device.size.width;
+    final screenHeight = device.size.height;
+    final portrait = screenWidth < 1000;
     var button = widget.profileDetails == 'Basic Details'
         ? profileWidgetsController.basicButton
         : widget.profileDetails == 'Position Details'
@@ -48,19 +54,35 @@ class _TabButtonState extends State<TabButton> {
             padding:
                 const EdgeInsets.symmetric(vertical: kDefaultPadding / 1.2),
             child: Center(
-              child: Text(
-                widget.profileDetails,
-                style: button.value
-                    ? Theme.of(context).textTheme.headline5!.copyWith(
-                          color: MyTheme().isDark(context)
-                              ? Colors.lightBlue
-                              : kPrimaryColor,
-                        )
-                    : Theme.of(context).textTheme.headline5!.copyWith(
-                        decoration: isHover.value
-                            ? TextDecoration.underline
-                            : TextDecoration.none),
-              ),
+              child: portrait
+                  ? Text(
+                      widget.profileDetails,
+                      style: button.value
+                          ? Theme.of(context).textTheme.headline5!.copyWith(
+                                fontSize: 12,
+                                color: MyTheme().isDark(context)
+                                    ? Colors.lightBlue
+                                    : kPrimaryColor,
+                              )
+                          : Theme.of(context).textTheme.headline5!.copyWith(
+                              fontSize: 12,
+                              decoration: isHover.value
+                                  ? TextDecoration.underline
+                                  : TextDecoration.none),
+                    )
+                  : Text(
+                      widget.profileDetails,
+                      style: button.value
+                          ? Theme.of(context).textTheme.headline5!.copyWith(
+                                color: MyTheme().isDark(context)
+                                    ? Colors.lightBlue
+                                    : kPrimaryColor,
+                              )
+                          : Theme.of(context).textTheme.headline5!.copyWith(
+                              decoration: isHover.value
+                                  ? TextDecoration.underline
+                                  : TextDecoration.none),
+                    ),
             ),
           ),
         ));

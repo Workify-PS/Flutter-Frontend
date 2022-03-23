@@ -8,6 +8,31 @@ class AttendanceCardController extends GetxController {
   RxBool isPunchedOut = false.obs;
   final daily = DailyAttendanceModel().obs;
   final attendanceService = AttendancePunchService();
+  @override
+  void onInit() {
+    getTimes();
+    super.onInit();
+  }
+
+  void getTimes() async {
+    final res = await attendanceService.getPunchInfo();
+    if (res != null) {
+      if (res.inTime == '--:--') {
+        isPunchedIn(false);
+        isPunchedOut(false);
+      }
+      else if(res.inTime!='--:--'&&res.outTime.length==1){
+        isPunchedIn(true);
+        isPunchedOut(false);
+      }
+       else if(res.inTime!='--:--'&&res.outTime.length>1){
+        isPunchedIn(true);
+        isPunchedOut(true);
+      }
+      daily.value = res;
+    }
+  }
+
   void punchIn() {
     isPunchedIn.value = true;
     isPunchedOut.value = false;

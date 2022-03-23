@@ -88,7 +88,7 @@ class AllEmployeeProfile extends StatelessWidget {
                         Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: List.generate(
-                                FetchAllEmployeesController
+                                fetchAllEmployeesController
                                     .allEmployeeList.length,
                                 (index) => EmployeeProfile(index: index))),
                       ],
@@ -130,7 +130,7 @@ class EmployeeProfile extends StatelessWidget {
                     flex: 1,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Avatar(),
+                      child: Avatar(name: fetchAllEmployeesController.allEmployeeList[index].firstName??'Buddy'),
                     ),
                   ),
                   if (portrait)
@@ -143,12 +143,12 @@ class EmployeeProfile extends StatelessWidget {
                       if (fetchAllEmployeesController.isLoading.value) {
                         return Text('Still Loading Data in Employee Profile');
                       } else {
-                        return Text(FetchAllEmployeesController.allEmployeeList
+                        return Text(fetchAllEmployeesController.allEmployeeList
                                 .elementAt(index)
                                 .fullName
                                 .toString() +
                             ' : ' +
-                            FetchAllEmployeesController.allEmployeeList
+                            fetchAllEmployeesController.allEmployeeList
                                 .elementAt(index)
                                 .empCode
                                 .toString());
@@ -165,7 +165,7 @@ class EmployeeProfile extends StatelessWidget {
                       if (fetchAllEmployeesController.isLoading.value) {
                         return Text('Still Loading Data in Employee Profile');
                       } else {
-                        return Text(FetchAllEmployeesController.allEmployeeList
+                        return Text(fetchAllEmployeesController.allEmployeeList
                             .elementAt(index)
                             .designation
                             .toString());
@@ -214,9 +214,11 @@ class EmployeeProfile extends StatelessWidget {
 }
 
 class Avatar extends StatelessWidget {
-  const Avatar({Key? key}) : super(key: key);
+  const Avatar({Key? key, required this.name}) : super(key: key);
+  final String name;
   @override
   Widget build(BuildContext context) {
+     final path = "assets/avatars/avatar${(name.hashCode) % 15}.png";
     return Material(
       shape: CircleBorder(),
       clipBehavior: Clip.hardEdge,
@@ -226,7 +228,7 @@ class Avatar extends StatelessWidget {
           // print('\n\n\n Will change avatar Later \n\n\n');
         },
         child: Ink.image(
-          image: AssetImage('images/avatar.png'),
+          image: AssetImage(path),
           fit: BoxFit.contain,
           // width: portrait == true ? screenWidth * 0.2 : screenWidth * 0.25,
           // height: portrait == true ? screenHeight * 0.2 : screenHeight * 0.25,

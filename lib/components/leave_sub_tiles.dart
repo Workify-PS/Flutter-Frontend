@@ -13,19 +13,10 @@ class LeaveSubTiles extends StatelessWidget {
     final homePageController=Get.find<HomePageController>();
 
     return Container(
-        padding: const EdgeInsets.only(top: kDefaultPadding / 1.5),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            LeaveSubTile(
-              leaveOptions: 'My Leaves',
-              onTap: () => homePageController.gotoPage(Routes.leave, context)
-            ),
-            LeaveSubTile(
-              leaveOptions: 'All Employee Leaves',
-              onTap: () => homePageController.gotoPage(Routes.allEmployeeLeaves, context)
-            ),
-          ],
+        padding: const EdgeInsets.only(top: kDefaultPadding / 1.5,),
+        child: LeaveSubTile(
+          leaveOptions: 'My Leaves',
+          onTap: () => homePageController.gotoPage(Routes.leave, context)
         ));
   }
 }
@@ -49,17 +40,11 @@ class LeaveSubTile extends StatelessWidget {
     return Obx(() => InkWell(
           onTap: onTap,
           onHover: (value) => isSelected.value = value,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: kDefaultPadding * 1.5,
-              vertical: kDefaultPadding / 1.4,
-            ),
-            child: Text(
-              leaveOptions,
-              style: Theme.of(context).textTheme.button!.copyWith(
-                  color: isSelected.value ? kPrimaryColor : kGrayColor,
-                  fontSize: 13),
-            ),
+          child: Text(
+            leaveOptions,
+            style: Theme.of(context).textTheme.button!.copyWith(
+                color: isSelected.value ? kPrimaryColor : kGrayColor,
+                fontSize: 13),
           ),
         ));
   }

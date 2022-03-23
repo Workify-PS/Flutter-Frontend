@@ -92,7 +92,8 @@ class ProfilePage extends StatelessWidget {
               Expanded(
                 //flex: 10,
                 child: Padding(
-                  padding: const EdgeInsets.all(32.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 32.0, horizontal: 4.0),
                   child: Material(
                     elevation: 40,
                     color: Theme.of(context).scaffoldBackgroundColor,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
+import 'package:workify/controllers/modify_employee_profile_details_controller.dart';
 
 import 'package:workify/utils/sizes.dart';
 import 'package:workify/utils/constants.dart';
@@ -77,7 +78,7 @@ class Name extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: kDefaultPadding),
-      child: Text(FetchAllEmployeesController.allEmployeeList
+      child: Text(fetchAllEmployeesController.allEmployeeList
           .elementAt(index)
           .fullName
           .toString()),

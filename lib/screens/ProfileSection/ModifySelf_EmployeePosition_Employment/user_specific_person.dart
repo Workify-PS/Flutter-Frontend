@@ -75,9 +75,12 @@ class Name extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Text(FetchAllEmployeesController.allEmployeeList
-        .elementAt(index)
-        .fullName
-        .toString());
+    return Padding(
+      padding: const EdgeInsets.only(top: kDefaultPadding),
+      child: Text(FetchAllEmployeesController.allEmployeeList
+          .elementAt(index)
+          .fullName
+          .toString()),
+    );
   }
 }

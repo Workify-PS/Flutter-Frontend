@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/components/modify_button.dart';
 import 'package:workify/controllers/modify_profile_widgets_controller.dart';
 import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/user_specific_basic_details.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
 
 import 'modify_position_details.dart';
@@ -29,8 +31,6 @@ class ModifyEmployeeProfileDetails extends StatelessWidget {
     final index =
         (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{});
 
-
-
     Map<String, Widget> profileWidgets = {
       'Employee Basic Details': UserSpecificBasicDetails(
         index: index,
@@ -42,19 +42,31 @@ class ModifyEmployeeProfileDetails extends StatelessWidget {
     };
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Modify Employee Profile',
-          style: TextStyle(
-            // color: kSecondaryColor,
-            fontWeight: FontWeight.bold,
-          ),
+      appBar: generateTopBar(
+        title: 'Modify Employee Profile',
+        extendedWidget: Flex(
+          direction: Axis.horizontal,
+          children: [
+            Expanded(
+              flex: 1,
+              child: PositionDetailsButton(
+                ModifyEmployeeProfileDetailsString: "Employee Basic Details",
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: PositionDetailsButton(
+                ModifyEmployeeProfileDetailsString: "Modify Position Details",
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: EmploymentDetailsButton(
+                ModifyEmployeeProfileDetailsString: "Modify Employment Details",
+              ),
+            ),
+          ],
         ),
-        // flexibleSpace: Container(
-        //   decoration: BoxDecoration(
-        //     color: kPrimaryColor,
-        //   ),
-        // ),
       ),
       body: Center(
         child: Container(
@@ -68,41 +80,12 @@ class ModifyEmployeeProfileDetails extends StatelessWidget {
             direction: Axis.vertical,
             children: [
               Expanded(
-                flex: 1,
-                child: Flex(
-                  direction: Axis.horizontal,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: PositionDetailsButton(
-                        ModifyEmployeeProfileDetailsString:
-                            "Employee Basic Details",
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: PositionDetailsButton(
-                        ModifyEmployeeProfileDetailsString:
-                            "Modify Position Details",
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: EmploymentDetailsButton(
-                        ModifyEmployeeProfileDetailsString:
-                            "Modify Employment Details",
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
                 flex: 10,
                 child: Padding(
                   padding: const EdgeInsets.all(32.0),
                   child: Material(
                     elevation: 20,
-                    color: Colors.transparent,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     child: SizedBox(
                       width: screenWidth,
                       // decoration: BoxDecoration(
@@ -125,55 +108,6 @@ class ModifyEmployeeProfileDetails extends StatelessWidget {
   }
 }
 
-class Buttons extends StatelessWidget {
-  // method with parameters in stateful widget
-  // final void Function(String) profileWidgetHandler;
-  // step to call such a method
-  // onpressed: () => profileWidgetHandler(ModifyEmployeeProfileDetailsString);
-
-  final String ModifyEmployeeProfileDetailsString;
-  // final int buttonIndex;
-  Buttons({
-    Key? key,
-    required this.ModifyEmployeeProfileDetailsString,
-    // required this.buttonIndex
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final modifyProfileWidgetsController =
-        Get.find<ModifyProfileWidgetsController>();
-
-    var button = ModifyEmployeeProfileDetailsString == 'Employee Basic Details'
-        ? modifyProfileWidgetsController.employeeBasicDetailsButton
-        : ModifyEmployeeProfileDetailsString == 'Modify Position Details'
-            ? modifyProfileWidgetsController.modifyPositionButton
-            : modifyProfileWidgetsController.modifyEmploymentButton;
-
-    return Obx(() => ElevatedButton(
-          onPressed: () {
-            modifyProfileWidgetsController.resetModifyProfileButtons();
-            modifyProfileWidgetsController.updateModifyProfileWidgetString(
-                ModifyEmployeeProfileDetailsString);
-            modifyProfileWidgetsController.setModifyProfileButton(
-                str: ModifyEmployeeProfileDetailsString);
-          },
-          style: ElevatedButton.styleFrom(
-            primary: button.value == true ? kPrimaryColor : kSecondaryColor,
-          ),
-          child: Center(
-            child: Text(
-              ModifyEmployeeProfileDetailsString,
-              style: TextStyle(
-                fontSize: screenWidth * 0.015,
-                color: button.value == true ? kSecondaryColor : kPrimaryColor,
-              ),
-            ),
-          ),
-        ));
-  }
-}
-
 class EmployeeBasicDetailsButton extends StatelessWidget {
   final String ModifyEmployeeProfileDetailsString;
 
@@ -183,7 +117,7 @@ class EmployeeBasicDetailsButton extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Buttons(
+    return ModifyButton(
       ModifyEmployeeProfileDetailsString: ModifyEmployeeProfileDetailsString,
     );
   }
@@ -198,7 +132,7 @@ class PositionDetailsButton extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Buttons(
+    return ModifyButton(
       ModifyEmployeeProfileDetailsString: ModifyEmployeeProfileDetailsString,
     );
   }
@@ -213,7 +147,7 @@ class EmploymentDetailsButton extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Buttons(
+    return ModifyButton(
       ModifyEmployeeProfileDetailsString: ModifyEmployeeProfileDetailsString,
     );
   }

@@ -172,6 +172,22 @@ class ApplyLeavePortraitView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
+          flex: 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Leave Balance',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              LeaveBalanceInfo(),
+            ],
+          ),
+        ),
+        Expanded(
           flex: 6,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

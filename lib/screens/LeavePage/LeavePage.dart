@@ -71,7 +71,9 @@ class LeavePage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             PrimaryButton(
-                              buttonTextWidget: Text('New Leave'),
+                              buttonTextWidget: Text(
+                                'New Leave',
+                              ),
                               onPressed: newLeave,
                               primaryColor: kPrimaryColor,
                             ),
@@ -231,32 +233,44 @@ class _StatefulPastAttendanceRelatedState
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      width: portrait == true ? 100 : 200,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Status(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: SizedBox(
+                        width: portrait == true ? 100 : 200,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Status(),
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      width: portrait == true ? 100 : 200,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Shift(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: SizedBox(
+                        width: portrait == true ? 100 : 200,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Shift(),
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      width: portrait == true ? 100 : 200,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: InTime(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: SizedBox(
+                        width: portrait == true ? 100 : 200,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: InTime(),
+                        ),
                       ),
                     ),
-                    SizedBox(
-                      width: portrait == true ? 100 : 200,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: OutTime(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: SizedBox(
+                        width: portrait == true ? 100 : 200,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: OutTime(),
+                        ),
                       ),
                     ),
                   ],
@@ -276,11 +290,15 @@ class LeavePageBasicInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Avatar(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 60),
+              child: Avatar(),
+            ),
             Name(),
           ],
         ),
@@ -293,15 +311,37 @@ class LeavePageBasicInfo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Employee Code'),
-                  Text('Employment Type'),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8,bottom: 8),
+                    child: Text(
+                      'Employee Code',
+
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          // color: kSecondaryColor,
+                          ),
+                    ),
+                  ),
+                  Text(
+                    'Employment Type',
+
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        // color: kSecondaryColor,
+                        ),
+                  ),
                 ],
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  EmployeeCode(),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8,bottom: 8),
+                    child: EmployeeCode(),
+                  ),
                   EmploymentType(),
                 ],
               ),
@@ -354,7 +394,8 @@ class Name extends StatelessWidget {
           profileDetailsController.employeeInfoModelDetails?.fullName ??
               'Got Null',
           style: TextStyle(
-              // fontWeight: FontWeight.bold,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
               // color: kSecondaryColor,
               ),
         );
@@ -376,8 +417,11 @@ class EmployeeCode extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.empCode ??
-              'Employee Code Found Null',
+              'Got Null',
+
           style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
               // color: kSecondaryColor,
               ),
         );
@@ -399,8 +443,11 @@ class EmploymentType extends StatelessWidget {
         return Text(
           // 'HI',
           profileDetailsController.employeeInfoModelDetails?.employementType ??
-              'Employment Type Found Null',
+              'Got null',
+
           style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
               // color: kSecondaryColor,
               ),
         );
@@ -418,11 +465,21 @@ class LeavePageTextWidgets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: portrait ? 90 : 200,
-      child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Text(leavePageTextWidgetString)),
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: SizedBox(
+        width: portrait ? 90 : 200,
+        child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+              leavePageTextWidgetString,
+              style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  // color: kSecondaryColor,
+                  )
+              )),
+      ),
     );
   }
 }
@@ -440,7 +497,13 @@ class Status extends StatelessWidget {
             ? leavePageController
                 .attendanceList[int.parse(leavePageController.index.value)]
                 .status
-            : 'Not Found');
+            : 'Not Found',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              // color: kSecondaryColor,
+              )
+            );
       }
     });
   }
@@ -459,7 +522,12 @@ class Shift extends StatelessWidget {
             ? leavePageController
                 .attendanceList[int.parse(leavePageController.index.value)]
                 .shift
-            : 'Not Found');
+            : 'Not Found',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              // color: kSecondaryColor,
+              ));
       }
     });
   }
@@ -478,7 +546,12 @@ class InTime extends StatelessWidget {
             ? leavePageController
                 .attendanceList[int.parse(leavePageController.index.value)]
                 .actualIn
-            : 'Not Found');
+            : 'Not Found',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              // color: kSecondaryColor,
+              ));
       }
     });
   }
@@ -497,7 +570,12 @@ class OutTime extends StatelessWidget {
             ? leavePageController
                 .attendanceList[int.parse(leavePageController.index.value)]
                 .actualOut
-            : 'Not Found');
+            : 'Not Found',
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+              // color: kSecondaryColor,
+              ));
       }
     });
   }

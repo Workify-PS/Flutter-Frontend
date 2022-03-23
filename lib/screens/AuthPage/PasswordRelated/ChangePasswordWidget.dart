@@ -230,7 +230,11 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                 onPressed: () {
                   Get.back(id: 1);
                 },
-                child: Text('Get back'),
+                child: Text('Get back',
+                style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w300
+                  ),),
                 style: ElevatedButton.styleFrom(
                     primary: kPrimaryColor, onPrimary: kSecondaryColor),
               ),
@@ -242,7 +246,12 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
               flex: 5,
               child: ElevatedButton(
                 onPressed: overridePasswordHandler,
-                child: Text('Change password'),
+                child: Text(
+                  'Change password',
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w300
+                  ),),
                 style: ElevatedButton.styleFrom(
                     primary: kPrimaryColor, onPrimary: kSecondaryColor),
               ),

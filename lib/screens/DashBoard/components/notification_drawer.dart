@@ -9,6 +9,7 @@ import 'package:workify/routes/router.dart';
 import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/screens/LeavePage/AllEmployeeLeaves.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/theme.dart';
 
 class NotificationDrawer extends StatefulWidget {
   const NotificationDrawer({Key? key}) : super(key: key);
@@ -69,6 +70,8 @@ class LeaveRelated extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
     final allEmployeeLeavesController = Get.find<AllEmployeeLeavesController>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,7 +79,7 @@ class LeaveRelated extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 8, left: kDefaultPadding),
           child: Text(
-            'Leave Related',
+            'Leave Request(s)',
             style: TextStyle(
               fontSize: 20,
             ),
@@ -144,7 +147,14 @@ class EmployeeLeaveResponse extends StatelessWidget {
                   tempStartDate.year, tempStartDate.month, tempStartDate.day);
               noOfDays = to.difference(from).inDays + 1;
 
-              return Text(userName.toString() + ' : ' + leaveType.toString());
+              if (allEmployeeLeavesController.isLoading.value) {
+                return Text('Loading');
+              } else {
+                return SizedBox(
+                  width: 100,
+                  child: FittedBox(fit: BoxFit.fitWidth, child: Text(userName)),
+                );
+              }
             }),
             PrimaryButton(
                 buttonTextWidget: Text('Respond'),
@@ -153,25 +163,64 @@ class EmployeeLeaveResponse extends StatelessWidget {
                   // Get.find<HomePageController>()
                   //     .gotoPage(Routes.allEmployeeLeaves, context);
                   Get.defaultDialog(
-                    title: userName.toString(),
+                    title: userName,
                     barrierDismissible: false,
                     radius: 8,
-                    backgroundColor: Colors.grey.shade200,
-                    content: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                    backgroundColor: MyTheme().isDark(context) ? Colors.grey.shade900:Colors.grey.shade200,
+                    content: SizedBox(
+                      width: 320,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Leave Type',
+                                    style: TextStyle(
+                                      // color: MyTheme().isDark(context) ? kTextDarkColor : kTextColor,
+                                    ),
+                                  ),
+                                  Text('No. of days'),
+                                  Text('Start Date'),
+                                  Text('End Date'),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 32),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(leaveType.toString()),
+                                    Text(noOfDays.toString()),
+                                    Text(startDate),
+                                    Text(endDate),
+                                    
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top:8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text('Leave Type'),
-                                Text('No. of days'),
-                                Text('Start Date'),
-                                Text('End Date'),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8),
+                                SizedBox(
+                                  width: 100,
+                                  child: PrimaryButton(
+                                    primaryColor: Colors.red,
+                                    buttonTextWidget: Text('Get back'),
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 100,
                                   child: PrimaryButton(
                                     primaryColor: Colors.red,
                                     buttonTextWidget: Text('Reject'),
@@ -180,32 +229,22 @@ class EmployeeLeaveResponse extends StatelessWidget {
                                     },
                                   ),
                                 ),
+
+                                SizedBox(
+                                  width: 100,
+                                  child: PrimaryButton(
+                                      primaryColor: Colors.green,
+                                      buttonTextWidget: Text('Approve'),
+                                      onPressed: () {
+                                        onPressedApproveButton();
+                                      }),
+                                ),
+
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(leaveType.toString()),
-                                  Text(noOfDays.toString()),
-                                  Text(startDate),
-                                  Text(endDate),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 8),
-                                    child: PrimaryButton(
-                                        primaryColor: Colors.green,
-                                        buttonTextWidget: Text('Approve'),
-                                        onPressed: () {
-                                          onPressedApproveButton();
-                                        }),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }),

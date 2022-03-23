@@ -49,12 +49,14 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
   }
 
   void callOnSubmitBasicDetails() {
-      ModifyEmployeeProfileDetailsController.onSubmitBasicDetails(
-          mobile: code + ' ' + _mobileController.text,
-          marriageStatus: _marriageStatusSelectedValue,
-          city: _cityController.text,
-          state: _stateController.text,
-          country: _countryController.text);
+    ModifyEmployeeProfileDetailsController.onSubmitBasicDetails(
+        mobile: code + ' ' +
+          _mobileController.text == 'Need to update.' ? -1 : _mobileController.text,
+        marriageStatus: _marriageStatusSelectedValue,
+        city: _cityController.text == 'Need to update.' ? -1 : _cityController.text,
+        state: _stateController.text == 'Need to update.' ? -1 : _stateController.text,
+        country: _countryController.text == 'Need to update.' ? -1 : _countryController.text
+    );
   }
 
   final profileDetailsController = Get.find<ProfileDetailsController>();
@@ -67,7 +69,6 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
     screenHeight = device.size.height;
 
     portrait = screenWidth < 1000;
-
 
     var textFormList = [
       'Mobile Number',
@@ -103,7 +104,6 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
     } else {
       _mobileController = TextEditingController(text: MobileNumber[1]);
     }
-
 
     _marriageStatusController = TextEditingController(
         text:
@@ -191,7 +191,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                     return Row(
                       children: [
                         Expanded(
-                          flex: portrait ? 3:2,
+                          flex: portrait ? 3 : 2,
                           child: DropdownButton(
                               value: marriageStatus,
                               items: ['Single', 'Married'].map((item) {
@@ -213,7 +213,7 @@ class _StatefulModifyBasicDetails extends State<StatefulModifyBasicDetails> {
                           child: SizedBox(),
                         ),
                         Expanded(
-                          flex: portrait ? 6:7,
+                          flex: portrait ? 6 : 7,
                           child: TextFormModifyDetails(
                             myFocusNode: FocusNode(),
                             keyBoardType: TextInputType.text,

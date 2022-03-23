@@ -53,7 +53,7 @@ class AllEmployeeProfile extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Expanded(
                                   flex: 1,
@@ -74,8 +74,11 @@ class AllEmployeeProfile extends StatelessWidget {
                                   flex: 3,
                                   child: Text('Designation'),
                                 ),
-                                SizedBox(
-                                  width: 140,
+                                Padding(
+                                  padding: const EdgeInsets.only(right: kDefaultPadding),
+                                  child: SizedBox(
+                                    width: 140,
+                                  ),
                                 ),
                               ],
                             ),
@@ -123,8 +126,8 @@ class EmployeeProfile extends StatelessWidget {
             Expanded(
               flex: 9,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
                     flex: 1,
@@ -141,7 +144,7 @@ class EmployeeProfile extends StatelessWidget {
                     flex: 3,
                     child: Obx(() {
                       if (fetchAllEmployeesController.isLoading.value) {
-                        return Text('Still Loading Data in Employee Profile');
+                        return Text('Still Loading Data');
                       } else {
                         return Text(fetchAllEmployeesController.allEmployeeList
                                 .elementAt(index)
@@ -163,7 +166,7 @@ class EmployeeProfile extends StatelessWidget {
                     flex: 3,
                     child: Obx(() {
                       if (fetchAllEmployeesController.isLoading.value) {
-                        return Text('Still Loading Data in Employee Profile');
+                        return Text('Still Loading Data');
                       } else {
                         return Text(fetchAllEmployeesController.allEmployeeList
                             .elementAt(index)
@@ -172,17 +175,13 @@ class EmployeeProfile extends StatelessWidget {
                       }
                     }),
                   ),
-                  if (portrait)
-                    SizedBox(
-                      width: 10,
-                    ),
                   Padding(
                     padding: const EdgeInsets.only(right: kDefaultPadding),
                     child: SizedBox(
                       width: 140,
                       child: Obx(() {
                         if (fetchAllEmployeesController.isLoading.value) {
-                          return Text('Still Loading Data in Employee Profile');
+                          return Text('Still Loading Data');
                         } else {
                           return PrimaryButton(
                             buttonTextWidget: Text('Modify Details'),

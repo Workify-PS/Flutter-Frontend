@@ -45,6 +45,7 @@ class ProfileDetailsController extends GetxController with CacheManager {
         var profileFieldsIncompleteCount = 0;
 
         if (data?.mobile == '-1') {
+          employeeInfoModelDetails?.mobile = 'Need to update.';
           profileFieldsIncompleteCount++;
         }
         if (data?.city == '-1') {

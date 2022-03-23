@@ -8,7 +8,7 @@
             "name": "Flutter-Frontend",
             "request": "launch",
             "type": "dart",
-            "args": ["-d", "chrome","--web-port", "80"],
+            "args": ["-d", "chrome","--web-port", "8090"],
         },
         {
             "name": "Flutter-Frontend (profile mode)",

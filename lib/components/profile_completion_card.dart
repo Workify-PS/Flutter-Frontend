@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 // import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:get/get.dart';
@@ -91,8 +92,8 @@ class _ProfileCompletionCardState extends State<ProfileCompletionCard> {
               buttonTextWidget:
                   profileDetailsController.profileIncompletePercentage.value ==
                           100
-                      ? Text("My Profile")
-                      : Text("Complete Now"),
+                      ? Text(translator.translate("My Profile"))
+                      : Text(translator.translate("Complete Now")),
               onPressed: () {
                 Get.find<HomePageController>().gotoPage("/profile", context);
               },

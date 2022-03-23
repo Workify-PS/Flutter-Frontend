@@ -4,6 +4,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/AttendanceCardController.dart';
 import 'package:workify/models/DailyAttendanceModel.dart';
@@ -53,7 +54,7 @@ class AttendanceCard extends GetView<AttendanceCardController> {
                       ),
                       !controller.isPunchedIn.value
                           ? Text(
-                              "Punch In",
+                              translator.translate("Punch In"),
                               style: Theme.of(context)
                                   .textTheme
                                   .subtitle1!
@@ -62,7 +63,7 @@ class AttendanceCard extends GetView<AttendanceCardController> {
                                   ),
                             )
                           : Text(
-                              "Punch Out",
+                              translator.translate("Punch Out"),
                               style: Theme.of(context)
                                   .textTheme
                                   .subtitle1!
@@ -97,7 +98,7 @@ class AttendanceCard extends GetView<AttendanceCardController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Punch In Time",
+                          translator.translate("Punch In Time"),
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2!
@@ -131,7 +132,7 @@ class AttendanceCard extends GetView<AttendanceCardController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Punch Out Time",
+                          translator.translate("Punch Out Time"),
                           style: Theme.of(context)
                               .textTheme
                               .subtitle2!
@@ -154,7 +155,7 @@ class AttendanceCard extends GetView<AttendanceCardController> {
               ),
               Spacer(),
               PrimaryButton(
-                buttonTextWidget: Text('Attendance Status'),
+                buttonTextWidget: Text(translator.translate('Attendance Status')),
                 onPressed: () {
                   Get.find<HomePageController>()
                       .gotoPage("/attendance", context);

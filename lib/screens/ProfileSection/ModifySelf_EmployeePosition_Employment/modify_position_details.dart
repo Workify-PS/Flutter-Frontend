@@ -55,9 +55,10 @@ class _StatefulModifyPositionDetailsState
     ModifyEmployeeProfileDetailsController.onSubmitPositionDetails(
         index : idx,
         userId: _userId.text,
-        designation: _designation.text,
-        grade: _grade.text,
-        jobPosition: _jobPosition.text);
+        designation: _designation.text == 'Need to update.' ? '-1' : _designation.text ,
+        grade: _grade.text == 'Need to update.' ? '-1' : _grade.text ,
+        jobPosition: _jobPosition.text == 'Need to update.' ? '-1' : _jobPosition.text 
+    );
   }
 
   @override

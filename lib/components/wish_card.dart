@@ -138,7 +138,7 @@ class _WishCardItemState extends State<WishCardItem> {
                 Padding(
                   padding: const EdgeInsets.only(right: kDefaultPadding),
                   child: WishText(
-                    firstName: widget.model.firstName,
+                    firstName: widget.model.fullName,
                     email: widget.model.email,
                   ),
                 )

@@ -3,6 +3,7 @@ class WishModel {
   late String empCode;
   late String email;
   late String firstName;
+  late int userId;
   WishModel(
       {required this.fullName,
       required this.empCode,
@@ -13,7 +14,8 @@ class WishModel {
     fullName = json['fullName'];
     empCode = json['empCode'];
     email = json['email'];
-    firstName = json['firstname'];
+    firstName = json['firstname']??"";
+    userId = json['userId'];
   }
 
   Map<String, dynamic> toJson() {
@@ -22,7 +24,8 @@ class WishModel {
     data['fullName'] = fullName;
     data['empCode'] = empCode;
     data['email'] = email;
-    data['firstname']=firstName;
+    data['firstname'] = firstName;
+    data['userId'] = userId;
     return data;
   }
 }

@@ -250,13 +250,11 @@ class EmployeeLeaveResponse extends StatelessWidget {
                 }),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 8, bottom: 8),
-          child: Container(
-            height: 3,
-            color: Colors.grey,
-          ),
-        ),
+        Divider(
+          endIndent: kDefaultPadding/2,
+          indent: kDefaultPadding/2,
+          color: MyTheme().isDark(context)?kDividerDarkColor:kDividerColor,
+        )
       ],
     );
   }

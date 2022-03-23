@@ -16,7 +16,7 @@ class Routes {
     auth,
     attendance,
     profile,
-    modifyEmployeeProfile,
+   // modifyEmployeeProfile,
     allEmployeeProfile,
     applyLeave,
     allEmployeeLeaves,

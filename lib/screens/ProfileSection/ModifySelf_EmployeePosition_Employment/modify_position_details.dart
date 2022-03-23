@@ -82,7 +82,7 @@ class _StatefulModifyPositionDetailsState
         // 'User Position ID Not Found',
         text: idx == -1
             ? 'User Position ID Not Found'
-            : FetchAllEmployeesController.allEmployeeList
+            : fetchAllEmployeesController.allEmployeeList
                 .elementAt(idx)
                 .userId
                 .toString());
@@ -92,7 +92,7 @@ class _StatefulModifyPositionDetailsState
         //     'Designation Not Found',
         text: idx == -1
             ? 'Designation  Not Found'
-            : FetchAllEmployeesController.allEmployeeList
+            : fetchAllEmployeesController.allEmployeeList
                 .elementAt(idx)
                 .designation
                 .toString());
@@ -102,7 +102,7 @@ class _StatefulModifyPositionDetailsState
         //     'Grade Not Found',
         text: idx == -1
             ? 'Grade  Not Found'
-            : FetchAllEmployeesController.allEmployeeList
+            : fetchAllEmployeesController.allEmployeeList
                 .elementAt(idx)
                 .grade
                 .toString());
@@ -112,7 +112,7 @@ class _StatefulModifyPositionDetailsState
         //     'Job Position Not Found',
         text: idx == -1
             ? 'Job Position  Not Found'
-            : FetchAllEmployeesController.allEmployeeList
+            : fetchAllEmployeesController.allEmployeeList
                 .elementAt(idx)
                 .jobPosition
                 .toString());

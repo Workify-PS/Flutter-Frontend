@@ -7,6 +7,7 @@ import 'package:workify/screens/HomePage/HomePageController.dart';
 import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
+import 'package:workify/utils/theme.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
@@ -32,10 +33,11 @@ class AllEmployeeProfile extends StatelessWidget {
           width: device.size.width / 1.1,
           height: device.size.height / 1.1,
           color: Colors.transparent,
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Material(
             elevation: 20,
             // color: Colors.black,
-            color: Colors.transparent,
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: SizedBox(
               width: screenWidth,
               child: Obx(() {
@@ -86,7 +88,7 @@ class AllEmployeeProfile extends StatelessWidget {
                         Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: List.generate(
-                                FetchAllEmployeesController
+                                fetchAllEmployeesController
                                     .allEmployeeList.length,
                                 (index) => EmployeeProfile(index: index))),
                       ],
@@ -113,7 +115,7 @@ class EmployeeProfile extends StatelessWidget {
     final fetchAllEmployeesController = Get.find<FetchAllEmployeesController>();
 
     return SizedBox(
-      height: 70,
+      height: 90,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -126,7 +128,10 @@ class EmployeeProfile extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: Avatar(),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Avatar(name: fetchAllEmployeesController.allEmployeeList[index].firstName??'Buddy'),
+                    ),
                   ),
                   if (portrait)
                     SizedBox(
@@ -138,12 +143,12 @@ class EmployeeProfile extends StatelessWidget {
                       if (fetchAllEmployeesController.isLoading.value) {
                         return Text('Still Loading Data in Employee Profile');
                       } else {
-                        return Text(FetchAllEmployeesController.allEmployeeList
+                        return Text(fetchAllEmployeesController.allEmployeeList
                                 .elementAt(index)
                                 .fullName
                                 .toString() +
                             ' : ' +
-                            FetchAllEmployeesController.allEmployeeList
+                            fetchAllEmployeesController.allEmployeeList
                                 .elementAt(index)
                                 .empCode
                                 .toString());
@@ -160,7 +165,7 @@ class EmployeeProfile extends StatelessWidget {
                       if (fetchAllEmployeesController.isLoading.value) {
                         return Text('Still Loading Data in Employee Profile');
                       } else {
-                        return Text(FetchAllEmployeesController.allEmployeeList
+                        return Text(fetchAllEmployeesController.allEmployeeList
                             .elementAt(index)
                             .designation
                             .toString());
@@ -171,34 +176,36 @@ class EmployeeProfile extends StatelessWidget {
                     SizedBox(
                       width: 10,
                     ),
-                  SizedBox(
-                    width: 140,
-                    child: Obx(() {
-                      if (fetchAllEmployeesController.isLoading.value) {
-                        return Text('Still Loading Data in Employee Profile');
-                      } else {
-                        return PrimaryButton(
-                          buttonTextWidget: Text('Modify Details'),
-                          primaryColor: kPrimaryColor,
-                          onPressed: () {
-                            Get.find<HomePageController>().gotoPage(
-                                Routes.modifyEmployeeProfile, context,
-                                arguments: index);
-                          },
-                        );
-                      }
-                    }),
+                  Padding(
+                    padding: const EdgeInsets.only(right: kDefaultPadding),
+                    child: SizedBox(
+                      width: 140,
+                      child: Obx(() {
+                        if (fetchAllEmployeesController.isLoading.value) {
+                          return Text('Still Loading Data in Employee Profile');
+                        } else {
+                          return PrimaryButton(
+                            buttonTextWidget: Text('Modify Details'),
+                            primaryColor: kPrimaryColor,
+                            onPressed: () {
+                              Get.find<HomePageController>().gotoPage(
+                                  Routes.modifyEmployeeProfile, context,
+                                  arguments: index);
+                            },
+                          );
+                        }
+                      }),
+                    ),
                   ),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 2),
-              child: Container(
-                height: 1,
-                color: Colors.grey,
-              ),
-            ),
+            Divider(
+              color:
+                  MyTheme().isDark(context) ? kDividerDarkColor : kDividerColor,
+              indent: kDefaultPadding,
+              endIndent: kDefaultPadding,
+            )
           ],
         ),
       ),
@@ -207,9 +214,11 @@ class EmployeeProfile extends StatelessWidget {
 }
 
 class Avatar extends StatelessWidget {
-  const Avatar({Key? key}) : super(key: key);
+  const Avatar({Key? key, required this.name}) : super(key: key);
+  final String name;
   @override
   Widget build(BuildContext context) {
+     final path = "assets/avatars/avatar${(name.hashCode) % 15}.png";
     return Material(
       shape: CircleBorder(),
       clipBehavior: Clip.hardEdge,
@@ -219,7 +228,7 @@ class Avatar extends StatelessWidget {
           // print('\n\n\n Will change avatar Later \n\n\n');
         },
         child: Ink.image(
-          image: AssetImage('images/avatar.png'),
+          image: AssetImage(path),
           fit: BoxFit.contain,
           // width: portrait == true ? screenWidth * 0.2 : screenWidth * 0.25,
           // height: portrait == true ? screenHeight * 0.2 : screenHeight * 0.25,

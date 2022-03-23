@@ -6,10 +6,10 @@ import 'package:workify/utils/sizes.dart';
 import 'package:workify/utils/constants.dart';
 
 import 'package:workify/controllers/profile_details_controller.dart';
+import 'package:workify/utils/theme.dart';
 
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
-
 
 class WrapPositionDetails extends StatefulWidget {
   const WrapPositionDetails({Key? key}) : super(key: key);
@@ -68,24 +68,18 @@ class PositionDetails extends StatelessWidget {
                       FormattedPositionInfo(
                           positionInfoString: 'User Position ID'),
                       FormattedPositionInfo(positionInfoString: 'Designation'),
-                      FormattedPositionInfo(
-                          positionInfoString: 'Grade'),
+                      FormattedPositionInfo(positionInfoString: 'Grade'),
                     ],
                   ),
                 ),
                 // Border between Column 1 and Column 2
-                Container(
-                  width: 30,
-                  color: Colors.transparent,
-                  // color:Colors.black,
-                  child: Center(
-                    child: Container(
-                      width: 1,
-                      height: 300,
-                      // color: Colors.white,
-                      color: kTextColor,
-                    ),
-                  ),
+                VerticalDivider(
+                  color: MyTheme().isDark(context)
+                      ? kDividerDarkColor
+                      : kDividerColor,
+                  thickness: 2,
+                  indent: kDefaultPadding,
+                  endIndent: kDefaultPadding,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 50),
@@ -96,7 +90,6 @@ class PositionDetails extends StatelessWidget {
                       PositionInfoString(positionInfoString: 'Job Position'),
                       PositionInfoString(positionInfoString: 'Official Email'),
                       PositionInfoString(positionInfoString: 'Date of Joining'),
-                      
                     ],
                   ),
                 ),
@@ -110,7 +103,6 @@ class PositionDetails extends StatelessWidget {
                           positionInfoString: 'Official Email'),
                       FormattedPositionInfo(
                           positionInfoString: 'Date of Joining'),
-                      
                     ],
                   ),
                 ),
@@ -182,15 +174,14 @@ class PositionDetailsPortraitView extends StatelessWidget {
                       FormattedPositionInfo(
                           positionInfoString: 'User Position ID'),
                       FormattedPositionInfo(positionInfoString: 'Designation'),
-                      FormattedPositionInfo(
-                          positionInfoString: 'Grade'),
+                      FormattedPositionInfo(positionInfoString: 'Grade'),
                       FormattedPositionInfo(
                           positionInfoString: 'Official Email'),
                       FormattedPositionInfo(
                           positionInfoString: 'Date of Joining'),
                       FormattedPositionInfo(positionInfoString: 'Job Position'),
                       Container(
-                      height: 30,
+                        height: 30,
                         width: 10,
                         // color: Colors.red,
                         color: Colors.transparent,
@@ -233,13 +224,10 @@ class PositionInfoString extends StatelessWidget {
 
 class FormattedPositionInfo extends StatelessWidget {
   String positionInfoString;
-  FormattedPositionInfo({
-    Key? key, 
-    required this.positionInfoString
-  })
-    : super(key: key);
+  FormattedPositionInfo({Key? key, required this.positionInfoString})
+      : super(key: key);
 
-  Map<String,Widget> string_2_PositionInfoMap = {
+  Map<String, Widget> string_2_PositionInfoMap = {
     'User Position ID': UserPosID(),
     'Designation': Designation(),
     'Grade': Grade(),
@@ -298,7 +286,8 @@ class UserPosID extends StatelessWidget {
       } else {
         return Text(
           // 'HI',
-          profileDetailsController.employeeInfoModelDetails?.userId.toString() ??
+          profileDetailsController.employeeInfoModelDetails?.userId
+                  .toString() ??
               'User Position ID Found Null',
           // style: TextStyle(
           //   color: kSecondaryColor,
@@ -354,7 +343,6 @@ class Grade extends StatelessWidget {
     });
   }
 }
-
 
 class OrgID extends StatelessWidget {
   const OrgID({Key? key}) : super(key: key);

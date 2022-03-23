@@ -65,7 +65,7 @@ class _HolidayCardState extends State<HolidaysCard> {
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: kDefaultPadding,
-                                vertical: kDefaultPadding * 0.8),
+                                vertical: kDefaultPadding * 0.4),
                             child: Row(
                               // mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -99,10 +99,20 @@ class _HolidayCardState extends State<HolidaysCard> {
                                       style:
                                           Theme.of(context).textTheme.headline6,
                                     ),
+                                    SizedBox(
+                                      height: 4,
+                                    ),
                                     Text(
                                       items[index].date.toString(),
-                                      style:
-                                          Theme.of(context).textTheme.subtitle2,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .subtitle2!
+                                          .copyWith(
+                                              color: MyTheme().isDark(context)
+                                                  ? kTextDarkColor
+                                                      .withOpacity(0.6)
+                                                  : kTextColor
+                                                      .withOpacity(0.8)),
                                     )
                                   ],
                                 )),
@@ -130,8 +140,7 @@ class _HolidayCardState extends State<HolidaysCard> {
   }
 
   Future<List<HolidayModel>> readJsonData() async {
-    final jsondata =
-        await rootBundle.rootBundle.loadString(Assets.holidays);
+    final jsondata = await rootBundle.rootBundle.loadString(Assets.holidays);
     final list = json.decode(jsondata) as List<dynamic>;
     return list.map((e) => HolidayModel.fromJson(e)).toList();
   }
@@ -205,7 +214,6 @@ class WishText extends StatelessWidget {
   }
 
   void _email() {
-    
     Get.back();
   }
 }

@@ -87,7 +87,7 @@ class _StatefulModifyEmploymentDetailsState
       //     'Work Location Not Found',
       text: idx == -1
             ? 'Work Location ID Not Found'
-            : FetchAllEmployeesController.allEmployeeList
+            : fetchAllEmployeesController.allEmployeeList
                 .elementAt(idx)
                 .workLocation
                 .toString()
@@ -99,7 +99,7 @@ class _StatefulModifyEmploymentDetailsState
       //     'Employment Category Not Found',
       text: idx == -1
             ? 'Employment Category Not Found'
-            : FetchAllEmployeesController.allEmployeeList
+            : fetchAllEmployeesController.allEmployeeList
                 .elementAt(idx)
                 .employementCategory
                 .toString()
@@ -111,7 +111,7 @@ class _StatefulModifyEmploymentDetailsState
       //     'Employment Status Not Found',
       text: idx == -1
             ? 'Employment Status Not Found'
-            : FetchAllEmployeesController.allEmployeeList
+            : fetchAllEmployeesController.allEmployeeList
                 .elementAt(idx)
                 .employementStatus
                 .toString()
@@ -123,7 +123,7 @@ class _StatefulModifyEmploymentDetailsState
       //         'Employment Type Not Found',
       text: idx == -1
             ? 'Employment Type Not Found'
-            : FetchAllEmployeesController.allEmployeeList
+            : fetchAllEmployeesController.allEmployeeList
                 .elementAt(idx)
                 .employementType
                 .toString()
@@ -135,7 +135,7 @@ class _StatefulModifyEmploymentDetailsState
       //     'L1 Manager ID Not Found',
       text: idx == -1
             ? 'L1 Manager ID Not Found'
-            : FetchAllEmployeesController.allEmployeeList
+            : fetchAllEmployeesController.allEmployeeList
                 .elementAt(idx)
                 .l1ManagerId
                 .toString()
@@ -147,7 +147,7 @@ class _StatefulModifyEmploymentDetailsState
       //     'L2 Manager ID Not Found',
       text: idx == -1
             ? 'L2 Manager ID Not Found'
-            : FetchAllEmployeesController.allEmployeeList
+            : fetchAllEmployeesController.allEmployeeList
                 .elementAt(idx)
                 .l2ManagerId
                 .toString()
@@ -159,7 +159,7 @@ class _StatefulModifyEmploymentDetailsState
       //     'HR Manager ID Not Found',
       text: idx == -1
             ? 'HR Manager ID Not Found'
-            : FetchAllEmployeesController.allEmployeeList
+            : fetchAllEmployeesController.allEmployeeList
                 .elementAt(idx)
                 .hrManagerId
                 .toString()

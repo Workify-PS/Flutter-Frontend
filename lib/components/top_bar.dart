@@ -14,10 +14,14 @@ import 'package:workify/utils/theme.dart';
 class TopBar extends StatelessWidget with CacheManager {
   final Widget? customTopBar;
   final String title;
+  final Widget? extendedWidget;
+  final double? height;
   const TopBar({
     Key? key,
     this.customTopBar,
     required this.title,
+    this.extendedWidget,
+    this.height = bannerHeight,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -25,6 +29,12 @@ class TopBar extends StatelessWidget with CacheManager {
     return Responsivescreen(
       mobile: AppBar(
         title: Text(title),
+        bottom: extendedWidget == null
+            ? null
+            : PreferredSize(
+                child: extendedWidget!,
+                preferredSize: Size.fromHeight(bannerHeight),
+              ),
         leading: IconButton(
             onPressed: () {
               scaffoldKey.currentState?.openDrawer();
@@ -35,17 +45,29 @@ class TopBar extends StatelessWidget with CacheManager {
         color: Theme.of(context).primaryColor,
         borderOnForeground: true,
         child: Container(
-          height: bannerHeight,
-          padding: const EdgeInsets.only(left: 36, right: 48),
+          height: height,
+          padding: extendedWidget == null
+              ? const EdgeInsets.only(left: 36, right: 48)
+              : const EdgeInsets.only(
+                  left: 36,
+                  right: 48,
+                  top: kDefaultPadding / 1.5,
+                ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: extendedWidget == null
+                ? MainAxisAlignment.center
+                : MainAxisAlignment.start,
+            crossAxisAlignment: extendedWidget == null
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.center,
             children: [
               customTopBar ??
                   Text(title,
                       style: Responsivescreen.isMobile(context)
                           ? Theme.of(context).primaryTextTheme.headline5
                           : Theme.of(context).primaryTextTheme.headline1),
+              if (extendedWidget != null) Spacer(),
+              if (extendedWidget != null) extendedWidget!
             ],
           ),
         ),

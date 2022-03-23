@@ -74,7 +74,7 @@ class LeaveRelated extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 8,bottom: 8),
+          padding: const EdgeInsets.only(bottom: 8, left: kDefaultPadding),
           child: Text(
             'Leave Related',
             style: TextStyle(
@@ -82,20 +82,16 @@ class LeaveRelated extends StatelessWidget {
             ),
           ),
         ),
-        
         if (allEmployeeLeavesController.leaveList.isNotEmpty)
           Column(
-            children: List.generate(
-                allEmployeeLeavesController.leaveList.length,
-                (index) => EmployeeLeaveResponse(index: index)))
-        else Padding(
-          padding: const EdgeInsets.only(left: 18),
-          child: Text('No leave requests till now.'),
-        )
-
-          
-          
-      
+              children: List.generate(
+                  allEmployeeLeavesController.leaveList.length,
+                  (index) => EmployeeLeaveResponse(index: index)))
+        else
+          Padding(
+            padding: const EdgeInsets.only(left: 18),
+            child: Text('No leave requests till now.'),
+          )
       ],
     );
   }
@@ -116,17 +112,15 @@ class EmployeeLeaveResponse extends StatelessWidget {
       allEmployeeLeavesApproveRejcectController.callCallApproveApi(
           leaveInfoId: allEmployeeLeavesController.leaveList[index].leaveInfoId,
           context: context);
-      
-      allEmployeeLeavesController.leaveList
-          .removeAt(index);
+
+      allEmployeeLeavesController.leaveList.removeAt(index);
     }
 
     void onPressedRejectButton() {
       allEmployeeLeavesApproveRejcectController.callCallRejectApi(
           leaveInfoId: allEmployeeLeavesController.leaveList[index].leaveInfoId,
           context: context);
-      allEmployeeLeavesController.leaveList
-          .removeAt(index);
+      allEmployeeLeavesController.leaveList.removeAt(index);
     }
 
     return Column(

@@ -10,7 +10,7 @@ import 'package:workify/services/fetch_all_employee_service.dart';
 class FetchAllEmployeesController extends GetxController with CacheManager {
   var isLoading = true.obs;
 
-  static List<EmployeeInfoCombined> allEmployeeList = [];
+   RxList<EmployeeInfoCombined> allEmployeeList = <EmployeeInfoCombined>[].obs;
 
   @override
   void onInit() {

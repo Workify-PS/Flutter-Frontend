@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:workify/components/button.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesApproveRejectController.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
+import 'package:workify/utils/constants.dart';
 import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -30,11 +31,12 @@ class AllEmployeeLeaves extends GetView<AllEmployeeLeavesController> {
         child: Container(
           width: device.size.width / 1.1,
           height: device.size.height / 1.1,
-          color: Colors.transparent,
+          margin: const EdgeInsets.symmetric(
+              horizontal: kDefaultPadding, vertical: kDefaultPadding * 1.5),
           child: Material(
             elevation: 20,
             // color: Colors.black,
-            color: Colors.transparent,
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: SizedBox(
               width: screenWidth,
               child: Obx(() {
@@ -59,14 +61,23 @@ class AllEmployeeLeaves extends GetView<AllEmployeeLeavesController> {
                                   Expanded(
                                       flex: 3,
                                       child: Text('Employee [Name : Code]')),
-                                  if (portrait) SizedBox(width: 10,),
+                                  if (portrait)
+                                    SizedBox(
+                                      width: 10,
+                                    ),
                                   Expanded(
                                     flex: 3,
                                     child: Text('Leave Type'),
                                   ),
-                                  if(portrait) SizedBox(width: 10,),
+                                  if (portrait)
+                                    SizedBox(
+                                      width: 10,
+                                    ),
                                   Expanded(flex: 3, child: Text('Start Date')),
-                                  if(portrait) SizedBox(width: 10,),
+                                  if (portrait)
+                                    SizedBox(
+                                      width: 10,
+                                    ),
                                   Expanded(flex: 3, child: Text('End Date')),
                                   SizedBox(
                                     width: 100,
@@ -115,14 +126,12 @@ class EmployeeLeave extends GetView<AllEmployeeLeavesController> {
 
     void onPressedApproveButton() {
       allEmployeeLeavesApproveRejcectController.callCallApproveApi(
-          leaveInfoId:
-              controller.leaveList[index].leaveInfoId);
+          leaveInfoId: controller.leaveList[index].leaveInfoId);
     }
 
     void onPressedRejectButton() {
       allEmployeeLeavesApproveRejcectController.callCallRejectApi(
-          leaveInfoId:
-              controller.leaveList[index].leaveInfoId);
+          leaveInfoId: controller.leaveList[index].leaveInfoId);
     }
 
     return SizedBox(
@@ -155,7 +164,10 @@ class EmployeeLeave extends GetView<AllEmployeeLeavesController> {
                       }
                     }),
                   ),
-                  if(portrait) SizedBox(width: 5,),
+                  if (portrait)
+                    SizedBox(
+                      width: 5,
+                    ),
                   Expanded(
                     flex: 3,
                     child: Obx(() {
@@ -169,7 +181,10 @@ class EmployeeLeave extends GetView<AllEmployeeLeavesController> {
                       }
                     }),
                   ),
-                  if(portrait) SizedBox(width: 5,),
+                  if (portrait)
+                    SizedBox(
+                      width: 5,
+                    ),
                   Expanded(
                     flex: 3,
                     child: Obx(() {
@@ -184,7 +199,10 @@ class EmployeeLeave extends GetView<AllEmployeeLeavesController> {
                       }
                     }),
                   ),
-                  if(portrait) SizedBox(width: 5,),
+                  if (portrait)
+                    SizedBox(
+                      width: 5,
+                    ),
                   Expanded(
                     flex: 3,
                     child: Obx(() {
@@ -203,7 +221,10 @@ class EmployeeLeave extends GetView<AllEmployeeLeavesController> {
                       }
                     }),
                   ),
-                  if(portrait) SizedBox(width: 5,),
+                  if (portrait)
+                    SizedBox(
+                      width: 5,
+                    ),
                   Obx(() {
                     if (allEmployeeLeavesController.isLoading.value) {
                       return Text('Still Loading Employee Leaves Data');

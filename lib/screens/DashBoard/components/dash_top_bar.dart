@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:workify/controllers/LeavePage/AllEmployeeLeavesController.dart';
@@ -29,24 +30,30 @@ class DashTopBar extends StatelessWidget {
 
     return Row(
       children: [
-        // false
-        //     ? AnimatedTextKit(
-        //         animatedTexts: [
-        //           TyperAnimatedText(
-        //             greeting(),
-        //             speed: Duration(milliseconds: 80),
-        //             textStyle: Theme.of(context).primaryTextTheme.headline1,
-        //           ),
-        //         ],
-        //         totalRepeatCount: 1,
-        //         displayFullTextOnTap: true,
-        //         stopPauseOnTap: false,
-        //       )
-        //     :
-        Text(greeting(),
-            style: Responsivescreen.isMobile(context)
-                ? Theme.of(context).primaryTextTheme.headline5
-                : Theme.of(context).primaryTextTheme.headline1),
+        true
+            ? AnimatedTextKit(
+                key: ValueKey<bool>(MyTheme().isDark(context)),
+                animatedTexts: [
+                  TyperAnimatedText(
+                    greeting(),
+                    speed: Duration(milliseconds: 50),
+                    textStyle: Theme.of(context)
+                        .primaryTextTheme
+                        .headline1!
+                        .copyWith(
+                            color: MyTheme().isDark(context)
+                                ? kTextDarkColor
+                                : kTextColor),
+                  ),
+                ],
+                totalRepeatCount: 1,
+                displayFullTextOnTap: true,
+                stopPauseOnTap: false,
+              )
+            : Text(greeting(),
+                style: Responsivescreen.isMobile(context)
+                    ? Theme.of(context).primaryTextTheme.headline5
+                    : Theme.of(context).primaryTextTheme.headline1),
         Spacer(),
         InkWell(
           borderRadius: BorderRadius.circular(100),
@@ -73,7 +80,7 @@ class DashTopBar extends StatelessWidget {
           backgroundColor: Colors.transparent,
           //backgroundImage: AssetImage("assets/avatars/avatar${(fname.length)%15}.png"),
           foregroundImage:
-              AssetImage("assets/avatars/avatar${(fname.length) % 15}.png"),
+              AssetImage("assets/avatars/avatar${(fname.hashCode) % 15}.png"),
           foregroundColor: Colors.black12,
           //child: Text(fname[0]),
         ),

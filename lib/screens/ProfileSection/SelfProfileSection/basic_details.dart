@@ -15,7 +15,6 @@ import 'person.dart';
 double screenWidth = 0, screenHeight = 0;
 bool portrait = false;
 
-
 class BasicDetails extends StatelessWidget {
   const BasicDetails({Key? key}) : super(key: key);
 
@@ -34,7 +33,7 @@ class BasicDetails extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Colors.transparent,
+                //color: Theme.of(context).scaffoldBackgroundColor,
               ),
               child: Row(
                 children: [
@@ -61,7 +60,8 @@ class BasicDetails extends StatelessWidget {
                             children: [
                               BasicInfoString(basicInfoString: 'Mobile Number'),
                               BasicInfoString(basicInfoString: 'Date of Birth'),
-                              BasicInfoString(basicInfoString: 'Marriage Status'),
+                              BasicInfoString(
+                                  basicInfoString: 'Marriage Status'),
                               BasicInfoString(basicInfoString: 'City'),
                               BasicInfoString(basicInfoString: 'State'),
                               BasicInfoString(basicInfoString: 'Country'),
@@ -76,9 +76,12 @@ class BasicDetails extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                FormattedBasicInfo(basicInfoString: 'Mobile Number'),
-                                FormattedBasicInfo(basicInfoString: 'Date of Birth'),
-                                FormattedBasicInfo(basicInfoString: 'Marriage Status'),
+                                FormattedBasicInfo(
+                                    basicInfoString: 'Mobile Number'),
+                                FormattedBasicInfo(
+                                    basicInfoString: 'Date of Birth'),
+                                FormattedBasicInfo(
+                                    basicInfoString: 'Marriage Status'),
                                 FormattedBasicInfo(basicInfoString: 'City'),
                                 FormattedBasicInfo(basicInfoString: 'State'),
                                 FormattedBasicInfo(basicInfoString: 'Country'),
@@ -178,10 +181,8 @@ class BasicInfoString extends StatelessWidget {
 
 class FormattedBasicInfo extends StatelessWidget {
   String basicInfoString;
-  FormattedBasicInfo({
-    Key? key,
-    required this.basicInfoString
-  }) : super(key: key);
+  FormattedBasicInfo({Key? key, required this.basicInfoString})
+      : super(key: key);
 
   var string_2_BasicInfoMap = {
     'Mobile Number': MobileNumber(),
@@ -256,7 +257,6 @@ class MobileNumber extends StatelessWidget {
     });
   }
 }
-
 
 class MarriageStatus extends StatelessWidget {
   const MarriageStatus({Key? key}) : super(key: key);

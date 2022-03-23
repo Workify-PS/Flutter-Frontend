@@ -2,17 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/components/tab_button.dart';
 
 import 'package:workify/controllers/profile_widgets_controller.dart';
+import 'package:workify/screens/ProfileSection/SelfProfileSection/basic_details.dart';
+import 'package:workify/screens/ProfileSection/SelfProfileSection/employment_details.dart';
 import 'package:workify/screens/ProfileSection/SelfProfileSection/modify_basic_details.dart';
+import 'package:workify/screens/ProfileSection/SelfProfileSection/position_details.dart';
 import 'package:workify/utils/constants.dart';
+import 'package:workify/utils/extensions.dart';
 import 'package:workify/utils/generators.dart';
 import 'package:workify/utils/responsive.dart';
 import 'package:workify/utils/sizes.dart';
-
-import 'basic_details.dart';
-import 'position_details.dart';
-import 'employment_details.dart';
 
 class ProfileBar extends StatelessWidget {
   const ProfileBar({Key? key}) : super(key: key);
@@ -72,7 +73,7 @@ class ProfilePage extends StatelessWidget {
     screenHeight = device.size.height;
 
     return Scaffold(
-      appBar: generateTopBar(title: "Profile", widget: ProfileBar()),
+      appBar: generateTopBar(title: "My Profile", extendedWidget: ProfileBar()),
       body: Center(
         child: Container(
           width: device.size.width / 1.1,
@@ -84,13 +85,18 @@ class ProfilePage extends StatelessWidget {
           child: Flex(
             direction: Axis.vertical,
             children: [
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: ProfileBar(),
+              // ),
               Expanded(
                 //flex: 10,
                 child: Padding(
-                  padding: const EdgeInsets.all(32.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 32.0, horizontal: 4.0),
                   child: Material(
-                    elevation: 20,
-                    color: Colors.transparent,
+                    elevation: 40,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     child: SizedBox(
                       width: screenWidth,
                       // decoration: BoxDecoration(
@@ -98,13 +104,12 @@ class ProfilePage extends StatelessWidget {
                       // ),
                       // Rendering All widgets here
                       child: Obx(() => Responsivescreen(
-                            mobile: profileWidgets[profileWidgetsController
-                                .widgetString.value
-                                .toString()]!,
-                            child: profileWidgets[profileWidgetsController
-                                .widgetString.value
-                                .toString()]!,
-                          )),
+                          mobile: profileWidgets[profileWidgetsController
+                              .widgetString.value
+                              .toString()]!,
+                          child: profileWidgets[profileWidgetsController
+                              .widgetString.value
+                              .toString()]!)),
                     ),
                   ),
                 ),
@@ -117,51 +122,6 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-class Buttons extends StatelessWidget {
-  // method with parameters in stateful widget
-  // final void Function(String) profileWidgetHandler;
-  // step to call such a method
-  // onpressed: () => profileWidgetHandler(profileDetails);
-
-  final String profileDetails;
-
-  const Buttons({Key? key, required this.profileDetails}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final profileWidgetsController = Get.find<ProfileWidgetsController>();
-    
-    var button = profileDetails == 'Basic Details'
-        ? profileWidgetsController.basicButton
-        : profileDetails == 'Position Details'
-            ? profileWidgetsController.positionButton
-            : profileDetails == 'Employment Details'
-                ? profileWidgetsController.employmentButton
-                : profileWidgetsController.modifyBasicButton;
-
-    return Obx(() => ElevatedButton(
-          onPressed: () {
-            profileWidgetsController.resetButtons();
-            profileWidgetsController.updateWidgetString(profileDetails);
-            profileWidgetsController.setButton(str: profileDetails);
-          },
-          style: ElevatedButton.styleFrom(
-            primary: button.value == true ? kPrimaryColor : kSecondaryColor,
-          ),
-          child: Center(
-            child: Text(
-              profileDetails,
-              style: TextStyle(
-                fontSize: screenWidth * 0.015,
-                // fontWeight: FontWeight.bold,
-                color: button.value == true ? kSecondaryColor : kPrimaryColor,
-              ),
-            ),
-          ),
-        ));
-  }
-}
-
 class BasicDetailsButton extends StatelessWidget {
   final String profileDetails;
 
@@ -171,7 +131,7 @@ class BasicDetailsButton extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Buttons(
+    return TabButton(
       profileDetails: profileDetails,
     );
   }
@@ -186,7 +146,7 @@ class PositionDetailsButton extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Buttons(
+    return TabButton(
       profileDetails: profileDetails,
     );
   }
@@ -201,7 +161,7 @@ class EmploymentDetailsButton extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Buttons(
+    return TabButton(
       profileDetails: profileDetails,
     );
   }
@@ -216,7 +176,7 @@ class ModifyBasicDetailsButton extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Buttons(
+    return TabButton(
       profileDetails: profileDetails,
     );
   }

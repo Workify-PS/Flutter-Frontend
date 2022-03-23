@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:workify/controllers/fetch_all_employees_controller.dart';
+import 'package:workify/controllers/modify_employee_profile_details_controller.dart';
 import 'package:workify/screens/ProfileSection/ModifySelf_EmployeePosition_Employment/user_specific_person.dart';
 import 'package:workify/utils/sizes.dart';
 
@@ -242,7 +243,7 @@ class MobileNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(FetchAllEmployeesController.allEmployeeList
+    return Text(fetchAllEmployeesController.allEmployeeList
         .elementAt(idx)
         .mobile
         .toString());
@@ -254,7 +255,7 @@ class MarriageStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(FetchAllEmployeesController.allEmployeeList
+    return Text(fetchAllEmployeesController.allEmployeeList
         .elementAt(idx)
         .marriageStatus
         .toString());
@@ -267,7 +268,7 @@ class DoB extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(DateFormat.yMMMMd('en_US').format(DateTime.parse(
-        FetchAllEmployeesController.allEmployeeList
+        fetchAllEmployeesController.allEmployeeList
             .elementAt(idx)
             .dob
             .toString())));
@@ -279,7 +280,7 @@ class City extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(FetchAllEmployeesController.allEmployeeList
+    return Text(fetchAllEmployeesController.allEmployeeList
         .elementAt(idx)
         .city
         .toString());
@@ -291,7 +292,7 @@ class State extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(FetchAllEmployeesController.allEmployeeList
+    return Text(fetchAllEmployeesController.allEmployeeList
         .elementAt(idx)
         .state
         .toString());
@@ -303,7 +304,7 @@ class Country extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(FetchAllEmployeesController.allEmployeeList
+    return Text(fetchAllEmployeesController.allEmployeeList
         .elementAt(idx)
         .country
         .toString());

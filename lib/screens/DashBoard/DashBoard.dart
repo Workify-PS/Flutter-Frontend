@@ -35,7 +35,11 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
-
+  DeviceSize device = DeviceSize();
+    device.size = MediaQuery.of(context).size;
+    screenWidth = device.size.width;
+    screenHeight = device.size.height;
+    portrait = screenWidth < 1000;
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(bannerHeight),
@@ -53,7 +57,7 @@ class _DashBoardState extends State<DashBoard> {
             maxCrossAxisExtent: 550,
             crossAxisSpacing: kDefaultPadding * 4,
             mainAxisSpacing: kDefaultPadding * 2,
-            childAspectRatio: 1.2,
+            childAspectRatio: portrait?0.8:1.2,
             //mainAxisExtent: 400,
           ),
 

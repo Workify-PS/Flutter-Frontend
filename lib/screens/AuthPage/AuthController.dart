@@ -9,6 +9,7 @@ import 'package:workify/models/UserModel.dart';
 import 'package:workify/services/auth_service.dart';
 
 class AuthController extends GetxController with CacheManager {
+  final settingsTileButtonsEnabled = false.obs;
   final RxBool isSignedIn = false.obs;
   final AuthService _authService = AuthService();
   final GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -118,6 +119,7 @@ class AuthController extends GetxController with CacheManager {
 
           Get.offAllNamed('/auth');
         });
+      
   }
 
   void checkLoginStatus() {

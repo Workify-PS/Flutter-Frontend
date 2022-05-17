@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:workify/screens/AuthPage/AuthController.dart';
 import 'package:workify/services/change_password_service.dart';
 import 'package:workify/utils/constants.dart';
 
@@ -14,6 +15,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
   final _currentPasswordController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final authController = Get.find<AuthController>();
 
   bool _passwordConfirmPasswordMatched = false;
   int newPasswordValidateFlag = 0;
@@ -228,13 +230,13 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
               flex: 5,
               child: ElevatedButton(
                 onPressed: () {
+                  authController.settingsTileButtonsEnabled.value = false;
                   Get.back(id: 1);
                 },
-                child: Text('Get back',
-                style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w300
-                  ),),
+                child: Text(
+                  'Get back',
+                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.w300),
+                ),
                 style: ElevatedButton.styleFrom(
                     primary: kPrimaryColor, onPrimary: kSecondaryColor),
               ),
@@ -248,10 +250,8 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                 onPressed: overridePasswordHandler,
                 child: Text(
                   'Change password',
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w300
-                  ),),
+                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.w300),
+                ),
                 style: ElevatedButton.styleFrom(
                     primary: kPrimaryColor, onPrimary: kSecondaryColor),
               ),

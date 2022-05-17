@@ -37,29 +37,35 @@ class SettingsSubTiles extends StatelessWidget {
             SettingsSubTile(
               settingsOptions: 'Change Password',
               onTap: () {
-                Get.defaultDialog(
-                    navigatorKey: Get.keys[1],
-                    radius: 8,
-                    backgroundColor: Colors.grey.shade200,
-                    barrierDismissible: false,
-                    title: 'Change Password',
-                    content: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        width: screenWidth / 2,
-                        height: screenHeight / 3,
-                        child: Row(
-                          children: [
-                            Expanded(flex: 5, child: ChangePasswordWidget()),
-                          ],
+                if (authController.settingsTileButtonsEnabled.isFalse) {
+                  Get.defaultDialog(
+                      navigatorKey: Get.keys[1],
+                      radius: 8,
+                      backgroundColor: Colors.grey.shade200,
+                      barrierDismissible: false,
+                      title: 'Change Password',
+                      content: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          width: screenWidth / 2,
+                          height: screenHeight / 3,
+                          child: Row(
+                            children: [
+                              Expanded(flex: 5, child: ChangePasswordWidget()),
+                            ],
+                          ),
                         ),
-                      ),
-                    ));
+                      ));
+                  authController.settingsTileButtonsEnabled.value = true;
+                }
               },
             ),
             SettingsSubTile(
               settingsOptions: 'Log Out',
-              onTap: () => authController.logOutDialog(),
+              onTap: () {
+                  authController.logOutDialog();
+                
+              },
             ),
           ],
         ));

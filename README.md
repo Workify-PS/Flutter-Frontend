@@ -4,6 +4,8 @@ An MVP (Minimum Viable Product) version of existing web-app hrms.peoplestrong.co
 
 ## Screenshots
 
-![Alt text](./screenshots/login.png?raw=true "Login Page")
+<div align="center">
+    <img src="./screenshots/login.png" width="400px"</img> 
+</div>
 
 

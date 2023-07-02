@@ -4,7 +4,7 @@ An MVP (Minimum Viable Product) version of existing web-app hrms.peoplestrong.co
 
 ## Screenshots
 
-![Login Page](./screenshots/login.png?raw=true "Login Page")
+![Alt Text](./screenshots/login.png?raw=true "Login Page")
 ![My Profile Page](./screenshots/my_profile.png?raw=true "My Profile Page")
 ![All Employee Details Page](./screenshots/all_employee_details.png?raw=true "All Employee Details Page")
 ![Apply Leave Page](./screenshots/apply_leave.png?raw=true "Apply Leave Page")
